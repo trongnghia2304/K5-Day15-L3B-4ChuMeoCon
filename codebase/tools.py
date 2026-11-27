@@ -414,3 +414,198 @@ def kiem_lich_trinh(
                          "opening_source": opening["source_note"]})
         current, previous = departure, poi
     return {"valid": True, "schedule": schedule, "issues": []}
+
+
+# ---------------------------------------------------------------- lập lịch, liệt kê vi phạm, gợi ý thay thế
+# (bổ sung cho kiem_lich_trinh ở trên: lap_lich + liet_ke_vi_pham dùng trong vòng sửa, goi_y_diem cho nhánh gợi ý)
+# Giờ, phút luôn do code tính từ opening_hours.csv và zone_travel_matrix.csv — model chỉ chọn thứ tự.
+
+def _poi(pid: str) -> dict | None:
+    return next((r for r in _load_csv("poi_master.csv") if r["poi_id"] == pid), None)
+
+
+def _hours(pid: str, day: str) -> dict | None:
+    return next((r for r in _load_csv("opening_hours.csv") if r["poi_id"] == pid and r["day_of_week"] == day), None)
+
+
+def _hhmm(minutes: int) -> str:
+    return "%02d:%02d" % (minutes // 60 % 24, minutes % 60)
+
+
+def travel_min(city: str, a: str, b: str, mode: str = "motorbike") -> int:
+    """Phút đi giữa 2 POI theo vùng (hàm thường, không ghi trace). Không có cặp vùng → 999."""
+    pa, pb = _poi(a), _poi(b)
+    if not pa or not pb:
+        return 999
+    col = {"car": "travel_min_car", "walk": "travel_min_walk"}.get(mode, "travel_min_motorbike")
+    rec = next((r for r in _load_csv("zone_travel_matrix.csv")
+                if r["city"] == _norm_city(city) and r["from_zone"] == pa["zone"] and r["to_zone"] == pb["zone"]), None)
+    return int(rec[col]) if rec else 999
+
+
+def zone_min(city: str, z1: str, z2: str, mode: str = "motorbike") -> int:
+    """Phút đi giữa 2 vùng (hàm thường, không ghi trace). Không có cặp vùng → 999."""
+    col = {"car": "travel_min_car", "walk": "travel_min_walk"}.get(mode, "travel_min_motorbike")
+    rec = next((r for r in _load_csv("zone_travel_matrix.csv")
+                if r["city"] == _norm_city(city) and r["from_zone"] == z1 and r["to_zone"] == z2), None)
+    return int(rec[col]) if rec else 999
+
+
+def _window(rec: dict):
+    o, c = _to_min(rec["open_time"]), _to_min(rec["close_time"])
+    if o is not None and c is not None and c <= o:
+        c += 24 * 60  # mở qua nửa đêm
+    return o, c, _to_min(rec["break_start"]), _to_min(rec["break_end"]), _to_min(rec["last_entry_time"])
+
+
+def _lap_lich(city: str, thu_tu: list, day_of_week: str, bat_dau: str, mode: str = "motorbike",
+              start_zone: str = "") -> list:
+    day = _norm_day(day_of_week)
+    t, prev, out = _to_min(bat_dau) or 0, None, []
+    for pid in thu_tu:
+        p, rec = _poi(pid), _hours(pid, day)
+        if not p or not rec:
+            continue
+        dur = int(p["avg_duration_min"])
+        move = travel_min(city, prev, pid, mode) if prev else (zone_min(city, start_zone, p["zone"], mode) if start_zone else 0)
+        arrive = t + move
+        o, c, bs, be, _ = _window(rec)
+        start = max(arrive, o if o is not None else arrive)
+        if bs is not None and be is not None and bs - dur < start < be:
+            start = be  # không kịp xong trước giờ nghỉ → chờ mở lại
+        out.append({"poi_id": pid, "name": p["name"], "di_chuyen_phut": move, "cho_phut": start - arrive,
+                    "den": _hhmm(start), "roi": _hhmm(start + dur)})
+        t, prev = start + dur, pid
+    return out
+
+
+@tool
+def lap_lich(city: str, thu_tu: list, day_of_week: str, bat_dau: str, mode: str = "motorbike", start_zone: str = "") -> list:
+    """Tên: lap_lich — Tính giờ đến / giờ rời từng điểm theo thứ tự đã chọn (code tính, không phải model).
+    Input: city, thu_tu (list poi_id), day_of_week, bat_dau ('HH:MM'), mode ('motorbike'|'car'|'walk'),
+    start_zone (vùng đang đứng, tùy chọn — cộng thời gian đi tới điểm đầu).
+    Output: list {poi_id, name, di_chuyen_phut, cho_phut, den, roi}. Đến sớm / trúng giờ nghỉ trưa thì cộng thời gian chờ.
+    Tác động ra ngoài: Không."""
+    return _lap_lich(city, thu_tu, day_of_week, bat_dau, mode, start_zone)
+
+
+def _kiem(city, lich, day_of_week, bat_dau, ket_thuc, mode="motorbike", end_zone=""):
+    day = _norm_day(day_of_week)
+    issues, prev = [], None
+    for s in lich:
+        pid = s.get("poi_id")
+        rec = _hours(pid, day)
+        if not _poi(pid) or not rec:
+            issues.append({"poi_id": pid, "loi": "khong_co_du_lieu", "chi_tiet": "không có điểm / giờ mở cửa trong dữ liệu"})
+            continue
+        den, roi = _to_min(s["den"]), _to_min(s["roi"])
+        if roi < den:
+            roi += 24 * 60
+        o, c, bs, be, last = _window(rec)
+        if rec["is_open"] != "True":
+            issues.append({"poi_id": pid, "loi": "dong_cua_ca_ngay", "chi_tiet": "đóng cửa %s: %s" % (day, rec["source_note"])})
+        else:
+            if o is not None and den < o:
+                issues.append({"poi_id": pid, "loi": "chua_mo_cua", "chi_tiet": "đến %s, mở %s" % (s["den"], rec["open_time"])})
+            if c is not None and roi > c:
+                issues.append({"poi_id": pid, "loi": "qua_gio_dong", "chi_tiet": "rời %s, đóng %s" % (s["roi"], rec["close_time"])})
+            if last is not None and den > last:
+                issues.append({"poi_id": pid, "loi": "qua_gio_nhan_khach", "chi_tiet": "đến %s, ngưng nhận %s" % (s["den"], rec["last_entry_time"])})
+            if bs is not None and be is not None and den < be and roi > bs:
+                issues.append({"poi_id": pid, "loi": "trung_gio_nghi", "chi_tiet": "nghỉ %s–%s" % (rec["break_start"], rec["break_end"])})
+        if den < _to_min(bat_dau) or roi > _to_min(ket_thuc):
+            issues.append({"poi_id": pid, "loi": "ngoai_khung_gio",
+                           "chi_tiet": "%s–%s ngoài khung %s–%s" % (s["den"], s["roi"], bat_dau, ket_thuc)})
+        if prev:
+            gap, need = den - _to_min(prev["roi"]), travel_min(city, prev["poi_id"], pid, mode)
+            if gap < 0:
+                issues.append({"poi_id": pid, "loi": "chong_gio", "chi_tiet": "đến trước khi rời điểm trước"})
+            elif gap < need:
+                issues.append({"poi_id": pid, "loi": "khong_du_thoi_gian_di", "chi_tiet": "có %d phút, cần %d phút" % (gap, need)})
+            elif gap - need > 60:
+                issues.append({"poi_id": pid, "loi": "cho_qua_lau", "chi_tiet": "chờ %d phút" % (gap - need)})
+        prev = s
+    if end_zone and lich and _poi(lich[-1].get("poi_id")):
+        last = lich[-1]
+        back = zone_min(city, _poi(last["poi_id"])["zone"], end_zone, mode)
+        if _to_min(last["roi"]) + back > _to_min(ket_thuc):
+            issues.append({"poi_id": last["poi_id"], "loi": "khong_kip_quay_ve",
+                           "chi_tiet": "rời %s + %d phút quay về = %s, quá %s"
+                           % (last["roi"], back, _hhmm(_to_min(last["roi"]) + back), ket_thuc)})
+    return issues
+
+
+@tool
+def liet_ke_vi_pham(city: str, lich: list, day_of_week: str, bat_dau: str, ket_thuc: str, mode: str = "motorbike",
+                    end_zone: str = "") -> list:
+    """Tên: liet_ke_vi_pham — Liệt kê ĐỦ mọi vi phạm của một lịch (để model sửa trong vòng lặp).
+    Khác kiem_lich_trinh (dừng ở lỗi đầu tiên, dùng làm cổng kiểm cuối): công cụ này không dừng sớm,
+    và tính thêm vùng xuất phát / quay về.
+    Input: city, lich (list {poi_id, den, roi}), day_of_week, bat_dau, ket_thuc ('HH:MM'), mode.
+    Output: list vi phạm {poi_id, loi, chi_tiet}; [] là lịch sạch. Loại lỗi: khong_co_du_lieu · dong_cua_ca_ngay ·
+    chua_mo_cua · qua_gio_dong · qua_gio_nhan_khach · trung_gio_nghi · ngoai_khung_gio · chong_gio ·
+    khong_du_thoi_gian_di · khong_kip_quay_ve (khi có end_zone) · cho_qua_lau (chỉ là cảnh báo).
+    Tác động ra ngoài: Không."""
+    return _kiem(city, lich, day_of_week, bat_dau, ket_thuc, mode, end_zone)
+
+
+def _open_for(pid: str, day: str, at: int, need_min: int) -> tuple:
+    """(mở được không, giờ đóng) cho một POI lúc `at` phút, cần ở lại ít nhất need_min phút.
+    day rỗng → chỉ tính là mở nếu mở như vậy ở CẢ 7 thứ (chưa biết thứ thì không đoán)."""
+    days = [day] if day else ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    close = None
+    for d in days:
+        rec = _hours(pid, d)
+        if not rec or rec["is_open"] != "True":
+            return False, None
+        o, c, bs, be, last = _window(rec)
+        if o is None or c is None or at < o or at + need_min > c or (last is not None and at > last):
+            return False, None
+        if bs is not None and be is not None and at < be and at + need_min > bs:
+            return False, None
+        close = rec["close_time"]
+    return True, close
+
+
+@tool
+def goi_y_diem(city: str, day_of_week: str = "", at_time: str = "", from_zone: str = "", mode: str = "motorbike",
+               rain_safe: bool = False, heat_safe: bool = False, indoor_only: bool = False, categories: list = None,
+               exclude: list = None, max_travel_min: int = 40, limit: int = 6) -> list:
+    """Tên: goi_y_diem — Lọc điểm thay thế ĐANG MỞ quanh một vùng (code lọc, model chỉ chọn trong danh sách này).
+    Input: city, day_of_week (rỗng = chưa biết thứ → chỉ lấy nơi mở mọi ngày giờ đó), at_time 'HH:MM' (rỗng = chỉ cần
+    mở cửa hôm đó), from_zone, mode, rain_safe / heat_safe / indoor_only (bool), categories (list, vd ['food','cafe']),
+    exclude (list poi_id), max_travel_min, limit.
+    Output: list {poi_id, name, zone, category, indoor_outdoor, di_chuyen_phut, dong_cua_luc, su_co} xếp theo phút đi.
+    Bỏ điểm đang có sự cố live mức high. Tác động ra ngoài: Không."""
+    city_code, day = _norm_city(city), (_norm_day(day_of_week) if day_of_week else "")
+    at = _to_min(at_time) if at_time else None
+    live = {r["poi_id"]: r for r in _load_csv("live_disruptions.csv") if r["status"] == "active" and r["poi_id"]}
+    out = []
+    for p in _load_csv("poi_master.csv"):
+        pid = p["poi_id"]
+        if p["city"] != city_code or pid in (exclude or []) or p["status"] != "active":
+            continue
+        if categories and p["category"] not in categories:
+            continue
+        if (rain_safe and p["rain_safe"] != "True") or (heat_safe and p["heat_safe"] != "True"):
+            continue
+        if indoor_only and p["indoor_outdoor"] != "indoor":
+            continue
+        move = zone_min(city_code, from_zone, p["zone"], mode) if from_zone else 0
+        if move > max_travel_min:
+            continue
+        if at is not None:
+            ok, close = _open_for(pid, day, at + move, min(45, int(p["avg_duration_min"])))
+        else:
+            rec = _hours(pid, day) if day else None
+            ok, close = bool(rec and rec["is_open"] == "True"), (rec["close_time"] if rec else None)
+        if not ok:
+            continue
+        d = live.get(pid)
+        if d and d["severity"] == "high":
+            continue
+        out.append({"poi_id": pid, "name": p["name"], "zone": p["zone"], "category": p["category"],
+                    "indoor_outdoor": p["indoor_outdoor"], "di_chuyen_phut": move, "dong_cua_luc": close,
+                    "su_co": d["description"] if d else ""})
+    out.sort(key=lambda x: (x["di_chuyen_phut"], bool(x["su_co"]), x["poi_id"]))
+    return out[:max(1, int(limit))]
