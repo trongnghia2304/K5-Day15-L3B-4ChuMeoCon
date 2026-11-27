@@ -1,4 +1,4 @@
-"""Kiểm hợp đồng dữ liệu giữa các phần (docs/hop-dong-du-lieu.md). Chạy trước mỗi lần push:
+"""Kiểm hợp đồng dữ liệu v2 giữa các phần (docs/hop-dong-du-lieu.md). Chạy trước mỗi lần push:
 
     python scripts/kiem_hop_dong.py
 
@@ -86,19 +86,143 @@ BENCH_HASH = {
 # ------------------------------------------------------------------ H6 · data cũ đóng băng
 
 
+# H6 v2: 2 file được NỐI DÒNG — chỉ kiểm N dòng đầu (kể cả tiêu đề) y nguyên.
+APPEND_OK = {
+    "data/travel-ops/poi_master.csv": (95, "358cc0bfe30e867a"),
+    "data/travel-ops/opening_hours.csv": (659, "7982c6ec90b9b6c8"),
+}
+DAYS7 = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+POI_ENUM = {
+    "category": {"attraction", "beach", "cafe", "food", "mall", "market", "museum"},
+    "indoor_outdoor": {"indoor", "outdoor", "semi_outdoor"},
+    "price_tier": {"free", "budget", "mid", "mid_high"},
+    "rain_safe": {"True", "False"}, "heat_safe": {"True", "False"},
+}
+
+
+def lines_of(path):
+    with open(path, "rb") as f:
+        return norm(f.read()).decode("utf-8").rstrip("\n").split("\n")
+
+
+def zones_by_city():
+    z = {}
+    for r in read_csv("data/travel-ops/zone_travel_matrix.csv"):
+        z.setdefault(r["city"], set()).update({r["from_zone"], r["to_zone"]})
+    return z
+
+
+def kiem_dong_poi(ma, rows, id_re, zones, gio_rows, tag):
+    """Kiểm dòng điểm mới (H6 v2 / H14): enum, vùng có sẵn, nguồn, đủ 7 dòng giờ mở hợp lệ."""
+    ids = [r["poi_id"] for r in rows]
+    if len(set(ids)) != len(ids):
+        loi(ma, "%s: trùng poi_id %s" % (tag, sorted({i for i in ids if ids.count(i) > 1})))
+    for r in rows:
+        pid = r["poi_id"]
+        if not re.match(id_re, pid or ""):
+            loi(ma, "%s: poi_id %r sai mẫu %s" % (tag, pid, id_re))
+            continue
+        city = pid.split("_")[1]
+        if r["city"] != city:
+            loi(ma, "%s %s: city %r không khớp mã %s" % (tag, pid, r["city"], city))
+        if r["zone"] and r["zone"] not in zones.get(city, set()):
+            loi(ma, "%s %s: zone %r không có trong zone_travel_matrix của %s (chỉ dùng vùng có sẵn)" % (tag, pid, r["zone"], city))
+        if not r["zone"] and ma == "H6":
+            loi(ma, "%s %s: thiếu zone" % (tag, pid))
+        for k, ok in POI_ENUM.items():
+            if r.get(k) not in ok:
+                loi(ma, "%s %s: %s=%r không hợp lệ" % (tag, pid, k, r.get(k)))
+        if not (r.get("avg_duration_min") or "").isdigit():
+            loi(ma, "%s %s: avg_duration_min phải là số nguyên phút" % (tag, pid))
+        if not (r.get("verified_source") or "").strip():
+            loi(ma, "%s %s: thiếu verified_source (nguồn 1)" % (tag, pid))
+        if ma == "H14" and not (r.get("nguon_2") or "").strip():
+            loi(ma, "%s %s: thiếu nguon_2" % (tag, pid))
+        if ma == "H6" and "nguồn 2" not in (r.get("notes") or ""):
+            loi(ma, "%s %s: notes phải có 'nguồn 2: <link>'" % (tag, pid))
+        g = [x for x in gio_rows if x["poi_id"] == pid]
+        if sorted(x["day_of_week"] for x in g) != sorted(DAYS7):
+            loi(ma, "%s %s: giờ mở cửa phải đúng 7 dòng Mon…Sun (đang có %s)" % (tag, pid, [x["day_of_week"] for x in g]))
+        for x in g:
+            if x["is_open"] not in ("True", "False"):
+                loi(ma, "%s %s %s: is_open phải True/False" % (tag, pid, x["day_of_week"]))
+            elif x["is_open"] == "True" and not (re.match(r"^\d{2}:\d{2}$", x["open_time"] or "")
+                                                and re.match(r"^\d{2}:\d{2}$", x["close_time"] or "")):
+                loi(ma, "%s %s %s: open_time / close_time phải dạng HH:MM" % (tag, pid, x["day_of_week"]))
+    la = sorted({x["poi_id"] for x in gio_rows} - set(ids))
+    if la:
+        loi(ma, "%s: giờ mở cửa cho poi_id không có trong file điểm: %s" % (tag, la))
+
+
 def kiem_data():
     for path, want in DATA_HASH.items():
+        if path in APPEND_OK:
+            continue
         if not os.path.exists(path):
             loi("H6", "%s bị xoá hoặc đổi tên (data đóng băng)" % path)
             continue
         with open(path, "rb") as f:
             got = hashlib.sha256(norm(f.read())).hexdigest()[:16]
         if got != want:
-            loi("H6", "%s đã bị sửa (data đóng băng — chỉ thêm file mới; sửa có nguồn thì ghi §10 và báo N3 cập nhật mốc)"
+            loi("H6", "%s đã bị sửa (data đóng băng — chỉ 2 file được nối dòng; sửa có nguồn thì ghi §10 và báo N3 cập nhật mốc)"
                 % path)
+    them = {}
+    for path, (n, want) in APPEND_OK.items():
+        if not os.path.exists(path):
+            loi("H6", "%s bị xoá hoặc đổi tên" % path)
+            continue
+        L = lines_of(path)
+        if len(L) < n or hashlib.sha256("\n".join(L[:n]).encode()).hexdigest()[:16] != want:
+            loi("H6", "%s: %d dòng đầu đã bị sửa / xoá — chỉ được NỐI dòng mới vào cuối (rule.md 1.7)" % (path, n - 1))
+            continue
+        them[path] = len(L) - n
+    if any(them.values()):
+        poi = read_csv("data/travel-ops/poi_master.csv")[94:]
+        gio = read_csv("data/travel-ops/opening_hours.csv")[658:]
+        print("  data nối thêm: %d điểm, %d dòng giờ mở" % (len(poi), len(gio)))
+        kiem_dong_poi("H6", poi, r"^POI_[A-Z]+_\d{2}$", zones_by_city(), gio, "poi_master (dòng mới)")
+        cu = {r["poi_id"] for r in read_csv("data/travel-ops/poi_master.csv")[:94]}
+        if cu & {r["poi_id"] for r in poi}:
+            loi("H6", "dòng mới trùng poi_id điểm cũ: %s" % sorted(cu & {r["poi_id"] for r in poi}))
     moi = sorted(set(p.replace(os.sep, "/") for p in glob.glob("data/travel-*/*.csv")) - set(DATA_HASH))
     if moi:
-        print("  data mới (được phép, nhớ ghi DATA_CARD): " + ", ".join(moi))
+        print("  file data mới (được phép, nhớ ghi DATA_CARD): " + ", ".join(moi))
+
+
+def kiem_staging():
+    """H14: data/staging/ của N1 (code không đọc)."""
+    p1, p2 = "data/staging/poi_moi.csv", "data/staging/gio_mo_moi.csv"
+    if not os.path.exists(p1) and not os.path.exists(p2):
+        chua("H14", "data/staging/poi_moi.csv, gio_mo_moi.csv")
+        return
+    cols_poi = header("data/travel-ops/poi_master.csv") + ["nguon_2", "ngay_xem", "nguoi_thu"]
+    cols_gio = header("data/travel-ops/opening_hours.csv") + ["nguon"]
+    for p, want in ((p1, cols_poi), (p2, cols_gio)):
+        if not os.path.exists(p):
+            loi("H14", "thiếu %s (phải đi đôi với file kia)" % p)
+            return
+        if header(p) != want:
+            loi("H14", "%s: tiêu đề phải là %s" % (p, ",".join(want)))
+            return
+    poi, gio = read_csv(p1), read_csv(p2)
+    print("  staging: %d điểm, %d dòng giờ mở" % (len(poi), len(gio)))
+    kiem_dong_poi("H14", poi, r"^MOI_[A-Z]+_\d{2}$", zones_by_city(), gio, "staging")
+
+
+def kiem_ten_khong_bi_cuop():
+    """H6 v2: thêm điểm mới không được làm tim_diem(tên điểm cũ) ra điểm khác."""
+    try:
+        agent = importlib.import_module("agent")
+    except Exception:  # noqa: BLE001 — kiem_output sẽ báo
+        return
+    rows = read_csv("data/travel-ops/poi_master.csv")
+    if len(rows) <= 94:
+        return
+    for r in rows:
+        p = agent.tim_diem(r["city"], r["name"])
+        if not p or p["poi_id"] != r["poi_id"]:
+            loi("H6", "tim_diem(%s, %r) ra %s thay vì %s — tên điểm mới cướp / trùng tên điểm cũ"
+                % (r["city"], r["name"], p["poi_id"] if p else None, r["poi_id"]))
 
 
 # ------------------------------------------------------------------ H8 · benchmark chỉ được thêm
@@ -311,6 +435,24 @@ def kiem_output(co_ngan_sach):
         goi = [x for x in o7 if re.match(r"^\d+\. ", x)]
         if goi and not all(R_GOIY.match(x) for x in goi):
             loi("H7", "B07: dòng gợi ý phải dạng 'n. [POI_ID] Tên — đi X phút · … · mở đến HH:MM' — %r" % goi[:1])
+        # H7 v2 · B-lite (chỉ kiểm khi output có mục "Còn trống")
+        if any(x.startswith("Còn trống ") for x in lines):
+            i = next(n for n, x in enumerate(lines) if x.startswith("Còn trống "))
+            dau = lines[i]
+            if not re.match(r"^Còn trống \d{2}:\d{2}–\d{2}:\d{2} \(\d+ phút\)(\. Có thể ghé thêm — trợ lý gợi ý, CHƯA xếp vào lịch:"
+                            r"|, dữ liệu ở .+ chưa có điểm phù hợp để gợi ý thêm\.)$", dau):
+                loi("H7", "B01: dòng đầu mục B-lite sai mẫu H7 v2: %r" % dau)
+            cong = [x for x in lines if x.startswith("  + ")]
+            for x in cong:
+                if not re.match(r"^  \+ \[POI_[A-Z]+_\d{2}\] .+ — đi \d+ phút từ điểm cuối · mở đến \d{2}:\d{2} · chơi khoảng \d+ phút$", x):
+                    loi("H7", "B01: dòng gợi ý B-lite sai mẫu H7 v2: %r" % x)
+            if "CHƯA xếp vào lịch" in dau and not cong:
+                loi("H7", "B01: có đầu mục B-lite mà không có dòng '  + [POI_ID] …'")
+            cuoi = next((n for n, x in enumerate(lines) if x.startswith("Bạn xem lại rồi tự gửi nhóm")), len(lines))
+            if not i < cuoi:
+                loi("H7", "B01: mục B-lite phải nằm trước dòng 'Bạn xem lại rồi tự gửi nhóm…'")
+            if any(R_LICH.match(x) for x in lines[i:]):
+                loi("H7", "B01: có dòng dạng lịch 'n. HH:MM–HH:MM · [POI]' sau mục B-lite — code chấm metric sẽ đọc nhầm")
         if co_ngan_sach:
             ob = agent.answer(rows["B01"] + " Ngân sách 300000đ/người.")["output"].splitlines()
             if not ob[-1].startswith("Chi phí ước tính:"):
@@ -362,6 +504,7 @@ def main():
     print("Kiểm hợp đồng dữ liệu — docs/hop-dong-du-lieu.md")
     kiem_env()
     kiem_data()
+    kiem_staging()
     kiem_benchmark()
     try:
         tools = importlib.import_module("tools")
@@ -376,6 +519,7 @@ def main():
     kiem_tools(tools)
     fn = kiem_ngan_sach(tools)
     kiem_output(fn is not None)
+    kiem_ten_khong_bi_cuop()
     kiem_file_cham()
     for x in CHUA:
         print("  chưa có (không tính lỗi): " + x)

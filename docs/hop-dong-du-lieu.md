@@ -4,7 +4,7 @@
 > Phân công và mốc giờ: [`phan-cong-cp3-cp4.md`](phan-cong-cp3-cp4.md) · Luật: [`../rule.md`](../rule.md).
 > **Kiểm tự động trước mỗi lần push:** `python scripts/kiem_hop_dong.py` — phải in `0 lỗi`.
 
-Phiên bản hợp đồng: **v1 — 28/11 00:15**
+Phiên bản hợp đồng: **v2 — 28/11 02:10** (v1 00:15). v2 **chỉ thêm**: H1 v2 (web chat nhiều lượt), H6 v2 (nối dòng data mới), H7 v2 (dòng B-lite), H14 (staging data). Không đổi trường nào của v1.
 
 ---
 
@@ -41,6 +41,7 @@ Mọi người ─► spec.md §10 (H13)
 | H11 | `cost/personas.yaml`, `cost/cost-estimate.md` | N2 | N3, N4 |
 | H12 | Số liệu đánh giá | N3 | N4, N1 |
 | H13 | Dòng changelog | mỗi người | lab coach |
+| H14 | `data/staging/*` — điểm mới chờ kiểm (Đợt 2) | N1 | N2 |
 
 ---
 
@@ -82,6 +83,8 @@ Web ghép form thành **đúng mẫu** sau (cùng kiểu câu thử B01, bộ t�
 
 Ví dụ: `Thứ Bảy ở TP.HCM từ 08:00 đến 17:30 đi xe máy: Thảo Cầm Viên, Dinh Độc Lập. Ngân sách 300000đ/người.`
 Ô chat tự do: gửi nguyên văn, không ghép thêm.
+
+**H1 v2 — web chat nhiều lượt (A+, N4):** khi **lượt trước** agent hỏi lại (trace của lượt đó có ghi chú bắt đầu bằng `hỏi lại`), web gửi `"<tin mới>. <câu đã gửi trước>"`; mọi lượt khác gửi nguyên văn. N3 **giữ nguyên tiền tố `hỏi lại`** trong `note(...)` của `agent.py` (hiện có `hỏi lại: thiếu …` và `hỏi lại (gợi ý): thiếu …`). Chỉ áp dụng ở web — `run.py eval` / `simulate` gửi từng câu độc lập.
 
 ### H2 · `ngan_sach.dong_chi_phi` (N2 → N3)
 
@@ -153,9 +156,22 @@ Hàm nội bộ N3 cũng gọi (giữ tên): `_poi`, `_hours`, `_load_csv`, `_to
 
 **Mã lỗi `kiem_lich_trinh.issues[]`** (mỗi phần tử `{code, message}`, dừng ở lỗi đầu tiên): `invalid_input · invalid_mode · invalid_window · missing_pois · duplicate_poi · unknown_poi · mixed_cities · missing_hours · missing_route · closed_day · outside_opening_hours · after_last_entry · outside_user_window`
 
-### H6 · Data cũ — đóng băng
+### H6 v2 · Data — dòng cũ đóng băng, chỉ nối dòng mới (N2)
 
-Không sửa / xoá dòng, cột trong `data/travel-ops/*.csv` và `data/travel-behavior/*.csv` (`rule.md` 1.7). Tiêu đề cột hiện tại (code đọc theo tên):
+Không sửa / xoá dòng, cột đã có trong `data/travel-ops/*.csv` và `data/travel-behavior/*.csv` (`rule.md` 1.7). **Mới ở v2:** được **nối dòng vào cuối** `poi_master.csv` và `opening_hours.csv` (nhánh `data/mo-rong`, merge sau run-2 + `simulate`). Script kiểm: 94 / 658 / 153 dòng đầu y nguyên, phần thêm đúng quy định dưới.
+
+| Quy định cho dòng mới | |
+|---|---|
+| `poi_id` | `POI_<TP>_<2 số>` nối tiếp số lớn nhất của thành phố đó (HN đang tới `_10`, HCM `_12`, DN `_10`, HUE `_12`, HA `_08`); không trùng |
+| `city` | 1 trong 12 mã; đợt này ưu tiên `HCM DN HA` (nơi B-lite bật trong bộ câu thử) rồi `HN HUE` |
+| `zone` | **vùng đã có** của thành phố đó trong `zone_travel_matrix.csv` — HN: `HN_BA_DINH HN_CAU_GIAY HN_DONG_DA HN_HAI_BA_TRUNG HN_HOAN_KIEM` · HCM: `HCM_PHU_NHUAN HCM_Q1_CENTER HCM_Q1_DAKAO HCM_Q3` · DN: `DN_HAI_CHAU DN_MY_KHE DN_NGU_HANH_SON DN_SON_TRA` · HUE: `HUE_CITADEL HUE_SOUTH_CENTER HUE_THIEN_MU HUE_TOMBS_SOUTH` · HA: `HA_AN_BANG HA_CAM_THANH HA_OLD_TOWN` · thành phố khác: xem `zone_travel_matrix.csv` |
+| `category`, `indoor_outdoor`, `price_tier`, `rain_safe`, `heat_safe`, `status` | giá trị hợp lệ như dưới; `status = active` |
+| `avg_duration_min` | số nguyên phút *(tự ước tính nếu nguồn không ghi)* |
+| `verified_source` | link nguồn 1; `notes` có `nguồn 2: <link> · xem 28/11` |
+| `opening_hours.csv` | **đúng 7 dòng** `Mon…Sun` cho mỗi điểm mới; giờ `HH:MM`; ngày nghỉ `is_open = False`; `source_note` ghi nguồn |
+| Tên | không trùng / gần trùng tên điểm cũ cùng thành phố — script kiểm `tim_diem(tên cũ)` vẫn ra đúng điểm cũ |
+
+Tiêu đề cột hiện tại (code đọc theo tên):
 
 | File | Cột |
 |---|---|
@@ -183,6 +199,18 @@ Code chấm `khong_vi_pham_gio` / `thuan_duong` (`eval/metric_spec.yaml`, đã k
 | Ngân sách (nếu có) | dòng **cuối cùng**, theo H2 |
 
 Dấu gạch giữa hai giờ là `–` (en dash), không phải `-`.
+
+**H7 v2 — B-lite (thêm, không đổi dòng nào ở trên)** · nằm **sau** dòng lý do / điểm bị bỏ / không có dữ liệu, **trước** `Bạn xem lại rồi tự gửi nhóm…`; dòng ngân sách vẫn cuối cùng:
+
+| Loại dòng | Định dạng |
+|---|---|
+| Đầu mục | `Còn trống HH:MM–HH:MM (X phút). Có thể ghé thêm — trợ lý gợi ý, CHƯA xếp vào lịch:` |
+| Một gợi ý lấp giờ | `  + [POI_ID] {Tên} — đi X phút từ điểm cuối · mở đến HH:MM · chơi khoảng Y phút` (bắt đầu bằng 2 dấu cách + `+`, **không** theo mẫu dòng lịch `{n}. HH:MM–HH:MM ·` để code chấm metric không đọc nhầm) |
+| Lý do | `Vì sao gợi ý: …` (chế độ giả có `(dự phòng)`) |
+| Mời thêm | `Muốn thêm điểm nào thì gửi lại câu kèm tên điểm đó — trợ lý sẽ xếp lại và kiểm giờ mở cửa.` |
+| Không có ứng viên | `Còn trống HH:MM–HH:MM (X phút), dữ liệu ở {TP} chưa có điểm phù hợp để gợi ý thêm.` |
+
+Chỉ bật khi: lịch có ≥ 1 điểm · không có điểm bị bỏ · `ket_thuc − xong lúc ≥ 60` (`NGUONG_TRONG_PHUT = 60` trong `agent.py`). Không bật ở nhánh gợi ý và câu hỏi lại.
 
 ### H8 · Dòng câu thử mới trong `eval/benchmark.csv` (N2 → N3)
 
@@ -233,6 +261,21 @@ N3 ghi ở `eval/README.md` mục 5 (bảng có sẵn) và dòng kết quả `sp
 
 Chỉ thêm vào **khối của mình**: `| HH:MM DD/MM | Đổi gì (file, hàm) | Vì sao (câu thử / lỗi / bằng chứng) |`.
 
+### H14 · `data/staging/` — điểm mới chờ kiểm (N1 → N2, Đợt 2)
+
+Code **không đọc** thư mục này. N1 thu thập, N2 kiểm nguồn thứ 2 rồi chép sang `data/travel-ops/` theo H6 v2 (gán `poi_id` thật).
+
+| File | Cột |
+|---|---|
+| `data/staging/poi_moi.csv` | **đúng cột `poi_master.csv`** + `nguon_2,ngay_xem,nguoi_thu` |
+| `data/staging/gio_mo_moi.csv` | **đúng cột `opening_hours.csv`** + `nguon` |
+
+- `poi_id` tạm: `MOI_<TP>_<2 số>` (vd `MOI_HN_01`); `gio_mo_moi.csv` dùng đúng mã tạm này, **7 dòng `Mon…Sun` / điểm**.
+- `zone`, `category`, `indoor_outdoor`, `price_tier`, `rain_safe`, `heat_safe` theo H6 v2. Chưa chắc vùng → để trống, N2 gán.
+- `verified_source` = nguồn 1, `nguon_2` = nguồn 2 (đều là link đã mở xem); `ngay_xem` = `28/11`; `nguoi_thu` = `N1`.
+- Giờ mở cửa **chép từ nguồn**, không để AI điền; nguồn không ghi giờ → bỏ điểm đó. Không ghi tên người review, số điện thoại cá nhân.
+- Ưu tiên (để B-lite và câu mưa có ứng viên): `cafe`, `food`, điểm `indoor`, nơi mở tới tối; ở vùng gần các điểm đang có.
+
 ---
 
 ## 4. Kiểm trước khi push
@@ -241,4 +284,4 @@ Chỉ thêm vào **khối của mình**: `| HH:MM DD/MM | Đổi gì (file, hàm
 python scripts/kiem_hop_dong.py
 ```
 
-Script kiểm: cột data cũ không đổi (H6) · B01–B28 không đổi, B29+ đúng cột (H8) · 9 công cụ đúng chữ ký và đủ trường (H5) · `price_tier_vnd.csv` (H4) · `uoc_chi_phi` (H3) · `dong_chi_phi` (H2) · output agent đúng định dạng dòng (H7) · file chấm (H10). Phần nào chưa có file thì báo "chưa có", không tính lỗi.
+Script kiểm: dòng data cũ không đổi, dòng nối thêm đúng H6 v2 (vùng có sẵn, 7 dòng giờ mở, có nguồn, không cướp tên điểm cũ) · `data/staging/` đúng H14 · dòng B-lite đúng H7 v2 (nếu có) · B01–B28 không đổi, B29+ đúng cột (H8) · 9 công cụ đúng chữ ký và đủ trường (H5) · `price_tier_vnd.csv` (H4) · `uoc_chi_phi` (H3) · `dong_chi_phi` (H2) · output agent đúng định dạng dòng (H7) · file chấm (H10). Phần nào chưa có file thì báo "chưa có", không tính lỗi.

@@ -4,7 +4,64 @@
 > Hình dạng dữ liệu giao giữa các người (hàm, trường, cột, dòng output): [`hop-dong-du-lieu.md`](hop-dong-du-lieu.md). Trước khi push: `python scripts/kiem_hop_dong.py` phải `0 lỗi`.
 > Điền tên thật vào cột "Người": N1 = ____ · N2 = ____ · N3 = ____ · N4 = ____ (cập nhật luôn cột "Phần việc chính" trong `TEAMS.md`, đội trưởng sửa).
 
-## Mốc
+---
+
+## ĐỢT 2 — từ 02:00 28/11: B-lite + mở rộng data (thay phần "sáng mai" của Đợt 1 bên dưới)
+
+> Đề xuất và quyết định: [`huong-b-lite.md`](huong-b-lite.md). Đợt 1 (đêm 27/11) đã xong: model thật, ngân sách, B29–B30, **run-1** (`run-1@20261128-010117`, 30 câu), bản chấm B16–B30.
+
+### Ba nguyên tắc của đợt này
+1. **run-2 đo đúng một thứ: lần sửa nhóm lỗi.** run-2 chạy trên `main` với data 94 điểm, **chưa có** B-lite, **chưa có** data mới. Cùng 30 câu với run-1.
+2. **B-lite và data mới làm trên nhánh riêng, chỉ merge sau khi `simulate` chạy xong (≈13:15)** → run-2 và chi phí đo cùng một cấu hình. Bản demo CP4 có B-lite + data mới; slide ghi rõ "run-2 đo bản chưa có B-lite".
+3. **run-3** (bản cuối: sửa lỗi + B-lite + data mới) chạy **sau demo, trước 23:59**, chấm đủ 30 câu, ghi §10 "Sau CP4". Không thêm câu thử (đã đủ 30, `rule.md` 1.3).
+
+### Lịch
+
+| Lúc | Ai | Việc | Ra file |
+|---|---|---|---|
+| tối nay → **11:30** (online) | **N1** | Thu thập điểm mới — ưu tiên **HCM · DN · HA** (B-lite bật ở B01, B29, B30 – HCM; B03 – DN; B04 – HA), rồi HN · HUE (demo); thành phố khác được nhưng không bắt buộc; ưu tiên cafe / quán ăn / trong nhà / mở tối, mỗi điểm 2 nguồn (hợp đồng **H14**). Mục tiêu 5–8 điểm / thành phố; được bao nhiêu nộp bấy nhiêu | `data/staging/poi_moi.csv`, `data/staging/gio_mo_moi.csv` |
+| 08:00–09:15 | **N2** | Chấm run-1 **B01–B15** | `eval/grading-run1-<ten-2>.csv` |
+| 08:00–08:30 | **N3** | Chấm lại B01–B05 để đối chiếu N2 (lệch ≥ 2/5 → bàn lại cách hiểu, không sửa tiêu chí) | ghi chú trong `eval/README.md` mục 3 |
+| 08:30–09:15 | **N3** | B-lite trên nhánh `feat/b-lite`: nhánh trong `agent.py` + `prompts/lap_gio_trong.md` (mục 4 của đề xuất) | nhánh, **chưa merge** |
+| 08:00–09:30 | **N4** | Video 30s (bản hiện tại) → link cho N3 | link |
+| 09:15–09:50 | **N3** | Gộp 2 file chấm vào `run-1.csv` → `python run.py score eval/run-1.csv` → `eval/README.md` mục 5 + dòng kết quả §7 → **nộp CP3** | |
+| 09:30–10:30 | **N4** | Người dùng thử 3 người **trên bản hiện tại**; giao ít nhất 1 việc có giờ trống / thành phố ít điểm | `validation/log.md` |
+| 10:00–10:20 | N2 · N3 · N4 (+N1 online) | Đọc câu trượt run-1 → chọn **1 nhóm lỗi** (ứng viên ở cuối mục này) | §10 khối N3 |
+| 10:20–11:15 | **N3** | Sửa nhóm lỗi trên `main` (file của ai người đó sửa) | commit trên `main` |
+| 10:00–11:45 | **N2** | Kiểm nguồn thứ 2 các dòng staging của N1 → chép sang nhánh `data/mo-rong`: **chỉ thêm dòng** vào `poi_master.csv`, `opening_hours.csv`, gán `poi_id` thật; `python data/validate_travel_data.py` + `python scripts/kiem_hop_dong.py` | nhánh, **chưa merge** |
+| **11:15** | **N3** | **run-2** trên `main` → commit ngay `run-2.csv` + trace | `eval/run-2.csv` |
+| 11:30–12:10 | **N2** (B01–B15) · **N4** (B16–B30) | Chấm run-2 | `eval/grading-run2-<ten>.csv` |
+| 11:30–12:10 | **N3** | Rebase `feat/b-lite` lên `main` mới, chạy `python run.py eval --try 30` so dòng lịch trước / sau | |
+| 12:10–12:30 | **N3** | Gộp chấm run-2 → `score` → `eval/report.md`, `eval/README.md` | |
+| 12:30–13:15 | **N2** | `python run.py simulate` (≥50 phiên) trên `main` lúc này (cấu hình run-2) → `cost/cost-estimate.md` trước **13:30** | `cost/simulate-N.csv` |
+| **13:15** | **N3** rồi **N2** | Merge `feat/b-lite` → merge `data/mo-rong` → `kiem_hop_dong` · `run.py check` · `validate_travel_data` · `eval --try 30` so trước / sau — soi riêng 6 câu nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28): đổi thì ghi vào `eval/report.md`, **không sửa câu**. Hỏng → `git revert`, để slide 8 | commit merge |
+| 13:15–13:45 | **N4** | (tuỳ) cho 1 người thử lại bản mới, ghi thêm vào `validation/log.md` | |
+| 13:30–14:15 | **N4** | Slide 4–8 → `demo-slides.pdf` + video dự phòng; slide 5 ghi "run-2 đo bản chưa có B-lite + data mở rộng" | `demo-slides.pdf` |
+| 13:30–14:15 | **N3** | `spec.md` §4–§6, §8–§9; hợp đồng H7 v2 đã có | |
+| **14:30** | đội trưởng | **Nộp CP4** | |
+| sau demo → **23:59** | N3 chạy · N2, N3, N4 chấm (10 câu / người) | **run-3** trên bản cuối, ghi §10 "Sau CP4"; reflection mỗi người | `eval/run-3.csv` |
+
+**Điểm cắt:** 13:30 mà `eval --try 30` cho thấy dòng lịch bị đổi hoặc `kiem_hop_dong` báo lỗi → không merge (B-lite / data để slide 8). Data: chỉ merge dòng đã có đủ 2 nguồn.
+
+### Ai chờ ai (Đợt 2)
+
+| Người chờ | Chờ ai | Thứ được giao | Hạn | Trễ thì |
+|---|---|---|---|---|
+| N3 (nộp CP3) | N2 | `grading-run1-<ten-2>.csv` | 09:15 | N3 tự chấm nốt |
+| N3 (nộp CP3) | N4 | link video 30s | 09:30 | N3 quay video dòng lệnh |
+| N2 | N1 | `data/staging/*` | 11:30 | merge phần đã có đủ 2 nguồn; thiếu thì bỏ |
+| N2, N4 (chấm) | N3 | `run-2.csv` | 11:15 | dời chấm theo |
+| N2 (simulate) | N3 | `score` run-2 | 12:30 | simulate dùng tỉ lệ đạt run-2 |
+| N3, N2 (merge) | N2 | `simulate` xong | 13:15 | **chưa merge** khi simulate chưa xong |
+| N4 (slide 5, 6) | N3, N2 | `report.md`, `cost-estimate.md` | 13:30 | |
+
+### Ứng viên nhóm lỗi cho lần sửa trước run-2 (từ run-1, nhóm chốt lúc 10:00)
+1. **Lý do / con số không khớp code** — B22, B27 (`tu_choi`, thiếu số khoảng cách / phút đi), B26, B27 (dòng "Vì sao" của model nói ngược kết quả kiểm). Ảnh hưởng điều kiện cứng "100% `tu_choi` qua" ở §7. *(N3 nghiêng về nhóm này)*
+2. **Bộ tách yêu cầu đọc sai** — "mua vé" → "mưa" + cảnh báo đặt chỗ thừa (B17, B18); "Lăng Chủ tịch Hồ Chí Minh" → thành phố HCM (N4 phát hiện); model bỏ trống thành phố và ghi đè kết quả code (B08 khi chạy thử); B20 không lấy được khung 14:00–15:00.
+
+---
+
+## Mốc (Đợt 1)
 
 | Lúc | Việc |
 |---|---|
@@ -30,6 +87,10 @@
 | `codebase/ai.py` · `codebase/agent.py` · `codebase/prompts/` · `eval/run-*.csv` · `traces/` · `eval/report.md` · `eval/README.md` · `spec.md` §3–§9 | **N3** | Chỉ N3 chạy eval, chỉ N3 ghi vào `run-*.csv` |
 | `web/*` · `requirements.txt` · `Procfile` · `README.md` · `validation/log.md` · `slides/outline.md` trang 4–8 · `demo-slides.pdf` | **N4** | Sửa slide **ngày mai**, sau khi N1 xong |
 | `eval/grading-run1-<ten>.csv` · `eval/grading-run2-<ten>.csv` | người chấm | Mỗi người một file (`id,pass,ghi_chu`), N3 gộp vào `run-N.csv` |
+| `data/staging/*` (Đợt 2) | **N1** | Code không đọc thư mục này; N2 kiểm rồi chép sang `data/travel-ops/` |
+| Nhánh `feat/b-lite`: `agent.py` (nhánh lấp giờ trống) · `prompts/lap_gio_trong.md` (Đợt 2) | **N3** | Merge 13:15 |
+| Nhánh `data/mo-rong`: dòng mới cuối `poi_master.csv`, `opening_hours.csv` (Đợt 2) | **N2** | Merge 13:15, sau B-lite |
+| `docs/huong-b-lite.md` | N4 viết · N3 ghi kết quả kiểm | |
 | `reflection/<ten>.md` | từng người | |
 | `spec.md` §10 · `docs/ai-usage.md` | mỗi người **khối riêng** đã tạo sẵn | Không sửa khối người khác |
 | `TEAMS.md` | đội trưởng | |
@@ -110,7 +171,7 @@ Sáng mai:
 
 ## Luật cả nhóm giữ
 - **Không sửa:** `spec.md` §7 (chuẩn "đạt"), `eval/metric_spec.yaml`, các dòng B01–B28, `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py`, các `run-*.csv` / `simulate-*.csv` / `traces/` đã chạy (trừ cột `pass`, `ghi_chu`). Không xoá câu thử trượt.
-- Dòng data cũ trong `data/travel-ops/` coi như đóng băng (13/28 câu thử nằm ngoài HN/HCM/DN/Huế); chỉ thêm file mới.
+- Dòng data cũ trong `data/travel-ops/` coi như đóng băng (12/28 câu thử nằm ngoài HN/HCM/DN/Huế); chỉ thêm file mới.
 - Không commit `.env` / API key; không so khớp nguyên văn input câu thử trong code.
 - Mọi thay đổi sau CP2 → 1 dòng trong khối của mình ở `spec.md` §10 (giờ · đổi gì · vì sao).
 - Số không có nguồn ghi *(tự ước tính)*. Ai cũng phải giải thích được phần có tên mình.
