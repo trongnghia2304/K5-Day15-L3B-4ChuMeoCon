@@ -12,7 +12,7 @@ Chép `.env.example` thành `.env`, điền 3 dòng. Ví dụ:
 
 ```
 MODEL_PROVIDER=openai
-MODEL_NAME=gpt-5.4-nano
+MODEL_NAME=gpt-4.1-mini
 API_KEY=<key của nhóm, không dấu ngoặc kép>
 ```
 
