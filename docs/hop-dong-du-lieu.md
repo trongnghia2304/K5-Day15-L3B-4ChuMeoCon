@@ -4,7 +4,7 @@
 > Phân công và mốc giờ: [`phan-cong-cp3-cp4.md`](phan-cong-cp3-cp4.md) · Luật: [`../rule.md`](../rule.md).
 > **Kiểm tự động trước mỗi lần push:** `python scripts/kiem_hop_dong.py` — phải in `0 lỗi`.
 
-Phiên bản hợp đồng: **v2 — 28/11 02:10** (v1 00:15). v2 **chỉ thêm**: H1 v2 (web chat nhiều lượt), H6 v2 (nối dòng data mới), H7 v2 (dòng B-lite), H14 (staging data). Không đổi trường nào của v1.
+Phiên bản hợp đồng: **v2 — 28/11 ≈02:00** (v1 ≈23:50 27/11). v2 **chỉ thêm**: H1 v2 (web chat nhiều lượt), H6 v2 (nối dòng data mới), H7 v2 (dòng B-lite), H14 (staging data). Không đổi trường nào của v1.
 
 ---
 
