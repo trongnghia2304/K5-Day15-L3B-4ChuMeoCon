@@ -429,6 +429,8 @@ def kiem_output(co_ngan_sach):
             loi("H7", "B01: dòng lịch phải dạng 'n. HH:MM–HH:MM · [POI_ID] Tên' — %r" % lich[:2])
         if not any(x.startswith("Tổng di chuyển: ") for x in lines):
             loi("H7", "B01: thiếu dòng 'Tổng di chuyển: X phút · xong lúc HH:MM'")
+        if any(x.startswith("Vì sao") for x in lines):
+            loi("H7", "B01: còn dòng 'Vì sao…' — H7 v3: lý do của model chỉ ghi vào trace, không hiện")
         if "Chi phí ước tính:" in o1:
             loi("H7", "B01 không có ngân sách mà output có dòng chi phí")
         o7 = agent.answer(rows["B07"])["output"].splitlines()
@@ -439,14 +441,14 @@ def kiem_output(co_ngan_sach):
         if any(x.startswith("Còn trống ") for x in lines):
             i = next(n for n, x in enumerate(lines) if x.startswith("Còn trống "))
             dau = lines[i]
-            if not re.match(r"^Còn trống \d{2}:\d{2}–\d{2}:\d{2} \(\d+ phút\)(\. Có thể ghé thêm — trợ lý gợi ý, CHƯA xếp vào lịch:"
-                            r"|, dữ liệu ở .+ chưa có điểm phù hợp để gợi ý thêm\.)$", dau):
-                loi("H7", "B01: dòng đầu mục B-lite sai mẫu H7 v2: %r" % dau)
+            if not re.match(r"^Còn trống \d{2}:\d{2}–\d{2}:\d{2} \(\d+ phút\)(\. Nếu muốn, nhóm có thể ghé thêm \(mình chỉ gợi ý, "
+                            r"chưa xếp vào lịch\):|, dữ liệu ở .+ chưa có chỗ nào hợp để gợi ý thêm\.)$", dau):
+                loi("H7", "B01: dòng đầu mục B-lite sai mẫu H7 v3: %r" % dau)
             cong = [x for x in lines if x.startswith("  + ")]
             for x in cong:
                 if not re.match(r"^  \+ \[POI_[A-Z]+_\d{2}\] .+ — đi \d+ phút từ điểm cuối · mở đến \d{2}:\d{2} · chơi khoảng \d+ phút$", x):
-                    loi("H7", "B01: dòng gợi ý B-lite sai mẫu H7 v2: %r" % x)
-            if "CHƯA xếp vào lịch" in dau and not cong:
+                    loi("H7", "B01: dòng gợi ý B-lite sai mẫu H7 v3: %r" % x)
+            if "chưa xếp vào lịch" in dau and not cong:
                 loi("H7", "B01: có đầu mục B-lite mà không có dòng '  + [POI_ID] …'")
             cuoi = next((n for n, x in enumerate(lines) if x.startswith("Bạn xem lại rồi tự gửi nhóm")), len(lines))
             if not i < cuoi:
