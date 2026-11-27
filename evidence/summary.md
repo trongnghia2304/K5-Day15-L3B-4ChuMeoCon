@@ -8,7 +8,7 @@
 | Nguồn | Đạt ngưỡng? | File |
 |---|---|---|
 | Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☐ *(dự kiến: review Google Maps của các điểm ăn chơi)* | `evidence/data-mining.md` |
-| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☐ *(dự kiến: hẹn từ 15 người để lại liên hệ trong form)* | `evidence/interviews/P1.md`… |
+| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☑ 3 người (P1 trực tiếp, P2 nhắn tin, P3 trực tiếp) *(chờ nhóm xác nhận cả 3 là người ngoài nhóm; P2 nhắn tin, template ghi trực tiếp / video — hỏi BTC xem có tính không)* | [`P1`](interviews/P1.md) · [`P2`](interviews/P2.md) · [`P3`](interviews/P3.md) |
 | Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☑ n = 76, 67 người đã đi tự túc *(chờ nhóm xác nhận không có thành viên trong mẫu)* | [`evidence/survey/`](survey/questions.md) |
 
 ## 2. Số chính
@@ -45,14 +45,29 @@ Tần suất (Câu 2, N = 76): 39 người đi 1–2 lần / năm · 20 người
 
 ## 4. Các nguồn có khớp nhau không
 
-Mới có một nguồn (khảo sát). Cần nguồn thứ hai để kiểm lại: phỏng vấn 3 người trong số 15 người đã để lại liên hệ, hỏi **lần gần nhất** lên lịch một ngày nhiều điểm — mất bao lâu, sai ở đâu.
+Hai nguồn: khảo sát (n = 76) và phỏng vấn 3 người (P1 đi Sài Gòn 2 người · P2 đi Đà Nẵng 6 người · P3 đi Ninh Bình 12 người), hỏi **lần gần nhất** lên lịch một ngày nhiều điểm. **Một phần khớp.**
+
+**Khớp:**
+- Cả 3 đều phải đổi kế hoạch giữa chuyến và mất 30 phút đến vài tiếng: P1 30–45 phút, P2 vài tiếng, P3 45–60 phút (khảo sát Câu 9: 55% mất ≥15 phút).
+- P1 và P2 nói khâu mệt nhất là sắp thứ tự / cân đối khoảng cách giữa các điểm (khảo sát Câu 5: 73%).
+- Cả 3 xoay xở bằng TikTok + Google Maps; P2 và P3 còn dùng ChatGPT (khảo sát Câu 8: 75% lướt tìm lại, 58% hỏi ChatGPT).
+- Tần suất 1–3 lần trong 3 chuyến gần nhất (P1 2–3, P2 1, P3 1–2).
+
+**Lệch / ngược giả thuyết:**
+- Không ai trong 3 người gặp quán đóng cửa hoặc sai giờ mở cửa. Sự cố thật: thông tin điểm sai (P1: video TikTok ghi nhầm địa điểm), xe hỏng (P2), mưa lớn (P3). Khảo sát nói 57% gặp đóng cửa / hết bàn / hết vé, nhưng phỏng vấn không xác nhận riêng lỗi giờ mở cửa.
+- P2: nút thắt là chốt ý kiến cả nhóm (mỗi người một sở thích), mất vài tiếng — đúng "cách giải thích khác" số 1 trong hypothesis.md.
+- P3: khâu mệt nhất là tìm villa cho 12 người, ngoài phạm vi lát cắt.
+- P1 tin người quen hơn công cụ; P2, P3 đã tự xoay xở được (điểm dự phòng, lịch linh hoạt).
+- Cỡ nhóm 2, 6, 12 người, không riêng 3–5 như canvas.
 
 ## 5. Kết luận
 
-Giả thuyết ở `evidence/hypothesis.md`: **đúng** — cả hai ngưỡng đã đặt trước đều đạt: sắp thứ tự thuận đường là khâu mệt nhất ở 49/67 (73%) ≥ 65%; lịch trái đường / quá dày phải bỏ dở điểm ở 37/67 (55%) ≥ 40%, và gặp đóng cửa / hết bàn / hết vé ở 38/67 (57%). Nhóm tự lên lịch (N = 40) cho số tương tự (72%, 52%). Hai chỗ chưa khớp hẳn giả thuyết: Câu 7 chỉ 25/67 (37%) chấm mức ảnh hưởng 4–5/5 (người dùng không coi là pain nặng), và "đóng cửa" gộp chung với hết bàn / hết vé nên chưa tách riêng được lỗi giờ mở cửa. Mới có một nguồn (khảo sát), chưa có phỏng vấn kiểm lại. Điều vẫn chưa biết: khảo sát cho biết sự cố xảy ra **ở bao nhiêu người**, chưa cho biết **mỗi chuyến bao nhiêu lần** và mất bao nhiêu phút mỗi lần (ngoài Câu 9) → hỏi thêm trong phỏng vấn.
+Giả thuyết ở `evidence/hypothesis.md`: **đúng** — cả hai ngưỡng đã đặt trước đều đạt: sắp thứ tự thuận đường là khâu mệt nhất ở 49/67 (73%) ≥ 65%; lịch trái đường / quá dày phải bỏ dở điểm ở 37/67 (55%) ≥ 40%, và gặp đóng cửa / hết bàn / hết vé ở 38/67 (57%). Nhóm tự lên lịch (N = 40) cho số tương tự (72%, 52%). Hai chỗ chưa khớp hẳn giả thuyết: Câu 7 chỉ 25/67 (37%) chấm mức ảnh hưởng 4–5/5 (người dùng không coi là pain nặng), và "đóng cửa" gộp chung với hết bàn / hết vé nên chưa tách riêng được lỗi giờ mở cửa. Phỏng vấn 3 người kiểm lại (mục 4): khớp ở khâu sắp thứ tự / xác minh và việc đổi kế hoạch tốn 30 phút đến vài tiếng, nhưng **không xác nhận lỗi giờ mở cửa**. Sự cố thật là thông tin điểm sai, xe hỏng, thời tiết, và chốt ý kiến cả nhóm. Vì vậy giả thuyết đúng ở khâu sắp thứ tự và đổi lịch, còn phần "kiểm giờ mở cửa" chỉ có số khảo sát hỗ trợ, chưa có chuyện kể nào. Số lần mỗi chuyến: 1–3 lần trong 3 chuyến gần nhất; phút mỗi lần: 30–45 (P1), vài tiếng (P2), 45–60 (P3). Mẫu phỏng vấn nhỏ (3 người).
 
 ## Lịch hẹn (dùng cho CP2 — chỉ ghi vai và giờ, không tên)
 
 | Vai | Giờ hẹn | Đã xong? |
 |---|---|---|
-| | | |
+| P1 · người lên lịch chuyến 2 người (Sài Gòn) · trực tiếp | 27/11 18:00 | ☑ |
+| P2 · người lên lịch chuyến 6 người (Đà Nẵng) · nhắn tin | 27/11 18:05 | ☑ |
+| P3 · người lên lịch chuyến 12 người (Ninh Bình) · trực tiếp | 27/11 18:35 | ☑ |
