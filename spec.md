@@ -129,7 +129,7 @@ flowchart TD
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 13 · kho 10 · tu_choi 5) · metric: `eval/metric_spec.yaml` (4 metric: khong_vi_pham_gio, khong_bia_diem, dung_hanh_vi, thuan_duong)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): **"Đạt khi ≥ 70% câu qua (cột pass theo pass_criterion), và 100% câu `tu_choi` qua, và 0 lịch trả ra có vi phạm giờ mở cửa (metric `khong_vi_pham_gio`)."**
-- Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **22/30 (73%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (3/5: B22, B27) · 0 vi phạm giờ đạt (23/23) · lượt 2 __/__ (__%) — run ID: `run-1@20261128-010117` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -192,6 +192,8 @@ flowchart TD
 | ≈02:02 28/11 | Đính chính tài liệu: data cũ vẫn dùng đầy đủ cho cả 12 thành phố ("đóng băng" = không sửa / xoá, `rule.md` 1.7 viết lại cho rõ); số câu thử ngoài HN/HCM/DN/HUE là **12/28** (dòng 00:05 ghi 13/28 do đếm trùng Hạ Long và Quảng Ninh ở B26); bộ câu thử phủ **11/12** thành phố — Sa Pa chưa có câu; ưu tiên mở rộng data đổi thành HCM · DN · HA (nơi B-lite bật: B01, B29, B30 · B03 · B04) rồi HN · HUE | Kiểm lại độ phủ theo `poi_id` trong `expected` / `pass_criterion` / output run-1 |
 | ≈02:05 28/11 | `rule.md` 1.7 + `docs/phan-cong-cp3-cp4.md`: ghi rõ thêm data **không đổi bộ câu thử**; 6 câu có `pass_criterion` nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28) có thể đổi kết quả ở run-3 → báo trung thực, không sửa câu, không chọn data để né câu | Đối chiếu luật đề: CP2 chỉ khoá chuẩn "đạt"; câu thử chỉ được thêm, không sửa `expected`, không bỏ câu trượt (guide 3.4, 4.1; rubric) |
 | 02:10 28/11 | Sửa giờ các dòng N3 ở trên: trước ghi 23:55 / 00:05 / 00:30 / 02:15 / 02:35 / 02:50 là giờ ước đoán, sai. Giờ mới lấy theo bằng chứng: commit `509a16f` (23:56) đã chứa `rule.md` + `hop-dong-du-lieu.md`; giờ sửa file `docs/huong-b-lite.md` 01:55, `hop-dong-du-lieu.md` 02:02, `rule.md` / `spec.md` 02:05 | Changelog phải đúng giờ thật (guide 5.3) |
+| 02:56 28/11 | Chấm lại độc lập B01–B05 của run-1 → khớp 5/5 với `eval/grading-run1-hieu.csv`; gộp 2 file chấm (Hiếu B01–B15, N3 B16–B30) vào `eval/run-1.csv` — chỉ cột `pass`, `ghi_chu`, đã so từng ô các cột khác không đổi; `python run.py score` → 22/30 (73%), `tu_choi` 3/5; điền §7 dòng kết quả, `eval/README.md` mục 2, 3, 4, 5, 6 và `eval/report.md` mục 1, 2 | Lượt 1 theo guide 3.4; bảng run và lỗi chính cho CP3 |
+| 02:56 28/11 | Thêm `eval/cham_metric_code.py` (chỉ đọc): chấm `khong_vi_pham_gio`, `khong_bia_diem`, `thuan_duong` đúng định nghĩa `eval/metric_spec.yaml`; run-1: 23/23 · 23/23 · 1/5 | `eval/README.md` mục 4 ghi chưa có code chấm cho metric `grader: code`; cần cùng một cách chấm cho run-1, run-2, run-3 |
 
 #### N4 · web, README, validation, slide 4–8 — Nguyễn Nghiêm Khánh Tiệp
 

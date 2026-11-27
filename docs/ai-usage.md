@@ -34,7 +34,8 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 ### N3 — ____
 
-- 
+- Dùng Claude Code (Opus) viết `codebase/agent.py` phần ngân sách và nhánh B-lite (`feat/b-lite`), prompt `lap_gio_trong.md`, `scripts/kiem_hop_dong.py`, `eval/cham_metric_code.py`, `docs/hop-dong-du-lieu.md`, `rule.md`, `docs/phan-cong-cp3-cp4.md`; soạn nháp phiếu chấm B16–B30 của run-1 và chấm lại B01–B05.
+- Đã tự kiểm: đọc lại và duyệt từng phiếu chấm (sửa B25); B-lite so 30 câu trước / sau ở chế độ giả — chỉ thêm mục gợi ý, không đổi dòng lịch nào; script kiểm thử trên bản sao với lỗi cố tình; gộp điểm vào `run-1.csv` có so từng ô; `python scripts/kiem_hop_dong.py` 0 lỗi, `python run.py check` sạch.
 
 ### N4 — Nguyễn Nghiêm Khánh Tiệp
 
