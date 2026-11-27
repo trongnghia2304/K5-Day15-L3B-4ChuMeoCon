@@ -1,0 +1,17 @@
+actor,type,trip_id,poi_id,ref_id,data,occurred_at
+weather_sensor,weather_changed,T0025,POI_HCM_01,DIS_01,"{""from"": ""sunny"", ""to"": ""heavy_rain""}",2026-11-28T14:00:00+07:00
+traveler,finished_early_detected,T0025,POI_HCM_01,C0013,"{""planned_min"": 120, ""actual_min"": 70}",2026-11-28T14:03:00+07:00
+weather_sensor,weather_changed,T0003,POI_HN_05,DIS_04,"{""from"": ""cloudy"", ""to"": ""heavy_rain""}",2026-11-28T15:05:00+07:00
+ops_feed,poi_unexpectedly_closed,T0004,POI_HN_08,DIS_03,"{""reason"": ""sold_out_early""}",2026-11-28T09:32:00+07:00
+weather_sensor,weather_changed,T0005,POI_HUE_01,DIS_05,"{""from"": ""sunny"", ""to"": ""extreme_heat""}",2026-11-29T11:40:00+07:00
+weather_sensor,weather_changed,T0010,POI_DN_09,DIS_07,"{""from"": ""cloudy"", ""to"": ""heavy_rain""}",2026-11-29T15:10:00+07:00
+ops_feed,crowd_alert_triggered,T0011,POI_DN_07,DIS_06,"{""wait_min"": 45}",2026-11-29T18:40:00+07:00
+traveler,finished_early_detected,T0012,POI_DN_01,C0023,"{""planned_min"": 75, ""actual_min"": 45}",2026-11-29T14:15:00+07:00
+weather_sensor,weather_changed,T0014,POI_HA_05,DIS_08,"{""from"": ""sunny"", ""to"": ""heavy_rain""}",2026-11-29T14:30:00+07:00
+ops_feed,poi_unexpectedly_closed,T0017,POI_NT_03,DIS_09,"{""reason"": ""sudden_closure""}",2026-11-30T11:48:00+07:00
+weather_sensor,weather_changed,T0020,POI_DL_04,DIS_10,"{""from"": ""cloudy"", ""to"": ""heavy_rain""}",2026-12-01T18:05:00+07:00
+ops_feed,crowd_alert_triggered,T0020,POI_DL_03,DIS_11,"{""queue_status"": ""full""}",2026-12-01T18:10:00+07:00
+weather_sensor,weather_changed,T0032,POI_QN_04,DIS_14,"{""from"": ""cloudy"", ""to"": ""heavy_rain""}",2026-11-29T14:35:00+07:00
+weather_sensor,weather_changed,T0034,POI_SP_05,DIS_15,"{""from"": ""cloudy"", ""to"": ""fog_rain""}",2026-11-29T13:45:00+07:00
+weather_sensor,weather_changed,T0035,POI_TD_04,DIS_16,"{""from"": ""cloudy"", ""to"": ""fog_rain""}",2026-11-28T15:15:00+07:00
+weather_sensor,weather_changed,T0038,POI_HG_05,DIS_17,"{""from"": ""sunny"", ""to"": ""heavy_rain""}",2026-11-30T14:15:00+07:00

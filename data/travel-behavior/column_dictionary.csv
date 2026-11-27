@@ -1,0 +1,76 @@
+file,cot,nghia,gia_tri
+travelers.csv,khach,Mã người dùng ẩn danh; dùng để nối các bảng,U0001..U0040
+travelers.csv,nhom_tuoi,Nhóm độ tuổi người dùng,18-22 | 23-27 | 28-32
+travelers.csv,tan_suat_di,Tần suất du lịch tự túc trong 1 năm,1-2_lan_nam | 3-5_lan_nam | tren_5_lan_nam
+travelers.csv,vai_tro_nhom,Vai trò khi đi du lịch cùng nhóm,len_lich_chinh | phu_tim_quan | di_mot_minh | di_theo_nhom
+travelers.csv,data_origin,Nguồn gốc hồ sơ,synthetic
+travelers.csv,created_date,Ngày tạo hồ sơ giả lập,YYYY-MM-DD
+trips.csv,trip_id,Mã chuyến đi / phiên lập lịch,T0001..T0038
+trips.csv,khach,Mã người dùng -> travelers.csv,U0001..U0040
+trips.csv,city,Mã thành phố điểm đến tại Việt Nam,HN | HP | QN | SP | TD | HG | HUE | DN | HA | NT | DL | HCM
+trips.csv,trip_date,Ngày diễn ra chuyến đi,YYYY-MM-DD
+trips.csv,day_of_week,Thứ trong tuần (dùng kiểm tra opening_hours.csv),Mon | Tue | Wed | Thu | Fri | Sat | Sun
+trips.csv,start_time,Giờ bắt đầu khung lịch,HH:MM
+trips.csv,end_time,Giờ kết thúc khung lịch,HH:MM
+trips.csv,transport_mode,Phương tiện di chuyển chính,motorbike | car | walk
+trips.csv,group_size,Số người trong nhóm,1..5
+trips.csv,weather_condition,Diễn biến thời tiết trong chuyến đi,sunny | cloudy | heavy_rain | sunny_then_rain | extreme_heat | fog_rain
+chat.csv,id,Mã lượt hỏi đáp; ref trong recommendations.csv và ref_id trong events.csv trỏ tới đây,C0001..C0048
+chat.csv,khach,Mã người dùng -> travelers.csv,U0001..U0040
+chat.csv,trip_id,Mã chuyến đi -> trips.csv,T0001..T0028
+chat.csv,scenario_group,Nhóm kịch bản cốt lõi của Travel AI Agent,multi_stop_scheduling | dynamic_rescheduling | context_aware_qa | edge_adversarial
+chat.csv,test_type,Phân loại độ khó khớp eval/benchmark.csv,thuong | kho | tu_choi
+chat.csv,channel,Kênh chat phát sinh yêu cầu,trip_planner_chat | live_rescue_chat | quick_qa_chat
+chat.csv,kind,Kiểu thông điệp,question | reply
+chat.csv,current_time,Mốc thời gian hiện tại trong ngữ cảnh hội thoại,HH:MM
+chat.csv,current_poi_id,Mã POI hiện tại nếu có -> poi_master.csv,POI_* hoặc trống
+chat.csv,weather,Điều kiện thời tiết tại thời điểm hỏi,sunny | cloudy | heavy_rain | extreme_heat | fog_rain
+chat.csv,radius_km,Bán kính tìm kiếm hoặc phạm vi gom cụm (km),số thực > 0
+chat.csv,user_message,Câu hỏi / yêu cầu người dùng gửi cho Agent,chuỗi văn bản
+chat.csv,expected_behavior,Hành vi mong đợi để kiểm chứng / đối chiếu,chuỗi mô tả
+chat.csv,expected_poi_ids,Danh sách POI hợp lệ nên xuất hiện (nối bằng |),POI_*|... hoặc trống
+chat.csv,forbidden_poi_ids,Danh sách POI KHÔNG được xếp/gợi ý (nối bằng |),POI_*|... hoặc trống
+chat.csv,prompt_version,Phiên bản system prompt của Agent,P1 | P2
+chat.csv,context_scope,Phạm vi dữ liệu nền Agent nạp vào,full_day_ops | live_zone_ops | nearby_ops
+chat.csv,cached,True nếu dùng lại phản hồi cache,True | False
+chat.csv,do_dai_cau_hoi,Số ký tự câu hỏi của người dùng,số nguyên >= 1
+chat.csv,do_dai_tra_loi,Số ký tự câu trả lời mục tiêu/mẫu,số nguyên >= 1
+chat.csv,asked_at,Thời điểm người dùng gửi (ISO-8601 UTC+7),YYYY-MM-DDTHH:MM:SS+07:00
+chat.csv,created_at,Thời điểm Agent trả lời xong (ISO-8601 UTC+7),YYYY-MM-DDTHH:MM:SS+07:00
+recommendations.csv,id,Mã bản đánh giá phương án,R0001..R0048
+recommendations.csv,khach,Mã người dùng -> travelers.csv,U0001..U0040
+recommendations.csv,trip_id,Mã chuyến đi -> trips.csv,T0001..T0028
+recommendations.csv,ref,Mã lượt chat tương ứng -> chat.csv.id,C0001..C0048
+recommendations.csv,scenario_group,Nhóm kịch bản,multi_stop_scheduling | dynamic_rescheduling | context_aware_qa | edge_adversarial
+recommendations.csv,proposed_poi_ids,Các POI được đề xuất (nối bằng |),POI_*|... hoặc trống
+recommendations.csv,route_order_ok,Thứ tự điểm có thuận đường không,True | False
+recommendations.csv,opening_hours_ok,Có khớp giờ mở cửa/nghỉ trưa/ngày đóng cửa không,True | False
+recommendations.csv,distance_feasible_ok,Thời gian di chuyển có khả thi trong khung giờ không,True | False
+recommendations.csv,weather_fit_ok,Có phù hợp thời tiết (tránh ngoài trời khi mưa/nắng gắt) không,True | False
+recommendations.csv,trang_thai_cham,Trạng thái chấm rubric,da_cham | chua_cham | bo_qua
+recommendations.csv,rubric_chinh_xac_gio,Điểm rubric 0-2: tuân thủ giờ mở cửa & cutoff,0 | 1 | 2
+recommendations.csv,rubric_thuan_duong,Điểm rubric 0-2: tối ưu quãng đường & thời gian di chuyển,0 | 1 | 2
+recommendations.csv,rubric_khong_ao_giac,"Điểm rubric 0-2: không bịa điểm, từ chối đúng khi bất khả thi",0 | 1 | 2
+recommendations.csv,created_at,Thời điểm ghi nhận đánh giá,YYYY-MM-DDTHH:MM:SS+07:00
+events.csv,khach,Mã người dùng -> travelers.csv,U0001..U0040
+events.csv,actor,Chủ thể thực hiện hành động,traveler | agent
+events.csv,type,Loại sự kiện -> event_types.csv,xem event_types.csv
+events.csv,trip_id,Mã chuyến đi -> trips.csv,T0001..T0028
+events.csv,poi_id,Mã địa điểm liên quan nếu có -> poi_master.csv,POI_* hoặc trống
+events.csv,ref_id,Mã lượt chat liên quan -> chat.csv.id,C0001..C0048 hoặc trống
+events.csv,data,Chi tiết sự kiện dạng JSON,JSON object
+events.csv,occurred_at,Thời điểm xảy ra sự kiện,YYYY-MM-DDTHH:MM:SS+07:00
+disruption_events.csv,actor,Nguồn phát sinh sự cố,weather_sensor | ops_feed | traveler
+disruption_events.csv,type,Loại sự cố -> event_types.csv,weather_changed | poi_unexpectedly_closed | crowd_alert_triggered | finished_early_detected
+disruption_events.csv,trip_id,Mã chuyến đi bị ảnh hưởng -> trips.csv,T0001..T0028
+disruption_events.csv,poi_id,Mã địa điểm liên quan -> poi_master.csv,POI_*
+disruption_events.csv,ref_id,Mã live_disruptions.csv (DIS_*) hoặc chat.csv (C*),DIS_* | C*
+disruption_events.csv,data,Chi tiết sự cố dạng JSON,JSON object
+disruption_events.csv,occurred_at,Thời điểm phát sinh sự cố,YYYY-MM-DDTHH:MM:SS+07:00
+completed_itineraries.csv,khach,Mã người dùng -> travelers.csv,U0001..U0040
+completed_itineraries.csv,trip_id,Mã chuyến đi -> trips.csv,T0001..T0028
+completed_itineraries.csv,poi_id,Mã địa điểm đã chốt đi -> poi_master.csv,POI_*
+completed_itineraries.csv,stop_order,Thứ tự điểm dừng trong lịch,1..7
+completed_itineraries.csv,planned_arrival,Giờ đến dự kiến,HH:MM
+completed_itineraries.csv,actual_status,Trạng thái thực tế sau khi chốt,completed | rescheduled | skipped
+completed_itineraries.csv,completed_at,Thời điểm hoàn tất điểm dừng,YYYY-MM-DDTHH:MM:SS+07:00

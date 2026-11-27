@@ -1,0 +1,359 @@
+khach,actor,type,trip_id,poi_id,ref_id,data,occurred_at
+U0001,traveler,session_started,T0001,,,"{""city"": ""HN"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-28T07:30:00+07:00
+U0002,traveler,session_started,T0002,,,"{""city"": ""HN"", ""transport_mode"": ""car"", ""group_size"": 4}",2026-11-30T08:30:00+07:00
+U0003,traveler,session_started,T0003,,,"{""city"": ""HN"", ""transport_mode"": ""walk"", ""group_size"": 2}",2026-11-28T15:00:00+07:00
+U0004,traveler,session_started,T0004,,,"{""city"": ""HN"", ""transport_mode"": ""walk"", ""group_size"": 2}",2026-11-28T09:15:00+07:00
+U0005,traveler,session_started,T0005,,,"{""city"": ""HUE"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-29T07:00:00+07:00
+U0006,traveler,session_started,T0006,,,"{""city"": ""HUE"", ""transport_mode"": ""car"", ""group_size"": 4}",2026-11-29T11:30:00+07:00
+U0007,traveler,session_started,T0007,,,"{""city"": ""HUE"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-29T10:30:00+07:00
+U0008,traveler,session_started,T0008,,,"{""city"": ""HUE"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-29T16:30:00+07:00
+U0009,traveler,session_started,T0009,,,"{""city"": ""DN"", ""transport_mode"": ""motorbike"", ""group_size"": 4}",2026-11-29T07:30:00+07:00
+U0010,traveler,session_started,T0010,,,"{""city"": ""DN"", ""transport_mode"": ""car"", ""group_size"": 5}",2026-11-29T15:00:00+07:00
+U0011,traveler,session_started,T0011,,,"{""city"": ""DN"", ""transport_mode"": ""motorbike"", ""group_size"": 4}",2026-11-29T18:30:00+07:00
+U0012,traveler,session_started,T0012,,,"{""city"": ""DN"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-29T14:15:00+07:00
+U0013,traveler,session_started,T0013,,,"{""city"": ""HA"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-29T08:30:00+07:00
+U0014,traveler,session_started,T0014,,,"{""city"": ""HA"", ""transport_mode"": ""walk"", ""group_size"": 3}",2026-11-29T14:30:00+07:00
+U0015,traveler,session_started,T0015,,,"{""city"": ""HA"", ""transport_mode"": ""walk"", ""group_size"": 2}",2026-11-29T11:30:00+07:00
+U0016,traveler,session_started,T0016,,,"{""city"": ""NT"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-30T07:30:00+07:00
+U0017,traveler,session_started,T0017,,,"{""city"": ""NT"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-30T11:45:00+07:00
+U0018,traveler,session_started,T0018,,,"{""city"": ""NT"", ""transport_mode"": ""walk"", ""group_size"": 4}",2026-11-30T21:30:00+07:00
+U0019,traveler,session_started,T0019,,,"{""city"": ""DL"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-12-01T07:30:00+07:00
+U0020,traveler,session_started,T0020,,,"{""city"": ""DL"", ""transport_mode"": ""motorbike"", ""group_size"": 4}",2026-12-01T18:00:00+07:00
+U0021,traveler,session_started,T0021,,,"{""city"": ""DL"", ""transport_mode"": ""car"", ""group_size"": 3}",2026-12-01T11:30:00+07:00
+U0022,traveler,session_started,T0022,,,"{""city"": ""DL"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-12-01T14:00:00+07:00
+U0023,traveler,session_started,T0023,,,"{""city"": ""HCM"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-28T08:00:00+07:00
+U0024,traveler,session_started,T0024,,,"{""city"": ""HCM"", ""transport_mode"": ""car"", ""group_size"": 4}",2026-11-30T08:30:00+07:00
+U0025,traveler,session_started,T0025,,,"{""city"": ""HCM"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-28T14:05:00+07:00
+U0026,traveler,session_started,T0026,,,"{""city"": ""HCM"", ""transport_mode"": ""walk"", ""group_size"": 2}",2026-11-28T12:00:00+07:00
+U0027,traveler,session_started,T0027,,,"{""city"": ""HCM"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-28T15:40:00+07:00
+U0028,traveler,session_started,T0028,,,"{""city"": ""HCM"", ""transport_mode"": ""walk"", ""group_size"": 1}",2026-11-28T11:05:00+07:00
+U0029,traveler,session_started,T0029,,,"{""city"": ""HP"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-30T08:30:00+07:00
+U0030,traveler,session_started,T0030,,,"{""city"": ""HP"", ""transport_mode"": ""motorbike"", ""group_size"": 2}",2026-11-28T11:30:00+07:00
+U0031,traveler,session_started,T0031,,,"{""city"": ""QN"", ""transport_mode"": ""car"", ""group_size"": 4}",2026-12-02T08:00:00+07:00
+U0032,traveler,session_started,T0032,,,"{""city"": ""QN"", ""transport_mode"": ""car"", ""group_size"": 4}",2026-11-29T14:30:00+07:00
+U0033,traveler,session_started,T0033,,,"{""city"": ""SP"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-29T08:00:00+07:00
+U0034,traveler,session_started,T0034,,,"{""city"": ""SP"", ""transport_mode"": ""walk"", ""group_size"": 2}",2026-11-29T13:45:00+07:00
+U0035,traveler,session_started,T0035,,,"{""city"": ""TD"", ""transport_mode"": ""walk"", ""group_size"": 4}",2026-11-28T15:00:00+07:00
+U0036,traveler,session_started,T0036,,,"{""city"": ""TD"", ""transport_mode"": ""walk"", ""group_size"": 2}",2026-11-28T09:00:00+07:00
+U0037,traveler,session_started,T0037,,,"{""city"": ""HG"", ""transport_mode"": ""motorbike"", ""group_size"": 4}",2026-11-30T07:30:00+07:00
+U0038,traveler,session_started,T0038,,,"{""city"": ""HG"", ""transport_mode"": ""motorbike"", ""group_size"": 3}",2026-11-30T14:15:00+07:00
+U0001,traveler,chat_sent,T0001,POI_HN_05,C0001,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 8.0, ""weather"": ""sunny""}",2026-11-28T07:30:00+07:00
+U0001,agent,poi_lookup,T0001,POI_HN_08,C0001,"{""context_scope"": ""full_day_ops"", ""matched_count"": 6}",2026-11-28T07:30:01+07:00
+U0001,agent,hours_checked,T0001,POI_HN_08,C0001,"{""current_time"": ""07:30"", ""blocked_count"": 0}",2026-11-28T07:30:02+07:00
+U0001,agent,agent_replied,T0001,POI_HN_08,C0001,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T07:30:04+07:00
+U0001,traveler,itinerary_accepted,T0001,POI_HN_08,C0001,"{""accepted_stops"": 6}",2026-11-28T07:30:30+07:00
+U0002,traveler,chat_sent,T0002,POI_HN_07,C0002,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 8.0, ""weather"": ""cloudy""}",2026-11-30T08:30:00+07:00
+U0002,agent,poi_lookup,T0002,POI_HN_01,C0002,"{""context_scope"": ""full_day_ops"", ""matched_count"": 5}",2026-11-30T08:30:01+07:00
+U0002,agent,hours_checked,T0002,POI_HN_01,C0002,"{""current_time"": ""08:30"", ""blocked_count"": 2}",2026-11-30T08:30:02+07:00
+U0002,agent,agent_replied,T0002,POI_HN_01,C0002,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T08:30:04+07:00
+U0002,traveler,itinerary_accepted,T0002,POI_HN_01,C0002,"{""accepted_stops"": 5}",2026-11-30T08:30:30+07:00
+U0005,traveler,chat_sent,T0005,POI_HUE_05,C0003,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 10.0, ""weather"": ""extreme_heat""}",2026-11-29T07:00:00+07:00
+U0005,agent,poi_lookup,T0005,POI_HUE_05,C0003,"{""context_scope"": ""full_day_ops"", ""matched_count"": 7}",2026-11-29T07:00:01+07:00
+U0005,agent,hours_checked,T0005,POI_HUE_05,C0003,"{""current_time"": ""07:00"", ""blocked_count"": 0}",2026-11-29T07:00:02+07:00
+U0005,agent,agent_replied,T0005,POI_HUE_05,C0003,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T07:00:04+07:00
+U0005,traveler,itinerary_accepted,T0005,POI_HUE_05,C0003,"{""accepted_stops"": 7}",2026-11-29T07:00:30+07:00
+U0009,traveler,chat_sent,T0009,POI_DN_03,C0004,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 12.0, ""weather"": ""sunny""}",2026-11-29T07:30:00+07:00
+U0009,agent,poi_lookup,T0009,POI_DN_03,C0004,"{""context_scope"": ""full_day_ops"", ""matched_count"": 6}",2026-11-29T07:30:01+07:00
+U0009,agent,hours_checked,T0009,POI_DN_03,C0004,"{""current_time"": ""07:30"", ""blocked_count"": 0}",2026-11-29T07:30:02+07:00
+U0009,agent,agent_replied,T0009,POI_DN_03,C0004,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T07:30:04+07:00
+U0009,traveler,itinerary_accepted,T0009,POI_DN_03,C0004,"{""accepted_stops"": 6}",2026-11-29T07:30:30+07:00
+U0013,traveler,chat_sent,T0013,POI_HA_02,C0005,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 4.0, ""weather"": ""sunny""}",2026-11-29T08:30:00+07:00
+U0013,agent,poi_lookup,T0013,POI_HA_02,C0005,"{""context_scope"": ""full_day_ops"", ""matched_count"": 5}",2026-11-29T08:30:01+07:00
+U0013,agent,hours_checked,T0013,POI_HA_02,C0005,"{""current_time"": ""08:30"", ""blocked_count"": 0}",2026-11-29T08:30:02+07:00
+U0013,agent,agent_replied,T0013,POI_HA_02,C0005,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T08:30:04+07:00
+U0013,traveler,itinerary_accepted,T0013,POI_HA_02,C0005,"{""accepted_stops"": 5}",2026-11-29T08:30:30+07:00
+U0016,traveler,chat_sent,T0016,POI_NT_03,C0006,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 8.0, ""weather"": ""sunny""}",2026-11-30T07:30:00+07:00
+U0016,agent,poi_lookup,T0016,POI_NT_01,C0006,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-11-30T07:30:01+07:00
+U0016,agent,hours_checked,T0016,POI_NT_01,C0006,"{""current_time"": ""07:30"", ""blocked_count"": 0}",2026-11-30T07:30:02+07:00
+U0016,agent,agent_replied,T0016,POI_NT_01,C0006,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T07:30:04+07:00
+U0016,traveler,itinerary_accepted,T0016,POI_NT_01,C0006,"{""accepted_stops"": 4}",2026-11-30T07:30:30+07:00
+U0019,traveler,chat_sent,T0019,POI_DL_02,C0007,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 10.0, ""weather"": ""cloudy""}",2026-12-01T07:30:00+07:00
+U0019,agent,poi_lookup,T0019,POI_DL_02,C0007,"{""context_scope"": ""full_day_ops"", ""matched_count"": 6}",2026-12-01T07:30:01+07:00
+U0019,agent,hours_checked,T0019,POI_DL_02,C0007,"{""current_time"": ""07:30"", ""blocked_count"": 0}",2026-12-01T07:30:02+07:00
+U0019,agent,agent_replied,T0019,POI_DL_02,C0007,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-01T07:30:04+07:00
+U0019,traveler,itinerary_accepted,T0019,POI_DL_02,C0007,"{""accepted_stops"": 6}",2026-12-01T07:30:30+07:00
+U0023,traveler,chat_sent,T0023,POI_HCM_01,C0008,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 5.0, ""weather"": ""sunny""}",2026-11-28T08:00:00+07:00
+U0023,agent,poi_lookup,T0023,POI_HCM_01,C0008,"{""context_scope"": ""full_day_ops"", ""matched_count"": 5}",2026-11-28T08:00:01+07:00
+U0023,agent,hours_checked,T0023,POI_HCM_01,C0008,"{""current_time"": ""08:00"", ""blocked_count"": 0}",2026-11-28T08:00:02+07:00
+U0023,agent,agent_replied,T0023,POI_HCM_01,C0008,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T08:00:04+07:00
+U0023,traveler,itinerary_accepted,T0023,POI_HCM_01,C0008,"{""accepted_stops"": 5}",2026-11-28T08:00:30+07:00
+U0024,traveler,chat_sent,T0024,POI_HCM_09,C0009,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 3.0, ""weather"": ""cloudy""}",2026-11-30T08:30:00+07:00
+U0024,agent,poi_lookup,T0024,POI_HCM_03,C0009,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-11-30T08:30:01+07:00
+U0024,agent,hours_checked,T0024,POI_HCM_03,C0009,"{""current_time"": ""08:30"", ""blocked_count"": 1}",2026-11-30T08:30:02+07:00
+U0024,agent,agent_replied,T0024,POI_HCM_03,C0009,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T08:30:04+07:00
+U0024,traveler,itinerary_accepted,T0024,POI_HCM_03,C0009,"{""accepted_stops"": 4}",2026-11-30T08:30:30+07:00
+U0026,traveler,chat_sent,T0026,POI_HCM_08,C0010,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-28T12:00:00+07:00
+U0026,agent,poi_lookup,T0026,POI_HCM_08,C0010,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-11-28T12:00:01+07:00
+U0026,agent,hours_checked,T0026,POI_HCM_08,C0010,"{""current_time"": ""12:00"", ""blocked_count"": 0}",2026-11-28T12:00:02+07:00
+U0026,agent,agent_replied,T0026,POI_HCM_08,C0010,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T12:00:04+07:00
+U0026,traveler,itinerary_accepted,T0026,POI_HCM_08,C0010,"{""accepted_stops"": 4}",2026-11-28T12:00:30+07:00
+U0006,traveler,chat_sent,T0006,POI_HUE_01,C0011,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 10.0, ""weather"": ""extreme_heat""}",2026-11-29T11:30:00+07:00
+U0006,agent,poi_lookup,T0006,POI_HUE_07,C0011,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-11-29T11:30:01+07:00
+U0006,agent,hours_checked,T0006,POI_HUE_07,C0011,"{""current_time"": ""11:30"", ""blocked_count"": 0}",2026-11-29T11:30:02+07:00
+U0006,agent,agent_replied,T0006,POI_HUE_07,C0011,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T11:30:04+07:00
+U0006,traveler,itinerary_accepted,T0006,POI_HUE_07,C0011,"{""accepted_stops"": 4}",2026-11-29T11:30:30+07:00
+U0015,traveler,chat_sent,T0015,POI_HA_01,C0012,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 1.5, ""weather"": ""sunny""}",2026-11-29T11:30:00+07:00
+U0015,agent,poi_lookup,T0015,POI_HA_03,C0012,"{""context_scope"": ""full_day_ops"", ""matched_count"": 3}",2026-11-29T11:30:01+07:00
+U0015,agent,hours_checked,T0015,POI_HA_03,C0012,"{""current_time"": ""11:30"", ""blocked_count"": 0}",2026-11-29T11:30:02+07:00
+U0015,agent,agent_replied,T0015,POI_HA_03,C0012,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T11:30:04+07:00
+U0015,traveler,itinerary_accepted,T0015,POI_HA_03,C0012,"{""accepted_stops"": 3}",2026-11-29T11:30:30+07:00
+U0025,traveler,chat_sent,T0025,POI_HCM_01,C0013,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.0, ""weather"": ""heavy_rain""}",2026-11-28T14:05:00+07:00
+U0025,agent,poi_lookup,T0025,POI_HCM_02,C0013,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 3}",2026-11-28T14:05:01+07:00
+U0025,agent,hours_checked,T0025,POI_HCM_02,C0013,"{""current_time"": ""14:05"", ""blocked_count"": 1}",2026-11-28T14:05:02+07:00
+U0025,agent,agent_replied,T0025,POI_HCM_02,C0013,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T14:05:04+07:00
+U0025,traveler,itinerary_accepted,T0025,POI_HCM_02,C0013,"{""accepted_stops"": 3}",2026-11-28T14:05:30+07:00
+U0024,traveler,chat_sent,T0024,POI_HCM_01,C0014,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.5, ""weather"": ""heavy_rain""}",2026-11-30T14:00:00+07:00
+U0024,agent,poi_lookup,T0024,POI_HCM_05,C0014,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 3}",2026-11-30T14:00:01+07:00
+U0024,agent,hours_checked,T0024,POI_HCM_05,C0014,"{""current_time"": ""14:00"", ""blocked_count"": 2}",2026-11-30T14:00:02+07:00
+U0024,agent,agent_replied,T0024,POI_HCM_05,C0014,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T14:00:04+07:00
+U0024,traveler,itinerary_accepted,T0024,POI_HCM_05,C0014,"{""accepted_stops"": 3}",2026-11-30T14:00:30+07:00
+U0003,traveler,chat_sent,T0003,POI_HN_05,C0015,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.0, ""weather"": ""heavy_rain""}",2026-11-28T15:10:00+07:00
+U0003,agent,poi_lookup,T0003,POI_HN_07,C0015,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 4}",2026-11-28T15:10:01+07:00
+U0003,agent,hours_checked,T0003,POI_HN_07,C0015,"{""current_time"": ""15:10"", ""blocked_count"": 1}",2026-11-28T15:10:02+07:00
+U0003,agent,agent_replied,T0003,POI_HN_07,C0015,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T15:10:04+07:00
+U0003,traveler,itinerary_accepted,T0003,POI_HN_07,C0015,"{""accepted_stops"": 4}",2026-11-28T15:10:30+07:00
+U0004,traveler,chat_sent,T0004,POI_HN_08,C0016,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-28T09:35:00+07:00
+U0004,agent,poi_lookup,T0004,POI_HN_10,C0016,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 3}",2026-11-28T09:35:01+07:00
+U0004,agent,hours_checked,T0004,POI_HN_10,C0016,"{""current_time"": ""09:35"", ""blocked_count"": 1}",2026-11-28T09:35:02+07:00
+U0004,agent,agent_replied,T0004,POI_HN_10,C0016,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T09:35:04+07:00
+U0004,traveler,itinerary_accepted,T0004,POI_HN_10,C0016,"{""accepted_stops"": 3}",2026-11-28T09:35:30+07:00
+U0005,traveler,chat_sent,T0005,POI_HUE_01,C0017,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 3.0, ""weather"": ""extreme_heat""}",2026-11-29T11:45:00+07:00
+U0005,agent,poi_lookup,T0005,POI_HUE_02,C0017,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 4}",2026-11-29T11:45:01+07:00
+U0005,agent,hours_checked,T0005,POI_HUE_02,C0017,"{""current_time"": ""11:45"", ""blocked_count"": 2}",2026-11-29T11:45:02+07:00
+U0005,agent,agent_replied,T0005,POI_HUE_02,C0017,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T11:45:04+07:00
+U0005,traveler,itinerary_accepted,T0005,POI_HUE_02,C0017,"{""accepted_stops"": 4}",2026-11-29T11:45:30+07:00
+U0010,traveler,chat_sent,T0010,POI_DN_09,C0018,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 8.0, ""weather"": ""heavy_rain""}",2026-11-29T15:15:00+07:00
+U0010,agent,poi_lookup,T0010,POI_DN_01,C0018,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 4}",2026-11-29T15:15:01+07:00
+U0010,agent,hours_checked,T0010,POI_DN_01,C0018,"{""current_time"": ""15:15"", ""blocked_count"": 2}",2026-11-29T15:15:02+07:00
+U0010,agent,agent_replied,T0010,POI_DN_01,C0018,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T15:15:04+07:00
+U0010,traveler,itinerary_accepted,T0010,POI_DN_01,C0018,"{""accepted_stops"": 4}",2026-11-29T15:15:30+07:00
+U0011,traveler,chat_sent,T0011,POI_DN_07,C0019,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 4.0, ""weather"": ""cloudy""}",2026-11-29T18:45:00+07:00
+U0011,agent,poi_lookup,T0011,POI_DN_04,C0019,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 4}",2026-11-29T18:45:01+07:00
+U0011,agent,hours_checked,T0011,POI_DN_04,C0019,"{""current_time"": ""18:45"", ""blocked_count"": 1}",2026-11-29T18:45:02+07:00
+U0011,agent,agent_replied,T0011,POI_DN_04,C0019,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T18:45:04+07:00
+U0011,traveler,itinerary_accepted,T0011,POI_DN_04,C0019,"{""accepted_stops"": 4}",2026-11-29T18:45:30+07:00
+U0014,traveler,chat_sent,T0014,POI_HA_05,C0020,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 4.0, ""weather"": ""heavy_rain""}",2026-11-29T14:35:00+07:00
+U0014,agent,poi_lookup,T0014,POI_HA_04,C0020,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 3}",2026-11-29T14:35:01+07:00
+U0014,agent,hours_checked,T0014,POI_HA_04,C0020,"{""current_time"": ""14:35"", ""blocked_count"": 2}",2026-11-29T14:35:02+07:00
+U0014,agent,agent_replied,T0014,POI_HA_04,C0020,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T14:35:04+07:00
+U0014,traveler,itinerary_accepted,T0014,POI_HA_04,C0020,"{""accepted_stops"": 3}",2026-11-29T14:35:30+07:00
+U0017,traveler,chat_sent,T0017,POI_NT_03,C0021,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-30T11:50:00+07:00
+U0017,agent,poi_lookup,T0017,POI_NT_02,C0021,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 2}",2026-11-30T11:50:01+07:00
+U0017,agent,hours_checked,T0017,POI_NT_02,C0021,"{""current_time"": ""11:50"", ""blocked_count"": 1}",2026-11-30T11:50:02+07:00
+U0017,agent,agent_replied,T0017,POI_NT_02,C0021,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T11:50:04+07:00
+U0017,traveler,itinerary_accepted,T0017,POI_NT_02,C0021,"{""accepted_stops"": 2}",2026-11-30T11:50:30+07:00
+U0020,traveler,chat_sent,T0020,POI_DL_04,C0022,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 9.0, ""weather"": ""heavy_rain""}",2026-12-01T18:15:00+07:00
+U0020,agent,poi_lookup,T0020,POI_DL_07,C0022,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 2}",2026-12-01T18:15:01+07:00
+U0020,agent,hours_checked,T0020,POI_DL_07,C0022,"{""current_time"": ""18:15"", ""blocked_count"": 2}",2026-12-01T18:15:02+07:00
+U0020,agent,agent_replied,T0020,POI_DL_07,C0022,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-01T18:15:04+07:00
+U0020,traveler,itinerary_accepted,T0020,POI_DL_07,C0022,"{""accepted_stops"": 2}",2026-12-01T18:15:30+07:00
+U0012,traveler,chat_sent,T0012,POI_DN_01,C0023,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-29T14:20:00+07:00
+U0012,agent,poi_lookup,T0012,POI_DN_02,C0023,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 4}",2026-11-29T14:20:01+07:00
+U0012,agent,hours_checked,T0012,POI_DN_02,C0023,"{""current_time"": ""14:20"", ""blocked_count"": 0}",2026-11-29T14:20:02+07:00
+U0012,agent,agent_replied,T0012,POI_DN_02,C0023,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T14:20:04+07:00
+U0012,traveler,itinerary_accepted,T0012,POI_DN_02,C0023,"{""accepted_stops"": 4}",2026-11-29T14:20:30+07:00
+U0021,traveler,chat_sent,T0021,POI_DL_01,C0024,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 4.0, ""weather"": ""cloudy""}",2026-12-01T12:00:00+07:00
+U0021,agent,poi_lookup,T0021,POI_DL_03,C0024,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 2}",2026-12-01T12:00:01+07:00
+U0021,agent,hours_checked,T0021,POI_DL_03,C0024,"{""current_time"": ""12:00"", ""blocked_count"": 2}",2026-12-01T12:00:02+07:00
+U0021,agent,agent_replied,T0021,POI_DL_03,C0024,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-01T12:00:04+07:00
+U0021,traveler,itinerary_accepted,T0021,POI_DL_03,C0024,"{""accepted_stops"": 2}",2026-12-01T12:00:30+07:00
+U0003,traveler,chat_sent,T0003,POI_HN_05,C0025,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 1.5, ""weather"": ""cloudy""}",2026-11-28T15:20:00+07:00
+U0003,agent,poi_lookup,T0003,POI_HN_10,C0025,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-28T15:20:01+07:00
+U0003,agent,hours_checked,T0003,POI_HN_10,C0025,"{""current_time"": ""15:20"", ""blocked_count"": 1}",2026-11-28T15:20:02+07:00
+U0003,agent,agent_replied,T0003,POI_HN_10,C0025,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T15:20:04+07:00
+U0003,traveler,itinerary_accepted,T0003,POI_HN_10,C0025,"{""accepted_stops"": 2}",2026-11-28T15:20:30+07:00
+U0001,traveler,chat_sent,T0001,POI_HN_04,C0026,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-28T15:30:00+07:00
+U0001,agent,poi_lookup,T0001,POI_HN_10,C0026,"{""context_scope"": ""nearby_ops"", ""matched_count"": 3}",2026-11-28T15:30:01+07:00
+U0001,agent,hours_checked,T0001,POI_HN_10,C0026,"{""current_time"": ""15:30"", ""blocked_count"": 1}",2026-11-28T15:30:02+07:00
+U0001,agent,agent_replied,T0001,POI_HN_10,C0026,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T15:30:04+07:00
+U0001,traveler,itinerary_accepted,T0001,POI_HN_10,C0026,"{""accepted_stops"": 3}",2026-11-28T15:30:30+07:00
+U0007,traveler,chat_sent,T0007,POI_HUE_04,C0027,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-29T10:45:00+07:00
+U0007,agent,poi_lookup,T0007,POI_HUE_07,C0027,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-29T10:45:01+07:00
+U0007,agent,hours_checked,T0007,POI_HUE_07,C0027,"{""current_time"": ""10:45"", ""blocked_count"": 1}",2026-11-29T10:45:02+07:00
+U0007,agent,agent_replied,T0007,POI_HUE_07,C0027,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T10:45:04+07:00
+U0007,traveler,itinerary_accepted,T0007,POI_HUE_07,C0027,"{""accepted_stops"": 2}",2026-11-29T10:45:30+07:00
+U0008,traveler,chat_sent,T0008,POI_HUE_04,C0028,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-29T16:35:00+07:00
+U0008,agent,poi_lookup,T0008,POI_HUE_01,C0028,"{""context_scope"": ""nearby_ops"", ""matched_count"": 1}",2026-11-29T16:35:01+07:00
+U0008,agent,hours_checked,T0008,POI_HUE_01,C0028,"{""current_time"": ""16:35"", ""blocked_count"": 0}",2026-11-29T16:35:02+07:00
+U0008,agent,agent_replied,T0008,POI_HUE_01,C0028,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T16:35:04+07:00
+U0008,traveler,itinerary_accepted,T0008,POI_HUE_01,C0028,"{""accepted_stops"": 1}",2026-11-29T16:35:30+07:00
+U0012,traveler,chat_sent,T0012,POI_DN_02,C0029,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-29T14:30:00+07:00
+U0012,agent,poi_lookup,T0012,POI_DN_03,C0029,"{""context_scope"": ""nearby_ops"", ""matched_count"": 3}",2026-11-29T14:30:01+07:00
+U0012,agent,hours_checked,T0012,POI_DN_03,C0029,"{""current_time"": ""14:30"", ""blocked_count"": 0}",2026-11-29T14:30:02+07:00
+U0012,agent,agent_replied,T0012,POI_DN_03,C0029,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T14:30:04+07:00
+U0012,traveler,itinerary_accepted,T0012,POI_DN_03,C0029,"{""accepted_stops"": 3}",2026-11-29T14:30:30+07:00
+U0015,traveler,chat_sent,T0015,POI_HA_01,C0030,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 1.0, ""weather"": ""sunny""}",2026-11-29T11:45:00+07:00
+U0015,agent,poi_lookup,T0015,POI_HA_03,C0030,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-29T11:45:01+07:00
+U0015,agent,hours_checked,T0015,POI_HA_03,C0030,"{""current_time"": ""11:45"", ""blocked_count"": 0}",2026-11-29T11:45:02+07:00
+U0015,agent,agent_replied,T0015,POI_HA_03,C0030,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T11:45:04+07:00
+U0015,traveler,itinerary_accepted,T0015,POI_HA_03,C0030,"{""accepted_stops"": 2}",2026-11-29T11:45:30+07:00
+U0018,traveler,chat_sent,T0018,POI_NT_04,C0031,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-30T22:30:00+07:00
+U0018,agent,poi_lookup,T0018,POI_NT_04,C0031,"{""context_scope"": ""nearby_ops"", ""matched_count"": 1}",2026-11-30T22:30:01+07:00
+U0018,agent,hours_checked,T0018,POI_NT_04,C0031,"{""current_time"": ""22:30"", ""blocked_count"": 2}",2026-11-30T22:30:02+07:00
+U0018,agent,agent_replied,T0018,POI_NT_04,C0031,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T22:30:04+07:00
+U0018,traveler,itinerary_accepted,T0018,POI_NT_04,C0031,"{""accepted_stops"": 1}",2026-11-30T22:30:30+07:00
+U0021,traveler,chat_sent,T0021,POI_DL_01,C0032,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-12-01T11:30:00+07:00
+U0021,agent,poi_lookup,T0021,POI_DL_03,C0032,"{""context_scope"": ""nearby_ops"", ""matched_count"": 1}",2026-12-01T11:30:01+07:00
+U0021,agent,hours_checked,T0021,POI_DL_03,C0032,"{""current_time"": ""11:30"", ""blocked_count"": 1}",2026-12-01T11:30:02+07:00
+U0021,agent,agent_replied,T0021,POI_DL_03,C0032,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-01T11:30:04+07:00
+U0021,traveler,itinerary_accepted,T0021,POI_DL_03,C0032,"{""accepted_stops"": 1}",2026-12-01T11:30:30+07:00
+U0028,traveler,chat_sent,T0028,POI_HCM_01,C0033,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 1.5, ""weather"": ""sunny""}",2026-11-28T11:05:00+07:00
+U0028,agent,poi_lookup,T0028,POI_HCM_09,C0033,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-28T11:05:01+07:00
+U0028,agent,hours_checked,T0028,POI_HCM_09,C0033,"{""current_time"": ""11:05"", ""blocked_count"": 1}",2026-11-28T11:05:02+07:00
+U0028,agent,agent_replied,T0028,POI_HCM_09,C0033,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T11:05:04+07:00
+U0028,traveler,itinerary_accepted,T0028,POI_HCM_09,C0033,"{""accepted_stops"": 2}",2026-11-28T11:05:30+07:00
+U0026,traveler,chat_sent,T0026,POI_HCM_04,C0034,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-28T12:15:00+07:00
+U0026,agent,poi_lookup,T0026,POI_HCM_10,C0034,"{""context_scope"": ""nearby_ops"", ""matched_count"": 3}",2026-11-28T12:15:01+07:00
+U0026,agent,hours_checked,T0026,POI_HCM_10,C0034,"{""current_time"": ""12:15"", ""blocked_count"": 0}",2026-11-28T12:15:02+07:00
+U0026,agent,agent_replied,T0026,POI_HCM_10,C0034,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T12:15:04+07:00
+U0026,traveler,itinerary_accepted,T0026,POI_HCM_10,C0034,"{""accepted_stops"": 3}",2026-11-28T12:15:30+07:00
+U0006,traveler,chat_sent,T0006,POI_HUE_06,C0035,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""extreme_heat""}",2026-11-29T14:00:00+07:00
+U0006,agent,poi_lookup,T0006,POI_HUE_06,C0035,"{""context_scope"": ""nearby_ops"", ""matched_count"": 4}",2026-11-29T14:00:01+07:00
+U0006,agent,hours_checked,T0006,POI_HUE_06,C0035,"{""current_time"": ""14:00"", ""blocked_count"": 0}",2026-11-29T14:00:02+07:00
+U0006,agent,agent_replied,T0006,POI_HUE_06,C0035,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T14:00:04+07:00
+U0006,traveler,itinerary_accepted,T0006,POI_HUE_06,C0035,"{""accepted_stops"": 4}",2026-11-29T14:00:30+07:00
+U0027,traveler,chat_sent,T0027,POI_HCM_06,C0036,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 1.5, ""weather"": ""sunny""}",2026-11-28T15:45:00+07:00
+U0027,agent,poi_lookup,T0027,POI_HCM_04,C0036,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-28T15:45:01+07:00
+U0027,agent,hours_checked,T0027,POI_HCM_04,C0036,"{""current_time"": ""15:45"", ""blocked_count"": 1}",2026-11-28T15:45:02+07:00
+U0027,agent,agent_replied,T0027,POI_HCM_04,C0036,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T15:45:04+07:00
+U0027,traveler,itinerary_accepted,T0027,POI_HCM_04,C0036,"{""accepted_stops"": 2}",2026-11-28T15:45:30+07:00
+U0002,traveler,chat_sent,T0002,POI_HN_05,C0037,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 8.0, ""weather"": ""cloudy""}",2026-11-30T09:30:00+07:00
+U0002,agent,poi_lookup,T0002,POI_HN_01,C0037,"{""context_scope"": ""full_day_ops"", ""matched_count"": 2}",2026-11-30T09:30:01+07:00
+U0002,agent,hours_checked,T0002,POI_HN_01,C0037,"{""current_time"": ""09:30"", ""blocked_count"": 2}",2026-11-30T09:30:02+07:00
+U0002,agent,agent_replied,T0002,POI_HN_01,C0037,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T09:30:04+07:00
+U0002,traveler,constraint_acknowledged,T0002,,C0037,"{""reason"": ""blocked_or_need_clarification""}",2026-11-30T09:30:30+07:00
+U0024,traveler,chat_sent,T0024,POI_HCM_01,C0038,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-30T10:00:00+07:00
+U0024,agent,poi_lookup,T0024,POI_HCM_05,C0038,"{""context_scope"": ""full_day_ops"", ""matched_count"": 2}",2026-11-30T10:00:01+07:00
+U0024,agent,hours_checked,T0024,POI_HCM_05,C0038,"{""current_time"": ""10:00"", ""blocked_count"": 1}",2026-11-30T10:00:02+07:00
+U0024,agent,agent_replied,T0024,POI_HCM_05,C0038,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T10:00:04+07:00
+U0024,traveler,constraint_acknowledged,T0024,,C0038,"{""reason"": ""blocked_or_need_clarification""}",2026-11-30T10:00:30+07:00
+U0022,traveler,chat_sent,T0022,POI_DL_04,C0039,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 26.0, ""weather"": ""fog_rain""}",2026-12-01T14:00:00+07:00
+U0022,agent,poi_lookup,T0022,,C0039,"{""context_scope"": ""full_day_ops"", ""matched_count"": 0}",2026-12-01T14:00:01+07:00
+U0022,agent,hours_checked,T0022,,C0039,"{""current_time"": ""14:00"", ""blocked_count"": 1}",2026-12-01T14:00:02+07:00
+U0022,agent,agent_replied,T0022,,C0039,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-01T14:00:04+07:00
+U0022,traveler,constraint_acknowledged,T0022,,C0039,"{""reason"": ""blocked_or_need_clarification""}",2026-12-01T14:00:30+07:00
+U0010,traveler,chat_sent,T0010,POI_DN_01,C0040,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 20.0, ""weather"": ""sunny""}",2026-11-29T15:00:00+07:00
+U0010,agent,poi_lookup,T0010,,C0040,"{""context_scope"": ""full_day_ops"", ""matched_count"": 0}",2026-11-29T15:00:01+07:00
+U0010,agent,hours_checked,T0010,,C0040,"{""current_time"": ""15:00"", ""blocked_count"": 2}",2026-11-29T15:00:02+07:00
+U0010,agent,agent_replied,T0010,,C0040,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T15:00:04+07:00
+U0010,traveler,constraint_acknowledged,T0010,,C0040,"{""reason"": ""blocked_or_need_clarification""}",2026-11-29T15:00:30+07:00
+U0004,traveler,chat_sent,T0004,POI_HN_05,C0041,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-28T13:30:00+07:00
+U0004,agent,poi_lookup,T0004,POI_HN_09,C0041,"{""context_scope"": ""nearby_ops"", ""matched_count"": 1}",2026-11-28T13:30:01+07:00
+U0004,agent,hours_checked,T0004,POI_HN_09,C0041,"{""current_time"": ""13:30"", ""blocked_count"": 1}",2026-11-28T13:30:02+07:00
+U0004,agent,agent_replied,T0004,POI_HN_09,C0041,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T13:30:04+07:00
+U0004,traveler,itinerary_accepted,T0004,POI_HN_09,C0041,"{""accepted_stops"": 1}",2026-11-28T13:30:30+07:00
+U0027,traveler,chat_sent,T0027,POI_HCM_06,C0042,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-28T15:50:00+07:00
+U0027,agent,poi_lookup,T0027,POI_HCM_04,C0042,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-28T15:50:01+07:00
+U0027,agent,hours_checked,T0027,POI_HCM_04,C0042,"{""current_time"": ""15:50"", ""blocked_count"": 1}",2026-11-28T15:50:02+07:00
+U0027,agent,agent_replied,T0027,POI_HCM_04,C0042,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T15:50:04+07:00
+U0027,traveler,itinerary_accepted,T0027,POI_HCM_04,C0042,"{""accepted_stops"": 2}",2026-11-28T15:50:30+07:00
+U0021,traveler,chat_sent,T0021,POI_DL_01,C0043,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-12-01T14:00:00+07:00
+U0021,agent,poi_lookup,T0021,POI_DL_01,C0043,"{""context_scope"": ""nearby_ops"", ""matched_count"": 3}",2026-12-01T14:00:01+07:00
+U0021,agent,hours_checked,T0021,POI_DL_01,C0043,"{""current_time"": ""14:00"", ""blocked_count"": 2}",2026-12-01T14:00:02+07:00
+U0021,agent,agent_replied,T0021,POI_DL_01,C0043,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-01T14:00:04+07:00
+U0021,traveler,itinerary_accepted,T0021,POI_DL_01,C0043,"{""accepted_stops"": 3}",2026-12-01T14:00:30+07:00
+U0008,traveler,chat_sent,T0008,POI_HUE_01,C0044,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 10.0, ""weather"": ""cloudy""}",2026-11-29T16:40:00+07:00
+U0008,agent,poi_lookup,T0008,,C0044,"{""context_scope"": ""full_day_ops"", ""matched_count"": 0}",2026-11-29T16:40:01+07:00
+U0008,agent,hours_checked,T0008,,C0044,"{""current_time"": ""16:40"", ""blocked_count"": 2}",2026-11-29T16:40:02+07:00
+U0008,agent,agent_replied,T0008,,C0044,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T16:40:04+07:00
+U0008,traveler,constraint_acknowledged,T0008,,C0044,"{""reason"": ""blocked_or_need_clarification""}",2026-11-29T16:40:30+07:00
+U0018,traveler,chat_sent,T0018,,C0045,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-30T21:30:00+07:00
+U0018,agent,poi_lookup,T0018,,C0045,"{""context_scope"": ""nearby_ops"", ""matched_count"": 0}",2026-11-30T21:30:01+07:00
+U0018,agent,hours_checked,T0018,,C0045,"{""current_time"": ""21:30"", ""blocked_count"": 0}",2026-11-30T21:30:02+07:00
+U0018,agent,agent_replied,T0018,,C0045,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T21:30:04+07:00
+U0018,traveler,constraint_acknowledged,T0018,,C0045,"{""reason"": ""blocked_or_need_clarification""}",2026-11-30T21:30:30+07:00
+U0011,traveler,chat_sent,T0011,POI_DN_07,C0046,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 3.0, ""weather"": ""cloudy""}",2026-11-29T19:00:00+07:00
+U0011,agent,poi_lookup,T0011,,C0046,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 0}",2026-11-29T19:00:01+07:00
+U0011,agent,hours_checked,T0011,,C0046,"{""current_time"": ""19:00"", ""blocked_count"": 0}",2026-11-29T19:00:02+07:00
+U0011,agent,agent_replied,T0011,,C0046,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T19:00:04+07:00
+U0011,traveler,constraint_acknowledged,T0011,,C0046,"{""reason"": ""blocked_or_need_clarification""}",2026-11-29T19:00:30+07:00
+U0014,traveler,chat_sent,T0014,POI_HA_01,C0047,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 4.0, ""weather"": ""sunny""}",2026-11-29T16:30:00+07:00
+U0014,agent,poi_lookup,T0014,POI_HA_01,C0047,"{""context_scope"": ""full_day_ops"", ""matched_count"": 2}",2026-11-29T16:30:01+07:00
+U0014,agent,hours_checked,T0014,POI_HA_01,C0047,"{""current_time"": ""16:30"", ""blocked_count"": 1}",2026-11-29T16:30:02+07:00
+U0014,agent,agent_replied,T0014,POI_HA_01,C0047,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T16:30:04+07:00
+U0014,traveler,constraint_acknowledged,T0014,,C0047,"{""reason"": ""blocked_or_need_clarification""}",2026-11-29T16:30:30+07:00
+U0016,traveler,chat_sent,T0016,POI_NT_01,C0048,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 8.0, ""weather"": ""sunny""}",2026-11-30T17:00:00+07:00
+U0016,agent,poi_lookup,T0016,POI_NT_03,C0048,"{""context_scope"": ""full_day_ops"", ""matched_count"": 2}",2026-11-30T17:00:01+07:00
+U0016,agent,hours_checked,T0016,POI_NT_03,C0048,"{""current_time"": ""17:00"", ""blocked_count"": 2}",2026-11-30T17:00:02+07:00
+U0016,agent,agent_replied,T0016,POI_NT_03,C0048,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T17:00:04+07:00
+U0016,traveler,constraint_acknowledged,T0016,,C0048,"{""reason"": ""blocked_or_need_clarification""}",2026-11-30T17:00:30+07:00
+U0029,traveler,chat_sent,T0029,POI_HP_02,C0049,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 8.0, ""weather"": ""cloudy""}",2026-11-30T08:30:00+07:00
+U0029,agent,poi_lookup,T0029,POI_HP_02,C0049,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-11-30T08:30:01+07:00
+U0029,agent,hours_checked,T0029,POI_HP_02,C0049,"{""current_time"": ""08:30"", ""blocked_count"": 1}",2026-11-30T08:30:02+07:00
+U0029,agent,agent_replied,T0029,POI_HP_02,C0049,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T08:30:04+07:00
+U0029,traveler,itinerary_accepted,T0029,POI_HP_02,C0049,"{""accepted_stops"": 4}",2026-11-30T08:30:30+07:00
+U0031,traveler,chat_sent,T0031,POI_QN_03,C0050,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 7.0, ""weather"": ""cloudy""}",2026-12-02T08:00:00+07:00
+U0031,agent,poi_lookup,T0031,POI_QN_03,C0050,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-12-02T08:00:01+07:00
+U0031,agent,hours_checked,T0031,POI_QN_03,C0050,"{""current_time"": ""08:00"", ""blocked_count"": 0}",2026-12-02T08:00:02+07:00
+U0031,agent,agent_replied,T0031,POI_QN_03,C0050,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-02T08:00:04+07:00
+U0031,traveler,itinerary_accepted,T0031,POI_QN_03,C0050,"{""accepted_stops"": 4}",2026-12-02T08:00:30+07:00
+U0033,traveler,chat_sent,T0033,POI_SP_01,C0051,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 5.0, ""weather"": ""cloudy""}",2026-11-29T08:00:00+07:00
+U0033,agent,poi_lookup,T0033,POI_SP_05,C0051,"{""context_scope"": ""full_day_ops"", ""matched_count"": 5}",2026-11-29T08:00:01+07:00
+U0033,agent,hours_checked,T0033,POI_SP_05,C0051,"{""current_time"": ""08:00"", ""blocked_count"": 0}",2026-11-29T08:00:02+07:00
+U0033,agent,agent_replied,T0033,POI_SP_05,C0051,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T08:00:04+07:00
+U0033,traveler,itinerary_accepted,T0033,POI_SP_05,C0051,"{""accepted_stops"": 5}",2026-11-29T08:00:30+07:00
+U0037,traveler,chat_sent,T0037,POI_HG_03,C0052,"{""scenario_group"": ""multi_stop_scheduling"", ""radius_km"": 25.0, ""weather"": ""sunny""}",2026-11-30T07:30:00+07:00
+U0037,agent,poi_lookup,T0037,POI_HG_03,C0052,"{""context_scope"": ""full_day_ops"", ""matched_count"": 4}",2026-11-30T07:30:01+07:00
+U0037,agent,hours_checked,T0037,POI_HG_03,C0052,"{""current_time"": ""07:30"", ""blocked_count"": 0}",2026-11-30T07:30:02+07:00
+U0037,agent,agent_replied,T0037,POI_HG_03,C0052,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T07:30:04+07:00
+U0037,traveler,itinerary_accepted,T0037,POI_HG_03,C0052,"{""accepted_stops"": 4}",2026-11-30T07:30:30+07:00
+U0032,traveler,chat_sent,T0032,POI_QN_04,C0053,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 7.0, ""weather"": ""heavy_rain""}",2026-11-29T14:40:00+07:00
+U0032,agent,poi_lookup,T0032,POI_QN_01,C0053,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 2}",2026-11-29T14:40:01+07:00
+U0032,agent,hours_checked,T0032,POI_QN_01,C0053,"{""current_time"": ""14:40"", ""blocked_count"": 2}",2026-11-29T14:40:02+07:00
+U0032,agent,agent_replied,T0032,POI_QN_01,C0053,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T14:40:04+07:00
+U0032,traveler,itinerary_accepted,T0032,POI_QN_01,C0053,"{""accepted_stops"": 2}",2026-11-29T14:40:30+07:00
+U0034,traveler,chat_sent,T0034,POI_SP_05,C0054,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 3.0, ""weather"": ""fog_rain""}",2026-11-29T13:50:00+07:00
+U0034,agent,poi_lookup,T0034,POI_SP_02,C0054,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 2}",2026-11-29T13:50:01+07:00
+U0034,agent,hours_checked,T0034,POI_SP_02,C0054,"{""current_time"": ""13:50"", ""blocked_count"": 2}",2026-11-29T13:50:02+07:00
+U0034,agent,agent_replied,T0034,POI_SP_02,C0054,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T13:50:04+07:00
+U0034,traveler,itinerary_accepted,T0034,POI_SP_02,C0054,"{""accepted_stops"": 2}",2026-11-29T13:50:30+07:00
+U0035,traveler,chat_sent,T0035,POI_TD_04,C0055,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 2.0, ""weather"": ""fog_rain""}",2026-11-28T15:30:00+07:00
+U0035,agent,poi_lookup,T0035,POI_TD_02,C0055,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 1}",2026-11-28T15:30:01+07:00
+U0035,agent,hours_checked,T0035,POI_TD_02,C0055,"{""current_time"": ""15:30"", ""blocked_count"": 2}",2026-11-28T15:30:02+07:00
+U0035,agent,agent_replied,T0035,POI_TD_02,C0055,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T15:30:04+07:00
+U0035,traveler,itinerary_accepted,T0035,POI_TD_02,C0055,"{""accepted_stops"": 1}",2026-11-28T15:30:30+07:00
+U0038,traveler,chat_sent,T0038,POI_HG_05,C0056,"{""scenario_group"": ""dynamic_rescheduling"", ""radius_km"": 15.0, ""weather"": ""heavy_rain""}",2026-11-30T14:20:00+07:00
+U0038,agent,poi_lookup,T0038,POI_HG_02,C0056,"{""context_scope"": ""live_zone_ops"", ""matched_count"": 2}",2026-11-30T14:20:01+07:00
+U0038,agent,hours_checked,T0038,POI_HG_02,C0056,"{""current_time"": ""14:20"", ""blocked_count"": 2}",2026-11-30T14:20:02+07:00
+U0038,agent,agent_replied,T0038,POI_HG_02,C0056,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T14:20:04+07:00
+U0038,traveler,itinerary_accepted,T0038,POI_HG_02,C0056,"{""accepted_stops"": 2}",2026-11-30T14:20:30+07:00
+U0030,traveler,chat_sent,T0030,POI_HP_03,C0057,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-28T12:00:00+07:00
+U0030,agent,poi_lookup,T0030,POI_HP_04,C0057,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-11-28T12:00:01+07:00
+U0030,agent,hours_checked,T0030,POI_HP_04,C0057,"{""current_time"": ""12:00"", ""blocked_count"": 1}",2026-11-28T12:00:02+07:00
+U0030,agent,agent_replied,T0030,POI_HP_04,C0057,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T12:00:04+07:00
+U0030,traveler,itinerary_accepted,T0030,POI_HP_04,C0057,"{""accepted_stops"": 2}",2026-11-28T12:00:30+07:00
+U0031,traveler,chat_sent,T0031,POI_QN_02,C0058,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-12-02T12:15:00+07:00
+U0031,agent,poi_lookup,T0031,POI_QN_02,C0058,"{""context_scope"": ""nearby_ops"", ""matched_count"": 1}",2026-12-02T12:15:01+07:00
+U0031,agent,hours_checked,T0031,POI_QN_02,C0058,"{""current_time"": ""12:15"", ""blocked_count"": 2}",2026-12-02T12:15:02+07:00
+U0031,agent,agent_replied,T0031,POI_QN_02,C0058,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-02T12:15:04+07:00
+U0031,traveler,itinerary_accepted,T0031,POI_QN_02,C0058,"{""accepted_stops"": 1}",2026-12-02T12:15:30+07:00
+U0015,traveler,chat_sent,T0015,POI_HA_01,C0059,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 1.0, ""weather"": ""sunny""}",2026-11-29T08:00:00+07:00
+U0015,agent,poi_lookup,T0015,POI_HA_06,C0059,"{""context_scope"": ""nearby_ops"", ""matched_count"": 3}",2026-11-29T08:00:01+07:00
+U0015,agent,hours_checked,T0015,POI_HA_06,C0059,"{""current_time"": ""08:00"", ""blocked_count"": 1}",2026-11-29T08:00:02+07:00
+U0015,agent,agent_replied,T0015,POI_HA_06,C0059,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-29T08:00:04+07:00
+U0015,traveler,itinerary_accepted,T0015,POI_HA_06,C0059,"{""accepted_stops"": 3}",2026-11-29T08:00:30+07:00
+U0016,traveler,chat_sent,T0016,POI_NT_06,C0060,"{""scenario_group"": ""context_aware_qa"", ""radius_km"": 2.0, ""weather"": ""sunny""}",2026-11-30T18:30:00+07:00
+U0016,agent,poi_lookup,T0016,POI_NT_08,C0060,"{""context_scope"": ""nearby_ops"", ""matched_count"": 4}",2026-11-30T18:30:01+07:00
+U0016,agent,hours_checked,T0016,POI_NT_08,C0060,"{""current_time"": ""18:30"", ""blocked_count"": 1}",2026-11-30T18:30:02+07:00
+U0016,agent,agent_replied,T0016,POI_NT_08,C0060,"{""test_type"": ""thuong"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T18:30:04+07:00
+U0016,traveler,itinerary_accepted,T0016,POI_NT_08,C0060,"{""accepted_stops"": 4}",2026-11-30T18:30:30+07:00
+U0029,traveler,chat_sent,T0029,POI_HP_02,C0061,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-11-30T09:30:00+07:00
+U0029,agent,poi_lookup,T0029,POI_HP_04,C0061,"{""context_scope"": ""full_day_ops"", ""matched_count"": 3}",2026-11-30T09:30:01+07:00
+U0029,agent,hours_checked,T0029,POI_HP_04,C0061,"{""current_time"": ""09:30"", ""blocked_count"": 1}",2026-11-30T09:30:02+07:00
+U0029,agent,agent_replied,T0029,POI_HP_04,C0061,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T09:30:04+07:00
+U0029,traveler,constraint_acknowledged,T0029,,C0061,"{""reason"": ""blocked_or_need_clarification""}",2026-11-30T09:30:30+07:00
+U0037,traveler,chat_sent,T0037,POI_HG_01,C0062,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 25.0, ""weather"": ""cloudy""}",2026-11-30T15:00:00+07:00
+U0037,agent,poi_lookup,T0037,,C0062,"{""context_scope"": ""full_day_ops"", ""matched_count"": 0}",2026-11-30T15:00:01+07:00
+U0037,agent,hours_checked,T0037,,C0062,"{""current_time"": ""15:00"", ""blocked_count"": 2}",2026-11-30T15:00:02+07:00
+U0037,agent,agent_replied,T0037,,C0062,"{""test_type"": ""tu_choi"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-30T15:00:04+07:00
+U0037,traveler,constraint_acknowledged,T0037,,C0062,"{""reason"": ""blocked_or_need_clarification""}",2026-11-30T15:00:30+07:00
+U0036,traveler,chat_sent,T0036,POI_TD_01,C0063,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 1.5, ""weather"": ""cloudy""}",2026-11-28T14:00:00+07:00
+U0036,agent,poi_lookup,T0036,POI_TD_01,C0063,"{""context_scope"": ""nearby_ops"", ""matched_count"": 3}",2026-11-28T14:00:01+07:00
+U0036,agent,hours_checked,T0036,POI_TD_01,C0063,"{""current_time"": ""14:00"", ""blocked_count"": 1}",2026-11-28T14:00:02+07:00
+U0036,agent,agent_replied,T0036,POI_TD_01,C0063,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-11-28T14:00:04+07:00
+U0036,traveler,itinerary_accepted,T0036,POI_TD_01,C0063,"{""accepted_stops"": 3}",2026-11-28T14:00:30+07:00
+U0031,traveler,chat_sent,T0031,POI_QN_04,C0064,"{""scenario_group"": ""edge_adversarial"", ""radius_km"": 2.0, ""weather"": ""cloudy""}",2026-12-02T10:00:00+07:00
+U0031,agent,poi_lookup,T0031,POI_QN_05,C0064,"{""context_scope"": ""nearby_ops"", ""matched_count"": 2}",2026-12-02T10:00:01+07:00
+U0031,agent,hours_checked,T0031,POI_QN_05,C0064,"{""current_time"": ""10:00"", ""blocked_count"": 1}",2026-12-02T10:00:02+07:00
+U0031,agent,agent_replied,T0031,POI_QN_05,C0064,"{""test_type"": ""kho"", ""prompt_version"": ""P2"", ""latency_ms"": 1800}",2026-12-02T10:00:04+07:00
+U0031,traveler,itinerary_accepted,T0031,POI_QN_05,C0064,"{""accepted_stops"": 2}",2026-12-02T10:00:30+07:00

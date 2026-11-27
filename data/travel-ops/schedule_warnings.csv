@@ -1,0 +1,19 @@
+warning_id,severity,rule_code,city,poi_id,time_window,detail,suggested_action
+W01,critical,CLOSED_DAY_MON,HN,POI_HN_02,Mon all day,Bảo tàng Dân tộc học Việt Nam đóng cửa Thứ Hai hàng tuần,Đổi sang Nhà tù Hỏa Lò (POI_HN_04) hoặc Văn Miếu (POI_HN_01)
+W02,critical,CLOSED_DAY_MON,HN,POI_HN_03,Mon all day,Hoàng thành Thăng Long đóng cửa Thứ Hai hàng tuần,Không xếp lịch ban ngày Thứ Hai
+W03,high,SPLIT_SHIFT,HN,POI_HN_08,10:00-18:00,Phở Bát Đàn nghỉ giữa ca từ 10:00 đến 18:00,Chỉ xếp ăn sáng 06:00-10:00 hoặc ăn tối 18:00-21:30
+W04,high,SPLIT_SHIFT,HN,POI_HN_09,15:00-17:00,Bún chả Hương Liên nghỉ chiều 15:00-17:00,Tránh khung 15:00-17:00
+W05,critical,CLOSED_DAY_MON_AND_BREAK,HCM,POI_HCM_02,Mon | 11:30-13:00,Bảo tàng Lịch sử TP.HCM đóng Thứ Hai; nghỉ trưa 11:30-13:00 (quầy vé đóng 11:00),Ghé sáng trước 11:00 hoặc chiều 13:00-16:30 từ T3-CN
+W06,high,LAST_ENTRY_CUTOFF,HCM,POI_HCM_03,15:30+,Dinh Độc Lập thường ngưng bán vé lúc ~15:30 dù 16:30 đóng cửa,Không xếp vào khung sau 15:15
+W07,high,MORNING_ONLY,HUE,POI_HUE_05,10:00+,Bún bò Huế Mệ Kéo chỉ bán sáng 06:00-10:00,Không gợi ý cho bữa trưa/chiều/tối
+W08,high,MORNING_ONLY,DL,POI_DL_02,10:00+,Bánh mì xíu mại Hoàng Diệu chỉ bán sáng 06:00-10:00,Chỉ xếp vào lịch ăn sáng trước 09:30
+W09,critical,LONG_TRANSIT_TRAP,DL,POI_DL_09,Any,Đồi Chè Cầu Đất cách trung tâm Đà Lạt ~23-26km (~45-50 phút/chiều),Không nhét vào khung tổng < 2.5 tiếng khứ hồi
+W10,high,NIGHT_ONLY_OUTDOOR,DL,POI_DL_04,Before 17:00 or Rain,Chợ Đêm Đà Lạt họp từ 17:00 và ngoài trời,Tránh trước 17:00 hoặc khi trời mưa lạnh
+W11,high,OPPOSITE_DIRECTIONS,DN,POI_DN_09,Any,Chùa Linh Ứng Sơn Trà (Đông Bắc ~10-11km) ngược hướng Ngũ Hành Sơn (Đông Nam ~7-8km),Gom Hải Châu trước hoặc tách thành 2 buổi sáng/chiều
+W12,high,CUTOFF_BOAT_TOUR,HA,POI_HA_05,17:00+,Rừng dừa Bảy Mẫu kết thúc chèo thuyền thúng trước 17:00-17:30,Sắp đi buổi sáng hoặc đầu giờ chiều
+W13,critical,CLOSED_DAY_MON_AND_BREAK,HP,POI_HP_01,Mon | 11:00-14:00,Bảo tàng Hải Phòng đóng cửa Thứ Hai và nghỉ trưa 11:00-14:00,Chỉ xếp 08:00-11:00 hoặc 14:00-17:00 từ Thứ Ba đến Chủ Nhật
+W14,high,LUNCH_BREAK,QN,POI_QN_01,12:00-13:00,Bảo tàng Quảng Ninh nghỉ trưa 12:00-13:00; ngưng bán vé trước giờ đóng 30 phút,Không xếp vào khung 12:00-13:00; T6-CN có thể đi buổi tối đến 21:30
+W15,high,MORNING_ONLY,QN,POI_QN_03,11:30+,Bún bề bề Huy Chiên chủ yếu bán sáng-trưa ~06:00-11:30,Không gợi ý ăn chiều hoặc ăn tối
+W16,high,WEEKDAY_AFTERNOON_CABLE,QN,POI_QN_04,Mon-Fri < 14:00,Cáp treo Nữ Hoàng Sun World Hạ Long mở từ 14:00 vào T2-T6,Sắp đi cáp treo chiều từ 14:00 vào ngày thường
+W17,high,NIGHT_ONLY_OUTDOOR,TD,POI_TD_03,Before 19:00,Chợ đêm Tam Đảo chỉ họp nhộn nhịp từ 19:00 tối và ngoài trời,Không xếp lịch ban ngày; chọn Rock Cafe nếu trời mưa mù
+W18,critical,EARLY_CUTOFF_AND_PASS,HG,POI_HG_05,16:00+,Đi thuyền Sông Nho Quế - Hẻm Tu Sản chỉ hoạt động 06:00-16:00; đường đèo Đồng Văn -> Lũng Cú ~20-25km (45-60p),Đi thuyền Nho Quế trước 15:00 và không nhét chung Lũng Cú trong khung 2 tiếng

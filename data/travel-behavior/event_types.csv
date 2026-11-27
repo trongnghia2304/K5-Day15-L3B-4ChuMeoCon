@@ -1,0 +1,12 @@
+type,nhom,nghia,so_dong_trong_ban_nay,khoa_trong_data
+session_started,Phiên đi chơi,Người dùng mở Travel AI Agent bắt đầu phiên lập/tra lịch,38,"city, transport_mode, group_size"
+chat_sent,Hội thoại AI,"Người dùng gửi yêu cầu xếp lịch, đổi lịch hoặc hỏi đáp bán kính; ref_id trỏ tới chat.csv",64,"scenario_group, radius_km, weather"
+poi_lookup,Công cụ tra cứu,Agent gọi tool tra cứu địa điểm trong data/travel-ops/poi_master.csv; ref_id trỏ tới chat.csv,64,"context_scope, matched_count"
+hours_checked,Công cụ kiểm giờ,"Agent đối chiếu opening_hours.csv, live_disruptions.csv và zone_travel_matrix.csv",64,"current_time, blocked_count"
+agent_replied,Hội thoại AI,Agent trả về phương án lịch trình hoặc lời từ chối kèm lý do; ref_id trỏ tới chat.csv,64,"test_type, prompt_version, latency_ms"
+itinerary_accepted,Kết quả người dùng,Người dùng chấp nhận phương án gợi ý của Agent,53,accepted_stops
+constraint_acknowledged,Kết quả người dùng,Người dùng ghi nhận cảnh báo/từ chối khi bị chặn ràng buộc hoặc thiếu thông tin,11,reason
+weather_changed,Sự cố thời gian thực,"Thời tiết thay đổi đột ngột trong chuyến đi (mưa lớn, nắng gắt)",10,"from, to"
+poi_unexpectedly_closed,Sự cố thời gian thực,Quán ăn đóng cửa đột xuất hoặc hết hàng sớm,2,reason
+crowd_alert_triggered,Sự cố thời gian thực,"Địa điểm quá tải, phải chờ bàn lâu",2,"wait_min, queue_status"
+finished_early_detected,Sự cố thời gian thực,Người dùng tham quan xong sớm hơn thời lượng dự kiến,2,"planned_min, actual_min"

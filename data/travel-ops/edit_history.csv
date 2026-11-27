@@ -1,0 +1,9 @@
+edited_at,editor,table_name,record_id,field_changed,old_value,new_value,reason
+2026-11-27T09:00:00+07:00,ops_verifier,opening_hours.csv,POI_HCM_01,close_time,17:30,18:30,Đối chiếu nguồn web Thảo Cầm Viên mở 07:00-18:30
+2026-11-27T09:15:00+07:00,ops_verifier,opening_hours.csv,POI_HCM_02,break_end,13:30,13:00,Đối chiếu baotanglichsutphcm.com.vn: chiều mở từ 13:00
+2026-11-27T09:30:00+07:00,ops_verifier,opening_hours.csv,POI_HN_08,break_start/break_end,none,10:00-18:00,Cập nhật lịch bán 2 ca sáng & tối của Phở Bát Đàn
+2026-11-27T10:00:00+07:00,ops_verifier,opening_hours.csv,POI_DL_01,day_of_week=Mon,is_open=False,is_open=True,Đối chiếu baotanglamdong.com.vn: mở tất cả các ngày trong tuần
+2026-11-27T10:20:00+07:00,ops_verifier,opening_hours.csv,POI_DN_05,break/closed,14:00-16:30/Wed,06:00-23:00 daily,Cập nhật giờ mở cửa thực tế Bún chả cá Bà Lữ
+2026-11-27T11:00:00+07:00,ops_verifier,zone_travel_matrix.csv,DL_CENTER->DL_CAU_DAT,distance_km,tự ước tính,24.5,Đối chiếu khoảng cách ~23-26km (45-50 phút)
+2026-11-27T13:30:00+07:00,ops_verifier,live_disruptions.csv,DIS_01,status,planned_test,active,Kích hoạt ca thử mưa lớn khu vực Thảo Cầm Viên (lấy cảm hứng S25/S28)
+2026-11-27T14:00:00+07:00,ops_verifier,live_disruptions.csv,DIS_09,status,planned_test,active,Kích hoạt ca thử quán đóng cửa đột xuất tại Nha Trang (lấy cảm hứng S20/S38)

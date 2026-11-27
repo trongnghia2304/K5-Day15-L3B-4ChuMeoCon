@@ -1,0 +1,154 @@
+city,from_zone,to_zone,distance_km,travel_min_motorbike,travel_min_car,travel_min_walk,rain_penalty_min,source_type,note
+HN,HN_HOAN_KIEM,HN_HOAN_KIEM,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HN,HN_HOAN_KIEM,HN_BA_DINH,2.5,9,12,30,4,estimated,Ước tính nội thành Hoàn Kiếm <-> Hoàng thành Thăng Long
+HN,HN_HOAN_KIEM,HN_DONG_DA,2.8,10,14,34,4,estimated,Ước tính Hoàn Kiếm <-> Văn Miếu
+HN,HN_HOAN_KIEM,HN_HAI_BA_TRUNG,2.2,8,11,26,4,estimated,Ước tính Hoàn Kiếm <-> 24 Lê Văn Hưu
+HN,HN_HOAN_KIEM,HN_CAU_GIAY,7.5,18,25,999,8,web_verified,"Hồ Hoàn Kiếm -> Bảo tàng Dân tộc học: ~7-8km, 15-30 phút"
+HN,HN_BA_DINH,HN_HOAN_KIEM,2.5,9,12,30,4,estimated,Ước tính nội thành Hoàn Kiếm <-> Hoàng thành Thăng Long
+HN,HN_BA_DINH,HN_BA_DINH,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HN,HN_BA_DINH,HN_DONG_DA,1.8,7,10,22,3,estimated,Ước tính Hoàng thành <-> Văn Miếu
+HN,HN_BA_DINH,HN_HAI_BA_TRUNG,3.6,12,16,42,5,estimated,Ước tính Ba Đình <-> Hai Bà Trưng
+HN,HN_BA_DINH,HN_CAU_GIAY,5.2,14,18,999,6,estimated,Ước tính Ba Đình <-> Cầu Giấy
+HN,HN_DONG_DA,HN_HOAN_KIEM,2.8,10,14,34,4,estimated,Ước tính Hoàn Kiếm <-> Văn Miếu
+HN,HN_DONG_DA,HN_BA_DINH,1.8,7,10,22,3,estimated,Ước tính Hoàng thành <-> Văn Miếu
+HN,HN_DONG_DA,HN_DONG_DA,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HN,HN_DONG_DA,HN_HAI_BA_TRUNG,3.0,10,14,36,4,estimated,Ước tính Đống Đa <-> Lê Văn Hưu
+HN,HN_DONG_DA,HN_CAU_GIAY,5.5,15,20,999,6,estimated,Ước tính Đống Đa <-> Cầu Giấy
+HN,HN_HAI_BA_TRUNG,HN_HOAN_KIEM,2.2,8,11,26,4,estimated,Ước tính Hoàn Kiếm <-> 24 Lê Văn Hưu
+HN,HN_HAI_BA_TRUNG,HN_BA_DINH,3.6,12,16,42,5,estimated,Ước tính Ba Đình <-> Hai Bà Trưng
+HN,HN_HAI_BA_TRUNG,HN_DONG_DA,3.0,10,14,36,4,estimated,Ước tính Đống Đa <-> Lê Văn Hưu
+HN,HN_HAI_BA_TRUNG,HN_HAI_BA_TRUNG,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HN,HN_HAI_BA_TRUNG,HN_CAU_GIAY,8.5,22,28,999,9,estimated,Ước tính Hai Bà Trưng <-> Cầu Giấy
+HN,HN_CAU_GIAY,HN_HOAN_KIEM,7.5,18,25,999,8,web_verified,"Hồ Hoàn Kiếm -> Bảo tàng Dân tộc học: ~7-8km, 15-30 phút"
+HN,HN_CAU_GIAY,HN_BA_DINH,5.2,14,18,999,6,estimated,Ước tính Ba Đình <-> Cầu Giấy
+HN,HN_CAU_GIAY,HN_DONG_DA,5.5,15,20,999,6,estimated,Ước tính Đống Đa <-> Cầu Giấy
+HN,HN_CAU_GIAY,HN_HAI_BA_TRUNG,8.5,22,28,999,9,estimated,Ước tính Hai Bà Trưng <-> Cầu Giấy
+HN,HN_CAU_GIAY,HN_CAU_GIAY,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HP,HP_CENTER,HP_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HP,HP_CENTER,HP_CAT_BI,7.5,16,20,999,6,web_verified,"Ga Hải Phòng -> Chợ Cát Bi: ~7-8km, 15-20 phút"
+HP,HP_CAT_BI,HP_CENTER,7.5,16,20,999,6,web_verified,"Ga Hải Phòng -> Chợ Cát Bi: ~7-8km, 15-20 phút"
+HP,HP_CAT_BI,HP_CAT_BI,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+QN,QN_HON_GAI,QN_HON_GAI,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+QN,QN_HON_GAI,QN_BAI_CHAY,5.5,12,15,999,5,web_verified,"Bãi Cháy -> Bảo tàng Quảng Ninh (Hòn Gai): ~4-7km, 10-15 phút qua cầu Bãi Cháy"
+QN,QN_BAI_CHAY,QN_HON_GAI,5.5,12,15,999,5,web_verified,"Bãi Cháy -> Bảo tàng Quảng Ninh (Hòn Gai): ~4-7km, 10-15 phút qua cầu Bãi Cháy"
+QN,QN_BAI_CHAY,QN_BAI_CHAY,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+SP,SP_CENTER,SP_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+SP,SP_CENTER,SP_CAT_CAT,2.5,9,12,35,5,web_verified,Trung tâm Sa Pa -> Bản Cát Cát: ~2-3km
+SP,SP_CENTER,SP_FANSIPAN,3.0,10,13,40,5,web_verified,Trung tâm Sa Pa -> Ga cáp treo Fansipan: ~3km
+SP,SP_CAT_CAT,SP_CENTER,2.5,9,12,35,5,web_verified,Trung tâm Sa Pa -> Bản Cát Cát: ~2-3km
+SP,SP_CAT_CAT,SP_CAT_CAT,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+SP,SP_CAT_CAT,SP_FANSIPAN,4.5,14,18,999,6,estimated,Ước tính Bản Cát Cát <-> Ga cáp treo Fansipan
+SP,SP_FANSIPAN,SP_CENTER,3.0,10,13,40,5,web_verified,Trung tâm Sa Pa -> Ga cáp treo Fansipan: ~3km
+SP,SP_FANSIPAN,SP_CAT_CAT,4.5,14,18,999,6,estimated,Ước tính Bản Cát Cát <-> Ga cáp treo Fansipan
+SP,SP_FANSIPAN,SP_FANSIPAN,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+TD,TD_CENTER,TD_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+TD,TD_CENTER,TD_HILL,1.5,6,8,22,5,estimated,Ước tính Quảng trường Tam Đảo <-> Quán Gió / Đền Bà Chúa Thượng Ngàn
+TD,TD_HILL,TD_CENTER,1.5,6,8,22,5,estimated,Ước tính Quảng trường Tam Đảo <-> Quán Gió / Đền Bà Chúa Thượng Ngàn
+TD,TD_HILL,TD_HILL,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HG,HG_DONG_VAN,HG_DONG_VAN,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HG,HG_DONG_VAN,HG_SA_PHIN,14.5,35,40,999,12,web_verified,"Thị trấn Đồng Văn -> Dinh Vua Mèo (Sà Phìn): ~14-15km, 30-40 phút"
+HG,HG_DONG_VAN,HG_LUNG_CU,22.5,50,58,999,15,web_verified,"Thị trấn Đồng Văn -> Cột cờ Lũng Cú: ~20-25km, 45-60 phút đường đèo"
+HG,HG_DONG_VAN,HG_NHO_QUE,11.0,25,30,999,10,web_verified,"Thị trấn Đồng Văn -> Mã Pí Lèng / bến thuyền Nho Quế: ~10-12km, 20-30 phút"
+HG,HG_SA_PHIN,HG_DONG_VAN,14.5,35,40,999,12,web_verified,"Thị trấn Đồng Văn -> Dinh Vua Mèo (Sà Phìn): ~14-15km, 30-40 phút"
+HG,HG_SA_PHIN,HG_SA_PHIN,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HG,HG_SA_PHIN,HG_LUNG_CU,26.0,55,65,999,15,estimated,Ước tính Sà Phìn <-> Lũng Cú đường đèo
+HG,HG_SA_PHIN,HG_NHO_QUE,25.5,55,65,999,15,estimated,Ước tính Sà Phìn -> Đồng Văn -> Mã Pí Lèng
+HG,HG_LUNG_CU,HG_DONG_VAN,22.5,50,58,999,15,web_verified,"Thị trấn Đồng Văn -> Cột cờ Lũng Cú: ~20-25km, 45-60 phút đường đèo"
+HG,HG_LUNG_CU,HG_SA_PHIN,26.0,55,65,999,15,estimated,Ước tính Sà Phìn <-> Lũng Cú đường đèo
+HG,HG_LUNG_CU,HG_LUNG_CU,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HG,HG_LUNG_CU,HG_NHO_QUE,33.5,70,80,999,20,estimated,Ước tính Lũng Cú -> Đồng Văn -> Sông Nho Quế
+HG,HG_NHO_QUE,HG_DONG_VAN,11.0,25,30,999,10,web_verified,"Thị trấn Đồng Văn -> Mã Pí Lèng / bến thuyền Nho Quế: ~10-12km, 20-30 phút"
+HG,HG_NHO_QUE,HG_SA_PHIN,25.5,55,65,999,15,estimated,Ước tính Sà Phìn -> Đồng Văn -> Mã Pí Lèng
+HG,HG_NHO_QUE,HG_LUNG_CU,33.5,70,80,999,20,estimated,Ước tính Lũng Cú -> Đồng Văn -> Sông Nho Quế
+HG,HG_NHO_QUE,HG_NHO_QUE,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HUE,HUE_CITADEL,HUE_CITADEL,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HUE,HUE_CITADEL,HUE_THIEN_MU,4.5,12,15,999,5,estimated,Ước tính Đại Nội <-> Chùa Thiên Mụ dọc sông Hương
+HUE,HUE_CITADEL,HUE_SOUTH_CENTER,2.5,8,10,30,4,estimated,Ước tính Đại Nội <-> khu Phú Hội/Vỹ Dạ qua cầu Trường Tiền
+HUE,HUE_CITADEL,HUE_TOMBS_SOUTH,8.5,20,24,999,8,web_verified,"Đại Nội -> Lăng Tự Đức ~7-8km (15-20p), -> Lăng Khải Định ~10km (20-30p)"
+HUE,HUE_THIEN_MU,HUE_CITADEL,4.5,12,15,999,5,estimated,Ước tính Đại Nội <-> Chùa Thiên Mụ dọc sông Hương
+HUE,HUE_THIEN_MU,HUE_THIEN_MU,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HUE,HUE_THIEN_MU,HUE_SOUTH_CENTER,5.5,14,17,999,6,estimated,Ước tính Chùa Thiên Mụ <-> Nam sông Hương
+HUE,HUE_THIEN_MU,HUE_TOMBS_SOUTH,9.5,22,26,999,8,estimated,Ước tính Chùa Thiên Mụ <-> cụm lăng phía Nam
+HUE,HUE_SOUTH_CENTER,HUE_CITADEL,2.5,8,10,30,4,estimated,Ước tính Đại Nội <-> khu Phú Hội/Vỹ Dạ qua cầu Trường Tiền
+HUE,HUE_SOUTH_CENTER,HUE_THIEN_MU,5.5,14,17,999,6,estimated,Ước tính Chùa Thiên Mụ <-> Nam sông Hương
+HUE,HUE_SOUTH_CENTER,HUE_SOUTH_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HUE,HUE_SOUTH_CENTER,HUE_TOMBS_SOUTH,7.0,17,20,999,7,estimated,Ước tính Nam sông Hương <-> cụm lăng Thủy Xuân/Thủy Bằng
+HUE,HUE_TOMBS_SOUTH,HUE_CITADEL,8.5,20,24,999,8,web_verified,"Đại Nội -> Lăng Tự Đức ~7-8km (15-20p), -> Lăng Khải Định ~10km (20-30p)"
+HUE,HUE_TOMBS_SOUTH,HUE_THIEN_MU,9.5,22,26,999,8,estimated,Ước tính Chùa Thiên Mụ <-> cụm lăng phía Nam
+HUE,HUE_TOMBS_SOUTH,HUE_SOUTH_CENTER,7.0,17,20,999,7,estimated,Ước tính Nam sông Hương <-> cụm lăng Thủy Xuân/Thủy Bằng
+HUE,HUE_TOMBS_SOUTH,HUE_TOMBS_SOUTH,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DN,DN_HAI_CHAU,DN_HAI_CHAU,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DN,DN_HAI_CHAU,DN_MY_KHE,3.5,10,12,40,4,estimated,Ước tính Hải Châu <-> khu biển Mỹ Khê/Ngô Quyền
+DN,DN_HAI_CHAU,DN_SON_TRA,10.5,22,25,999,9,web_verified,"Bảo tàng Chăm -> Chùa Linh Ứng Sơn Trà: ~10-11km, 20-25 phút"
+DN,DN_HAI_CHAU,DN_NGU_HANH_SON,7.5,17,20,999,6,web_verified,"Bảo tàng Chăm -> Ngũ Hành Sơn: ~7-8km, 15-20 phút"
+DN,DN_MY_KHE,DN_HAI_CHAU,3.5,10,12,40,4,estimated,Ước tính Hải Châu <-> khu biển Mỹ Khê/Ngô Quyền
+DN,DN_MY_KHE,DN_MY_KHE,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DN,DN_MY_KHE,DN_SON_TRA,8.0,18,21,999,8,estimated,Ước tính Mỹ Khê <-> Chùa Linh Ứng Sơn Trà
+DN,DN_MY_KHE,DN_NGU_HANH_SON,6.5,14,17,999,5,estimated,Ước tính Mỹ Khê <-> Ngũ Hành Sơn
+DN,DN_SON_TRA,DN_HAI_CHAU,10.5,22,25,999,9,web_verified,"Bảo tàng Chăm -> Chùa Linh Ứng Sơn Trà: ~10-11km, 20-25 phút"
+DN,DN_SON_TRA,DN_MY_KHE,8.0,18,21,999,8,estimated,Ước tính Mỹ Khê <-> Chùa Linh Ứng Sơn Trà
+DN,DN_SON_TRA,DN_SON_TRA,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DN,DN_SON_TRA,DN_NGU_HANH_SON,16.5,34,40,999,12,estimated,Ước tính hai đầu ngược hướng Sơn Trà <-> Ngũ Hành Sơn
+DN,DN_NGU_HANH_SON,DN_HAI_CHAU,7.5,17,20,999,6,web_verified,"Bảo tàng Chăm -> Ngũ Hành Sơn: ~7-8km, 15-20 phút"
+DN,DN_NGU_HANH_SON,DN_MY_KHE,6.5,14,17,999,5,estimated,Ước tính Mỹ Khê <-> Ngũ Hành Sơn
+DN,DN_NGU_HANH_SON,DN_SON_TRA,16.5,34,40,999,12,estimated,Ước tính hai đầu ngược hướng Sơn Trà <-> Ngũ Hành Sơn
+DN,DN_NGU_HANH_SON,DN_NGU_HANH_SON,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HA,HA_OLD_TOWN,HA_OLD_TOWN,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HA,HA_OLD_TOWN,HA_CAM_THANH,3.5,11,14,45,5,web_verified,"Chùa Cầu -> Rừng dừa Bảy Mẫu: ~3-4km, 10-15 phút"
+HA,HA_OLD_TOWN,HA_AN_BANG,3.5,10,13,45,5,web_verified,Phố cổ Hội An -> Bãi biển An Bàng: ~3-4km
+HA,HA_CAM_THANH,HA_OLD_TOWN,3.5,11,14,45,5,web_verified,"Chùa Cầu -> Rừng dừa Bảy Mẫu: ~3-4km, 10-15 phút"
+HA,HA_CAM_THANH,HA_CAM_THANH,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HA,HA_CAM_THANH,HA_AN_BANG,5.5,14,17,999,6,estimated,Ước tính Rừng dừa Cẩm Thanh <-> Biển An Bàng
+HA,HA_AN_BANG,HA_OLD_TOWN,3.5,10,13,45,5,web_verified,Phố cổ Hội An -> Bãi biển An Bàng: ~3-4km
+HA,HA_AN_BANG,HA_CAM_THANH,5.5,14,17,999,6,estimated,Ước tính Rừng dừa Cẩm Thanh <-> Biển An Bàng
+HA,HA_AN_BANG,HA_AN_BANG,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+NT,NT_NORTH,NT_NORTH,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+NT,NT_NORTH,NT_CENTER,3.0,9,12,35,4,estimated,Ước tính Tháp Bà <-> trung tâm Trần Phú/Chợ Đầm
+NT,NT_NORTH,NT_SOUTH,7.5,18,22,999,6,web_verified,"Tháp Bà Ponagar -> Viện Hải dương học: ~7-8km, 15-25 phút"
+NT,NT_CENTER,NT_NORTH,3.0,9,12,35,4,estimated,Ước tính Tháp Bà <-> trung tâm Trần Phú/Chợ Đầm
+NT,NT_CENTER,NT_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+NT,NT_CENTER,NT_SOUTH,4.8,12,15,999,5,estimated,Ước tính trung tâm Trần Phú <-> Cầu Đá
+NT,NT_SOUTH,NT_NORTH,7.5,18,22,999,6,web_verified,"Tháp Bà Ponagar -> Viện Hải dương học: ~7-8km, 15-25 phút"
+NT,NT_SOUTH,NT_CENTER,4.8,12,15,999,5,estimated,Ước tính trung tâm Trần Phú <-> Cầu Đá
+NT,NT_SOUTH,NT_SOUTH,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DL,DL_CENTER,DL_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DL,DL_CENTER,DL_SOUTH_WEST,3.2,11,14,38,4,web_verified,"Trung tâm -> Dinh III Bảo Đại: ~2.5-4km, 10-15 phút"
+DL,DL_CENTER,DL_TUYEN_LAM,6.5,17,20,999,7,estimated,Ước tính trung tâm -> Thiền viện Trúc Lâm
+DL,DL_CENTER,DL_TRAI_MAT,9.0,22,25,999,8,web_verified,"Trung tâm -> Xóm Lèo/Trại Mát: ~8-10km, 20-25 phút"
+DL,DL_CENTER,DL_CAU_DAT,24.5,45,50,999,15,web_verified,"Trung tâm -> Đồi Chè Cầu Đất: ~23-26km, 45-50 phút/chiều"
+DL,DL_SOUTH_WEST,DL_CENTER,3.2,11,14,38,4,web_verified,"Trung tâm -> Dinh III Bảo Đại: ~2.5-4km, 10-15 phút"
+DL,DL_SOUTH_WEST,DL_SOUTH_WEST,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DL,DL_SOUTH_WEST,DL_TUYEN_LAM,4.5,12,15,999,5,estimated,Ước tính Dinh III <-> Thiền viện Trúc Lâm
+DL,DL_SOUTH_WEST,DL_TRAI_MAT,11.5,26,30,999,9,estimated,Ước tính Dinh III <-> Trại Mát
+DL,DL_SOUTH_WEST,DL_CAU_DAT,27.0,50,55,999,16,estimated,Ước tính Dinh III <-> Cầu Đất
+DL,DL_TUYEN_LAM,DL_CENTER,6.5,17,20,999,7,estimated,Ước tính trung tâm -> Thiền viện Trúc Lâm
+DL,DL_TUYEN_LAM,DL_SOUTH_WEST,4.5,12,15,999,5,estimated,Ước tính Dinh III <-> Thiền viện Trúc Lâm
+DL,DL_TUYEN_LAM,DL_TUYEN_LAM,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DL,DL_TUYEN_LAM,DL_TRAI_MAT,13.0,28,33,999,10,estimated,Ước tính Tuyền Lâm <-> Trại Mát
+DL,DL_TUYEN_LAM,DL_CAU_DAT,28.5,54,60,999,18,estimated,Ước tính Tuyền Lâm <-> Cầu Đất
+DL,DL_TRAI_MAT,DL_CENTER,9.0,22,25,999,8,web_verified,"Trung tâm -> Xóm Lèo/Trại Mát: ~8-10km, 20-25 phút"
+DL,DL_TRAI_MAT,DL_SOUTH_WEST,11.5,26,30,999,9,estimated,Ước tính Dinh III <-> Trại Mát
+DL,DL_TRAI_MAT,DL_TUYEN_LAM,13.0,28,33,999,10,estimated,Ước tính Tuyền Lâm <-> Trại Mát
+DL,DL_TRAI_MAT,DL_TRAI_MAT,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+DL,DL_TRAI_MAT,DL_CAU_DAT,16.0,30,35,999,10,estimated,Ước tính Trại Mát <-> Cầu Đất cùng hướng QL20
+DL,DL_CAU_DAT,DL_CENTER,24.5,45,50,999,15,web_verified,"Trung tâm -> Đồi Chè Cầu Đất: ~23-26km, 45-50 phút/chiều"
+DL,DL_CAU_DAT,DL_SOUTH_WEST,27.0,50,55,999,16,estimated,Ước tính Dinh III <-> Cầu Đất
+DL,DL_CAU_DAT,DL_TUYEN_LAM,28.5,54,60,999,18,estimated,Ước tính Tuyền Lâm <-> Cầu Đất
+DL,DL_CAU_DAT,DL_TRAI_MAT,16.0,30,35,999,10,estimated,Ước tính Trại Mát <-> Cầu Đất cùng hướng QL20
+DL,DL_CAU_DAT,DL_CAU_DAT,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HCM,HCM_Q1_CENTER,HCM_Q1_CENTER,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HCM,HCM_Q1_CENTER,HCM_Q1_DAKAO,2.2,8,11,28,5,web_verified,"Chợ Bến Thành -> Thảo Cầm Viên: ~2-2.5km, xe máy/ô tô 7-12p, đi bộ 25-35p"
+HCM,HCM_Q1_CENTER,HCM_Q3,1.6,7,10,20,4,estimated,Ước tính Q1 Center <-> Võ Văn Tần/Pasteur Q3
+HCM,HCM_Q1_CENTER,HCM_PHU_NHUAN,4.8,17,22,999,8,web_verified,"Dinh Độc Lập -> Cơm tấm Ba Ghiền: ~4.5-5km, 15-25 phút"
+HCM,HCM_Q1_DAKAO,HCM_Q1_CENTER,2.2,8,11,28,5,web_verified,"Chợ Bến Thành -> Thảo Cầm Viên: ~2-2.5km, xe máy/ô tô 7-12p, đi bộ 25-35p"
+HCM,HCM_Q1_DAKAO,HCM_Q1_DAKAO,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HCM,HCM_Q1_DAKAO,HCM_Q3,2.1,9,12,26,5,estimated,Ước tính Đa Kao <-> Q3
+HCM,HCM_Q1_DAKAO,HCM_PHU_NHUAN,4.5,16,20,999,7,estimated,Ước tính Đa Kao <-> Đặng Văn Ngữ Phú Nhuận
+HCM,HCM_Q3,HCM_Q1_CENTER,1.6,7,10,20,4,estimated,Ước tính Q1 Center <-> Võ Văn Tần/Pasteur Q3
+HCM,HCM_Q3,HCM_Q1_DAKAO,2.1,9,12,26,5,estimated,Ước tính Đa Kao <-> Q3
+HCM,HCM_Q3,HCM_Q3,0.6,4,6,8,2,estimated,Di chuyển nội cụm
+HCM,HCM_Q3,HCM_PHU_NHUAN,3.4,13,17,42,6,estimated,Ước tính Q3 <-> Phú Nhuận
+HCM,HCM_PHU_NHUAN,HCM_Q1_CENTER,4.8,17,22,999,8,web_verified,"Dinh Độc Lập -> Cơm tấm Ba Ghiền: ~4.5-5km, 15-25 phút"
+HCM,HCM_PHU_NHUAN,HCM_Q1_DAKAO,4.5,16,20,999,7,estimated,Ước tính Đa Kao <-> Đặng Văn Ngữ Phú Nhuận
+HCM,HCM_PHU_NHUAN,HCM_Q3,3.4,13,17,42,6,estimated,Ước tính Q3 <-> Phú Nhuận
+HCM,HCM_PHU_NHUAN,HCM_PHU_NHUAN,0.6,4,6,8,2,estimated,Di chuyển nội cụm

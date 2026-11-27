@@ -1,0 +1,18 @@
+disruption_id,city,zone,poi_id,disruption_type,severity,start_time,end_time,status,description,reported_by,source_type
+DIS_01,HCM,HCM_Q1_DAKAO,POI_HCM_01,heavy_rain,high,2026-11-28T14:00:00+07:00,2026-11-28T16:30:00+07:00,active,[Giả lập sự cố] Mưa lớn bất ngờ tại khu vực Thảo Cầm Viên - Quận 1,synthetic_weather_feed,synthetic
+DIS_02,HCM,HCM_Q3,POI_HCM_10,overcrowded,medium,2026-11-28T12:00:00+07:00,2026-11-28T13:30:00+07:00,active,"[Giả lập sự cố] Phở Hòa Pasteur đông kín bàn giờ trưa, chờ >30 phút",synthetic_crowd_feed,synthetic
+DIS_03,HN,HN_HOAN_KIEM,POI_HN_08,sold_out_early,high,2026-11-28T09:30:00+07:00,2026-11-28T10:00:00+07:00,active,[Giả lập sự cố] Phở Bát Đàn hết hàng sớm trước giờ kết thúc ca sáng,synthetic_ops_check,synthetic
+DIS_04,HN,HN_HOAN_KIEM,POI_HN_05,heavy_rain,high,2026-11-28T15:00:00+07:00,2026-11-28T17:00:00+07:00,active,[Giả lập sự cố] Mưa rào khu vực Hồ Hoàn Kiếm,synthetic_weather_feed,synthetic
+DIS_05,HUE,HUE_CITADEL,POI_HUE_01,extreme_heat,high,2026-11-29T11:30:00+07:00,2026-11-29T14:30:00+07:00,active,[Giả lập sự cố] Nắng gắt buổi trưa tại khuôn viên ngoài trời Đại Nội Huế,synthetic_weather_feed,synthetic
+DIS_06,DN,DN_MY_KHE,POI_DN_07,overcrowded,high,2026-11-29T18:30:00+07:00,2026-11-29T20:30:00+07:00,active,"[Giả lập sự cố] Hải sản Bé Mặn hết bàn, thời gian chờ >45 phút",synthetic_crowd_feed,synthetic
+DIS_07,DN,DN_SON_TRA,POI_DN_09,heavy_rain,high,2026-11-29T15:00:00+07:00,2026-11-29T17:30:00+07:00,active,[Giả lập sự cố] Mưa lớn và đường đèo dốc trên bán đảo Sơn Trà trơn trượt,synthetic_weather_feed,synthetic
+DIS_08,HA,HA_CAM_THANH,POI_HA_05,heavy_rain,high,2026-11-29T14:30:00+07:00,2026-11-29T16:30:00+07:00,active,"[Giả lập sự cố] Mưa giông khu vực Rừng dừa Bảy Mẫu, tạm ngừng chèo thúng",synthetic_weather_feed,synthetic
+DIS_09,NT,NT_CENTER,POI_NT_03,sudden_closure,high,2026-11-30T11:45:00+07:00,2026-11-30T22:00:00+07:00,active,[Giả lập sự cố] Bún cá Nguyên Loan nghỉ bán đột xuất trong ngày,synthetic_ops_check,synthetic
+DIS_10,DL,DL_CENTER,POI_DL_04,heavy_rain,high,2026-12-01T18:00:00+07:00,2026-12-01T21:00:00+07:00,active,[Giả lập sự cố] Mưa lạnh buổi tối tại khu Chợ Đêm Đà Lạt,synthetic_weather_feed,synthetic
+DIS_11,DL,DL_CENTER,POI_DL_03,overcrowded,high,2026-12-01T18:15:00+07:00,2026-12-01T20:00:00+07:00,active,"[Giả lập sự cố] Lẩu gà lá é Tao Ngộ kín bàn, xếp hàng lâu",synthetic_crowd_feed,synthetic
+DIS_12,DL,DL_CAU_DAT,POI_DL_09,fog_hazard,medium,2026-12-01T15:30:00+07:00,2026-12-01T17:30:00+07:00,active,[Giả lập sự cố] Sương mù dày trên cung đường đèo đi Cầu Đất,synthetic_weather_feed,synthetic
+DIS_13,HP,HP_CENTER,POI_HP_03,overcrowded,medium,2026-11-28T11:30:00+07:00,2026-11-28T13:00:00+07:00,active,[Giả lập sự cố] Bánh đa cua Bà Cụ đông kín khách giờ trưa cuối tuần,synthetic_crowd_feed,synthetic
+DIS_14,QN,QN_BAI_CHAY,POI_QN_04,heavy_rain,high,2026-11-29T14:30:00+07:00,2026-11-29T17:00:00+07:00,active,"[Giả lập sự cố] Mưa lớn và gió mạnh khu vực Bãi Cháy, tạm ảnh hưởng trò chơi ngoài trời",synthetic_weather_feed,synthetic
+DIS_15,SP,SP_FANSIPAN,POI_SP_05,fog_hazard,high,2026-11-29T13:30:00+07:00,2026-11-29T16:30:00+07:00,active,"[Giả lập sự cố] Sương mù dày đặc và mưa phùn trên đỉnh Fansipan, tầm nhìn <10m",synthetic_weather_feed,synthetic
+DIS_16,TD,TD_HILL,POI_TD_04,fog_hazard,high,2026-11-28T15:00:00+07:00,2026-11-28T18:00:00+07:00,active,[Giả lập sự cố] Mưa mù dày đặc khu Quán Gió và bậc thang lên Đền Bà Chúa Thượng Ngàn trơn trượt,synthetic_weather_feed,synthetic
+DIS_17,HG,HG_NHO_QUE,POI_HG_05,heavy_rain,high,2026-11-30T14:00:00+07:00,2026-11-30T17:00:00+07:00,active,"[Giả lập sự cố] Mưa lớn khu đèo Mã Pí Lèng - Sông Nho Quế, đường dốc xuống bến thuyền nguy hiểm",synthetic_weather_feed,synthetic
