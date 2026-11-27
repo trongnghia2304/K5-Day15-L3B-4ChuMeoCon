@@ -1,141 +1,103 @@
-> Đây là khung repo nộp bài. Điền mọi chỗ `____`, giữ nguyên tên các mục. **Mục 0 xoá đi sau khi tạo repo xong.**
-> Giờ, mốc, luật, rubric: xem `README.md`, `02-guide.md`, `03-rubric.md` trong repo đề (bộ đề BTC phát).
+# 4ChuMeoCon — Xếp lịch trình một ngày nhiều điểm (Track C · Du lịch)
 
-# [Tên nhóm] — [Tên lát cắt]
+**Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md).
 
-**Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md). **Điền TEAMS.md đúng format**: khi chấm và đánh giá, BTC quét file này để ghép điểm cho từng người.
+**Lát cắt:** một người lên lịch cho nhóm · trước chuyến đi nhập danh sách điểm và khung giờ, hoặc đang đi thì gặp mưa / quán đóng / quá đông · AI quyết định **đi điểm nào, theo thứ tự nào** sao cho mọi điểm đang mở lúc đến (xếp lịch, hoặc chọn 1–3 điểm thay thế đang mở quanh đó) · người lên lịch nhận lịch từng giờ / điểm thay thế kèm lý do để gửi cả nhóm.
 
-*Lát cắt = phần nhỏ nhất làm xong được trong hackathon: một người dùng · một việc · một quyết định AI · một kết quả.*
+**Vì sao:** khảo sát 67 người đã đi du lịch tự túc — 49/67 (73%) mệt nhất ở khâu sắp thứ tự thuận đường, 38/67 (57%) từng tới nơi thì đóng cửa / hết chỗ ([evidence/summary.md](evidence/summary.md)).
 
----
-
-## 0. Tạo repo nhóm từ khung này *(guide bước 1.0 — xoá mục này khi xong)*
-
-**Hai luật:** repo **mới, công khai (Public)** · tên `K5-Day15-<lớp>-<tên nhóm>`, vd `K5-Day15-L3A-StudyPulse` (tên nhóm viết liền, không dấu). Chép **nội dung bên trong** `starter-repo/` — `README.md`, `run.py` phải nằm ngay ở trang đầu repo.
-
-**(a) Không cần terminal — làm trên web GitHub**
-1. **New repository** → tên theo mẫu → **Public** → không tick thêm gì → tạo.
-2. Trên máy mở thư mục `starter-repo/`, **bật hiện file ẩn** (Mac Finder: `Cmd + Shift + .` · Windows: View → Show → Hidden items) để thấy `.gitignore`, `.env.example`.
-3. Trên repo vừa tạo: **Add file → Upload files** → **kéo thả** tất cả file và thư mục bên trong `starter-repo/` → **Commit changes**. Kéo thả mới giữ được thư mục con; lỗi vì nhiều file quá thì tải từng thư mục.
-4. Kiểm: có `.gitignore` chưa (hay thiếu nhất). Thiếu thì **Add file → Create new file**, tên `.gitignore`, dán nội dung từ máy.
-5. Từ giờ sửa file ngay trên web (biểu tượng bút chì → Commit). Phần code vẫn cần **một** người chạy được trên máy: trước mỗi lượt chạy tải **Code → Download ZIP** về thư mục mới (mang `.env` sang), chạy xong chỉ upload file kết quả và file vừa sửa; trong lúc đang chạy không ai sửa `eval/benchmark.csv` trên web.
-
-**(b) Dùng git**
-```bash
-git clone https://github.com/<tai-khoan>/K5-Day15-L3A-TenNhom.git
-cd K5-Day15-L3A-TenNhom
-cp -R ../duong-dan-toi/starter-repo/. .      # Windows PowerShell: Copy-Item -Recurse -Force ..\duong-dan-toi\starter-repo\* .
-git status                                   # không được có .env, data-btc/
-git add -A && git commit -m "Khung repo từ starter-repo" && git push
-```
-
-**Xong khi:** mở link repo bằng **cửa sổ ẩn danh** thấy được file (link nộp CP1) · đã mời thành viên (Settings → Collaborators) · đã điền `TEAMS.md` và `python run.py check` không báo gì ở phần "Kiểm TEAMS.md".
-
----
-
-## Nhóm làm gì, khung làm gì
-
-| Nhóm quyết định và viết | Khung làm sẵn (không cần sửa) |
+| Đọc gì | File |
 |---|---|
-| Người dùng, pain, bằng chứng, impact (`evidence/`, `spec.md` §1–§2) | — |
-| Hình dạng giải pháp, công cụ, prompt, luồng (`spec.md` §4, `codebase/agent.py`, `tools.py`, `ai.py`) | Ghi mọi lần gọi model / công cụ vào trace, cộng token (`codebase/tracing.py`) |
-| Bộ câu thử, metric, chuẩn "đạt" (`eval/benchmark.csv`, `eval/metric_spec.yaml`, `spec.md` §7) | Kiểm đủ cột, đủ câu `kho` / `tu_choi`, đủ ≥1/3 câu từ người dùng / data thật (`run.py check`) |
-| Chấm cột `pass` theo metric spec | Chạy cả bộ một lệnh, có run ID, model, token từng câu (`run.py eval`) · tính % đạt (`run.py score`) |
-| Persona, số người dùng thật, giá model (`cost/personas.yaml`) | Sinh ~50 phiên, chạy thật qua bản chạy thử, tính chi phí / phiên, / task thành công, / tháng 3 kịch bản (`run.py simulate`) |
+| Canvas 7 dòng | [canvas.md](canvas.md) |
+| Thiết kế, sơ đồ, chuẩn "đạt" | [spec.md](spec.md) (§4 sơ đồ · §7 chuẩn "đạt") |
+| Bằng chứng pain | [evidence/summary.md](evidence/summary.md) |
+| Dữ liệu chạy thử | [data/DATA_CARD.md](data/DATA_CARD.md) · `data/travel-ops/` |
+| Bộ câu thử, metric | [eval/benchmark.csv](eval/benchmark.csv) · [eval/metric_spec.yaml](eval/metric_spec.yaml) · [eval/README.md](eval/README.md) |
+| Hợp đồng công cụ kiểm lịch | [docs/itinerary-tool-contract.md](docs/itinerary-tool-contract.md) |
 
-*Ví dụ track A (ví dụ cỡ, không phải lời giải):* nhóm viết công cụ `search_lesson` tra bài pre-class đã đánh mã đoạn, luồng "tra đoạn → model trả lời kèm mã đoạn, không có thì nói không có", metric "mọi khẳng định có mã đoạn đúng", persona "ôn dồn trước kiểm tra". Khung chạy 25 câu thử ra `run-1.csv`, nhóm chấm `pass`, `score` in % đạt; `simulate` chạy 50 phiên ra chi phí / task thành công cho hai model.
+---
 
 ## Chạy trong 3 phút
 
-Bộ khung cần **Python 3.10 trở lên** (Python 3.9 có sẵn trên macOS vẫn chạy được, chỉ in một dòng nhắc). **Không cần `pip install`.**
+Cần **Python 3.10 trở lên**. **Không cần `pip install`** — chỉ dùng thư viện chuẩn.
 
 **Bước 1 — Mở cửa sổ lệnh ngay trong thư mục repo**
 
 | Windows (PowerShell) | macOS |
 |---|---|
-| Mở thư mục repo bằng File Explorer → bấm vào thanh địa chỉ → gõ `powershell` → Enter | Mở **Terminal** (Cmd + Space, gõ "Terminal") → gõ `cd ` (có dấu cách) → kéo thả thư mục repo vào → Enter |
+| Mở thư mục repo bằng File Explorer → bấm vào thanh địa chỉ → gõ `powershell` → Enter | Mở **Terminal** → gõ `cd ` (có dấu cách) → kéo thả thư mục repo vào → Enter |
 
 Gõ `dir` (Windows) hoặc `ls` (macOS / Linux): thấy `run.py` và `README.md` là đang đứng đúng chỗ.
 
-**Bước 2 — Kiểm Python và chạy thử**
+**Bước 2 — Chạy bản chạy thử**
 
 | Việc | Windows (PowerShell) | macOS / Linux |
 |---|---|---|
 | Kiểm Python | `python --version` (không được thì `py --version`) | `python3 --version` |
-| Chạy bản chạy thử (chế độ giả, chưa gọi model) | `python run.py` | `python3 run.py` |
+| Chạy bản chạy thử | `python run.py` | `python3 run.py` |
 | Kiểm bộ câu thử | `python run.py check` | `python3 run.py check` |
-| Tạo file `.env` để nối model | `copy .env.example .env` | `cp .env.example .env` |
+| Tạo file `.env` để nối model thật | `copy .env.example .env` | `cp .env.example .env` |
 
-- Windows: gõ `python` mà mở Microsoft Store hoặc báo không có lệnh → dùng `py`. Chưa có Python: cài từ python.org, **tick "Add python.exe to PATH"**, mở lại PowerShell.
-- macOS: báo `command not found: python` là bình thường → dùng `python3`.
-- `python run.py` in ra "[câu trả lời giả — chưa nối model] …" là khung chạy đúng. Nối model thật: [docs/connect-model.md](docs/connect-model.md).
+**Bước 3 — Gõ thử hai câu** (sau dấu `>`; Enter 2 lần với dòng trống để thoát)
 
-Trong README này lệnh viết là `python …`; máy nhóm cần `python3` hay `py` thì gõ thay.
+```
+Thứ 7 ở Hà Nội từ 8:00 đến 17:00 đi Văn Miếu, Nhà tù Hỏa Lò, Chợ Đồng Xuân
+```
+→ ra **lịch từng giờ** (giờ đến / rời mỗi điểm, phút đi), lý do, điểm bị bỏ nếu không kịp.
+
+```
+14:05 chiều Thứ Bảy tụi mình đang ở Thảo Cầm Viên thì trời mưa lớn, quanh đây có chỗ nào trong nhà đang mở không?
+```
+→ ra **trạng thái điểm đang đứng** và **1–3 điểm thay thế đang mở**, trong nhà, kèm phút đi và giờ đóng cửa.
+
+Thiếu thông tin (không nói thành phố, thứ hay khung giờ) thì bản chạy thử **hỏi lại**, không đoán.
+
+> **Đang chạy ở chế độ model giả** cho tới khi nhóm nối model thật (`.env` chưa có `MODEL_PROVIDER`). Khi đó dòng "Vì sao" ghi **"(dự phòng)"**: thứ tự / điểm gợi ý do code dự phòng chọn, không phải AI. Nối model thật: [docs/connect-model.md](docs/connect-model.md).
+
+Trong README này lệnh viết là `python …`; máy cần `python3` hay `py` thì gõ thay.
 
 ## Lệnh
 
 | Lệnh | Làm gì |
 |---|---|
-| `python run.py` | Chạy bản chạy thử (gõ đầu vào, nhận kết quả, kèm số lần gọi model / token) |
-| `python run.py check` | Kiểm `eval/benchmark.csv` (6 cột, số câu, `kho` / `tu_choi`, mã `source`, ô trống, dòng mẫu) `eval/metric_spec.yaml` (≥3 metric điền đủ) và `TEAMS.md` (đúng format để BTC quét). Chỉ cảnh báo, không sửa file |
-| `python run.py eval --try` | **Thử nối model:** chạy 3 câu đầu (`--try 5` = 5 câu) → `eval/run-try.csv`. Thấy "Nối model được" là xong. Không tính là một lượt |
-| `python run.py eval` | Chạy cả bộ qua `codebase/agent.py` → `eval/run-1.csv` (lần sau `run-2.csv`…) + `traces/run-1.jsonl`. Mỗi dòng có run ID, model, số lần gọi model / công cụ, token. Model còn giả → chỉ ghi `run-mock.csv`; mọi câu lỗi → `run-error.csv`; Ctrl+C → `run-stopped.csv` — đều **không** được đánh số |
-| `python run.py eval --fake` | Thử riêng bộ chạy, không gọi agent → `eval/run-fake.csv` |
-| `python run.py score eval/run-1.csv` | Sau khi điền cột `pass` (1 / 0): in % đạt tổng và theo `type`. Còn ô trống → "CHƯA CHẤM XONG", không in % |
-| `python run.py simulate --try` | Thử mô phỏng chi phí 10 phiên (làm trước CP3) → `cost/simulate-try.csv` |
-| `python run.py simulate` | Mô phỏng chi phí khi dùng thật theo `cost/personas.yaml` (≥50 phiên) → `cost/simulate-N.csv` + `cost/simulate-N-summary.md` |
-| `python run.py simulate --rate-from eval/run-2.csv` | Như trên, lấy tỉ lệ đạt từ đúng lượt chỉ định. Không ghi thì khung lấy lượt `run-N` mới nhất đã chấm, cùng model, và ghi rõ đã lấy lượt nào trong bản tóm tắt |
+| `python run.py` | Chạy bản chạy thử (gõ đầu vào, nhận kết quả, kèm số lần gọi model / công cụ / token) |
+| `python run.py check` | Kiểm `eval/benchmark.csv`, `eval/metric_spec.yaml`, `TEAMS.md`. Chỉ cảnh báo, không sửa file |
+| `python run.py eval --try 28` | Chạy thử cả 28 câu → `eval/run-try.csv` (không tính là một lượt) |
+| `python run.py eval` | Chạy cả bộ → `eval/run-N.csv` + `traces/run-N.jsonl` (chỉ đánh số khi gọi model thật) |
+| `python run.py score eval/run-1.csv` | Sau khi điền cột `pass` (1 / 0): in % đạt |
+| `python run.py simulate --try` / `simulate` | Mô phỏng chi phí khi dùng thật theo `cost/personas.yaml` |
 
-Gói miễn phí báo hết lượt: thêm `--wait 4` sau `eval` hoặc `simulate` (nghỉ 4 giây giữa hai lượt gọi). Sửa CSV bằng Excel: *File → Save As → CSV UTF-8*; Google Sheets: *Tệp → Tải xuống → CSV*.
+Gói miễn phí báo hết lượt: thêm `--wait 4` sau `eval` hoặc `simulate`. Lượt có lỗi kỹ thuật: không sửa tay, chạy lại thành lượt mới.
 
-**Lượt có lỗi kỹ thuật** (cột `error` có chữ): không sửa tay file đó, chạy lại thành lượt mới và ghi vào bảng các lượt ở `eval/README.md`. Không xoá file lượt nào.
+## Bản chạy thử làm gì
 
-Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` trong `run.py` để `python run.py` vẫn chạy được bản chạy thử, và giữ `answer()` trong `codebase/agent.py` để `eval`, `simulate` chạy được.
+Hình dạng: **workflow cố định** có một bước phân luồng (chi tiết và sơ đồ ở [spec.md](spec.md) §4).
 
-## Bản chạy thử — viết ở đâu
-
-| File | Viết gì | Bước guide |
+| Bước | Ai làm | File |
 |---|---|---|
-| `codebase/agent.py` | `answer(text)` — luồng chính, đúng hình dạng ở `spec.md` §4. Khung có sẵn một workflow 2 bước *ví dụ* | 3.2 |
-| `codebase/tools.py` | Công cụ của bài toán, mỗi công cụ một hàm có `@tool` | 2.2, 3.2 |
-| `codebase/ai.py` | `call_model(system, user)` — chỗ duy nhất gọi model. Chưa điền `.env` thì chạy **chế độ giả** | 3.3 |
+| Tách thành phố, thứ, khung giờ, điểm, mưa / nắng… từ câu chat | Code; **chỉ khi còn thiếu** mới gọi model trích | `codebase/agent.py`, `codebase/prompts/trich_yeu_cau.md` |
+| Khớp tên điểm với dữ liệu; tên không có trong dữ liệu → nói "không có dữ liệu" | Code | `search_pois` trong `codebase/tools.py` |
+| **Xếp lịch:** chọn thứ tự đi + điểm bỏ | **Model** (quyết định trung tâm) | `codebase/prompts/xep_thu_tu.md` |
+| Tính giờ đến / rời, liệt kê vi phạm; có vi phạm → model sửa (≤ 2 vòng) → còn thì code bỏ điểm | Code | `lap_lich`, `liet_ke_vi_pham` |
+| Cổng kiểm cuối: chỉ lịch `valid` mới hiện | Code | `kiem_lich_trinh` |
+| **Gợi ý thay thế:** code lọc điểm đang mở, hợp mưa / nắng / loại; model chọn 1–3 | Code lọc, **model chọn** | `goi_y_diem`, `codebase/prompts/goi_y.md` |
+| Định dạng câu trả lời; chặn đặt bàn / nhắn tin / "bỏ qua kiểm tra" | Code | `codebase/agent.py` |
 
-- **Trước CP2:** để chế độ giả, công cụ trả dữ liệu giả — `python run.py` đi hết luồng là đủ.
-- **Trước CP3:** nối model thật theo [docs/connect-model.md](docs/connect-model.md), `eval --try` thấy token > 0 rồi mới `eval`.
-- Bộ chạy gửi **nguyên ô `input`** của câu thử vào `answer(text)`. Dữ liệu nền (bài học, thông báo, lịch…) để trong `data/`, đọc qua công cụ.
+AI **không** đặt bàn, mua vé, thanh toán hay nhắn tin; mọi giờ và phút do code tính từ dữ liệu.
 
 ## Phần nào thật, phần nào giả
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
+| Lời gọi AI ở quyết định trung tâm (chọn thứ tự / chọn điểm thay thế) | **Giả ở CP2** → thật từ CP3 | Model: ____ (điền khi nối). Chế độ giả dùng thứ tự / lựa chọn dự phòng bằng code, output ghi "(dự phòng)" |
+| Tên điểm, địa chỉ, giờ mở cửa | Theo nguồn công khai, xem nhãn trong `data/travel-ops/` | Dòng `estimated` là tự ước tính — xem [data/DATA_CARD.md](data/DATA_CARD.md) |
+| Thời gian chơi mỗi điểm, một số chặng di chuyển | Tự ước tính | `avg_duration_min`, `source_type = estimated` |
+| Sự cố đang xảy ra (mưa, quán đông, đóng đột xuất) | **Giả lập** | `data/travel-ops/live_disruptions.csv`, nhãn `[Giả lập sự cố]` trong output |
+| Vị trí người dùng | Người dùng tự nói | Không dùng GPS |
 
 ## Dùng AI vào việc gì
 
-2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
-
-____
-
-## File mẫu — điền ở bước nào
-
-| File | Điền ở bước guide | Mốc |
-|---|---|---|
-| `TEAMS.md` | 1.0 | CP1 · **đúng format**, BTC quét khi chấm |
-| `canvas.md` | 1.4 | CP1, cập nhật CP2 |
-| `evidence/hypothesis.md` | 1.1 | trước khi tìm bằng chứng |
-| `evidence/data-mining.md` · `evidence/interviews/TEMPLATE.md` → `P1.md`… · `evidence/survey/TEMPLATE.md` | 1.2 | bắt đầu sau Zoom, xong CP3 |
-| `evidence/summary.md` | 1.2 | CP3 |
-| `spec.md` | §0–§2: 1.1–1.3 · §3–§5: 2.1–2.3 · §7: 2.4 · §8: 4.2 · §10: suốt | §7 chốt CP2 · §0–§7 CP3 · đủ CP4 |
-| `data/DATA_CARD.md` | 2.4 | bản đầu CP2 |
-| `eval/benchmark.csv` · `eval/metric_spec.yaml` | 2.4 | ≥10 câu + metric chốt CP2 · 20–30 câu CP3 |
-| `codebase/` | 3.2, 3.3 | khung CP2 · AI thật CP3 |
-| `eval/report.md` · `eval/README.md` | 4.1 (README mục 1–4 từ 2.4) | CP4 |
-| `cost/personas.yaml` · `cost/cost-estimate.md` | 4.2 | thử 10 phiên CP3 · đủ CP4 |
-| `validation/log.md` *(bonus)* | 4.3 | CP4 |
-| `slides/outline.md` → `demo-slides.pdf` | 5.1 | CP4 |
-| `reflection/TEMPLATE.md` → `reflection/<ten>.md` | 5.3 | 23:59 Thứ Bảy 28/11 |
-| `AGENTS.md` · `docs/ai-usage.md` | khi dùng coding agent / AI | suốt |
+Nhóm dùng Claude Code để viết nháp code luồng chính, công cụ lập lịch / kiểm lịch / gợi ý, prompt, script đếm khảo sát và nháp `spec.md`; các thành viên đọc, chạy lại bằng `python run.py` / `eval --try` và sửa phần mình phụ trách. *(Nhóm bổ sung công cụ khác và người kiểm từng phần.)* Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
 ## Bảy hạng mục bắt buộc — nằm ở file nào
 
