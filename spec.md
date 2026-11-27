@@ -154,7 +154,7 @@ flowchart TD
 | 19:32–19:36 27/11 | Thêm phiếu chấm thử 5 output (`eval/calibration-5*.md`), điền mục 3 `eval/README.md` (khớp 5/5), cập nhật `README.md`. Không đổi §7, `eval/metric_spec.yaml`, `eval/benchmark.csv` | Ghi kết quả người thứ hai chấm thử theo guide 2.4 bước 4 |
 | 22:33 27/11 | §1: thay "Nguồn kiểm lại: đang hẹn" bằng kết quả 3 phỏng vấn (khớp / lệch). Không đổi số khảo sát | §1 chưa cập nhật theo `evidence/interviews/P1–P3.md` và `evidence/summary.md` §4 đã có từ trước 19:30 |
 | 23:35 27/11 | Thêm `docs/phan-cong-cp3-cp4.md`; tách changelog dưới đây thành 4 khối theo người | Chia việc CP3–CP4 theo quyền sở hữu file, tránh hai người sửa cùng chỗ |
-| 02:20 28/11 | Nhánh `feat/b-lite`: `agent.py` thêm `goi_y_lap_gio()` sau cổng kiểm (bật khi lịch không bỏ điểm và còn trống ≥ 60 phút; ứng viên từ `goi_y_diem` ≤ 30 phút đi, đủ giờ chơi trước giờ kết thúc; model chọn 1–3), thêm `prompts/lap_gio_trong.md`. Chưa merge — merge sau run-2 + simulate | Chế độ giả, 30 câu: chỉ B01, B03, B04, B29, B30 có thêm mục gợi ý, không dòng lịch nào đổi; kiểm hợp đồng 0 lỗi; model thật trả JSON đúng ở 4 câu |
+
 > Từ đây mỗi người chỉ thêm dòng vào **khối của mình** (phân công: `docs/phan-cong-cp3-cp4.md`).
 
 #### N1 · evidence, §0–§2, slide 1–3 — Nguyễn Trọng Nghĩa
@@ -189,6 +189,7 @@ flowchart TD
 | ≈02:02 28/11 | Đính chính tài liệu: data cũ vẫn dùng đầy đủ cho cả 12 thành phố ("đóng băng" = không sửa / xoá, `rule.md` 1.7 viết lại cho rõ); số câu thử ngoài HN/HCM/DN/HUE là **12/28** (dòng 00:05 ghi 13/28 do đếm trùng Hạ Long và Quảng Ninh ở B26); bộ câu thử phủ **11/12** thành phố — Sa Pa chưa có câu; ưu tiên mở rộng data đổi thành HCM · DN · HA (nơi B-lite bật: B01, B29, B30 · B03 · B04) rồi HN · HUE | Kiểm lại độ phủ theo `poi_id` trong `expected` / `pass_criterion` / output run-1 |
 | ≈02:05 28/11 | `rule.md` 1.7 + `docs/phan-cong-cp3-cp4.md`: ghi rõ thêm data **không đổi bộ câu thử**; 6 câu có `pass_criterion` nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28) có thể đổi kết quả ở run-3 → báo trung thực, không sửa câu, không chọn data để né câu | Đối chiếu luật đề: CP2 chỉ khoá chuẩn "đạt"; câu thử chỉ được thêm, không sửa `expected`, không bỏ câu trượt (guide 3.4, 4.1; rubric) |
 | 02:10 28/11 | Sửa giờ các dòng N3 ở trên: trước ghi 23:55 / 00:05 / 00:30 / 02:15 / 02:35 / 02:50 là giờ ước đoán, sai. Giờ mới lấy theo bằng chứng: commit `509a16f` (23:56) đã chứa `rule.md` + `hop-dong-du-lieu.md`; giờ sửa file `docs/huong-b-lite.md` 01:55, `hop-dong-du-lieu.md` 02:02, `rule.md` / `spec.md` 02:05 | Changelog phải đúng giờ thật (guide 5.3) |
+| 02:20 28/11 | Nhánh `feat/b-lite`: `agent.py` thêm `goi_y_lap_gio()` sau cổng kiểm (bật khi lịch không bỏ điểm và còn trống ≥ 60 phút; ứng viên từ `goi_y_diem` ≤ 30 phút đi, đủ giờ chơi trước giờ kết thúc; model chọn 1–3), thêm `prompts/lap_gio_trong.md`. Chưa merge — merge sau run-2 + simulate | Chế độ giả, 30 câu: chỉ B01, B03, B04, B29, B30 có thêm mục gợi ý, không dòng lịch nào đổi; kiểm hợp đồng 0 lỗi; model thật trả JSON đúng ở 4 câu |
 
 #### N4 · web, README, validation, slide 4–8 — ____
 
