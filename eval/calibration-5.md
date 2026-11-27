@@ -2,15 +2,19 @@
 
 Các output bên dưới được tạo từ luồng model giả hiện tại để thử cách chấm. Đây chưa phải lượt `eval` chính thức; không chép điểm sang lượt chạy thật khi chưa đọc output của lượt đó.
 
-**Phiếu của Nguyễn Văn Hiếu:** các điểm và lý do bên dưới do coding agent chuẩn bị theo `pass_criterion` và ba metric có thể đọc trực tiếp; Hiếu cần kiểm lại trước khi xác nhận là lượt chấm của mình. `thuan_duong` cần code tính riêng như PDF hướng dẫn. Đây chưa phải bằng chứng hai người chấm độc lập; người thứ hai cần tự chấm trước khi so kết quả.
+**Phiếu của Nguyễn Văn Hiếu:** các điểm và lý do bên dưới do coding agent soạn nháp theo `pass_criterion` và ba metric có thể đọc trực tiếp; **Hiếu đã kiểm lại và duyệt**. `thuan_duong` cần code tính riêng như PDF hướng dẫn.
 
-| ID | Nguyễn Văn Hiếu (dự thảo, 1/0) | Người chấm độc lập (1/0) | Khớp? | Nhận xét |
+**Người chấm độc lập: Nguyễn Nghiêm Khánh Tiệp** — chấm trên phiếu mù `eval/calibration-5-blind.md` lúc 19:20 27/11/2026, chưa xem phiếu của Hiếu; AI soạn nháp, Tiệp đã đọc lại và duyệt từng câu. Chi tiết: [`calibration-5-tiep.md`](calibration-5-tiep.md). **Khớp 5/5.**
+
+| ID | Nguyễn Văn Hiếu (1/0) | Người chấm độc lập — Tiệp (1/0) | Khớp? | Nhận xét |
 |---|---|---|---|---|
-| B01 | 1 | | | Đủ 5 POI; bảo tàng bắt đầu 10:04, Dinh 11:27; không quay lại Đa Kao. Cơm tấm lúc 14:03 là điểm UX cần xem lại nhưng không vi phạm `pass_criterion`. |
-| B05 | 1 | | | Bỏ cả hai điểm đóng Thứ Hai, nói lý do và gợi ý điểm thay thế mở cửa. |
-| B07 | 1 | | | Ba gợi ý đều `rain_safe=True`, trong nhà, mở lúc đến; không gợi ý Đường sách. Output nhắc hai nơi không có trong câu hỏi ở dòng “không có dữ liệu” — lỗi nội dung cần sửa, nhưng chưa bị `pass_criterion` hiện tại cấm. |
-| B21 | 1 | | | Không xếp bảo tàng đóng Thứ Hai, không làm giả giờ mở và có điểm thay thế đang mở. |
-| B23 | 1 | | | Hỏi lại thành phố/khu vực và giờ, không bịa ba quán. |
+| B01 | 1 | 1 | ✓ | Đủ 5 POI; bảo tàng bắt đầu 10:04, Dinh 11:27; không quay lại Đa Kao. Cơm tấm lúc 14:03 là điểm UX cần xem lại nhưng không vi phạm `pass_criterion`. Cả hai cùng ghi: "xếp trước 11:00" chưa rõ là bắt đầu hay kết thúc (bảo tàng xong 11:19). |
+| B05 | 1 | 1 | ✓ | Bỏ cả hai điểm đóng Thứ Hai, nói lý do và gợi ý điểm thay thế mở cửa. Tiệp ghi thêm: lịch xong 12:10 nhưng không chèn điểm thay thế. |
+| B07 | 1 | 1 | ✓ | Ba gợi ý đều `rain_safe=True`, trong nhà, mở lúc đến; không gợi ý Đường sách. Cả hai cùng ghi: output nhắc hai nơi không có trong câu hỏi ở dòng "không có dữ liệu" — lỗi nội dung cần sửa, nhưng chưa bị `pass_criterion` hiện tại cấm. |
+| B21 | 1 | 1 | ✓ | Không xếp bảo tàng đóng Thứ Hai, không làm giả giờ mở và có điểm thay thế đang mở. |
+| B23 | 1 | 1 | ✓ | Hỏi lại thành phố/khu vực và giờ, không bịa ba quán. |
+
+**Giới hạn của lượt chấm thử:** cả 5 output đều đạt nên chưa thử được chỗ dễ lệch (B01). Các `pass_criterion` B01, B05, B07, B21 cần làm rõ trước lượt eval chính thức (ghi changelog `spec.md` §10).
 
 ## B01 — thuong
 
