@@ -176,6 +176,7 @@ flowchart TD
 | 00:43 28/11 | Đồng bộ `cost/personas.yaml` về kịch bản cơ sở 10.000 người, thấp/cao 5.000/20.000 *(tự ước tính)* | §2 đã dùng quy mô cơ sở 10.000 người; §8 cần cùng mẫu số để so chi phí với Impact |
 | 02:36 28/11 | Chấm B01–B15 của `run-1` vào `eval/grading-run1-hieu.csv`: 11 đạt, 4 trượt (B02, B06, B08, B12) | Đối chiếu từng output với `pass_criterion` đã khoá; bàn giao N3 gộp lượt 1, không sửa output hay câu thử |
 | 02:41 28/11 | Chạy `simulate --try`: sandbox chặn API, chạy lại 1 phiên có quyền mạng thì ghi token thật; viết nháp `reflection/hieu.md` | Kiểm đường mô phỏng trước run-2; ghi lại vai trò, AI hỗ trợ và bài học từ B12, chưa dùng lượt thử để tính báo cáo chi phí |
+| 02:45 28/11 | Điền đầu vào đã có nguồn và Impact vào `cost/cost-estimate.md`; để trống tỉ lệ đạt và kết quả mô phỏng | Chờ `run-2` chấm xong để tính chi phí trên đúng cấu hình theo lịch Đợt 2 |
 
 #### N3 · ai, agent, eval, §3–§9 — ____
 

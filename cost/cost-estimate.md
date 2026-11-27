@@ -6,11 +6,11 @@
 
 ## 1. Đầu vào
 
-- **Persona** (`cost/personas.yaml`): ≥3 kiểu — tỉ lệ, số phiên / người / tháng, số lượt hỏi / phiên. Nguồn: __
-- **Số người dùng thật** 3 kịch bản: thấp __ · cơ sở __ · cao __. Nguồn: __
-- **Giá** ≥2 mức model (từ `further-reading/model-prices.md` của repo đề, có link + ngày xem): __ · __
+- **Persona** (`cost/personas.yaml`): dùng ít 39/67 (58,21%), 0,125 phiên/người/tháng, 1 lượt/phiên; dùng vừa 20/67 (29,85%), 0,3333 phiên/người/tháng, 2 lượt/phiên; dùng nhiều 8/67 (11,94%), 0,5 phiên/người/tháng, 3 lượt/phiên. Nguồn: `evidence/summary.md` Câu 2; quy đổi số phiên và lượt hỏi *(tự ước tính)*.
+- **Số người dùng thật** 3 kịch bản: thấp **5.000** · cơ sở **10.000** · cao **20.000** người. Nguồn: `spec.md` §2; cả ba kịch bản là *(tự ước tính)*, chưa phải số người dùng đã đo.
+- **Giá** 2 mức model tham chiếu: `gemini-3.1-flash-lite` **0,25 USD/1 triệu token input · 1,50 USD/1 triệu token output**; `gemini-4-hydrogen` **1,50 USD/1 triệu token input · 7,50 USD/1 triệu token output**. Nguồn: `E:/minihackathon/K5-L3-Day15-AI-Product-Hackathon/further-reading/model-prices.csv`, [bảng giá Gemini](https://ai.google.dev/gemini-api/docs/pricing), xem 25/11/2026. Đây là hai mức giá để so sánh, không phải tên model thực chạy.
 - **Tỉ lệ đạt** dùng để tính: __/__ (__%) — lượt `run-__` (lượt 2)
-- Đo token trên model __, tính giá model __ và __
+- Đo token trên model `gpt-4.1-mini` (theo cấu hình `.env` lúc thử mô phỏng 28/11), tính giá hai mức tham chiếu trên. Kiểm lại model trong trace của lượt mô phỏng chính trước khi chốt.
 
 ## 2. Kết quả mô phỏng
 
@@ -27,7 +27,7 @@ Chi phí / task thành công = chi phí trung bình mỗi phiên ÷ tỉ lệ đ
 
 ## 3. So với impact
 
-- Impact / người / tháng (`spec.md` §2): __
+- Impact / người / tháng (`spec.md` §2): **~25,2 phút**, gồm xếp lịch ban đầu và xếp lại khi vỡ kế hoạch, tại quy mô cơ sở 10.000 người *(quy mô tự ước tính)*.
 - Chi phí / người / tháng (cơ sở, model __): __
 - **Kết luận một dòng — đáng làm không:** __
 
