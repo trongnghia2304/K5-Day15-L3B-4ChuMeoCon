@@ -158,10 +158,12 @@ flowchart TD
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
 
-#### N2 · data, tools, ngân sách, cost — ____
+#### N2 · tools, ngân sách, cost — Nguyễn Văn Hiếu
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
+
+| 00:21 28/11 | Thêm `tools.uoc_chi_phi`, `ngan_sach.dong_chi_phi`; thêm B29–B30 vào cuối `eval/benchmark.csv`; điền 3 persona, 2 mức giá ở `cost/personas.yaml` | Hợp đồng H2–H3 cho dòng ngân sách chỉ hiển thị; B29–B30 kiểm hai ngưỡng chi phí; Câu 2 khảo sát trong `evidence/summary.md` cho tần suất sử dụng; bảng giá model của repo đề cho mô phỏng CP4 |
 
 #### N3 · ai, agent, eval, §3–§9 — ____
 

@@ -609,3 +609,32 @@ def goi_y_diem(city: str, day_of_week: str = "", at_time: str = "", from_zone: s
                     "su_co": d["description"] if d else ""})
     out.sort(key=lambda x: (x["di_chuyen_phut"], bool(x["su_co"]), x["poi_id"]))
     return out[:max(1, int(limit))]
+
+
+@tool
+def uoc_chi_phi(poi_ids: list, so_nguoi: int = 1) -> dict:
+    """Tên: uoc_chi_phi — ước tính khoảng chi phí của các điểm trong lịch.
+    Input: poi_ids theo thứ tự lịch, so_nguoi để ghi nhận số người.
+    Output: tong_min, tong_max VNĐ/người; so_nguoi, tung_diem, khong_ro, nguon.
+    Tác động ra ngoài: Không; chỉ đọc bảng giá và danh mục điểm."""
+    points = {r["poi_id"]: r for r in _load_csv("poi_master.csv")}
+    prices = {r["price_tier"]: r for r in _load_csv("price_tier_vnd.csv")}
+    result = {"tong_min": 0, "tong_max": 0, "so_nguoi": so_nguoi,
+              "tung_diem": [], "khong_ro": [], "nguon": "(tự ước tính)"}
+    for pid in poi_ids or []:
+        point = points.get(pid)
+        tier = point["price_tier"] if point else ""
+        price = prices.get(tier)
+        if not price:
+            result["khong_ro"].append(pid)
+            continue
+        try:
+            low, high = int(price["min_vnd"]), int(price["max_vnd"])
+        except (KeyError, ValueError, TypeError):
+            result["khong_ro"].append(pid)
+            continue
+        result["tung_diem"].append({"poi_id": pid, "price_tier": tier,
+                                   "min_vnd": low, "max_vnd": high})
+        result["tong_min"] += low
+        result["tong_max"] += high
+    return result

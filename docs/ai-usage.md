@@ -23,9 +23,10 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 - 
 
-### N2 — ____
+### N2 — Nguyễn Văn Hiếu
 
-- 
+- Dùng Codex hỗ trợ viết hàm đọc mức giá POI, tách ngân sách trong câu và chuẩn bị cấu hình persona chi phí.
+- Tự đối chiếu H2–H3 trong `docs/hop-dong-du-lieu.md`, số khảo sát Câu 2 và chạy kiểm hợp đồng; mức dùng/tháng và quy mô người dùng được ghi rõ là tự ước tính.
 
 ### N3 — ____
 
