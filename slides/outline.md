@@ -55,6 +55,39 @@
 
 ---
 
+## Nội dung chi tiết Trang 4–8 *(N4 phụ trách — chỉ chép số từ file nguồn, ô `__` điền khi file nguồn có số)*
+
+> Mốc: trang 4 làm được ngay · trang 5 chờ N3 (`eval/README.md` mục 5, `eval/report.md`, ≈12:30) · trang 6 chờ N2 (`cost/cost-estimate.md`, 13:30) · trang 7–8 sau cùng. Xuất `demo-slides.pdf` trước **14:15**.
+
+### Trang 4 — Demo live (web chat)
+- **Thường — B01** (TP.HCM, Thứ Bảy 08:00–17:30, 5 điểm): ra lịch từng giờ, phút đi, lý do; thêm `Ngân sách 300000đ/người.` → dòng cuối "Chi phí ước tính … (tự ước tính)".
+- **Khó — B05** (Hà Nội, Thứ Hai, có điểm đóng cửa Thứ Hai): trợ lý **bỏ điểm đóng cửa, nói lý do, gợi ý điểm thay thế** — không bịa giờ mở.
+- **Đang đi gặp sự cố — B07** (14:05 Thứ Bảy mưa ở Thảo Cầm Viên): 1–3 điểm trong nhà đang mở, phút đi, giờ đóng.
+- **Chat nhiều lượt (A+):** nhắn thiếu thứ → trợ lý hỏi lại → trả lời "thứ 7, 8h đến 5h chiều" → ra lịch (web tự nối ngữ cảnh).
+- **Sau 13:15 (nếu đã merge B-lite):** lịch 3 điểm khung dài → mục "Còn trống … có thể ghé thêm".
+- Mạng hỏng → video dự phòng (link: __). Model: `gpt-4.1-mini`.
+
+### Trang 5 — Đánh giá thế nào
+- Bộ câu thử: `eval/benchmark.csv` **30 câu** (28 câu CP2 + B29–B30 ngân sách) · 4 metric `eval/metric_spec.yaml` · data `data/DATA_CARD.md` (94 điểm · 12 thành phố).
+- Chuẩn "đạt" (`spec.md` §7, chốt CP2): ≥ 70% câu qua **và** 100% câu `tu_choi` qua **và** 0 lịch vi phạm giờ mở cửa.
+- Lượt 1: `run-1@20261128-010117` · `gpt-4.1-mini` · __/30 (__%) · đạt chuẩn? __ → Lượt 2: `run-2@__` · __/30 (__%) · đạt chuẩn? __ *(chép từ `eval/README.md` mục 5)*.
+- Sửa gì giữa 2 lượt: nhóm lỗi __ *(từ `eval/report.md`)* · ≥3 lỗi chính: __.
+- **Ghi rõ:** "run-2 đo bản **chưa có** B-lite + data mở rộng; B-lite đánh giá qua người dùng thử + trace, không có trong bộ câu thử (luật không thêm câu sau run-1)."
+
+### Trang 6 — Chi phí khi dùng thật
+- Chép đúng nhãn từ `cost/cost-estimate.md`: `Chi phí / phiên (cơ sở):` __ · `Chi phí / task thành công (cơ sở):` __ · bảng 3 kịch bản (thấp / cơ sở / cao × 2 model) · `Kết luận:` __.
+- So với impact `spec.md` §2 (trang 2).
+
+### Trang 7 — Kết luận
+- Go / iterate / stop: __ — dẫn 1 số trang 1 (pain), 1 số trang 5 (đạt chuẩn?), 1 số trang 6 (chi phí / task).
+
+### Trang 8 — Nếu có thêm 1 tuần
+- Lỗi còn lại từ `eval/report.md` mục 4: __.
+- Phản hồi người dùng thử (`validation/log.md`): __.
+- Ứng viên: đánh giá B-lite bằng bộ câu thử riêng · mở rộng data 94 → ~300 điểm, mỗi thành phố ≥20, giờ mở đối chiếu 2 nguồn · trợ lý tự đề xuất điểm khi người dùng chưa có danh sách (hướng B đầy đủ) · agent nhớ hội thoại thay cho web nối tin.
+
+---
+
 **Trước khi lên:** tải repo về một máy khác (hoặc thư mục mới), chạy theo mục "Chạy trong 3 phút" của `README.md` · `.env` có trên máy demo, đã gọi thử 1 câu trong vòng 1 giờ trước giờ demo · video dự phòng mở được bằng cửa sổ ẩn danh · biết bản chạy thử sẽ làm gì với **1 câu thử lạ** của giám khảo.
 
 Ai nói trang nào (mỗi người ≥1 phần):

@@ -33,8 +33,9 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 - 
 
-### N4 — ____
+### N4 — Nguyễn Nghiêm Khánh Tiệp
 
-- 
+- Dùng Claude Code viết nháp `web/streamlit_app.py` (form → khung chat A+), `web/ghep_cau.py`, `web/hoi_thoai.py` (nối tin khi agent hỏi lại), test `web/test_ghep_cau.py`, `Procfile`, mục "Chạy web" trong `README.md`, và đề xuất `docs/huong-b-lite.md` (AI chạy 28 câu ở chế độ giả để đếm câu bị ảnh hưởng; N3 kiểm lại trên run-1 model thật).
+- Đã tự kiểm: 15 test (ghép câu, agent đọc đúng câu web ở cả 12 thành phố, hỏi lại → nối tin → ra lịch, câu "xong sớm" không gợi ý lại điểm đã đi — chế độ giả); chạy thử web không trình duyệt (chat, form, sửa câu, hết lượt, sai / đúng mật khẩu) và chạy server thật bằng lệnh của `Procfile`; `python scripts/kiem_hop_dong.py` 0 lỗi, `python run.py check` sạch.
 
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
