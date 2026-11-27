@@ -49,7 +49,7 @@ Mới có một nguồn (khảo sát). Cần nguồn thứ hai để kiểm lạ
 
 ## 5. Kết luận
 
-Giả thuyết ở `evidence/hypothesis.md`: **đúng / sai / phải đổi** — vì __. Điều vẫn chưa biết: khảo sát cho biết sự cố xảy ra **ở bao nhiêu người**, chưa cho biết **mỗi chuyến bao nhiêu lần** và mất bao nhiêu phút mỗi lần (ngoài Câu 9) → hỏi thêm trong phỏng vấn.
+Giả thuyết ở `evidence/hypothesis.md`: **đúng** — cả hai ngưỡng đã đặt trước đều đạt: sắp thứ tự thuận đường là khâu mệt nhất ở 49/67 (73%) ≥ 65%; lịch trái đường / quá dày phải bỏ dở điểm ở 37/67 (55%) ≥ 40%, và gặp đóng cửa / hết bàn / hết vé ở 38/67 (57%). Nhóm tự lên lịch (N = 40) cho số tương tự (72%, 52%). Hai chỗ chưa khớp hẳn giả thuyết: Câu 7 chỉ 25/67 (37%) chấm mức ảnh hưởng 4–5/5 (người dùng không coi là pain nặng), và "đóng cửa" gộp chung với hết bàn / hết vé nên chưa tách riêng được lỗi giờ mở cửa. Mới có một nguồn (khảo sát), chưa có phỏng vấn kiểm lại. Điều vẫn chưa biết: khảo sát cho biết sự cố xảy ra **ở bao nhiêu người**, chưa cho biết **mỗi chuyến bao nhiêu lần** và mất bao nhiêu phút mỗi lần (ngoài Câu 9) → hỏi thêm trong phỏng vấn.
 
 ## Lịch hẹn (dùng cho CP2 — chỉ ghi vai và giờ, không tên)
 
