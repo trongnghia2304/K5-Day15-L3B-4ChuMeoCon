@@ -1,5 +1,5 @@
-price_tier,min_vnd,max_vnd,avg_vnd,source_type,note
-free,0,0,0,estimated,"Điểm công cộng/miễn phí vào cửa (tự ước tính)"
-budget,30000,80000,55000,estimated,"Ăn uống địa phương, cafe bình dân, vé phổ thông (tự ước tính)"
-mid,80000,200000,140000,estimated,"Nhà hàng vừa, cafe không gian đẹp, vé di tích/bảo tàng (tự ước tính)"
-mid_high,200000,450000,325000,estimated,"Nhà hàng đặc sản lớn, khu trải nghiệm/dịch vụ mức khá (tự ước tính)"
+price_tier,min_vnd,max_vnd,source
+free,0,0,(tự ước tính)
+budget,30000,80000,(tự ước tính)
+mid,80000,200000,(tự ước tính)
+mid_high,200000,450000,(tự ước tính)

@@ -29,6 +29,7 @@ import re
 import ai
 import tools
 from ai import call_model
+from ngan_sach import dong_chi_phi
 from tools import (check_opening_hours, get_live_disruptions, goi_y_diem, kiem_lich_trinh, lap_lich,
                    liet_ke_vi_pham, search_pois)
 from tracing import note
@@ -376,7 +377,9 @@ def answer(text: str) -> dict:
             if alt:
                 b["ly_do"] += " → có thể thay bằng: " + alt
     note("lịch cuối: %s · bỏ: %s" % (plan["thu_tu"], [b["poi_id"] for b in bo]))
-    return {"output": _format(req, lich, issues, bo, plan["ly_do"], khong_co, canh_bao)}
+    output = _format(req, lich, issues, bo, plan["ly_do"], khong_co, canh_bao)
+    cost_line = dong_chi_phi(text, plan["thu_tu"])
+    return {"output": output + ("\n" + cost_line if cost_line else "")}
 
 
 # ---------------------------------------------------------------- nhánh gợi ý điểm thay thế (đang đi thì vỡ kế hoạch)
