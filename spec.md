@@ -39,7 +39,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (tr
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU:** Một người lên lịch cho nhóm · trước chuyến đi nhập danh sách điểm và khung giờ, hoặc đang đi thì gặp mưa / quán đóng / quá đông · AI quyết định **đi điểm nào, theo thứ tự nào** sao cho mọi điểm đang mở lúc đến (xếp lịch, hoặc chọn 1–3 điểm thay thế đang mở quanh đó) · người lên lịch nhận lịch từng giờ / điểm thay thế kèm lý do để gửi cả nhóm.
 - **Một quyết định, hai lúc dùng:** cả hai nhánh cùng trả lời một câu — "điểm nào, lúc nào thì đi được" — dùng chung dữ liệu, chung công cụ kiểm giờ mở cửa bằng code. Nhánh xếp lịch ứng với 73% / 54% ở Câu 5 khảo sát; nhánh gợi ý ứng với 57% / 58% ở Câu 6 (đóng cửa / xong sớm) — xem §1.
-- **Không làm (≥3):** không đặt bàn, mua vé, thanh toán · không nhắn tin cho nhóm hay cho quán · không gợi ý điểm ngoài dữ liệu (mọi điểm thay thế đều do code lọc từ `poi_master.csv`) · không định vị GPS (vị trí do người dùng nói) · không xếp lịch nhiều ngày / nhiều thành phố.
+- **Không làm (≥3):** không đặt bàn, mua vé, thanh toán · không nhắn tin cho nhóm hay cho quán · không gợi ý điểm ngoài dữ liệu (mọi điểm thay thế đều do code lọc từ `poi_master.csv`) · không định vị GPS (vị trí do người dùng nói) · không xếp lịch nhiều ngày / nhiều thành phố · không lọc, bỏ hay đổi thứ tự điểm theo ngân sách (ngân sách chỉ để hiển thị chi phí ước tính).
 - **Sơ đồ:**
 
 ```mermaid
@@ -85,6 +85,7 @@ flowchart TD
   | `goi_y_diem` | city, thứ, giờ, vùng đang đứng, phương tiện, rain_safe / heat_safe / trong nhà, loại, điểm loại trừ | điểm đang mở và đi tới kịp, phút đi, giờ đóng, sự cố live | Không |
   | `get_live_disruptions` | city, zone, poi_id | sự cố giả lập đang xảy ra (mưa, đông, đóng đột xuất) | Không |
   | `get_schedule_warnings` | city, poi_id | quy tắc cảnh báo | Không — chưa dùng trong luồng |
+  | `uoc_chi_phi` (qua `ngan_sach.dong_chi_phi`) | danh sách poi_id **đã qua cổng kiểm**, số người, ngân sách tách từ tin nhắn | khoảng chi phí / người theo `price_tier` *(tự ước tính)* + trong / vượt ngân sách — chỉ thêm 1 dòng cuối khi người dùng nói ngân sách, không đổi lịch | Không |
 
 - **Mức tự động:** [ ] AI gợi ý, người quyết · [x] AI tự làm khi chắc, chuyển người khi không · [ ] AI tự làm — AI tự xếp / tự chọn điểm thay thế khi đủ thông tin và kết quả qua được code kiểm; thiếu thông tin thì hỏi lại; không xếp được hết thì nói rõ để người lên lịch quyết bỏ điểm nào. Sai thì cả nhóm tới nơi gặp đóng cửa (đắt vừa), nhưng người lên lịch đọc lại được trước ngày đi nên sửa rẻ.
 - **Chỗ chặn rủi ro:** rủi ro lớn nhất là lịch có điểm đóng cửa / sai giờ. Chặn bằng code: model **không tính giờ**; `lap_lich` tính, `kiem_lich_trinh` kiểm mọi lịch trước khi trả, lịch còn vi phạm thì code bỏ điểm vi phạm. Lệnh "bỏ qua kiểm tra" trong tin nhắn không có tác dụng vì bước kiểm là code, không phải prompt.
@@ -148,9 +149,53 @@ flowchart TD
 |---|---|---|
 | 19:32–19:36 27/11 | Thêm phiếu chấm thử 5 output (`eval/calibration-5*.md`), điền mục 3 `eval/README.md` (khớp 5/5), cập nhật `README.md`. Không đổi §7, `eval/metric_spec.yaml`, `eval/benchmark.csv` | Ghi kết quả người thứ hai chấm thử theo guide 2.4 bước 4 |
 | 22:33 27/11 | §1: thay "Nguồn kiểm lại: đang hẹn" bằng kết quả 3 phỏng vấn (khớp / lệch). Không đổi số khảo sát | §1 chưa cập nhật theo `evidence/interviews/P1–P3.md` và `evidence/summary.md` §4 đã có từ trước 19:30 |
+| 23:35 27/11 | Thêm `docs/phan-cong-cp3-cp4.md`; tách changelog dưới đây thành 4 khối theo người | Chia việc CP3–CP4 theo quyền sở hữu file, tránh hai người sửa cùng chỗ |
 
-**Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
+> Từ đây mỗi người chỉ thêm dòng vào **khối của mình** (phân công: `docs/phan-cong-cp3-cp4.md`).
+
+#### N1 · evidence, §0–§2, slide 1–3 — ____
+
+| Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
+|---|---|---|
+
+#### N2 · data, tools, ngân sách, cost — ____
+
+| Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
+|---|---|---|
+
+#### N3 · ai, agent, eval, §3–§9 — ____
+
+| Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
+|---|---|---|
+| 23:55 27/11 | `agent.py`: sau cổng `kiem_lich_trinh`, nối thêm 1 dòng từ `ngan_sach.dong_chi_phi` (file chưa có thì bỏ qua). Không đổi thứ tự, điểm bị bỏ hay cổng kiểm; 28 output ở chế độ giả giữ nguyên | Ngân sách "chỉ hiển thị" (track C1 gợi ý nhập ngân sách) mà không mở rộng lát cắt sau CP2 |
+| 23:55 27/11 | `prompts/trich_yeu_cau.md`: sửa tên trường "ngoai_pham_vi" → "yeu_cau_ngoai_pham_vi" cho khớp JSON mẫu | Model thật có thể trả sai tên trường → `agent.py` bỏ sót yêu cầu ngoài phạm vi (B21, B24) |
+| 23:55 27/11 | §4: thêm dòng `uoc_chi_phi` vào bảng công cụ và "không lọc / bỏ điểm theo ngân sách" vào mục Không làm | Ghi đúng phần ngân sách vừa thêm |
+| 00:05 28/11 | Viết lại `rule.md`: bỏ luật "chỉ 4 thành phố", `data/places.json`, `travel_matrix.json`, `tra_diem_choi`, `is_must_visit` (không có trong repo), bỏ kiểm "vượt ngân sách"; thêm luật benchmark chỉ được thêm, data đóng băng chỉ thêm file mới; phân quyền khớp `docs/phan-cong-cp3-cp4.md`; ghi rõ luật nào của đề, luật nào của nhóm | Bản cũ trái với data (94 POI · 12 thành phố) và bộ câu thử (13/28 câu ngoài 4 thành phố) — làm theo sẽ trượt hàng loạt mà không được sửa `expected` |
+| 00:30 28/11 | Thêm `docs/hop-dong-du-lieu.md` (hợp đồng H1–H13: câu chữ web, `dong_chi_phi`, `uoc_chi_phi`, `price_tier_vnd.csv`, 9 công cụ, data cũ, định dạng output, câu thử mới, file chấm, chi phí, changelog) và `scripts/kiem_hop_dong.py` (chỉ đọc, chạy agent ở chế độ giả; chụp mốc B01–B28 và data cũ). Trỏ từ `rule.md`, `docs/phan-cong-cp3-cp4.md` | 4 người dùng AI riêng, giao nhau qua hàm / file — cần một nguồn duy nhất cho tên trường, và cách tự kiểm trước khi push để không phá phần người khác |
+
+#### N4 · web, README, validation, slide 4–8 — ____
+
+| Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
+|---|---|---|
+
+**Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy). Mỗi người thêm dòng vào khối của mình.
+
+#### Sau CP4 · N1
 
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
-|  |  |  |
+
+#### Sau CP4 · N2
+
+| Thời điểm | Đổi gì | Vì sao |
+|---|---|---|
+
+#### Sau CP4 · N3
+
+| Thời điểm | Đổi gì | Vì sao |
+|---|---|---|
+
+#### Sau CP4 · N4
+
+| Thời điểm | Đổi gì | Vì sao |
+|---|---|---|
