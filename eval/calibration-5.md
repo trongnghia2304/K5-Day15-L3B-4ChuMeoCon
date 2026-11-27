@@ -2,9 +2,9 @@
 
 Các output bên dưới được tạo từ luồng model giả hiện tại để thử cách chấm. Đây chưa phải lượt `eval` chính thức; không chép điểm sang lượt chạy thật khi chưa đọc output của lượt đó.
 
-**Phiếu của Nguyễn Văn Hiếu:** các điểm và lý do bên dưới do coding agent soạn nháp theo `pass_criterion` và ba metric có thể đọc trực tiếp; **Hiếu đã kiểm lại và duyệt**. `thuan_duong` cần code tính riêng như PDF hướng dẫn.
+**Phiếu của Nguyễn Văn Hiếu:** các điểm và lý do bên dưới do coding agent soạn nháp theo `pass_criterion` và ba metric có thể đọc trực tiếp; **Hiếu đã kiểm lại và duyệt**. Phiếu riêng: [`calibration-5(1).md`](<calibration-5(1).md>). `thuan_duong` cần code tính riêng như PDF hướng dẫn.
 
-**Người chấm độc lập: Nguyễn Nghiêm Khánh Tiệp** — chấm trên phiếu mù `eval/calibration-5-blind.md` lúc 19:20 27/11/2026, chưa xem phiếu của Hiếu; AI soạn nháp, Tiệp đã đọc lại và duyệt từng câu. Chi tiết: [`calibration-5-tiep.md`](calibration-5-tiep.md). **Khớp 5/5.**
+**Người chấm độc lập: Nguyễn Nghiêm Khánh Tiệp** — chấm trên phiếu mù `eval/calibration-5-blind.md` lúc 19:20 27/11/2026, chưa xem phiếu của Hiếu; AI soạn nháp, Tiệp đã đọc lại và duyệt từng câu. Chi tiết: [`calibration-5(2).md`](<calibration-5(2).md>). **Khớp 5/5.**
 
 | ID | Nguyễn Văn Hiếu (1/0) | Người chấm độc lập — Tiệp (1/0) | Khớp? | Nhận xét |
 |---|---|---|---|---|

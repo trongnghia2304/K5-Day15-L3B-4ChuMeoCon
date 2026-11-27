@@ -25,7 +25,7 @@
 | `dung_hanh_vi` | người chấm theo `pass_criterion` từng câu | ≥70% tổng số câu; 100% `tu_choi` |
 | `thuan_duong` | code so phút di chuyển với thứ tự khả thi tốt nhất | ≥80% câu `thuong` có lịch |
 
-- **Chấm thử 5 output model giả:** phiếu của **Nguyễn Văn Hiếu** cho B01, B05, B07, B21, B23 là 5/5 theo tiêu chí hiện có; từng lý do ở `eval/calibration-5.md`. **Người chấm độc lập: Nguyễn Nghiêm Khánh Tiệp** chấm trên phiếu mù (`eval/calibration-5-tiep.md`, 19:20 27/11) → **khớp 5/5** với Hiếu (đạt ngưỡng ≥4/5). Cả hai phiếu có dùng AI soạn nháp; người chấm đã đọc lại và duyệt từng câu. Giới hạn: cả 5 output đều đạt nên chưa thử chỗ dễ lệch; cả hai cùng ghi `pass_criterion` B01 ("trước 11:00" là bắt đầu hay kết thúc) và B07 (nhắc điểm người dùng không nói) cần làm rõ.
+- **Chấm thử 5 output model giả:** phiếu của **Nguyễn Văn Hiếu** cho B01, B05, B07, B21, B23 là 5/5 theo tiêu chí hiện có (`eval/calibration-5(1).md`); bảng đối chiếu hai người ở `eval/calibration-5.md`. **Người chấm độc lập: Nguyễn Nghiêm Khánh Tiệp** chấm trên phiếu mù (`eval/calibration-5(2).md`, 19:20 27/11) → **khớp 5/5** với Hiếu (đạt ngưỡng ≥4/5). Cả hai phiếu có dùng AI soạn nháp; người chấm đã đọc lại và duyệt từng câu. Giới hạn: cả 5 output đều đạt nên chưa thử chỗ dễ lệch; cả hai cùng ghi `pass_criterion` B01 ("trước 11:00" là bắt đầu hay kết thúc) và B07 (nhắc điểm người dùng không nói) cần làm rõ.
 - LLM chấm: không dùng LLM làm người chấm chính thức; AI chỉ soạn nháp 2 phiếu chấm thử ở trên, người chấm duyệt lại 5/5 câu. Metric `dung_hanh_vi` do người chấm.
 - **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7): "Đạt khi ≥ 70% câu qua (cột pass theo pass_criterion), và 100% câu `tu_choi` qua, và 0 lịch trả ra có vi phạm giờ mở cửa (metric `khong_vi_pham_gio`)."
 
