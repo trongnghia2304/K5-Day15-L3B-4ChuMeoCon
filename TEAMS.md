@@ -6,17 +6,18 @@
 
 - Tên nhóm: 4ChuMeoCon
 - Lớp: L3B
-- Track: ____
+- Track: C
 - Link repo: https://github.com/trongnghia2304/K5-Day15-L3B-4ChuMeoCon
 
-| STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
-|---|---|---|---|---|
-| 1 | ____ | ____ | Đội trưởng | ____ |
-| 2 | ____ | ____ | Thành viên | ____ |
-| 3 | ____ | ____ | Thành viên | ____ |
-| 4 | ____ | ____ | Thành viên | ____ |
+| STT | Họ và tên                | Mã học viên | Vai trò    | Phần việc chính |
+| --- | ------------------------ | ----------- | ---------- | --------------- |
+| 1   | Nguyễn Trọng Nghĩa       | 2A202603835 | Đội trưởng | Đội trưởng, khảo sát + bằng chứng pain, bảng impact        |
+| 2   | Nguyễn Nghiêm Khánh Tiệp | 2A202603863 | Thành viên | Bản chạy thử: luồng xếp lịch, nối model        |
+| 3   | Nguyễn Văn Hiếu          | 2A202603746 | Thành viên | Công cụ dữ liệu điểm / giờ mở cửa, code kiểm lịch        |
+| 4   | Nguyễn Đức Minh          | 2A202603765 | Thành viên | Phỏng vấn, bộ câu thử + metric spec        |
 
 **Quy tắc điền**
+
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.
 - Mỗi thành viên một dòng, nhóm **3–5 người**. Thiếu thì thêm dòng theo đúng mẫu, thừa thì xoá dòng.
 - **Đội trưởng ở dòng 1**, cột Vai trò ghi đúng chữ `Đội trưởng`. Người khác ghi `Thành viên`.
