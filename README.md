@@ -69,6 +69,33 @@ Trong README này lệnh viết là `python …`; máy cần `python3` hay `py` 
 
 Gói miễn phí báo hết lượt: thêm `--wait 4` sau `eval` hoặc `simulate`. Lượt có lỗi kỹ thuật: không sửa tay, chạy lại thành lượt mới.
 
+## Chạy web
+
+Web là **khung chat**: mỗi lượt gửi **một câu chữ** vào đúng `agent.answer(text)` như `python run.py`. Không có logic AI riêng, không tự tính giờ / tiền. `python run.py` vẫn chạy được khi chưa cài gì.
+
+| Việc | Lệnh |
+|---|---|
+| Cài (một lần, chỉ web cần) | `python -m pip install -r requirements.txt` |
+| Chạy trên máy | `streamlit run web/streamlit_app.py` → mở `http://localhost:8501` |
+| Kiểm ghép câu, nối tin chat, agent đọc được câu web | `python web/test_ghep_cau.py -v` (chế độ model giả, không tốn token) |
+
+- **Ô chat:** gõ tự do — xếp lịch ("Thứ Bảy ở Hà Nội 8h–17h, đi Văn Miếu, Hỏa Lò…") hoặc đang đi gặp mưa / quán đóng / xong sớm.
+- **Nhớ ngữ cảnh khi trợ lý hỏi lại** (hợp đồng H1 v2): lượt trước agent hỏi lại → web gửi `"<tin mới>. <câu đã gửi trước>"`, vd trả lời ngắn "thứ 7, 8h đến 5h chiều" vẫn ra lịch. Các lượt khác gửi nguyên văn. Web nhận biết "hỏi lại" qua ghi chú trace của agent, không đọc output.
+- **Điền nhanh bằng form:** thành phố, thứ, giờ, phương tiện, chọn điểm từ dữ liệu, ngân sách → câu dạng `Thứ Bảy ở TP.HCM từ 08:00 đến 17:30 đi xe máy: Thảo Cầm Viên, Dinh Độc Lập. Ngân sách 300000đ/người.` (ngân sách 0 thì bỏ cả câu ngân sách).
+- **Sửa lịch vừa rồi:** ô chứa sẵn câu đã gửi — thêm / bỏ điểm, đổi giờ rồi gửi lại. Nút **"Còn thời gian?"** điền sẵn câu hỏi gợi ý thêm điểm (người dùng điền giờ xong và nơi đang đứng).
+- **Danh sách điểm có dữ liệu** theo thành phố — nơi ngoài danh sách trợ lý báo "không có dữ liệu".
+- Kết quả hiện **nguyên văn** output của agent (H7), kèm câu đã gửi và số lần gọi model / công cụ / token.
+
+Biến môi trường (trong `.env` ở máy, hoặc *Variables* trên Railway — **không** ghi vào repo):
+
+| Biến | Dùng làm gì |
+|---|---|
+| `MODEL_PROVIDER`, `MODEL_NAME`, `API_KEY` | Nối model, như [docs/connect-model.md](docs/connect-model.md). Trống = chế độ giả, web báo "chế độ model giả" |
+| `APP_PASSWORD` | Mật khẩu vào web. Để trống chỉ khi chạy trên máy mình |
+| `MAX_LUOT` | Số lượt hỏi tối đa mỗi phiên trình duyệt (mặc định 10) — chặn tốn token khi để link công khai |
+
+**Railway:** New Project → Deploy from GitHub repo → tab *Variables* thêm 5 biến trên (dùng model rẻ) → *Settings → Networking → Generate Domain*. Railway tự cài `requirements.txt` và chạy lệnh trong `Procfile`.
+
 ## Bản chạy thử làm gì
 
 Hình dạng: **workflow cố định** có một bước phân luồng (chi tiết và sơ đồ ở [spec.md](spec.md) §4).
@@ -81,6 +108,7 @@ Hình dạng: **workflow cố định** có một bước phân luồng (chi ti�
 | Tính giờ đến / rời, liệt kê vi phạm; có vi phạm → model sửa (≤ 2 vòng) → còn thì code bỏ điểm | Code | `lap_lich`, `liet_ke_vi_pham` |
 | Cổng kiểm cuối: chỉ lịch `valid` mới hiện | Code | `kiem_lich_trinh` |
 | **Gợi ý thay thế:** code lọc điểm đang mở, hợp mưa / nắng / loại; model chọn 1–3 | Code lọc, **model chọn** | `goi_y_diem`, `codebase/prompts/goi_y.md` |
+| Tin nhắn có ngân sách → 1 dòng cuối "Chi phí ước tính … (tự ước tính) → trong / vượt ngân sách"; không lọc / bỏ điểm theo tiền | Code | `codebase/ngan_sach.py`, `uoc_chi_phi` |
 | Định dạng câu trả lời; chặn đặt bàn / nhắn tin / "bỏ qua kiểm tra" | Code | `codebase/agent.py` |
 
 AI **không** đặt bàn, mua vé, thanh toán hay nhắn tin; mọi giờ và phút do code tính từ dữ liệu.
@@ -89,7 +117,7 @@ AI **không** đặt bàn, mua vé, thanh toán hay nhắn tin; mọi giờ và 
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm (chọn thứ tự / chọn điểm thay thế) | **Giả ở CP2** → thật từ CP3 | Model: ____ (điền khi nối). Chế độ giả dùng thứ tự / lựa chọn dự phòng bằng code, output ghi "(dự phòng)" |
+| Lời gọi AI ở quyết định trung tâm (chọn thứ tự / chọn điểm thay thế) | **Giả ở CP2** → thật từ CP3 | Model: `gpt-4.1-mini` (OpenAI) từ run-1. Chế độ giả dùng thứ tự / lựa chọn dự phòng bằng code, output ghi "(dự phòng)" |
 | Tên điểm, địa chỉ, giờ mở cửa | Theo nguồn công khai, xem nhãn trong `data/travel-ops/` | Dòng `estimated` là tự ước tính — xem [data/DATA_CARD.md](data/DATA_CARD.md) |
 | Thời gian chơi mỗi điểm, một số chặng di chuyển | Tự ước tính | `avg_duration_min`, `source_type = estimated` |
 | Sự cố đang xảy ra (mưa, quán đông, đóng đột xuất) | **Giả lập** | `data/travel-ops/live_disruptions.csv`, nhãn `[Giả lập sự cố]` trong output |

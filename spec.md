@@ -190,10 +190,13 @@ flowchart TD
 | ≈02:05 28/11 | `rule.md` 1.7 + `docs/phan-cong-cp3-cp4.md`: ghi rõ thêm data **không đổi bộ câu thử**; 6 câu có `pass_criterion` nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28) có thể đổi kết quả ở run-3 → báo trung thực, không sửa câu, không chọn data để né câu | Đối chiếu luật đề: CP2 chỉ khoá chuẩn "đạt"; câu thử chỉ được thêm, không sửa `expected`, không bỏ câu trượt (guide 3.4, 4.1; rubric) |
 | 02:10 28/11 | Sửa giờ các dòng N3 ở trên: trước ghi 23:55 / 00:05 / 00:30 / 02:15 / 02:35 / 02:50 là giờ ước đoán, sai. Giờ mới lấy theo bằng chứng: commit `509a16f` (23:56) đã chứa `rule.md` + `hop-dong-du-lieu.md`; giờ sửa file `docs/huong-b-lite.md` 01:55, `hop-dong-du-lieu.md` 02:02, `rule.md` / `spec.md` 02:05 | Changelog phải đúng giờ thật (guide 5.3) |
 
-#### N4 · web, README, validation, slide 4–8 — ____
+#### N4 · web, README, validation, slide 4–8 — Nguyễn Nghiêm Khánh Tiệp
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
+| 00:25 28/11 | Thêm `web/streamlit_app.py` (form + ô chat → 1 câu chữ → `agent.answer`, hiện nguyên văn output; `APP_PASSWORD`, `MAX_LUOT`), `web/ghep_cau.py` (ghép câu đúng mẫu H1), `web/test_ghep_cau.py`; `requirements.txt` thêm `streamlit`; thêm `Procfile` (Railway); `README.md` thêm mục "Chạy web". Không sửa `codebase/`, `run.py`, data, câu thử | Demo cần giao diện cho người lên lịch (không gõ dòng lệnh); giữ hợp đồng H1/H7 để output và metric không đổi, `python run.py` vẫn chạy không cần cài gì |
+| 01:30 28/11 | Web chuyển sang khung chat (A+): `web/hoi_thoai.py` nối tin khi agent hỏi lại (H1 v2, nhận biết qua ghi chú trace `hỏi lại`, không đọc output); form thành "điền nhanh"; ô sửa câu đã gửi; nút "Còn thời gian?" điền câu hỏi gợi ý thêm; danh sách điểm có dữ liệu; giao diện riêng (không dùng mặc định Streamlit). Test 15 câu. Không sửa `codebase/`, eval không đổi (`run.py eval` không qua web) | Agent không nhớ hội thoại: hỏi lại "thứ mấy?" rồi người dùng trả lời ngắn thì mất ngữ cảnh. N3 duyệt H1 v2 (`docs/huong-b-lite.md` mục 9) |
+| 02:00 28/11 | Viết `docs/huong-b-lite.md` (đề xuất gợi ý thêm điểm khi lịch trống ≥60′, kiểm 28 câu ở chế độ giả); README cập nhật mục "Chạy web", dòng ngân sách, model `gpt-4.1-mini` | Lịch 3 điểm khung dài xong sớm nhưng hệ thống im lặng (B01, B03, B04); nhóm chốt làm B-lite sau run-2 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy). Mỗi người thêm dòng vào khối của mình.
 
