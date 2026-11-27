@@ -36,3 +36,8 @@ evidence/**/raw-*
 data-btc
 data-btc/
 chia-c-ng-vi-c-cp3-bright-kay-of-f63d3f39-313f-4503-9616-49a571f1694e.md
+# Skill cài cho công cụ hỗ trợ code (cá nhân, không nộp)
+.agents/skills/
+.claude/skills/
+skills-lock.json
+DESIGN.md

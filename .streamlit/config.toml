@@ -1,0 +1,12 @@
+# Theme web demo (web/streamlit_app.py) — token theo DESIGN.md. Chỉ `streamlit run` đọc file này.
+[theme]
+base = "light"
+primaryColor = "#000000"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#000000"
+borderColor = "#e6e6e6"
+showWidgetBorder = true
+
+[browser]
+gatherUsageStats = false
