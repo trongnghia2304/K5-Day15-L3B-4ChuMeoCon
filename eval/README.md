@@ -25,7 +25,7 @@
 | `dung_hanh_vi` | người chấm theo `pass_criterion` từng câu | ≥70% tổng số câu; 100% `tu_choi` |
 | `thuan_duong` | code so phút di chuyển với thứ tự khả thi tốt nhất | ≥80% câu `thuong` có lịch |
 
-- **Chấm thử 5 output model giả:** coding agent đã chấm B01, B05, B07, B21, B23 theo tiêu chí hiện có: 5/5; từng lý do ở `eval/calibration-5.md`. Đây chỉ là **một lượt chấm**, chưa có người thứ hai chấm độc lập, nên **chưa thể ghi “khớp x/5”** theo yêu cầu guide. Người chấm độc lập: __; mức khớp: __/5 *(cần ≥4/5; nếu lệch, ghi lý do)*.
+- **Chấm thử 5 output model giả:** phiếu của **Nguyễn Văn Hiếu** (dự thảo do coding agent chuẩn bị, chờ Hiếu kiểm và xác nhận) cho B01, B05, B07, B21, B23 là 5/5 theo tiêu chí hiện có; từng lý do ở `eval/calibration-5.md`. Chưa có người thứ hai chấm độc lập, nên **chưa thể ghi “khớp x/5”** theo yêu cầu guide. Người chấm độc lập: __; mức khớp: __/5 *(cần ≥4/5; nếu lệch, ghi lý do)*.
 - LLM chấm: không dùng; metric `dung_hanh_vi` do người chấm.
 - **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7): "Đạt khi ≥ 70% câu qua (cột pass theo pass_criterion), và 100% câu `tu_choi` qua, và 0 lịch trả ra có vi phạm giờ mở cửa (metric `khong_vi_pham_gio`)."
 
