@@ -173,6 +173,7 @@ flowchart TD
 
 | 00:21 28/11 | Thêm `tools.uoc_chi_phi`, `ngan_sach.dong_chi_phi`; thêm B29–B30 vào cuối `eval/benchmark.csv`; điền 3 persona, 2 mức giá ở `cost/personas.yaml` | Hợp đồng H2–H3 cho dòng ngân sách chỉ hiển thị; B29–B30 kiểm hai ngưỡng chi phí; Câu 2 khảo sát trong `evidence/summary.md` cho tần suất sử dụng; bảng giá model của repo đề cho mô phỏng CP4 |
 | 00:38 28/11 | Sửa 4 cột `price_tier_vnd.csv` theo H4 và `DATA_CARD.md`; nối `dong_chi_phi` sau cổng kiểm cuối trong `agent.py` | Kiểm hợp đồng báo H4 sai header và H7 thiếu dòng chi phí; giữ nguyên giá ước tính và lịch không có ngân sách |
+| 00:43 28/11 | Đồng bộ `cost/personas.yaml` về kịch bản cơ sở 10.000 người, thấp/cao 5.000/20.000 *(tự ước tính)* | §2 đã dùng quy mô cơ sở 10.000 người; §8 cần cùng mẫu số để so chi phí với Impact |
 
 #### N3 · ai, agent, eval, §3–§9 — ____
 

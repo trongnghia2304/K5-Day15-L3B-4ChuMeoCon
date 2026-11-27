@@ -8,11 +8,11 @@
 sessions: 50        # số phiên mô phỏng — bản nộp ≥50
 seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
 
-users:              # Quy mô người dùng thử hàng tháng; chưa có số tiếp cận thực đo.
-  low: 100
-  base: 300
-  high: 1000
-  source: "(tự ước tính) 3 kịch bản tiếp cận người đi du lịch tự túc; chưa phải số người dùng thực tế."
+users:              # Đồng bộ quy mô cơ sở với Impact ở spec.md §2.
+  low: 5000
+  base: 10000
+  high: 20000
+  source: "spec.md §2: cơ sở 10.000 người tự lên lịch (tự ước tính, so với quy mô thanh niên VN từ https://www.gso.gov.vn); thấp/cao = 0,5×/2× (tự ước tính), chưa phải người dùng thực đo."
 
 personas:           # ≥3 kiểu người dùng; share cộng lại = 1
   - name: dung_it
