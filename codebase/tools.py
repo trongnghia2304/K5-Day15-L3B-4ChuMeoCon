@@ -6,7 +6,9 @@ Docstring ghi đúng 4 ý như sơ đồ ở spec.md §4:
 """
 import csv
 import os
+import re
 import unicodedata
+from datetime import date
 from pathlib import Path
 
 from tracing import tool, TOOLS  # noqa: F401
@@ -307,3 +309,108 @@ def get_schedule_warnings(city: str = "", poi_id: str = "") -> list:
             continue
         out.append(dict(r))
     return out
+
+
+_DAYS = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+
+
+def _strict_min(value: str) -> int:
+    if not isinstance(value, str) or not re.fullmatch(r"(?:[01]\d|2[0-3]):[0-5]\d", value):
+        raise ValueError("Giờ phải có dạng HH:MM (24 giờ)")
+    hour, minute = map(int, value.split(":"))
+    return hour * 60 + minute
+
+
+def _clock(minutes: int) -> str:
+    return f"{minutes // 60:02d}:{minutes % 60:02d}"
+
+
+def _day_code(value: str) -> str:
+    if isinstance(value, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        return _DAYS[date.fromisoformat(value).weekday()]
+    day = _norm_day(value)
+    if day not in _DAYS:
+        raise ValueError("Ngày phải là YYYY-MM-DD hoặc thứ hợp lệ")
+    return day
+
+
+@tool
+def kiem_lich_trinh(
+    poi_ids: list,
+    visit_day: str,
+    start_time: str,
+    end_time: str,
+    mode: str = "motorbike",
+    is_raining: bool = False,
+) -> dict:
+    """Tên: kiem_lich_trinh — Tính giờ và kiểm thứ tự POI do AI đề xuất.
+    Input: danh sách poi_id có thứ tự, ngày YYYY-MM-DD hoặc thứ, khung HH:MM,
+    phương tiện motorbike/car/walk, cờ mưa. Output: valid, schedule, issues.
+    Tác động ra ngoài: Không; chỉ tạo lịch nháp để người dùng duyệt.
+    """
+    def fail(code, message, schedule=None):
+        return {"valid": False, "schedule": schedule or [],
+                "issues": [{"code": code, "message": message}]}
+
+    try:
+        day = _day_code(visit_day)
+        start, end = _strict_min(start_time), _strict_min(end_time)
+    except (TypeError, ValueError) as exc:
+        return fail("invalid_input", str(exc))
+    if end <= start:
+        return fail("invalid_window", "Giờ kết thúc phải sau giờ bắt đầu trong cùng ngày")
+    if mode not in ("motorbike", "car", "walk"):
+        return fail("invalid_mode", "Phương tiện phải là motorbike, car hoặc walk")
+    if not isinstance(poi_ids, list) or not poi_ids or any(not isinstance(pid, str) for pid in poi_ids):
+        return fail("missing_pois", "Cần danh sách mã POI không rỗng")
+    ids = [pid.strip().upper() for pid in poi_ids]
+    if len(set(ids)) != len(ids):
+        return fail("duplicate_poi", "Danh sách có địa điểm bị lặp")
+
+    pois = {p["poi_id"]: p for p in _load_csv("poi_master.csv")}
+    hours = {(r["poi_id"], r["day_of_week"]): r for r in _load_csv("opening_hours.csv")}
+    schedule, current, previous = [], start, None
+    city = None
+    for pid in ids:
+        poi = pois.get(pid)
+        if poi is None or poi["status"] != "active":
+            return fail("unknown_poi", f"Không có dữ liệu điểm đang hoạt động: {pid}", schedule)
+        if city is not None and poi["city"] != city:
+            return fail("mixed_cities", "Lát cắt chỉ xếp các điểm trong cùng một thành phố", schedule)
+        city = poi["city"]
+        opening = hours.get((pid, day))
+        if opening is None:
+            return fail("missing_hours", f"Thiếu giờ mở cửa của {poi['name']} vào {day}", schedule)
+        if opening["is_open"] != "True":
+            return fail("closed_day", f"{poi['name']} đóng cửa vào {day}", schedule)
+
+        travel = 0
+        if previous is not None:
+            route = get_travel_time(city, previous["zone"], poi["zone"], mode, is_raining)
+            if not route.get("found") or route.get("total_min", 999) >= 999:
+                return fail("missing_route", f"Không có thời gian đi phù hợp từ {previous['name']} đến {poi['name']}", schedule)
+            travel = route["total_min"]
+        arrival = current + travel
+        open_at, close_at = _strict_min(opening["open_time"]), _strict_min(opening["close_time"])
+        duration = int(poi["avg_duration_min"])
+        visit_start = max(arrival, open_at)
+        break_start = _to_min(opening["break_start"])
+        break_end = _to_min(opening["break_end"])
+        if break_start is not None and break_end is not None:
+            if visit_start < break_end and visit_start + duration > break_start:
+                visit_start = break_end
+        departure = visit_start + duration
+        last_entry = _to_min(opening["last_entry_time"])
+        if last_entry is not None and visit_start > last_entry:
+            return fail("after_last_entry", f"{poi['name']} ngưng nhận khách lúc {opening['last_entry_time']}", schedule)
+        if departure > close_at:
+            return fail("outside_opening_hours", f"{poi['name']} không đủ thời gian trước giờ đóng {opening['close_time']}", schedule)
+        if departure > end:
+            return fail("outside_user_window", f"{poi['name']} kết thúc sau {end_time}", schedule)
+        schedule.append({"poi_id": pid, "name": poi["name"],
+                         "travel_minutes_from_previous": travel,
+                         "arrival": _clock(arrival), "visit_start": _clock(visit_start),
+                         "departure": _clock(departure),
+                         "opening_source": opening["source_note"]})
+        current, previous = departure, poi
+    return {"valid": True, "schedule": schedule, "issues": []}
