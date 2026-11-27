@@ -1,6 +1,6 @@
 # Data card — dữ liệu bản chạy thử dùng
 
-> Cập nhật trước CP2 (27/11/2026). Toàn bộ dữ liệu vận hành và hành vi được đặt trong `data/` ở định dạng CSV UTF-8, đọc trực tiếp bằng thư viện chuẩn Python và kiểm chứng tự động qua `data/validate_travel_data.py` (`0 errors`).
+> Bản gốc cập nhật trước CP2 (27/11/2026); mở rộng Hà Nội ngày 28/11/2026. Toàn bộ dữ liệu vận hành và hành vi được đặt trong `data/` ở định dạng CSV UTF-8, đọc trực tiếp bằng thư viện chuẩn Python và kiểm chứng tự động qua `data/validate_travel_data.py` (`0 errors`).
 
 ## Dataset 1 · `data/travel-ops/` (Nguồn sự thật điểm đến, giờ mở cửa & di chuyển Việt Nam)
 
@@ -9,10 +9,12 @@
 | Dùng để làm gì | Nguồn dữ liệu nền cho các công cụ trong `codebase/tools.py` — luồng chính (`codebase/agent.py`) dùng `search_pois`, `check_opening_hours`, `lap_lich`, `liet_ke_vi_pham`, `kiem_lich_trinh` (cổng kiểm cuối), `goi_y_diem`, `get_live_disruptions` (đọc `poi_master`, `opening_hours`, `zone_travel_matrix`, `live_disruptions`); `get_travel_time`, `get_schedule_warnings` có sẵn nhưng chưa dùng trong luồng — và căn cứ kiểm chứng cho bộ câu thử `eval/benchmark.csv` |
 | Từ đâu | **Phần thật (`web_verified`):** tra cứu web ngày 27/11/2026 từ nguồn công khai (trang chính thức di tích/bảo tàng/TTTM như `dinhdoclap.gov.vn`, `baotanglichsutphcm.com.vn`, `hoalo.vn`, `vme.org.vn`, `vanmieu.gov.vn`, `trangtienplaza.net`, `saigoncentre.com.vn`, `aeonmall-vietnam.com`, `43factory.coffee` và cẩm nang du lịch) cho tên quán/điểm, địa chỉ, giờ mở cửa/nghỉ trưa/ngày đóng cửa và các chặng khoảng cách chính.<br>**Phần giả lập/ước tính (`estimated` / `synthetic`):** `avg_duration_min`, `rain_penalty_min`, các chặng nội cụm/chưa có nguồn đường đi cố định ghi `source_type = estimated` *(tự ước tính)*; `live_disruptions.csv` và `edit_history.csv` là `synthetic` phục vụ kiểm thử đổi lịch thời gian thực. |
 | Xử lý những bước gì | Chuẩn hoá 12 mã điểm đến (`HN`, `HP`, `QN`, `SP`, `TD`, `HG`, `HUE`, `DN`, `HA`, `NT`, `DL`, `HCM` — tập trung mạnh Miền Bắc 35 POI & Miền Trung 38 POI), tách bảng giờ mở cửa theo 7 thứ `Mon`–`Sun` (áp dụng khung giờ mùa đông từ 16/10 cho miền Bắc/Trung), gắn cờ `indoor_outdoor`, `rain_safe`, `heat_safe`, và kiểm toàn vẹn khoá ngoại bằng `data/validate_travel_data.py` |
-| Số dòng / số đoạn | 94 POI (`poi_master.csv`) · 658 dòng giờ mở cửa (`opening_hours.csv`) · 153 cặp vùng di chuyển (`zone_travel_matrix.csv`) · 17 sự cố live (`live_disruptions.csv`) · 18 cảnh báo quy tắc (`schedule_warnings.csv`) · 8 lịch sử cập nhật (`edit_history.csv`) · 4 dòng ánh xạ mức giá (`price_tier_vnd.csv`, 4 cột) |
-| Phiên bản / ngày lấy | v1.1 · tra cứu và cập nhật ngày 27/11/2026 |
+| Số dòng / số đoạn | 121 POI (`poi_master.csv`) · 847 dòng giờ mở cửa (`opening_hours.csv`) · 153 cặp vùng di chuyển (`zone_travel_matrix.csv`) · 17 sự cố live (`live_disruptions.csv`) · 18 cảnh báo quy tắc (`schedule_warnings.csv`) · 8 lịch sử cập nhật (`edit_history.csv`) · 4 dòng ánh xạ mức giá (`price_tier_vnd.csv`, 4 cột) |
+| Phiên bản / ngày lấy | v1.2 · 94 điểm gốc ngày 27/11/2026; thêm 27 điểm Hà Nội ngày 28/11/2026 |
 | Nhãn | kết hợp `thật` (`web_verified` cho thông tin tĩnh POI/giờ mở cửa) + `synthetic` / *(tự ước tính)* cho sự cố live và thời lượng tham quan |
-| Giới hạn | Chưa nối API Google Maps / thời tiết thời gian thực; mới phủ 94 điểm tiêu biểu tại 12 tỉnh/thành lớn (trọng tâm Bắc–Trung); giờ mở cửa quán ăn thực tế có thể thay đổi vào dịp lễ Tết |
+| Giới hạn | Chưa nối API Google Maps / thời tiết thời gian thực; phủ 121 điểm tại 12 tỉnh/thành nhưng đợt mở rộng chỉ thêm Hà Nội; giờ mở cửa quán ăn thực tế có thể thay đổi vào dịp lễ Tết |
+
+**Đợt mở rộng 28/11 (nhánh `data/mo-rong`):** Thêm 27 địa điểm Hà Nội (`POI_HN_11`–`POI_HN_37`) và 189 dòng giờ, chỉ nối cuối hai CSV, giữ nguyên 94 điểm/658 dòng gốc. Mỗi điểm có hai URL trong `data/staging/poi_moi.csv`; giờ từng thứ có URL ở `data/staging/gio_mo_moi.csv` và `opening_hours.csv.source_note`. Nguồn gồm trang chính thức Vincom, Highlands Coffee, Pizza 4P's, Bảo tàng Lịch sử Quốc gia và trang đối chiếu Foody, MoMo, cẩm nang du lịch; giờ nguồn lệch được ghi trong `notes`, dùng khung giờ thận trọng hơn. `avg_duration_min`, `price_tier`, mức đông và cờ phù hợp mưa/nắng là *(tự ước tính)* để chạy thử; chưa xác minh trực tiếp tại cửa hàng. Không dùng OSM cho đợt này.
 
 **Bảng giá phụ `data/travel-ops/price_tier_vnd.csv` (4 dòng · 4 cột):** Ánh xạ 4 mức `free`, `budget`, `mid`, `mid_high` sang khoảng VNĐ/người (`min_vnd`, `max_vnd`); cột `source` ghi *(tự ước tính)*. Bảng phục vụ hiển thị chi phí tham khảo; không chỉnh sửa `poi_master.csv`.
 
