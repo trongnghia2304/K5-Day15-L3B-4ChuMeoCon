@@ -99,11 +99,11 @@ flowchart TD
   | Nguyên tắc | Chỗ cụ thể trên sơ đồ / trong bản chạy thử |
   |---|---|
   | G10 — thu hẹp phạm vi khi không chắc | Nút "Thiếu…?" ở cả hai nhánh → hỏi lại 1 câu; tên không khớp ≥60% → "không có dữ liệu", không đoán; chưa biết thứ → chỉ gợi ý nơi mở **mọi ngày** giờ đó (`agent.py`, `goi_y_diem`) |
-  | G11 — giải thích vì sao | Output có "Vì sao xếp như vậy" (từ model #2) và lý do từng điểm bị bỏ (từ code kiểm: "đóng cửa Thứ Hai", "rời 17:51, đóng 17:00") |
+  | G11 — giải thích vì sao | Lý do từng điểm bị bỏ, từ **code kiểm** ("đóng cửa Thứ Hai", "rời 17:51, đóng 17:00") + số phút đi trên từng dòng lịch. Câu "Vì sao…" do model tự viết **không hiện** (chỉ ghi vào trace) — từ H7 v3, theo góp ý "nhẹ nhàng, không cứng nhắc" và vì model từng nói ngược data (B26, B27 ở run-1) |
   | G1 / G2 — nói rõ làm được gì | Câu cuối output: "mình không gửi tin hay đặt chỗ"; khi bị đòi đặt bàn thì nói rõ giới hạn |
   | G8 / G9 — dễ sửa | "Muốn giữ điểm nào thì nới khung giờ hoặc bỏ bớt một điểm khác" → người dùng gửi lại tin, luồng xếp lại |
 
-- **Phần còn giả:** chế độ model giả (`MODEL_PROVIDER` trống) — bước 1 dùng bộ tách luật, bước xếp dùng thứ tự tham lam bằng code, bước gợi ý lấy các ứng viên gần nhất; output ghi "(dự phòng)". Giờ mở cửa / khoảng cách ghi `estimated` trong `data/travel-ops/` là tự ước tính; `live_disruptions.csv` là `synthetic`. Chưa nối model thật (làm trước CP3).
+- **Phần còn giả:** chế độ model giả (`MODEL_PROVIDER` trống) — bước 1 dùng bộ tách luật, bước xếp dùng thứ tự tham lam bằng code, bước gợi ý lấy các ứng viên gần nhất; output ghi "(Chưa dùng AI ở bước này: …)". Sự cố trong `live_disruptions.csv` hiện kèm nhãn "tình huống mô phỏng". Giờ mở cửa / khoảng cách ghi `estimated` trong `data/travel-ops/` là tự ước tính; `live_disruptions.csv` là `synthetic`. Chưa nối model thật (làm trước CP3).
 
 ## §5. Chỗ khó — 4 lớp + ≥6 kịch bản + 2 tấn công *(guide 2.3)*
 
@@ -195,6 +195,7 @@ flowchart TD
 | 02:20 28/11 | Nhánh `feat/b-lite`: `agent.py` thêm `goi_y_lap_gio()` sau cổng kiểm (bật khi lịch không bỏ điểm và còn trống ≥ 60 phút; ứng viên từ `goi_y_diem` ≤ 30 phút đi, đủ giờ chơi trước giờ kết thúc; model chọn 1–3), thêm `prompts/lap_gio_trong.md`. Chưa merge — merge sau run-2 + simulate | Chế độ giả, 30 câu: chỉ B01, B03, B04, B29, B30 có thêm mục gợi ý, không dòng lịch nào đổi; kiểm hợp đồng 0 lỗi; model thật trả JSON đúng ở 4 câu |
 | 02:56 28/11 | Chấm lại độc lập B01–B05 của run-1 → khớp 5/5 với `eval/grading-run1-hieu.csv`; gộp 2 file chấm (Hiếu B01–B15, N3 B16–B30) vào `eval/run-1.csv` — chỉ cột `pass`, `ghi_chu`, đã so từng ô các cột khác không đổi; `python run.py score` → 22/30 (73%), `tu_choi` 3/5; điền §7 dòng kết quả, `eval/README.md` mục 2, 3, 4, 5, 6 và `eval/report.md` mục 1, 2 | Lượt 1 theo guide 3.4; bảng run và lỗi chính cho CP3 |
 | 02:56 28/11 | Thêm `eval/cham_metric_code.py` (chỉ đọc): chấm `khong_vi_pham_gio`, `khong_bia_diem`, `thuan_duong` đúng định nghĩa `eval/metric_spec.yaml`; run-1: 23/23 · 23/23 · 1/5 | `eval/README.md` mục 4 ghi chưa có code chấm cho metric `grader: code`; cần cùng một cách chấm cho run-1, run-2, run-3 |
+| 03:33 28/11 | Nhánh `feat/b-lite`: lời văn output theo góp ý "nhẹ nhàng, thực tế, không cứng nhắc" (H7 v3): bỏ dòng "Vì sao…" do model viết (ghi vào trace), tên thành phố đầy đủ, bỏ mã điểm ở dòng trạng thái / điểm bị bỏ / điểm thay thế, đổi `mua`, `xong_som`, `semi_outdoor`… sang lời thường, nhãn sự cố giả lập viết thành "tình huống mô phỏng" (không bỏ), câu từ chối không còn ngoặc kỹ thuật; `scripts/kiem_hop_dong.py` theo H7 v3; G11 và "Phần còn giả" ở §4. Giữ mã điểm ở dòng lịch / gợi ý vì `eval/metric_spec.yaml` (đã khoá) chấm theo các dòng đó | Góp ý về giọng văn. Chế độ giả, 30 câu: phần code chấm đọc giống hệt trước; test web 14/15 — 1 test của N4 dò chữ "Lịch HN". Merge sau run-2, đo ở run-3 |
 
 #### N4 · web, README, validation, slide 4–8 — Nguyễn Nghiêm Khánh Tiệp
 
