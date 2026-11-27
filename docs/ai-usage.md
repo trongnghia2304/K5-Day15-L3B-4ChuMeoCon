@@ -15,4 +15,24 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 | Chấm cột `pass` bằng LLM (nếu có) | | | Kiểm tra thủ công __ câu thử, khớp __/__ | |
 | Slide, văn bản | | | | |
 
+## Khai theo từng người
+
+> Mỗi người chỉ sửa khối của mình (2–3 dòng: dùng AI vào việc gì · đã tự kiểm / sửa gì). Phân công: `docs/phan-cong-cp3-cp4.md`.
+
+### N1 — ____
+
+- 
+
+### N2 — ____
+
+- 
+
+### N3 — ____
+
+- 
+
+### N4 — ____
+
+- 
+
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).

@@ -1,61 +1,92 @@
 # RULE.MD — QUY TẮC BẮT BUỘC KHI DÙNG AI TRIỂN KHAI DỰ ÁN (TRAVEL AI AGENT)
 
-> **CẢNH BÁO:** Mọi AI Coding Assistant (Antigravity, Codex, Claude Code) và thành viên nhóm BẮT BUỘC tuân thủ nghiêm ngặt các quy tắc dưới đây. Vi phạm các mục từ 1 đến 3 sẽ dẫn đến **0 điểm khối đánh giá** hoặc **trừ 10 điểm trực tiếp** theo quy chế Hackathon.
+> **CẢNH BÁO:** Mọi AI coding assistant (Antigravity, Codex, Claude Code…) và thành viên nhóm BẮT BUỘC tuân thủ các quy tắc dưới đây. Vi phạm mục 1–2 có thể làm **0 điểm khối đánh giá** hoặc **trừ 10 điểm** theo quy chế hackathon.
+> Ký hiệu: **[Đề]** = luật của đề (README, 02-guide, 03-rubric của repo BTC) · **[Nhóm]** = luật nhóm tự đặt để không phá thứ đã có.
+> Phân công chi tiết, mốc giờ, ai chờ ai: [`docs/phan-cong-cp3-cp4.md`](docs/phan-cong-cp3-cp4.md). Luật cho agent: [`AGENTS.md`](AGENTS.md).
+> **Hợp đồng dữ liệu** (tên hàm, tham số, trường trả về, cột CSV, định dạng dòng giữa các người): [`docs/hop-dong-du-lieu.md`](docs/hop-dong-du-lieu.md) — AI của mỗi người phải đọc trước khi viết code chạm tới phần người khác. Kiểm: `python scripts/kiem_hop_dong.py` (phải `0 lỗi` trước khi push).
 
 ---
 
-## 1. DANH SÁCH FILE & NỘI DUNG TUYỆT ĐỐI KHÔNG ĐƯỢC SỬA (LOCKED)
+## 1. FILE & NỘI DUNG KHOÁ (đã chốt từ CP2)
 
-AI tuyệt đối **không được chỉnh sửa, ghi đè hoặc xóa** các thành phần sau (đã chốt từ CP2):
-1. **`spec.md` — Mục `§7` (Chuẩn "Đạt" bằng số):** Giữ nguyên nguyên văn tỷ lệ `%` đạt và các điều kiện cứng. Không được hạ chuẩn cho khớp với kết quả chạy thực tế.
-2. **`eval/metric_spec.yaml`:** Không sửa định nghĩa metric, công thức chấm hay ngưỡng đạt.
-3. **Các dòng cũ trong `eval/benchmark.csv`:** Chỉ được **thêm mới (append)** các câu thử ở cuối file cho đủ **20–30 câu** (phủ 4 thành phố `HN`, `HCM`, `DN`, `HUE`). Tuyệt đối **không sửa cột `expected`** của các câu đã có từ CP2 và **không xóa** các câu thử bị trượt.
-4. **`eval/run-1.csv` (sau khi đã chạy Lượt 1):** Không sửa tay nội dung output hay cột `pass` để làm đẹp số liệu. Mọi cải tiến ở Lượt 2 phải chạy lại toàn bộ `benchmark.csv` và xuất ra file mới `eval/run-2.csv`.
-5. **Cấu trúc lõi `run.py` và format `TEAMS.md`:** Không thay đổi tên lệnh CLI (`python run.py check`, `eval`, `score`, `simulate`) và không phá vỡ định dạng bảng thành viên trong `TEAMS.md`.
+1. **`spec.md` §7 — chuẩn "đạt" bằng số [Đề]:** giữ nguyên văn. Không hạ chuẩn cho khớp kết quả. Chỉ được điền dòng "Kết quả lượt 1 / lượt 2".
+2. **`eval/metric_spec.yaml` [Đề]:** không sửa định nghĩa, cách chấm, ngưỡng; không thêm, bớt metric.
+3. **`eval/benchmark.csv` — chỉ được THÊM [Đề]:**
+   - Không sửa bất kỳ cột nào (`input`, `expected`, `pass_criterion`, `type`, `source`) của các dòng đã có (B01–B28).
+   - **Không xoá** câu thử, kể cả câu trượt.
+   - Câu mới chỉ thêm ở cuối file (B29, B30…), trước khi chạy run-1, tổng không quá 30 câu. Sau run-1 không thêm nữa, vì run-2 phải chạy **cùng bộ** với run-1 [Nhóm].
+   - Bộ câu thử phủ cả **12 thành phố** đang có trong data; không thu hẹp về vài thành phố.
+4. **Kết quả đã chạy [Đề]:** `eval/run-*.csv`, `cost/simulate-*.csv`, `traces/*` — không sửa output hay số. Chỉ người chấm điền cột `pass`, `ghi_chu`. Cải tiến thì chạy lượt mới (`run-2.csv`, `run-3.csv`).
+5. **Số liệu bằng chứng [Đề]:** không sửa số khảo sát / phỏng vấn đã nộp (76 phiếu, mẫu số 67…). Chỉ được ghi thêm chú thích (vd độ nhạy khi bỏ phiếu trùng).
+6. **File khung [Đề]:** không sửa `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py`. `python run.py` vẫn là lệnh chạy bản chạy thử. Không phá định dạng bảng trong `TEAMS.md`.
+7. **Data — ĐÓNG BĂNG, chỉ THÊM MỚI [Nhóm]:**
+   - Không sửa, không xoá dòng hay cột đã có trong `data/travel-ops/*.csv` và `data/travel-behavior/*.csv` (94 POI · 12 thành phố). Câu thử dựa vào các `poi_id`, giờ mở cửa và thời gian đi này; sửa data là đổi đáp án ngầm của câu thử.
+   - Cần dữ liệu mới thì tạo **file mới** (vd `data/travel-ops/price_tier_vnd.csv`) và ghi vào `data/DATA_CARD.md`.
+   - Chỉ được sửa data cũ khi chứng minh được nó sai so với nguồn công khai: ghi nguồn + 1 dòng changelog `spec.md` §10, rồi chạy lại trọn bộ thành lượt mới.
+   - Sau khi sửa `data/` phải chạy `python data/validate_travel_data.py` (0 lỗi) và `python run.py check`.
 
 ---
 
-## 2. BẢO MẬT API KEY & DỮ LIỆU CÁ NHÂN (VI PHẠM = -10 ĐIỂM)
+## 2. BẢO MẬT API KEY & DỮ LIỆU CÁ NHÂN (vi phạm = −10 điểm) [Đề]
 
-1. **Cấm tuyệt đối lộ Secret/Key:**
-   - Không viết cứng (hardcode) API key, token, mật khẩu vào bất kỳ file code (`.py`, `.json`, `.yaml`, `.md`) hay cấu hình Railway nào.
-   - Luôn đọc key qua biến môi trường (`os.getenv(...)` từ `.env` ở local hoặc *Variables* trên Railway).
-   - Kiểm tra `.gitignore` luôn chứa `.env` trước mọi lệnh `git add`.
-2. **Ẩn danh 100% dữ liệu người dùng:**
-   - Mọi file trong `evidence/survey/` và `evidence/interviews/` **phải xóa sạch** các cột/thông tin định danh cá nhân (Họ tên, Email, Số điện thoại, Zalo, mã học viên). Chỉ sử dụng mã ẩn danh (`S1, S2...` hoặc `P1, P2...`).
-   - Không sử dụng mã đặt chỗ, vé máy bay, hóa đơn thật của bất kỳ ai trong `data/` hoặc `eval/`.
+1. **Không lộ key:**
+   - Không viết cứng API key, token, mật khẩu vào bất kỳ file nào (`.py`, `.json`, `.yaml`, `.md`, `Procfile`).
+   - Key chỉ đọc từ biến môi trường: `.env` ở máy (đã có trong `.gitignore`), _Variables_ trên Railway.
+   - Trước mỗi `git add`, kiểm `git status` không có `.env`.
+2. **Ẩn danh dữ liệu người dùng:**
+   - `evidence/survey/` và `evidence/interviews/` không có họ tên, email, số điện thoại, Zalo, mã học viên. Chỉ dùng mã `S01…`, `P1…`.
+   - Không dùng mã đặt chỗ, vé, hoá đơn thật của ai trong `data/` hoặc `eval/`.
+   - Chỉ gửi cho model dữ liệu đã ẩn danh.
 
 ---
 
 ## 3. RÀNG BUỘC KỸ THUẬT & CHỐNG BỊA ĐẶT (TRACK C1 — DU LỊCH)
 
-1. **Phạm vi cứng 4 thành phố (`HN`, `HCM`, `DN`, `HUE`):**
-   - Hệ thống chỉ lập lịch trình chi tiết cho 4 mã thành phố có trong `data/places.json`: Hà Nội (`HN`), TP.HCM (`HCM`), Đà Nẵng (`DN`), Huế (`HUE`).
-   - **Nguyên tắc G10 (Bắt buộc):** Nếu người dùng hỏi địa điểm ngoài 4 thành phố trên (ví dụ: Đà Lạt, Sa Pa, Phú Quốc...) hoặc thiếu thông tin vị trí/khung giờ quan trọng, Agent **phải từ chối lịch sự, nêu rõ giới hạn dữ liệu hoặc hỏi lại 1 câu ngắn** — tuyệt đối không dùng trí nhớ của LLM để bịa địa điểm.
-2. **Dữ liệu & Tính toán 100% qua Công cụ (Zero Hallucination):**
-   - AI không được tự nhẩm thời gian di chuyển, tiền bạc hay tự nhớ giờ mở cửa quán.
-   - Mọi địa điểm phải lấy từ `data/places.json` qua `tra_diem_choi`; mọi quãng đường/thời gian chạy xe phải tra từ `data/travel_matrix.json` qua `uoc_thoi_gian_di`.
-   - Trước khi trả về lịch trình cuối cùng cho người dùng, Agent **bắt buộc** gọi hàm kiểm tra chéo `kiem_lich_trinh` để đảm bảo **0 vi phạm** giờ mở cửa, giờ nghỉ trưa, chồng lấn thời gian di chuyển hoặc vượt ngân sách.
-   - Khi người dùng không nêu sở thích cụ thể, hệ thống tự động lọc theo nhãn `is_must_visit: true` để xếp lịch trình cân bằng tiêu chuẩn.
-3. **Chạy độc lập (Offline-ready cho Eval & Simulate):**
-   - Lõi `codebase/` phải chạy độc lập 100% trên dữ liệu nội bộ (`data/places.json`, `data/travel_matrix.json`), không gọi API bản đồ/thời tiết/đặt vé bên thứ ba lúc thực thi để đảm bảo lệnh `python run.py eval` và `python run.py simulate` chạy ổn định, tái lập được.
+1. **Phạm vi = dữ liệu đang có (12 thành phố: HN, HP, QN, SP, TD, HG, HUE, DN, HA, NT, DL, HCM) [Nhóm]:**
+   - Không thêm luật "chỉ 4 thành phố": 13/28 câu thử nằm ở thành phố khác, chặn đi là trượt hàng loạt.
+   - **G10 [Đề]:** thành phố hoặc địa điểm không có trong `data/travel-ops/poi_master.csv`, hoặc thiếu thành phố / thứ / khung giờ → nói rõ "không có dữ liệu" hoặc hỏi lại 1 câu. Agent đã làm việc này (`city_unknown`, `_khong_co`, câu hỏi lại trong `codebase/agent.py`). Không dùng trí nhớ của model để bịa địa điểm hay giờ mở cửa.
+2. **Giờ, phút, tiền đều do code tính [Nhóm, theo `spec.md` §4]:**
+   - Model chỉ chọn **thứ tự** và điểm bỏ (kèm lý do). Model không tự tính giờ đến, thời gian đi hay tiền.
+   - Điểm lấy qua `search_pois` / `tim_diem`; thời gian đi qua `zone_travel_matrix.csv` (`travel_min`, `zone_min`, `get_travel_time`); giờ mở cửa qua `check_opening_hours`.
+   - Giờ đến / rời do `lap_lich` tính. Vòng sửa dùng `liet_ke_vi_pham` (tối đa 2 vòng). Lịch chỉ được trả khi qua **cổng kiểm cuối `kiem_lich_trinh`** (0 vi phạm giờ mở cửa, nghỉ trưa, chồng giờ, thiếu thời gian đi, ngoài khung giờ).
+3. **Ngân sách — CHỈ HIỂN THỊ [Nhóm]:**
+   - Ngân sách không phải ràng buộc. Không lọc, bỏ hay đổi thứ tự điểm theo ngân sách; `kiem_lich_trinh` không kiểm tiền.
+   - Khi tin nhắn có ngân sách, `codebase/ngan_sach.py` → `dong_chi_phi(text, poi_ids)` thêm **1 dòng cuối**: chi phí ước tính theo `price_tier` _(tự ước tính)_ + trong / vượt ngân sách. Không có ngân sách thì output y như cũ.
+   - Web ghép ô ngân sách thành câu cố định `Ngân sách <số>đ/người.` rồi gọi `agent.answer(text)`.
+4. **Chạy độc lập, tái lập được [Nhóm]:** lõi `codebase/` chỉ đọc `data/` trong repo, không gọi API bản đồ / thời tiết / đặt vé khi chạy. Ngoại lệ duy nhất là lời gọi model trong `codebase/ai.py`.
+5. **Không có tác động ra ngoài [Đề]:** không đặt bàn, mua vé, thanh toán, nhắn tin thay người dùng. Mọi công cụ đều chỉ đọc.
+6. **Không giấu câu thử vào code [Đề]:** không so khớp nguyên văn input của bộ câu thử trong code hay prompt.
 
 ---
 
-## 4. PHÂN QUYỀN THƯ MỤC CHO 4 THÀNH VIÊN (CHỐNG XUNG ĐỘT GIT)
+## 4. PHÂN QUYỀN FILE (chống xung đột git) [Nhóm]
 
-Mỗi AI Agent chỉ được phép tạo/sửa file trong phạm vi thư mục được giao cho thành viên đó, **cấm sửa chéo file của người khác**:
-- **Người 1 (Evidence, Benchmark & Slide khung):** `evidence/`, `spec.md` (`§1–§3`), `eval/benchmark.csv`, `eval/metric_spec.yaml`, khung `demo-slides.pdf`.
-- **Người 2 (Data 4 thành phố, OSRM, Tools & Cost):** `data/places.json`, `data/travel_matrix.json`, `data/DATA_CARD.md`, `codebase/tools.py`, `cost/`.
-- **Người 3 (AI Core, Guardrails & Eval Report):** `codebase/ai.py`, `codebase/agent.py`, `spec.md` (`§4–§5`), `eval/run-1.csv`, `eval/run-2.csv`, `eval/report.md`, `eval/README.md`.
-- **Người 4 (Web UI Streamlit, Railway & User Validation):** `app.py`, `Procfile`, `requirements.txt`, `README.md`, `validation/log.md`.
+Mỗi người (và AI của người đó) chỉ tạo / sửa file trong phần của mình. Chi tiết: [`docs/phan-cong-cp3-cp4.md`](docs/phan-cong-cp3-cp4.md).
+
+| Người                                 | Được sửa                                                                                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **N1** — evidence, impact, slide 1–3  | `evidence/*` · `spec.md` §0–§2 · `slides/outline.md` trang 1–3                                                                                          |
+| **N2** — data, tools, ngân sách, cost | `data/*` (chỉ thêm, xem 1.7) · `data/DATA_CARD.md` · `codebase/tools.py` · `codebase/ngan_sach.py` · `eval/benchmark.csv` (chỉ thêm B29–B30) · `cost/*` |
+| **N3** — AI core, eval                | `codebase/ai.py` · `codebase/agent.py` · `codebase/prompts/` · `eval/run-*.csv` · `traces/` · `eval/report.md` · `eval/README.md` · `spec.md` §3–§9     |
+| **N4** — web, demo, người dùng thử    | `web/*` · `requirements.txt` · `Procfile` · `README.md` · `validation/log.md` · `slides/outline.md` trang 4–8 · `demo-slides.pdf`                       |
+| Mỗi người                             | `eval/grading-run<N>-<ten>.csv` của mình · `reflection/<ten>.md` · khối của mình trong `spec.md` §10 và `docs/ai-usage.md`                              |
+| Đội trưởng                            | `TEAMS.md`                                                                                                                                              |
+
+- **Chỉ N3 chạy `python run.py eval`** (khung tự đánh số `run-N`; hai máy chạy = hai bản `run-1` khác nhau).
+- Người chấm ghi vào file chấm riêng; chỉ N3 chép cột `pass`, `ghi_chu` vào `run-N.csv`.
+- Web Streamlit đặt ở `web/streamlit_app.py`. **Không sửa `codebase/app.py`** (`run.py` gọi file này). Không import streamlit trong `codebase/`.
+- Trước khi sửa: `git pull`. Xong mỗi việc: commit + push ngay.
 
 ---
 
 ## 5. KỶ LUẬT CODE & KIỂM TRA TRƯỚC KHI COMMIT
 
-1. **Tiết kiệm Token:** Chỉ đọc đúng file liên quan tới task hiện tại (dùng `head` khi kiểm tra CSV/JSON lớn), sửa code theo diff nhỏ, không viết lại toàn bộ file nếu không cần thiết.
-2. **Không commit file nháp cá nhân:** Tuyệt đối không đưa `PROGRESS.md`, `task_plan.md`, `findings.md`, `progress.md` hay thư mục `.agent/skills/` lên Git chung (chặn qua `.git/info/exclude`).
-3. **Bắt buộc tự kiểm (Verification):**
-   - Sau khi sửa `data/` hoặc `eval/benchmark.csv`, phải chạy `python run.py check` xác nhận không có lỗi trước khi báo hoàn thành.
-   - Đảm bảo `app.py` (Streamlit) chỉ đóng vai trò giao diện gọi thẳng vào `codebase/agent.py`, không viết tách biệt 2 logic AI khác nhau.
+1. **Tiết kiệm token:** chỉ đọc file liên quan tới việc đang làm (dùng `head` với CSV lớn), sửa theo diff nhỏ, không viết lại cả file nếu không cần.
+2. **Không commit file nháp cá nhân:** `PROGRESS.md`, `task_plan.md`, `findings.md`, `progress.md`, thư mục `.agent/skills/`… (chặn qua `.git/info/exclude`).
+3. **Changelog [Đề]:** mọi thay đổi sau CP2 (19:30 27/11) → 1 dòng trong **khối của mình** ở `spec.md` §10: giờ · đổi gì · vì sao.
+4. **Tự kiểm trước khi báo xong:**
+   - **Mọi lần push** → `python scripts/kiem_hop_dong.py` ra `0 lỗi` (hợp đồng H1–H13).
+   - Sửa `data/` hoặc `eval/benchmark.csv` → `python run.py check` không lỗi.
+   - Sửa `codebase/` → `python run.py` chạy được; trước run-1, so output 28 câu với bản trước để biết mình đổi gì.
+   - `web/streamlit_app.py` chỉ là giao diện gọi `agent.answer`, không có logic AI riêng.
+5. **Giải thích được phần có tên mình [Đề]:** dùng AI thoải mái, nhưng ai không giải thích được phần mình làm thì phần đó 0 điểm. Ghi 2–3 dòng vào khối của mình trong `docs/ai-usage.md`.
