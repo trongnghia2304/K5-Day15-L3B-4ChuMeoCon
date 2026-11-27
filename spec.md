@@ -22,15 +22,19 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (tr
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
-| Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
+| Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng *(quy mô cơ sở 10.000 người tự lên lịch)* | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| **A. Xếp lịch ban đầu** (thứ tự + giờ đến, khớp giờ mở cửa) | 49/67 (73%) mệt nhất khâu sắp thứ tự; 37/67 (55%) lịch trái đường / quá dày | 1–5 chuyến / năm (Câu 2) → ~0,1–0,4 lần / tháng *(tự ước tính từ Câu 2)* | lên lịch "vài ngày" (58%, Câu 4) + bỏ dở điểm | ____ người × ____ lần × ____ phút *(điền ở CP3)* | Có — kiểm được bằng code | **Chọn** (nhánh xếp lịch) |
-| B. Xếp lại khi vỡ kế hoạch (đang ở X, đóng cửa / mưa) | 38/67 (57%) gặp đóng cửa; 39/67 (58%) xong sớm không biết đi đâu | mỗi chuyến có sự cố ≥1 lần *(tự ước tính)* | 15–30 phút đứng tìm (55% mất ≥15 phút, Câu 9) | ____ | Có, nếu vị trí do người dùng nói (không GPS) và sự cố lấy từ dữ liệu giả lập | **Chọn** (nhánh gợi ý — cùng quyết định "điểm nào đang mở thì đi") |
-| C. Gợi ý nhanh quanh đây ("quanh 2km có quán nào mở") | 45/67 (67%) đang dùng Google Maps tìm đại | như B | như B | ____ | Có, nhưng gần như Google Maps đã làm | Không |
+| **A. Xếp lịch ban đầu** (thứ tự + giờ đến, khớp giờ mở cửa) | 49/67 (73%) mệt nhất khâu sắp thứ tự; 37/67 (55%) lịch trái đường / quá dày; quy mô cơ sở 10.000 người *(tự ước tính ~0,05% nhóm thanh niên VN)* | 0,23 lần / tháng *(từ Câu 2: trung bình trọng số 2,78 chuyến / năm ÷ 12)* | 90 phút / lần *(tự ước tính bảo thủ từ Câu 4: 58% mất "vài ngày"; P1 nửa tháng, P2 1 ngày, P3 3–4 ngày)* | 10.000 × 0,23 × 90 = **207.000 phút** (**3.450 giờ** · ~20,7 phút / người / tháng) | Có — kiểm được bằng code | **Chọn** (nhánh xếp lịch) |
+| **B. Xếp lại khi vỡ kế hoạch** (đang ở X, đóng cửa / mưa / đông / xong sớm) | 57/67 (85%) gặp ≥1 sự cố; 38/67 (57%) gặp đóng cửa; 39/67 (58%) xong sớm; cùng quy mô cơ sở 10.000 người *(tự ước tính)* | 0,15 lần / tháng *(tự ước tính từ Câu 2: 2,78 chuyến/năm × P1–P3: 1–3 sự cố / 3 chuyến ≈ 0,55 lần/chuyến)* | 30 phút / lần *(từ Câu 9: 55% mất ≥15 phút; P1 30–45p, P2 vài tiếng, P3 45–60p)* | 10.000 × 0,15 × 30 = **45.000 phút** (**750 giờ** · ~4,5 phút / người / tháng) | Có, nếu vị trí do người dùng nói (không GPS) và sự cố lấy từ `live_disruptions.csv` | **Chọn** (nhánh gợi ý — cùng quyết định "điểm nào đang mở thì đi") |
+| C. Gợi ý nhanh quanh đây chung chung ("quanh 2km có gì") | 45/67 (67%) đang dùng Google Maps tìm đại (Câu 8) | 0,15 lần / tháng *(tương đương B)* | ~10 phút / lần *(tự ước tính; Google Maps đã làm phần lớn)* | 10.000 × 0,15 × 10 = **15.000 phút** (**250 giờ** · ~1,5 phút / người / tháng) | Có, nhưng trùng chức năng sẵn có của Google Maps | **Không** |
 
-- **Impact / tháng** của hướng chọn = ____ người × ____ lần × ____ phút = ____ — nguồn từng thừa số: số người dùng (cần nguồn công khai về số người đi du lịch tự túc nội địa, điền ở CP3) · số lần từ Câu 2 · số phút cần thêm từ phỏng vấn (khảo sát chỉ có thang "vài ngày").
-- Hướng đã loại: C (hỏi đáp chung "quanh 2km có gì") — gần như Google Maps đã làm; chỉ giữ phần "đang mở và hợp điều kiện" trong nhánh gợi ý của B. Lúc đầu nhóm định loại B (cần vị trí, sự cố thời gian thực); đổi lại trước CP2 vì 57% / 58% người gặp đóng cửa / xong sớm (Câu 6) và 55% mất ≥15 phút tìm chỗ mới (Câu 9) — xem canvas "đã đổi gì".
-- Số lần / tháng theo kiểu người dùng (cho persona §8): ít 1–2 chuyến / năm (39/76) · vừa 3–5 (20/76) · nhiều >5 (8/76) — Câu 2.
+- **Impact / tháng của hướng chọn (A + B)** = `10.000 người × (0,23 × 90 + 0,15 × 30) phút` = **252.000 phút / tháng** (**4.200 giờ / tháng**, trung bình **~25,2 phút / người / tháng**).
+  - **Nguồn từng thừa số:**
+    - *Số người:* Tổng cục Thống kê ([gso.gov.vn](https://www.gso.gov.vn)) ghi nhận dân số thanh niên Việt Nam (16–30 tuổi) khoảng **20–22 triệu người**; Cục Du lịch Quốc gia Việt Nam ([vietnamtourism.gov.vn](https://vietnamtourism.gov.vn)) ghi nhận khoảng **137 triệu lượt khách du lịch nội địa năm 2025**. Khảo sát Câu 3 cho thấy `40/67 (60%)` người đi tự túc giữ vai tự lên lịch / phụ tìm quán / đi một mình. Nhóm lấy quy mô cơ sở giai đoạn thử nghiệm là **10.000 người dùng tự lên lịch** *(tự ước tính ≈ 0,05% thanh niên VN)* để đối chiếu trực tiếp với chi phí ở §8.
+    - *Số lần / tháng:* Từ Câu 2 (`evidence/survey/results.csv`, N = 67 người đã đi): `39` người đi 1–2 lần/năm (trung vị 1,5), `20` người đi 3–5 lần/năm (trung vị 4), `8` người đi >5 lần/năm (lấy bảo thủ 6) → `(39×1,5 + 20×4 + 8×6) / 67 = 2,78 chuyến/năm ≈ 0,23 lần/tháng` *(tự ước tính từ bậc Câu 2)*. Tần suất đổi lịch gấp: `P1` 2–3 lần, `P2` 1 lần, `P3` 1–2 lần trong 3 chuyến gần nhất → trung bình ~0,55 lần/chuyến → `0,15 lần/tháng` *(tự ước tính từ Câu 2 + P1–P3)*.
+    - *Số phút / lần:* Nhánh A lấy bảo thủ **90 phút** cho công đoạn gom điểm, tra giờ mở cửa và sắp thứ tự *(tự ước tính từ Câu 4: 58% mất "vài ngày" và P1–P3: 1 ngày đến nửa tháng)*. Nhánh B lấy **30 phút** *(từ Câu 9: 55% mất ≥15 phút và P1 30–45p, P3 45–60p, P2 vài tiếng)*.
+- **Hướng đã loại:** C (hỏi đáp chung "quanh 2km có gì") — Impact ròng thấp hơn 16 lần (`15.000` vs `252.000 phút/tháng`) và gần như Google Maps đã giải quyết; chỉ giữ phần lọc "đang mở + hợp thời tiết/không quá đông" trong nhánh gợi ý của B. Lúc đầu nhóm định loại B (cần vị trí, sự cố thời gian thực); đổi lại trước CP2 vì 57% / 58% người gặp đóng cửa / xong sớm (Câu 6) và 55% mất ≥15 phút tìm chỗ mới (Câu 9) — xem `canvas.md`.
+- **Số lần / tháng theo kiểu người dùng (cho persona §8, từ Câu 2, N = 67 người đã đi):** ít `1–2 chuyến / năm` (39/67 ≈ 58% · ~0,13 lần/tháng) · vừa `3–5 chuyến / năm` (20/67 ≈ 30% · ~0,33 lần/tháng) · nhiều `>5 chuyến / năm` (8/67 ≈ 12% · ~0,50 lần/tháng). *(Tính trên toàn mẫu N = 76 thì thêm 9 người chưa đi).*
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 - **Google Maps (danh sách đã lưu, chỉ đường nhiều điểm):** đáng học — giờ mở cửa ngay trên thẻ địa điểm · đáng né — người dùng tự đối chiếu giờ với thứ tự, không ai kiểm cả lịch · mình khác — code kiểm cả lịch, báo điểm nào vi phạm và vì sao.
@@ -153,10 +157,14 @@ flowchart TD
 
 > Từ đây mỗi người chỉ thêm dòng vào **khối của mình** (phân công: `docs/phan-cong-cp3-cp4.md`).
 
-#### N1 · evidence, §0–§2, slide 1–3 — ____
+#### N1 · evidence, §0–§2, slide 1–3 — Nguyễn Trọng Nghĩa
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
+| 00:07 28/11 | Tạo `data/travel-ops/price_tier_vnd.csv` (4 dòng ánh xạ `free`/`budget`/`mid`/`mid_high`, `source_type=estimated`) và bổ sung mô tả vào `data/DATA_CARD.md` (không sửa `poi_master.csv`) | Phục vụ tính năng ngân sách "chỉ hiển thị" cho N2 theo `docs/phan-cong-cp3-cp4.md` |
+| 00:35 28/11 | `evidence/summary.md`: thêm cột và ghi chú độ nhạy S25/S28 (`T'=66`, `P'=39`), giữ nguyên 100% số chính CP2 | Kiểm tra ảnh hưởng của 2 phiếu có Câu 10 tương đồng (lệch tối đa ±1–2%, không đổi kết luận giả thuyết) |
+| 00:35 28/11 | `spec.md` §2: điền đầy đủ bảng Impact (nguồn `gso.gov.vn`, `vietnamtourism.gov.vn`, Câu 2 & 9 khảo sát, phỏng vấn `P1–P3`, gắn rõ *(tự ước tính)*) | Hoàn thiện mục Impact có số trước mốc CP3 (tổng hướng chọn A+B ≈ 252.000 phút/tháng ở quy mô cơ sở 10.000 người) |
+| 00:35 28/11 | `slides/outline.md`: viết hoàn chỉnh nội dung Trang 1–3 (khớp `evidence/summary.md` và `spec.md` §2, §4); cập nhật khối N1 ở `docs/ai-usage.md` | Chuẩn bị khung slide phần bằng chứng, impact và giải pháp để N4 ghép Trang 4–8 ngày mai |
 
 #### N2 · tools, ngân sách, cost — Nguyễn Văn Hiếu
 

@@ -15,22 +15,24 @@
 
 Mẫu số T = 67 người đã đi du lịch tự túc trong 1 năm qua (bỏ 9 người "chưa đi lần nào"). Nhóm con P = 40 người tự lên lịch (lên lịch chính / phụ tìm quán / đi một mình). Cách đếm: [`survey/dem_khao_sat.py`](survey/dem_khao_sat.py).
 
-| Chỉ số | T (N = 67) | P (N = 40) |
-|---|---|---|
-| Gặp ≥1 sự cố trong 3 chuyến gần nhất (Câu 6) | 57/67 (85%) | 34/40 (85%) |
-| — Xong một điểm sớm, không biết đi tiếp đâu | 39/67 (58%) | 26/40 (65%) |
-| — Tới nơi thì đóng cửa / hết bàn / hết vé | 38/67 (57%) | 26/40 (65%) |
-| — Lịch trái đường / quá dày, phải bỏ dở điểm | 37/67 (55%) | 21/40 (52%) |
-| Khâu mệt nhất: sắp thứ tự thuận đường (Câu 5) | 49/67 (73%) | 29/40 (72%) |
-| Khâu mệt nhất: kiểm giờ mở cửa / ngày đóng cửa | 36/67 (54%) | 22/40 (55%) |
-| Khâu mệt nhất: ước lượng thời gian chơi + di chuyển | 32/67 (48%) | 16/40 (40%) |
-| Lên lịch mất "vài ngày" ở chuyến gần nhất (Câu 4) | 39/67 (58%) | 26/40 (65%) |
-| Đổi kế hoạch gấp mất ≥15 phút để chốt điểm mới (Câu 9) | 37/67 (55%) | 22/40 (55%) |
-| Mức ảnh hưởng 4–5 / 5 (Câu 7) | 25/67 (37%) | 16/40 (40%) |
-| Đang xoay xở: lướt TikTok/Facebook/Google tìm lại (Câu 8) | 50/67 (75%) | 28/40 (70%) |
-| Đang xoay xở: hỏi ChatGPT/Gemini | 39/67 (58%) | 21/40 (52%) |
+| Chỉ số | T (N = 67) | P (N = 40) | Độ nhạy nếu bỏ S28 (T' = 66 · P' = 39) |
+|---|---|---|---|
+| Gặp ≥1 sự cố trong 3 chuyến gần nhất (Câu 6) | 57/67 (85%) | 34/40 (85%) | 56/66 (85%) · P': 33/39 (85%) |
+| — Xong một điểm sớm, không biết đi tiếp đâu | 39/67 (58%) | 26/40 (65%) | 38/66 (58%) · P': 25/39 (64%) |
+| — Tới nơi thì đóng cửa / hết bàn / hết vé | 38/67 (57%) | 26/40 (65%) | 37/66 (56%) · P': 25/39 (64%) |
+| — Lịch trái đường / quá dày, phải bỏ dở điểm | 37/67 (55%) | 21/40 (52%) | 37/66 (56%) · P': 21/39 (54%) |
+| Khâu mệt nhất: sắp thứ tự thuận đường (Câu 5) | 49/67 (73%) | 29/40 (72%) | 48/66 (73%) · P': 28/39 (72%) |
+| Khâu mệt nhất: kiểm giờ mở cửa / ngày đóng cửa | 36/67 (54%) | 22/40 (55%) | 35/66 (53%) · P': 21/39 (54%) |
+| Khâu mệt nhất: ước lượng thời gian chơi + di chuyển | 32/67 (48%) | 16/40 (40%) | 32/66 (48%) · P': 16/39 (41%) |
+| Lên lịch mất "vài ngày" ở chuyến gần nhất (Câu 4) | 39/67 (58%) | 26/40 (65%) | 38/66 (58%) · P': 25/39 (64%) |
+| Đổi kế hoạch gấp mất ≥15 phút để chốt điểm mới (Câu 9) | 37/67 (55%) | 22/40 (55%) | 36/66 (55%) · P': 21/39 (54%) |
+| Mức ảnh hưởng 4–5 / 5 (Câu 7) | 25/67 (37%) | 16/40 (40%) | 25/66 (38%) · P': 16/39 (41%) |
+| Đang xoay xở: lướt TikTok/Facebook/Google tìm lại (Câu 8) | 50/67 (75%) | 28/40 (70%) | 49/66 (74%) · P': 27/39 (69%) |
+| Đang xoay xở: hỏi ChatGPT/Gemini | 39/67 (58%) | 21/40 (52%) | 39/66 (59%) · P': 21/39 (54%) |
 
 Tần suất (Câu 2, N = 76): 39 người đi 1–2 lần / năm · 20 người 3–5 lần · 8 người >5 lần · 9 người chưa đi.
+
+> **Ghi chú độ nhạy S25/S28:** Hai phiếu S25 và S28 có câu chuyện Câu 10 gần giống nhau (cùng kể đi Thảo Cầm Viên gặp mưa, xong sớm; khác Câu 7: `1` vs `2` và Câu 9: `5–15p` vs `15–30p`). Giữ nguyên toàn bộ số chính đã chốt CP2 (`N = 76`, `T = 67`, `P = 40`). Nếu gộp/bỏ S28 (`T' = 66`, `P' = 39`), mọi tỷ lệ chỉ lệch tối đa **±1–2 điểm %** và **không làm thay đổi kết luận giả thuyết** (sắp thứ tự vẫn `73% ≥ 65%`, trái đường `56% ≥ 40%`, gặp ≥1 sự cố giữ nguyên `85%`).
 
 ## 3. ≥5 trích dẫn hoặc ví dụ nguyên văn (có nguồn, bỏ tên)
 

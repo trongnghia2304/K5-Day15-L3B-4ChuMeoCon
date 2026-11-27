@@ -19,9 +19,10 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 > Mỗi người chỉ sửa khối của mình (2–3 dòng: dùng AI vào việc gì · đã tự kiểm / sửa gì). Phân công: `docs/phan-cong-cp3-cp4.md`.
 
-### N1 — ____
+### N1 — Nguyễn Trọng Nghĩa
 
-- 
+- **Công cụ AI đã dùng:** Antigravity (hỗ trợ kiểm tra read-only cấu trúc `data/`, tạo `data/travel-ops/price_tier_vnd.csv` + cập nhật `data/DATA_CARD.md`, viết script tính độ nhạy S25/S28 trên `evidence/survey/results.csv`, tra cứu nguồn công khai `gso.gov.vn` / `vietnamtourism.gov.vn` để điền bảng Impact ở `spec.md §2`, và soạn nội dung Trang 1–3 trong `slides/outline.md`).
+- **Người tự kiểm & đối chiếu:** Đã đối chiếu trực tiếp kết quả tính độ nhạy S25/S28 với `evidence/survey/results.csv` và giữ nguyên 100% số liệu gốc đã nộp CP2; kiểm tra lại toàn bộ phép tính Impact và gắn nhãn *(tự ước tính)* cho mọi thừa số không có nguồn trực tiếp; chạy `python data/validate_travel_data.py` (`0 errors`), `python run.py check` (`Không thấy vấn đề`) và kiểm `git diff` xác nhận không sửa các mục đã khoá (§3–§9, B01–B28, khối N2–N4).
 
 ### N2 — Nguyễn Văn Hiếu
 
