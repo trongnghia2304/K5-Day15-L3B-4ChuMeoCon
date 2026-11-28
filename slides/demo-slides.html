@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Đi đâu trước, đi đâu sau — 4ChuMeoCon</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  :root {
+    --ink: #1f2430; --muted: #5d6475; --line: #e3ddd2; --bg: #fbf8f3; --card: #ffffff;
+    --accent: #d9622b; --accent-soft: #fbe7dc; --teal: #1f7a74; --teal-soft: #dcefed;
+    --warn: #b23a3a; --warn-soft: #f8e1e1; --ok: #2f7d3a; --ok-soft: #e2f1e4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: var(--ink);
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { width: 1280px; height: 720px; padding: 56px 72px 44px; position: relative; overflow: hidden;
+           page-break-after: always; break-after: page; background: var(--bg); display: flex; flex-direction: column; }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .kicker { font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+  h1 { font-size: 40px; line-height: 1.18; margin: 0 0 22px; font-weight: 750; }
+  h2 { font-size: 20px; margin: 0 0 10px; font-weight: 700; }
+  p, li { font-size: 19px; line-height: 1.45; margin: 0; }
+  ul { margin: 0; padding-left: 22px; } li { margin: 6px 0; }
+  .muted { color: var(--muted); }
+  .src { position: absolute; left: 72px; right: 72px; bottom: 20px; font-size: 12.5px; color: var(--muted);
+         border-top: 1px solid var(--line); padding-top: 8px; }
+  .pg { position: absolute; right: 72px; top: 28px; font-size: 13px; color: var(--muted); }
+  .grid { display: grid; gap: 22px; }
+  .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: 1fr 1fr 1fr; } .g4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .big { font-size: 54px; font-weight: 800; line-height: 1; color: var(--accent); }
+  .big.teal { color: var(--teal); } .big.warn { color: var(--warn); } .big.ok { color: var(--ok); }
+  .lbl { font-size: 16.5px; color: var(--muted); margin-top: 8px; line-height: 1.35; }
+  blockquote { margin: 0; padding: 14px 20px; border-left: 4px solid var(--accent); background: var(--accent-soft);
+               border-radius: 0 10px 10px 0; font-size: 19px; font-style: italic; }
+  blockquote cite { display: block; font-style: normal; font-size: 14px; color: var(--muted); margin-top: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 17px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.pick td { background: var(--teal-soft); }
+  tr.drop td { color: var(--muted); }
+  .pill { display: inline-block; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .pill.ok { background: var(--ok-soft); color: var(--ok); } .pill.warn { background: var(--warn-soft); color: var(--warn); }
+  .pill.teal { background: var(--teal-soft); color: var(--teal); } .pill.acc { background: var(--accent-soft); color: var(--accent); }
+  .flow { display: flex; align-items: stretch; gap: 10px; }
+  .step { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 14px; font-size: 15.5px; line-height: 1.35; }
+  .step b { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .step.code b { color: var(--teal); } .step.model b { color: var(--accent); } .step.user b { color: var(--ink); }
+  .arrow { align-self: center; color: var(--muted); font-size: 22px; }
+  pre { margin: 0; background: #1f2430; color: #f3efe8; border-radius: 12px; padding: 16px 18px; font-family: Consolas, "Cascadia Mono", monospace;
+        font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; }
+  pre .h { color: #ffb88a; } pre .g { color: #9fd9a5; } pre .d { color: #b8bfcc; }
+  .cover { background: linear-gradient(135deg, #fbf8f3 0%, #fbe7dc 100%); justify-content: center; }
+  .cover h1 { font-size: 60px; margin-bottom: 16px; }
+  .cover .sub { font-size: 24px; color: var(--muted); max-width: 900px; line-height: 1.4; }
+  .verdict { font-size: 72px; font-weight: 850; color: var(--teal); letter-spacing: .02em; line-height: 1; }
+  .tag { font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- 0 · Bìa -->
+<section class="slide cover">
+  <div class="kicker">Track C · Du lịch · L3B · Nhóm 4ChuMeoCon</div>
+  <h1>Đi đâu trước, đi đâu sau</h1>
+  <p class="sub">Trợ lý xếp lịch một ngày nhiều điểm cho người lên lịch của nhóm bạn — thuận đường, và mọi điểm đều <b>đang mở lúc đến</b>.</p>
+  <div style="margin-top:40px" class="grid g2">
+    <div>
+      <p class="muted" style="font-size:17px">Nguyễn Trọng Nghĩa · Nguyễn Nghiêm Khánh Tiệp · Nguyễn Văn Hiếu · Nguyễn Đức Minh</p>
+    </div>
+    <div style="text-align:right">
+      <p class="muted" style="font-size:15px">github.com/trongnghia2304/K5-Day15-L3B-4ChuMeoCon</p>
+    </div>
+  </div>
+</section>
+
+<!-- 1 · Người dùng & pain -->
+<section class="slide">
+  <div class="pg">1 / 8</div>
+  <div class="kicker">Người dùng & pain</div>
+  <h1>Người lên lịch cho nhóm tự sắp thứ tự và tự kiểm giờ mở cửa — vẫn hay đi vòng, tới nơi thì đóng cửa</h1>
+  <div class="grid g3" style="margin-bottom:22px">
+    <div class="card"><div class="big">73%</div><div class="lbl">thấy mệt nhất ở khâu <b>sắp thứ tự thuận đường</b> (49/67)</div></div>
+    <div class="card"><div class="big warn">57%</div><div class="lbl">từng <b>tới nơi thì đóng cửa / hết chỗ</b> trong 3 chuyến gần nhất (38/67)</div></div>
+    <div class="card"><div class="big teal">55%</div><div class="lbl">mất <b>≥ 15 phút</b> mới chốt được điểm mới khi vỡ kế hoạch (37/67)</div></div>
+  </div>
+  <div class="grid g2">
+    <blockquote>"Đang đi thì quán đóng cửa không biết đi đâu, tòm đụa điểm lâu nữa"<cite>Phiếu khảo sát S20 (giữ nguyên chính tả)</cite></blockquote>
+    <div class="card" style="padding:16px 20px">
+      <p style="font-size:17px"><b>Kiểm lại bằng phỏng vấn (P1–P3):</b> 3/3 phải đổi lịch giữa chuyến, mất 30 phút đến vài tiếng; 2/3 nói khâu mệt nhất là sắp thứ tự.
+      <span class="muted">Lệch: 0/3 kể chuyện đóng cửa — sự cố thật là thông tin sai, xe hỏng, mưa.</span></p>
+    </div>
+  </div>
+  <div class="src">Nguồn: khảo sát Google Form n = 76, mẫu số 67 người đã đi tự túc trong 1 năm (Câu 5, 6, 9) — evidence/summary.md · evidence/survey/dem_khao_sat.py · phỏng vấn evidence/interviews/P1–P3.md</div>
+</section>
+
+<!-- 2 · Vì sao chọn -->
+<section class="slide">
+  <div class="pg">2 / 8</div>
+  <div class="kicker">Vì sao chọn bài này</div>
+  <h1>Hai lúc cùng một quyết định "điểm nào, lúc nào thì đi được" — ≈ 25 phút / người / tháng</h1>
+  <table>
+    <tr><th>Hướng</th><th class="num">Lần / tháng</th><th class="num">Phút / lần</th><th class="num">Impact / tháng (10.000 người)</th><th>Chọn?</th></tr>
+    <tr class="pick"><td><b>A. Xếp lịch ban đầu</b> — thuận đường + đúng giờ mở</td><td class="num">0,23</td><td class="num">90</td><td class="num"><b>207.000 phút</b></td><td><span class="pill teal">Chọn</span></td></tr>
+    <tr class="pick"><td><b>B. Xếp lại khi vỡ kế hoạch</b> — mưa, đóng cửa, đông</td><td class="num">0,15</td><td class="num">30</td><td class="num"><b>45.000 phút</b></td><td><span class="pill teal">Chọn</span></td></tr>
+    <tr class="drop"><td>C. Gợi ý nhanh "quanh 2 km có gì"</td><td class="num">0,15</td><td class="num">10</td><td class="num">15.000 phút</td><td><span class="pill warn">Loại</span></td></tr>
+  </table>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card"><div class="big teal" style="font-size:44px">4.200 giờ / tháng</div><div class="lbl">A + B ở quy mô cơ sở 10.000 người ≈ <b>25,2 phút / người / tháng</b></div></div>
+    <div class="card"><h2>Vì sao loại C</h2><p style="font-size:17px">Impact thấp hơn A + B khoảng 16 lần, và trùng việc Google Maps đã làm (67% đang tự mở Maps tìm đại — Câu 8). Chỉ giữ phần "đang mở + hợp thời tiết" trong nhánh B.</p></div>
+  </div>
+  <div class="src">Nguồn: spec.md §2 · tần suất từ khảo sát Câu 2 · phút / lần từ Câu 4, Câu 9 và P1–P3 · quy mô 10.000 người và 90 phút / lần là (tự ước tính)</div>
+</section>
+
+<!-- 3 · Giải pháp -->
+<section class="slide">
+  <div class="pg">3 / 8</div>
+  <div class="kicker">Giải pháp</div>
+  <h1>Model chọn thứ tự, code tính giờ và kiểm — lịch chỉ ra khi 0 vi phạm giờ mở cửa</h1>
+  <div class="flow" style="margin-bottom:18px">
+    <div class="step user"><b>Người dùng</b>Danh sách điểm + thứ + khung giờ, hoặc "đang ở X, trời mưa"</div><div class="arrow">→</div>
+    <div class="step code"><b>Code</b>Tách yêu cầu, chặn đặt bàn / "bỏ qua kiểm tra"; thiếu thứ / giờ → hỏi lại 1 câu</div><div class="arrow">→</div>
+    <div class="step model"><b>Model</b>Chọn <u>thứ tự</u> (xếp lịch) hoặc 1–3 điểm trong danh sách code đã lọc (gợi ý)</div><div class="arrow">→</div>
+    <div class="step code"><b>Code</b>Tính giờ đến / rời, kiểm đóng cửa, nghỉ trưa, phút đi; sửa ≤ 2 vòng; cổng kiểm cuối</div><div class="arrow">→</div>
+    <div class="step user"><b>Người lên lịch</b>Nhận lịch từng giờ + điểm bị bỏ kèm lý do bằng số; tự duyệt, tự gửi nhóm</div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><h2>Hình dạng: workflow cố định</h2><p style="font-size:16.5px">Thứ tự công cụ đã biết trước nên không cần agent tự quyết; đo được từng bước. Câu rõ ràng chỉ gọi model ~1 lần (trung bình 1,5 lần / câu ở run-2).</p></div>
+    <div class="card"><h2>Mức tự động</h2><p style="font-size:16.5px">AI tự làm khi chắc, hỏi lại khi thiếu (G10). <b>Không</b> đặt bàn, mua vé, thanh toán, nhắn tin. Model không tính giờ — câu "cứ ghi là đang mở" không có tác dụng.</p></div>
+    <div class="card"><h2>Thêm sau CP2</h2><p style="font-size:16.5px">Gợi ý lấp giờ trống khi lịch xong sớm (chỉ gợi ý, không chèn) · ngân sách chỉ hiển thị chi phí ước tính · data 94 → 135 điểm, 12 thành phố.</p></div>
+  </div>
+  <div class="src">Nguồn: spec.md §4 · codebase/agent.py · 9 công cụ chỉ đọc trong codebase/tools.py · data/travel-ops/ (giờ mở cửa tra từ nguồn công khai; sự cố live là dữ liệu mô phỏng)</div>
+</section>
+
+<!-- 4 · Demo -->
+<section class="slide">
+  <div class="pg">4 / 8</div>
+  <div class="kicker">Demo live · gpt-4.1-mini</div>
+  <h1>Một ca thường, một ca khó — output thật của run-2</h1>
+  <div class="grid g2" style="gap:20px">
+    <div>
+      <div class="tag">Khó · B05 · Hà Nội, Thứ Hai — có 2 điểm đóng cửa</div>
+<pre><span class="h">Lịch Hà Nội — Thứ Hai, 08:30–17:00</span>
+1. 08:30–10:00 · Văn Miếu - Quốc Tử Giám
+2. 10:14–10:59 · Bún chả Hương Liên (đi 14 phút)
+3. 11:10–12:10 · Chợ Đồng Xuân (đi 11 phút)
+<span class="d">Tổng di chuyển: 25 phút · xong lúc 12:10</span>
+Có điểm mình chưa xếp được:
+  - Bảo tàng Dân tộc học Việt Nam: <span class="g">đóng cửa cả ngày
+    Thứ Hai</span> → có thể thay bằng Nhà tù Hỏa Lò, …
+  - Hoàng thành Thăng Long: <span class="g">đóng cửa cả ngày
+    Thứ Hai</span> → có thể thay bằng Chùa Một Cột, …</pre>
+    </div>
+    <div>
+      <div class="tag">Từ chối · B22 · Đà Lạt — "chạy ra Đồi Chè rồi về kịp 15:30"</div>
+<pre><span class="h">Lịch Đà Lạt — 14:00–15:30</span>
+Trong khung giờ này mình chưa xếp được điểm nào.
+  - Đồi Chè Cầu Đất: 14:45–16:15 ngoài khung;
+    rời 16:15 + 45 phút quay về = 17:00, quá 15:30
+    <span class="g">(đi tới mất 45 phút, khoảng 24.5 km;
+    quay về mất 45 phút)</span></pre>
+      <div class="card" style="margin-top:14px; padding:14px 18px">
+        <p style="font-size:16px"><b>Trên web còn có:</b> mưa giữa chừng → 1–3 điểm trong nhà đang mở (B07) · chat nhiều lượt khi thiếu thứ / giờ · "còn trống … có thể ghé thêm" · dòng chi phí khi nhập ngân sách.</p>
+      </div>
+    </div>
+  </div>
+  <div class="src">Bản online: k5-day15-l3b-4chumeocon-production.up.railway.app · Video dự phòng: drive.google.com/file/d/1mumo5YJhOwXtHauAe20BVFD_fyfpwCZE · Output lấy nguyên từ eval/run-2.csv (web ẩn mã điểm)</div>
+</section>
+
+<!-- 5 · Đánh giá -->
+<section class="slide">
+  <div class="pg">5 / 8</div>
+  <div class="kicker">Đánh giá thế nào</div>
+  <h1>30 câu thử, chuẩn "đạt" chốt từ CP2 — lượt 2 tốt hơn nhưng chưa đạt chuẩn</h1>
+  <table style="margin-bottom:18px">
+    <tr><th>Lượt</th><th class="num">Đạt / 30</th><th class="num">thuong</th><th class="num">kho</th><th class="num">tu_choi</th><th class="num">0 vi phạm giờ</th><th>Đạt chuẩn?</th></tr>
+    <tr><td>1 · run-1@20261128-010117</td><td class="num"><b>22 (73%)</b></td><td class="num">11/14</td><td class="num">8/11</td><td class="num">3/5</td><td class="num">23/23</td><td><span class="pill warn">Chưa</span></td></tr>
+    <tr><td>2 · run-2@20261128-111600</td><td class="num"><b>23 (77%)</b></td><td class="num">10/14</td><td class="num">9/11</td><td class="num">4/5</td><td class="num">24/24</td><td><span class="pill warn">Chưa</span></td></tr>
+  </table>
+  <div class="grid g3">
+    <div class="card"><h2>Chuẩn "đạt" (§7)</h2><p style="font-size:16px">≥ 70% câu qua <b>và</b> 100% câu từ chối qua <b>và</b> 0 lịch vi phạm giờ mở cửa. 14 thường · 11 khó · 5 từ chối (2 câu tấn công); 17/30 câu từ lời người dùng / data thật.</p></div>
+    <div class="card"><h2>Một lần sửa</h2><p style="font-size:16px">Lỗi lớn nhất lượt 1: model tự bỏ điểm với lý do sai, từ chối thiếu con số → <b>code kiểm lại điểm bị bỏ, lý do kèm phút / km</b>. Nhóm lỗi này <b>0/5 → 3/5</b>.</p></div>
+    <div class="card"><h2>Vẫn trượt</h2><p style="font-size:16px"><b>B24</b> (từ chối): bước trích yêu cầu tự bịa 3 tên quán rồi in ra — lý do chưa đạt chuẩn. B13 đổi vì data mới; B10 chỉ gợi ý 1 quán.</p></div>
+  </div>
+  <p class="muted" style="font-size:14.5px; margin-top:14px">Lượt 2 còn có gợi ý lấp giờ trống, giọng văn mới và data 135 điểm → 73% → 77% không quy hết cho lần sửa. Hai người chấm, chấm chồng 5 câu khớp 5/5.</p>
+  <div class="src">Nguồn: eval/benchmark.csv · eval/metric_spec.yaml · eval/run-1.csv, eval/run-2.csv · eval/report.md · eval/README.md · eval/cham_metric_code.py</div>
+</section>
+
+<!-- 6 · Chi phí -->
+<section class="slide">
+  <div class="pg">6 / 8</div>
+  <div class="kicker">Chi phí khi dùng thật</div>
+  <h1>Dưới 1 xu cho mỗi lịch đạt — chi phí không phải điểm nghẽn</h1>
+  <table style="margin-bottom:22px">
+    <tr><th>Mức giá model</th><th class="num">/ phiên</th><th class="num">/ task thành công</th><th class="num">/ tháng · 5.000</th><th class="num">· 10.000</th><th class="num">· 20.000 người</th></tr>
+    <tr><td>gemini-3.1-flash-lite (rẻ)</td><td class="num">$0.00044</td><td class="num"><b>$0.00057</b></td><td class="num">$0.65</td><td class="num"><b>$1.31</b></td><td class="num">$2.61</td></tr>
+    <tr><td>gemini-4-hydrogen (mạnh)</td><td class="num">$0.0024</td><td class="num"><b>$0.0032</b></td><td class="num">$3.63</td><td class="num"><b>$7.26</b></td><td class="num">$14.51</td></tr>
+  </table>
+  <div class="grid g3">
+    <div class="card"><div class="big teal" style="font-size:42px">25,2 phút</div><div class="lbl">tiết kiệm / người / tháng (trang 2)</div></div>
+    <div class="card"><div class="big ok" style="font-size:42px">$0.00013</div><div class="lbl">chi phí model / người / tháng ở quy mô cơ sở (mức rẻ; mức mạnh $0.00073)</div></div>
+    <div class="card"><h2>Cách tính</h2><p style="font-size:15.5px">50 phiên mô phỏng chạy thật (seed 42, 49 phiên hợp lệ), token đo trên gpt-4.1-mini. Chi phí / task = chi phí / phiên ÷ tỉ lệ đạt run-2 (77%), không coi như 100%.</p></div>
+  </div>
+  <div class="src">Nguồn: cost/cost-estimate.md · cost/simulate-1.csv (simulate-1@20261128-120625) · cost/personas.yaml (persona từ khảo sát Câu 2) · số người dùng 3 kịch bản là (tự ước tính) · chưa tính hosting, lưu trữ, giờ công</div>
+</section>
+
+<!-- 7 · Kết luận -->
+<section class="slide">
+  <div class="pg">7 / 8</div>
+  <div class="kicker">Kết luận</div>
+  <div style="display:flex; align-items:baseline; gap:28px; margin-bottom:26px">
+    <div class="verdict">ITERATE</div>
+    <p class="muted" style="font-size:22px">chưa Go, không Stop</p>
+  </div>
+  <div class="grid g3" style="margin-bottom:22px">
+    <div class="card"><div class="tag">Pain có thật · trang 1</div><div class="big">85%</div><div class="lbl">gặp ≥ 1 sự cố trong 3 chuyến gần nhất; 73% mệt nhất ở khâu sắp thứ tự</div></div>
+    <div class="card"><div class="tag">Chất lượng chưa đủ · trang 5</div><div class="big warn">77%</div><div class="lbl">nhưng 4/5 câu từ chối — B24 làm trượt chuẩn; 0 lịch vi phạm giờ mở cửa (24/24)</div></div>
+    <div class="card"><div class="tag">Chi phí không cản · trang 6</div><div class="big ok">$0.0006</div><div class="lbl">mỗi lịch đạt (mức rẻ) — $0.0032 ở mức mạnh</div></div>
+  </div>
+  <p style="font-size:21px"><b>Bước tiếp:</b> chặn tên bịa ở bước trích yêu cầu (B24), chạy lại đủ 30 câu cho tới khi đạt chuẩn — rồi mới cho người dùng thật dùng rộng.</p>
+  <div class="src">Nguồn: evidence/summary.md (Câu 5, 6) · eval/report.md mục 1–4 · cost/cost-estimate.md mục 3</div>
+</section>
+
+<!-- 8 · Nếu có thêm 1 tuần -->
+<section class="slide">
+  <div class="pg">8 / 8</div>
+  <div class="kicker">Nếu có thêm 1 tuần</div>
+  <h1>Người dùng thử muốn trợ lý tự gợi ý điểm — sửa lỗi nguy hiểm trước, rồi mở rộng</h1>
+  <div class="grid g2" style="gap:24px">
+    <div>
+      <blockquote style="margin-bottom:14px">"Sẽ tiện lợi hơn nếu website có thể chủ động gợi ý các địa điểm … dựa trên sở thích, ngân sách và thời gian"<cite>Người dùng thử U1 — validation/log.md</cite></blockquote>
+      <div class="card" style="padding:16px 20px">
+        <p style="font-size:16.5px"><b>3/3</b> người thử muốn trợ lý <b>tự gợi ý</b> thay vì phải biết trước đi đâu · <b>2/3</b> thấy gợi ý chưa đa dạng · <b>1/3</b> khó chịu vì bị hỏi lại theo mẫu thứ / giờ / điểm. Được khen: lịch có giờ mở / đóng cửa, trả lời nhanh.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>3 việc, theo thứ tự</h2>
+      <ul>
+        <li><b>Chặn chữ bịa của model</b> — chỉ in tên điểm có trong tin nhắn hoặc trong data (B24); sửa đọc khung giờ (B20).</li>
+        <li><b>Chế độ "chưa biết đi đâu"</b> — nhập sở thích, ngân sách, khung giờ → code lọc điểm, model chọn, vẫn kiểm giờ bằng code; hỏi gộp một lần (U1, U3).</li>
+        <li><b>Data đều hơn</b> — 135 → ~300 điểm, mỗi thành phố ≥ 20, giờ mở đối chiếu 2 nguồn; thêm câu thử cho Sa Pa và cho gợi ý lấp giờ trống (U2).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">Nguồn: validation/log.md (3 người dùng thử) · eval/report.md mục 4 · luật đề: sau CP2 chỉ thu hẹp lát cắt, nên chế độ "tự gợi ý" để sau</div>
+</section>
+
+</body>
+</html>
