@@ -31,6 +31,7 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 - Dùng Codex tìm và cấu trúc 27 địa điểm Hà Nội từ trang cửa hàng, trung tâm thương mại và nguồn đối chiếu công khai; ghi hai link mỗi điểm, đánh dấu giờ nguồn lệch, kiểm đủ 189 dòng giờ và `python scripts/kiem_hop_dong.py` 0 lỗi.
 - Dùng Codex hỗ trợ đọc output `run-1` và soạn phiếu B01–B15; tự đối chiếu từng `pass_criterion` và giờ trong data, chốt 11/15 đạt trong `eval/grading-run1-hieu.csv`.
 - Dùng Codex điền nháp báo cáo chi phí từ `cost/personas.yaml` và `spec.md` §2; giữ trống tỉ lệ đạt, bảng mô phỏng và kết luận cho đến khi có `run-2` đã chấm.
+- Dùng Codex chuyển riêng 27 điểm HN đã kiểm từ nhánh data sang `main` theo yêu cầu deploy; tự kiểm chỉ nối dòng POI/giờ, giữ HCM ở nhánh chờ và ghi lại rằng run-2 sẽ có nền dữ liệu khác run-1.
 
 ### N3 — ____
 

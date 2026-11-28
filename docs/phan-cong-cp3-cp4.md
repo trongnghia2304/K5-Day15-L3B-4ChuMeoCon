@@ -11,9 +11,9 @@
 > Đề xuất và quyết định: [`huong-b-lite.md`](huong-b-lite.md). Đợt 1 (đêm 27/11) đã xong: model thật, ngân sách, B29–B30, **run-1** (`run-1@20261128-010117`, 30 câu), bản chấm B16–B30.
 
 ### Ba nguyên tắc của đợt này
-1. **run-2 = lần sửa nhóm lỗi + B-lite + giọng văn mới (H7 v3)** *(đổi lúc 03:39 28/11: B-lite đã vào `main` lúc 03:05, giọng văn lúc 03:39)*. run-2 vẫn chạy trên data 94 điểm, **chưa có** data mới, cùng 30 câu với run-1. `eval/report.md` mục 3 phải tách "sửa lỗi gì" (nhóm lỗi) và "thêm gì" (B-lite, giọng văn).
-2. **Chỉ còn data mới làm trên nhánh riêng** (`data/mo-rong`), merge sau khi `simulate` chạy xong (≈13:15) → run-2 và chi phí đo cùng một cấu hình. Slide ghi rõ "run-2 đo bản đã có B-lite + giọng văn mới, chưa có data mở rộng".
-3. **run-3** (bản cuối: sửa lỗi + B-lite + giọng văn + data mới) chạy **sau demo, trước 23:59**, chấm đủ 30 câu, ghi §10 "Sau CP4". Không thêm câu thử (đã đủ 30, `rule.md` 1.3).
+1. **run-2 = lần sửa nhóm lỗi + B-lite + giọng văn mới (H7 v3) + 27 điểm HN**. Theo yêu cầu deploy của N2 lúc sáng 28/11, riêng HN được đưa lên `main` trước run-2; run-2 chạy trên **121 điểm**, cùng 30 câu với run-1. `eval/report.md` mục 3 phải tách "sửa lỗi gì" (nhóm lỗi) và "thêm gì" (B-lite, giọng văn, HN).
+2. **7 điểm HCM đã kiểm vẫn ở nhánh `data/mo-rong`**; chỉ merge sau khi `simulate` chạy xong (≈13:15) → run-2 và chi phí đo cùng cấu hình 121 điểm. Slide ghi rõ "run-2 đo bản đã có B-lite, giọng văn mới và 27 điểm HN; chưa có 7 điểm HCM mới".
+3. **run-3** (bản cuối: sửa lỗi + B-lite + giọng văn + HN + HCM đã kiểm) chạy **sau demo, trước 23:59**, chấm đủ 30 câu, ghi §10 "Sau CP4". Không thêm câu thử (đã đủ 30, `rule.md` 1.3).
 
 ### Lịch
 
@@ -34,9 +34,9 @@
 | 11:30–12:10 | **N3** | Viết `eval/report.md` mục 3 (sửa lỗi gì · thêm gì) trong lúc N2, N4 chấm run-2 | |
 | 12:10–12:30 | **N3** | Gộp chấm run-2 → `score` → `eval/report.md`, `eval/README.md` | |
 | 12:30–13:15 | **N2** | `python run.py simulate` (≥50 phiên) trên `main` lúc này (cấu hình run-2) → `cost/cost-estimate.md` trước **13:30** | `cost/simulate-N.csv` |
-| **13:15** | **N2** | Merge `data/mo-rong` → `kiem_hop_dong` · `run.py check` · `validate_travel_data` · `eval --try 30` so trước / sau — soi riêng 6 câu nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28): đổi thì ghi vào `eval/report.md`, **không sửa câu**. Hỏng → `git revert`, để slide 8 | commit merge |
+| **13:15** | **N2** | Merge phần **7 điểm HCM** còn ở `data/mo-rong` → `kiem_hop_dong` · `run.py check` · `validate_travel_data` · `eval --try 30` so trước / sau — soi riêng 6 câu nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28): đổi thì ghi vào `eval/report.md`, **không sửa câu**. Hỏng → `git revert`, để slide 8 | commit merge |
 | 13:15–13:45 | **N4** | (tuỳ) cho 1 người thử lại bản mới, ghi thêm vào `validation/log.md` | |
-| 13:30–14:15 | **N4** | Slide 4–8 → `demo-slides.pdf` + video dự phòng; slide 5 ghi "run-2 đo bản đã có B-lite + giọng văn mới, chưa có data mở rộng" | `demo-slides.pdf` |
+| 13:30–14:15 | **N4** | Slide 4–8 → `demo-slides.pdf` + video dự phòng; slide 5 ghi "run-2 đo bản đã có B-lite + giọng văn mới + 27 điểm HN, chưa có 7 điểm HCM mới" | `demo-slides.pdf` |
 | 13:30–14:15 | **N3** | `spec.md` §4–§6, §8–§9; hợp đồng H7 v2 đã có | |
 | **14:30** | đội trưởng | **Nộp CP4** | |
 | sau demo → **23:59** | N3 chạy · N2, N3, N4 chấm (10 câu / người) | **run-3** trên bản cuối, ghi §10 "Sau CP4"; reflection mỗi người | `eval/run-3.csv` |
@@ -89,7 +89,7 @@
 | `eval/grading-run1-<ten>.csv` · `eval/grading-run2-<ten>.csv` | người chấm | Mỗi người một file (`id,pass,ghi_chu`), N3 gộp vào `run-N.csv` |
 | `data/staging/*` (Đợt 2) | **N1** | Code không đọc thư mục này; N2 kiểm rồi chép sang `data/travel-ops/` |
 | Nhánh `feat/b-lite`: `agent.py` (nhánh lấp giờ trống) · `prompts/lap_gio_trong.md` (Đợt 2) | **N3** | Merge 13:15 |
-| Nhánh `data/mo-rong`: dòng mới cuối `poi_master.csv`, `opening_hours.csv` (Đợt 2) | **N2** | Merge 13:15, sau B-lite |
+| Nhánh `data/mo-rong`: 27 điểm HN đã đưa lên `main` theo yêu cầu deploy; 7 điểm HCM đã kiểm vẫn ở nhánh | **N2** | Merge phần HCM sau mô phỏng |
 | `docs/huong-b-lite.md` | N4 viết · N3 ghi kết quả kiểm | |
 | `reflection/<ten>.md` | từng người | |
 | `spec.md` §10 · `docs/ai-usage.md` | mỗi người **khối riêng** đã tạo sẵn | Không sửa khối người khác |

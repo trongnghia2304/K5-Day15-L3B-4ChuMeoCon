@@ -177,6 +177,7 @@ flowchart TD
 | 02:36 28/11 | Chấm B01–B15 của `run-1` vào `eval/grading-run1-hieu.csv`: 11 đạt, 4 trượt (B02, B06, B08, B12) | Đối chiếu từng output với `pass_criterion` đã khoá; bàn giao N3 gộp lượt 1, không sửa output hay câu thử |
 | 02:41 28/11 | Chạy `simulate --try`: sandbox chặn API, chạy lại 1 phiên có quyền mạng thì ghi token thật; viết nháp `reflection/hieu.md` | Kiểm đường mô phỏng trước run-2; ghi lại vai trò, AI hỗ trợ và bài học từ B12, chưa dùng lượt thử để tính báo cáo chi phí |
 | 02:45 28/11 | Điền đầu vào đã có nguồn và Impact vào `cost/cost-estimate.md`; để trống tỉ lệ đạt và kết quả mô phỏng | Chờ `run-2` chấm xong để tính chi phí trên đúng cấu hình theo lịch Đợt 2 |
+| 09:54 28/11 | Đưa riêng 27 điểm HN (`POI_HN_11`–`POI_HN_37`) và 189 dòng giờ từ nhánh data lên `main`; giữ 7 điểm HCM đã kiểm ở nhánh chờ | N2 yêu cầu có data HN trên `main` để deploy; run-2 nếu chạy sau commit này đo cấu hình 121 điểm, phải ghi khác biệt so với run-1 |
 
 #### N3 · ai, agent, eval, §3–§9 — ____
 

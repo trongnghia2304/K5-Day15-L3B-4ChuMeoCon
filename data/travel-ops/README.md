@@ -6,7 +6,7 @@
 
 ## Nguồn gốc & Phân tách Thật / Giả lập
 
-- **Dữ liệu địa điểm thực tế đã tra cứu web (27/11/2026):** Tên địa điểm, địa chỉ cụ thể, giờ mở cửa/đóng cửa, ca bán, giờ nghỉ trưa, ngày đóng cửa trong tuần (`Mon`..`Sun`), và các chặng khoảng cách chính trong `poi_master.csv`, `opening_hours.csv`, `zone_travel_matrix.csv` (dòng `source_type = web_verified`) đều được đối chiếu từ nguồn công khai (trang chính thức di tích/bảo tàng/TTTM và cẩm nang du lịch). Mỗi POI đều ghi nguồn ở cột `verified_source`.
+- **Dữ liệu địa điểm thực tế đã tra cứu web (27–28/11/2026):** Tên địa điểm, địa chỉ cụ thể, giờ mở cửa/đóng cửa, ca bán, giờ nghỉ trưa, ngày đóng cửa trong tuần (`Mon`..`Sun`), và các chặng khoảng cách chính trong `poi_master.csv`, `opening_hours.csv`, `zone_travel_matrix.csv` (dòng `source_type = web_verified`) đều được đối chiếu từ nguồn công khai (trang chính thức di tích/bảo tàng/TTTM và cẩm nang du lịch). Mỗi POI đều ghi nguồn ở cột `verified_source`; 27 điểm Hà Nội thêm ngày 28/11 có nguồn thứ hai trong `notes`.
 - **Dữ liệu giả lập / tự ước tính (`synthetic` / `estimated`):**
   - `avg_duration_min`, `rain_penalty_min`, và một số chặng di chuyển nội/liên cụm ghi `source_type = estimated` là *(tự ước tính)* phục vụ tính lịch trình thử nghiệm.
   - `live_disruptions.csv` và `edit_history.csv` là `synthetic` (mô phỏng các tình huống mưa lớn, hết hàng sớm, quá tải, nắng gắt để test chức năng đổi lịch thời gian thực).
@@ -17,8 +17,8 @@
 | Thành phần | Quy mô | Chi tiết |
 |---|---:|---|
 | Thành phố phủ sóng | 12 | Miền Bắc: `HN`, `HP`, `QN`, `SP`, `TD`, `HG` · Miền Trung: `HUE`, `DN`, `HA`, `NT` · Tây Nguyên & Nam: `DL`, `HCM` |
-| Địa điểm (`poi_master.csv`) | 94 POI | Miền Bắc 35 (`HN` 10, `HP` 5, `QN` 5, `SP` 5, `TD` 5, `HG` 5) · Miền Trung 38 (`HUE` 12, `DN` 10, `HA` 8, `NT` 8) · Tây Nguyên & Nam 21 (`DL` 9, `HCM` 12) |
-| Lịch mở cửa (`opening_hours.csv`) | 658 dòng | Đủ 7 thứ `Mon`..`Sun` cho từng POI (94 × 7); phản ánh quy tắc mùa đông (từ 16/10) và ca bán thực tế |
+| Địa điểm (`poi_master.csv`) | 121 POI | Miền Bắc 62 (`HN` 37, `HP` 5, `QN` 5, `SP` 5, `TD` 5, `HG` 5) · Miền Trung 38 (`HUE` 12, `DN` 10, `HA` 8, `NT` 8) · Tây Nguyên & Nam 21 (`DL` 9, `HCM` 12) |
+| Lịch mở cửa (`opening_hours.csv`) | 847 dòng | Đủ 7 thứ `Mon`..`Sun` cho từng POI (121 × 7); 27 điểm Hà Nội thêm ngày 28/11 ghi URL giờ trong `source_note` |
 | Ma trận di chuyển (`zone_travel_matrix.csv`) | 153 cặp vùng | Có cột `source_type` phân biệt `web_verified` và `estimated` |
 | Sự cố live (`live_disruptions.csv`) | 17 dòng | `synthetic` — mô phỏng sự cố mưa, sương mù, nắng gắt, quá tải, đóng cửa đột xuất |
 | Cảnh báo quy tắc (`schedule_warnings.csv`) | 18 dòng | Quy tắc chặn ảo giác (đóng cửa Thứ Hai, bán 2 ca, chỉ bán sáng, cutoff vé/thuyền, khoảng cách xa) |
