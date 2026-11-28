@@ -1,6 +1,6 @@
 """Web demo (N4, hướng A+) — giao diện chat; mỗi lượt gửi đúng 1 câu chữ vào agent.answer(text).
 
-Không có logic AI riêng, không tự tính giờ / tiền, không tách dòng output (H7: hiển thị nguyên văn).
+Không có logic AI riêng, không tự tính giờ / tiền, không sửa nội dung output (H7: hiển thị nguyên văn).
 Ngữ cảnh: chỉ khi agent vừa HỎI LẠI thì web nối tin mới với câu đã gửi trước (web/hoi_thoai.py).
 Chạy máy mình:  python -m pip install -r requirements.txt  →  streamlit run web/streamlit_app.py
 Biến môi trường (đặt trong .env ở máy, hoặc Variables trên Railway — KHÔNG ghi vào repo):
@@ -8,7 +8,8 @@ Biến môi trường (đặt trong .env ở máy, hoặc Variables trên Railwa
     APP_PASSWORD                          — mật khẩu vào web; để trống chỉ khi chạy máy mình
     MAX_LUOT                              — số lượt hỏi tối đa mỗi phiên trình duyệt (mặc định 10)
 
-Giao diện theo DESIGN.md: khung đen trắng, nút pill, một khối màu lime ở đầu trang; Inter + JetBrains Mono.
+Giao diện phong cách Editorial Travel / Modern Clean: nền giấy ấm #FAF8F5, nhấn xanh rừng #1B4D3E & đất nung #C85A32;
+font Lora + Be Vietnam Pro + JetBrains Mono.
 """
 import hmac
 import html
@@ -32,113 +33,509 @@ from hoi_thoai import cau_xong_som, ngu_canh_tiep, noi_tin  # noqa: E402
 
 log = logging.getLogger("web")
 _DAM = re.compile(r"\*\*(.+?)\*\*")  # agent đánh dấu chữ đậm kiểu Markdown trong câu hỏi lại
+_DONG_LICH = re.compile(r"^\d+\.\s+\d{2}:\d{2}")
 MAX_LUOT_MAC_DINH = 10
-AVATAR = {"user": ":material/person:", "ai": ":material/signpost:"}
+AVATAR = {"user": ":material/person:", "ai": ":material/explore:"}
+
 CAU_MAU = (
-    "Thứ Bảy ở Hà Nội từ 8h đến 17h, đi Văn Miếu, Nhà tù Hỏa Lò, Chợ Đồng Xuân",
-    "14:05 Thứ Bảy đang ở Thảo Cầm Viên thì mưa lớn, quanh đây có chỗ nào trong nhà đang mở không?",
+    ("Lên lịch 1 ngày Hà Nội", "Thứ Bảy ở Hà Nội từ 08:00 đến 17:00 đi xe máy: Hồ Gươm, Nhà thờ Lớn, Chùa Một Cột."),
+    ("Lên lịch TP.HCM kèm ngân sách", "Thứ Sáu ở TP.HCM từ 08:00 đến 18:00 đi xe máy: Dinh Độc Lập, Nhà thờ Đức Bà, Bếp Mẹ Ỉn. Ngân sách 300000đ/người."),
+    ("Trời mưa đổi điểm trong nhà", "14:05 Thứ Bảy đang ở Thảo Cầm Viên thì mưa lớn, quanh đây có chỗ nào trong nhà đang mở không?"),
+)
+
+SVG_PIN = (
+    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+    'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>'
+)
+SVG_COMPASS = (
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>'
 )
 
 CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@400&display=swap');
-/* Token theo DESIGN.md */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:wght@500;600&display=swap');
+
 :root {
-  --ink:#000000; --canvas:#ffffff; --hairline:#e6e6e6; --hairline-soft:#f1f1f1; --surface-soft:#f7f7f5;
-  --block-lime:#dceeb1; --r-sm:6px; --r-md:8px; --r-lg:24px; --r-pill:50px;
+  --canvas: #FAF8F5;
+  --card: #FFFFFF;
+  --surface-warm: #F3EFE9;
+  --surface-user: #EFE9DF;
+  --ink: #1C1917;
+  --ink-muted: #57534E;
+  --ink-soft: #78716C;
+  --primary: #1B4D3E;
+  --primary-hover: #143D30;
+  --primary-tint: #ECF4F0;
+  --accent: #C85A32;
+  --accent-tint: #FDF2EC;
+  --border: #E7E2DA;
+  --border-strong: #D6CFC3;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-pill: 999px;
+  --shadow-card: 0 2px 12px rgba(28, 25, 23, 0.045);
+  --shadow-input: 0 4px 18px rgba(28, 25, 23, 0.06);
 }
+
 html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-testid="stBottom"] > div {
-  background:var(--canvas); color:var(--ink); }
+  background: var(--canvas) !important;
+  color: var(--ink);
+}
 .stApp :is(p, li, label, span, div, button, input, textarea):not([data-testid="stIconMaterial"]):not([class*="material"]) {
-  font-family:'Inter', system-ui, helvetica, sans-serif; font-feature-settings:"kern"; }
-[data-testid="stHeader"] { background:transparent; }
-#MainMenu, footer, [data-testid="stMainMenu"], [data-testid="stAppDeployButton"], [data-testid="stDecoration"] { display:none; }
-[data-testid="stExpandSidebarButton"], [data-testid="stSidebarCollapseButton"] button { color:var(--ink); }
-.block-container { max-width:48rem; padding-top:1.5rem; padding-bottom:7rem; }
-.stApp p, .stApp li { font-weight:330; line-height:1.45; letter-spacing:-0.14px; }
+  font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+}
+[data-testid="stHeader"] { background: transparent; }
+#MainMenu, footer, [data-testid="stMainMenu"], [data-testid="stAppDeployButton"], [data-testid="stDecoration"] {
+  display: none;
+}
+[data-testid="stExpandSidebarButton"], [data-testid="stSidebarCollapseButton"] button { color: var(--ink); }
 
-/* color-block-section (lime) — khối màu duy nhất trên màn hình */
-.khoi { background:var(--block-lime); border-radius:var(--r-lg); padding:48px; margin:0 0 32px; }
-.khoi .eyebrow { font-family:'JetBrains Mono', menlo, monospace !important; font-size:.8rem; letter-spacing:.54px;
-  text-transform:uppercase; font-weight:400; margin:0 0 20px; }
-.khoi h1 { font-family:'Inter', sans-serif !important; font-weight:340 !important; font-size:clamp(2.6rem, 7vw, 4rem) !important;
-  line-height:1.04 !important; letter-spacing:-0.96px; margin:0 !important; padding:0 !important; color:var(--ink) !important; }
-.stApp .khoi h1 * { font-family:'Inter', sans-serif !important; }
-.khoi h1, .stApp .khoi .subhead { text-wrap:balance; }
-.khoi.gon { padding:24px 32px; margin-bottom:24px; }
-.khoi.gon .eyebrow { margin-bottom:8px; }
-.khoi.gon h1 { font-size:1.9rem !important; letter-spacing:-0.4px; }
-.khoi.gon .subhead { display:none; }
-.stApp .khoi .subhead { font-size:1.3rem; font-weight:340; line-height:1.35; letter-spacing:-0.26px; margin:20px 0 0; max-width:32rem; }
+.block-container {
+  max-width: 50rem;
+  padding-top: 1.75rem;
+  padding-bottom: 7.5rem;
+}
+.stApp p, .stApp li {
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+}
 
-.loi-nhac { font-size:1rem; font-weight:480 !important; margin:0 0 8px; }
-.che-do-thu { background:var(--surface-soft); border:1px solid var(--hairline); border-radius:var(--r-md); padding:12px 16px;
-  font-size:.92rem; margin:0 0 24px; }
-.phu { font-size:.85rem; margin:8px 0 0; }
+/* Header Editorial Travel */
+.khoi-header {
+  border-bottom: 1px solid var(--border);
+  padding: 4px 0 24px;
+  margin: 0 0 28px;
+}
+.khoi-header.gon {
+  padding: 0 0 16px;
+  margin: 0 0 20px;
+}
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+.header-eyebrow {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+.city-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--primary-tint);
+  color: var(--primary);
+  border: 1px solid rgba(27, 77, 62, 0.16);
+  border-radius: var(--r-pill);
+  padding: 3px 11px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.khoi-header h1 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: clamp(2rem, 4.6vw, 2.85rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em;
+  color: var(--ink) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-wrap: balance;
+}
+.khoi-header.gon h1 {
+  font-size: 1.55rem !important;
+}
+.header-sub {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin: 10px 0 0;
+  max-width: 40rem;
+}
+.khoi-header.gon .header-sub {
+  display: none;
+}
 
-/* Hội thoại — không ảnh đại diện, tin người dùng căn phải */
-[data-testid^="stChatMessageAvatar"] { display:none !important; }
-[data-testid="stChatMessage"] { background:transparent; padding:6px 0; gap:0; }
-.hang-nguoi { display:flex; justify-content:flex-end; }
-.tin-nguoi { background:var(--surface-soft); border-radius:var(--r-lg) var(--r-lg) var(--r-sm) var(--r-lg); padding:12px 18px;
-  max-width:34rem; font-size:1rem; font-weight:400; line-height:1.45; }
-.cau-gui { font-size:.85rem; margin:0 0 8px; }
-.cau-gui b { font-weight:540; }
-.to-lich { background:var(--canvas); border:1px solid var(--hairline); border-radius:var(--r-lg); padding:24px;
-  font-size:1rem; font-weight:350; line-height:1.75; word-break:break-word; font-variant-numeric:tabular-nums; }
-.to-lich b { font-weight:600; }
+.loi-nhac {
+  font-size: 0.92rem;
+  font-weight: 500 !important;
+  color: var(--ink-muted);
+  margin: 0 0 12px;
+}
+.che-do-thu {
+  background: var(--accent-tint);
+  border: 1px solid rgba(200, 90, 50, 0.22);
+  border-radius: var(--r-md);
+  padding: 11px 15px;
+  font-size: 0.88rem;
+  color: #7C2D12;
+  margin: 0 0 22px;
+}
+.phu {
+  font-size: 0.83rem;
+  color: var(--ink-soft);
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
 
-/* Nút: pill. Chính = đen, phụ = trắng viền mảnh */
+/* Bong bóng chat & nhãn vai trò */
+[data-testid^="stChatMessageAvatar"] { display: none !important; }
+[data-testid="stChatMessage"] { background: transparent; padding: 8px 0; gap: 0; }
+
+.hang-nguoi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.nhan-vai {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 4px 4px;
+}
+.nhan-vai.ai {
+  color: var(--primary);
+}
+.tin-nguoi {
+  background: var(--surface-user);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg) var(--r-lg) 4px var(--r-lg);
+  padding: 13px 18px;
+  max-width: 36rem;
+  font-size: 0.96rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Thẻ phụ ẩn mặc định cho "Trợ lý đọc thành" */
+.cau-gui-chi-tiet {
+  margin: 0 0 10px;
+}
+.cau-gui-chi-tiet summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  transition: border-color 180ms ease, color 180ms ease;
+}
+.cau-gui-chi-tiet summary::-webkit-details-marker { display: none; }
+.cau-gui-chi-tiet summary:hover {
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+.cau-gui-noi-dung {
+  margin-top: 6px;
+  padding: 9px 13px;
+  border-radius: var(--r-sm);
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+/* Thẻ lịch trình chuyên nghiệp (giữ nguyên văn 100% H7) */
+.to-lich {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  word-break: break-word;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.to-lich b { font-weight: 600; color: var(--ink); }
+.lich-tieu-de {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.lich-diem {
+  padding: 8px 12px;
+  margin: 6px 0;
+  background: var(--canvas);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-weight: 500;
+}
+.lich-tong {
+  margin: 12px 0 8px;
+  padding: 8px 12px;
+  background: var(--surface-warm);
+  border-radius: var(--r-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.lich-goi-y-head {
+  margin: 14px 0 6px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-strong);
+  font-weight: 600;
+  color: var(--accent);
+}
+.lich-goi-y-item {
+  padding: 6px 12px;
+  margin: 4px 0;
+  background: var(--accent-tint);
+  border-radius: var(--r-sm);
+  font-size: 0.91rem;
+  color: var(--ink);
+}
+.lich-chi-phi {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--primary-tint);
+  border: 1px solid rgba(27, 77, 62, 0.18);
+  border-radius: var(--r-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+.lich-dong {
+  margin: 4px 0;
+  color: var(--ink-muted);
+}
+
+/* Nút: hài hòa với bảng màu xanh rừng */
 .stButton > button, [data-testid="stFormSubmitButton"] > button {
-  background:var(--ink); color:var(--canvas); border:1px solid var(--ink); border-radius:var(--r-pill);
-  font-weight:480; padding:10px 20px; min-height:44px; }
-.stButton > button p, [data-testid="stFormSubmitButton"] > button p { font-weight:480; }
-.stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#222; border-color:#222; color:var(--canvas); }
-.stButton > button:active, [data-testid="stFormSubmitButton"] > button:active { transform:scale(.98); }
-.stButton > button[kind="secondary"] { background:var(--canvas); color:var(--ink); border:1px solid var(--hairline); }
-.stButton > button[kind="secondary"]:hover { background:var(--surface-soft); color:var(--ink); border-color:var(--ink); }
-.stApp button:focus-visible { outline:2px solid var(--ink) !important; outline-offset:2px; }
+  background: var(--primary);
+  color: #FFFFFF;
+  border: 1px solid var(--primary);
+  border-radius: var(--r-pill);
+  font-weight: 500;
+  padding: 10px 20px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 120ms ease, box-shadow 180ms ease;
+}
+.stButton > button p, [data-testid="stFormSubmitButton"] > button p {
+  font-weight: 500;
+  color: inherit;
+}
+.stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: #FFFFFF;
+}
+.stButton > button:active, [data-testid="stFormSubmitButton"] > button:active {
+  transform: scale(0.985);
+}
+.stButton > button[kind="secondary"] {
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
+}
+.stButton > button[kind="secondary"]:hover {
+  background: var(--surface-warm);
+  color: var(--ink);
+  border-color: var(--primary);
+}
+.stApp button:focus-visible {
+  outline: 2px solid var(--primary) !important;
+  outline-offset: 2px;
+}
 
-/* template-card: câu mẫu */
-.st-key-mau .stButton > button { background:var(--surface-soft); color:var(--ink); border:1px solid transparent;
-  border-radius:var(--r-md); justify-content:flex-start; text-align:left; padding:16px; min-height:0; }
-.st-key-mau .stButton > button:hover { border-color:var(--ink); background:var(--surface-soft); color:var(--ink); }
-.st-key-mau .stButton > button p { text-align:left; font-weight:400; }
-.st-key-mau .stButton > button > div { justify-content:flex-start; width:100%; }
+/* Quick Prompts — thẻ gợi ý nhanh 1 chạm */
+.st-key-mau .stButton > button {
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  justify-content: flex-start;
+  text-align: left;
+  padding: 14px 18px;
+  min-height: 48px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 4px;
+}
+.st-key-mau .stButton > button:hover {
+  border-color: var(--primary);
+  background: var(--primary-tint);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.st-key-mau .stButton > button p {
+  text-align: left;
+  font-weight: 400;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.st-key-mau .stButton > button > div {
+  justify-content: flex-start;
+  width: 100%;
+}
 
-/* text-input */
-[data-baseweb="select"] > div, [data-baseweb="input"], [data-baseweb="input"] input, [data-baseweb="textarea"],
-[data-baseweb="textarea"] textarea, .stNumberInput input, .stNumberInput button {
-  background:var(--canvas) !important; border-radius:var(--r-md) !important; border-color:var(--hairline) !important; }
-[data-baseweb="select"] > div:focus-within, [data-baseweb="input"]:focus-within, [data-baseweb="textarea"]:focus-within {
-  border-color:var(--ink) !important; box-shadow:0 0 0 1px var(--ink) !important; }
-[data-testid="stChatInput"] > div { border:1px solid var(--hairline); border-radius:var(--r-pill); background:var(--canvas); padding-left:8px; }
-[data-testid="stChatInput"] > div:focus-within { border-color:var(--ink); box-shadow:0 0 0 1px var(--ink); }
-[data-testid="stChatInputSubmitButton"] { background:var(--ink) !important; color:var(--canvas) !important; border-radius:9999px !important; }
-[data-testid="stChatInputSubmitButton"]:disabled { background:var(--surface-soft) !important; color:#999 !important; }
-[data-baseweb="tag"] { background:var(--ink) !important; border-radius:var(--r-pill) !important; }
-[data-baseweb="tag"] span { color:var(--canvas) !important; }
-label p, [data-testid="stWidgetLabel"] p { font-size:.9rem !important; font-weight:480 !important; color:var(--ink); }
-[data-testid="stExpander"] details { background:var(--canvas); border:1px solid var(--hairline); border-radius:var(--r-md); }
-[data-testid="stExpander"] summary p { font-weight:480 !important; }
-[data-testid="stForm"] { border:0; padding:0; }
+/* Inputs & Chat Input — viền mảnh hiện đại, focus mượt */
+[data-baseweb="select"] > div,
+[data-baseweb="input"],
+[data-baseweb="input"] input,
+[data-baseweb="textarea"],
+[data-baseweb="textarea"] textarea,
+.stNumberInput input,
+.stNumberInput button {
+  background: var(--card) !important;
+  border-radius: var(--r-sm) !important;
+  border-color: var(--border-strong) !important;
+  color: var(--ink) !important;
+}
+[data-baseweb="select"] > div:focus-within,
+[data-baseweb="input"]:focus-within,
+[data-baseweb="textarea"]:focus-within {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(27, 77, 62, 0.14) !important;
+}
 
-/* Thanh bên */
-[data-testid="stSidebar"] { background:var(--canvas); border-right:1px solid var(--hairline); }
-[data-testid="stSidebar"][data-collapsed="false"] { min-width:20rem !important; max-width:22rem !important; width:21rem !important; }
-[data-testid="stSidebarHeader"] { height:2.2rem; padding:.5rem 1rem 0; }
-[data-testid="stSidebar"] h2 { font-family:'Inter', sans-serif !important; font-weight:540 !important; font-size:1.45rem !important;
-  letter-spacing:-0.26px; color:var(--ink); margin:8px 0 4px !important; padding:0 !important; }
-.ds-diem { margin:0; padding:0; list-style:none; }
-.stApp .ds-diem li { margin:0; padding:8px 0; font-size:.92rem; border-bottom:1px solid var(--hairline-soft); }
-.stApp [data-testid="stSidebar"] hr { border-color:var(--hairline); }
+[data-testid="stChatInput"] > div {
+  border: 1px solid var(--border-strong) !important;
+  border-radius: var(--r-pill) !important;
+  background: var(--card) !important;
+  box-shadow: var(--shadow-input);
+  padding: 2px 6px 2px 12px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+[data-testid="stChatInput"] > div:focus-within {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(27, 77, 62, 0.14), var(--shadow-input) !important;
+}
+[data-testid="stChatInput"] textarea {
+  color: var(--ink) !important;
+}
+[data-testid="stChatInputSubmitButton"] {
+  background: var(--primary) !important;
+  color: #FFFFFF !important;
+  border-radius: var(--r-pill) !important;
+  transition: background-color 180ms ease;
+}
+[data-testid="stChatInputSubmitButton"]:hover {
+  background: var(--primary-hover) !important;
+}
+[data-testid="stChatInputSubmitButton"]:disabled {
+  background: var(--surface-warm) !important;
+  color: var(--ink-soft) !important;
+}
+
+[data-baseweb="tag"] {
+  background: var(--primary) !important;
+  border-radius: var(--r-pill) !important;
+}
+[data-baseweb="tag"] span { color: #FFFFFF !important; }
+
+label p, [data-testid="stWidgetLabel"] p {
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  color: var(--ink-muted);
+}
+[data-testid="stExpander"] details {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+[data-testid="stExpander"] summary p {
+  font-weight: 500 !important;
+  font-size: 0.88rem !important;
+  color: var(--ink);
+}
+[data-testid="stForm"] { border: 0; padding: 0; }
+
+/* Sidebar phân nhóm trực quan */
+[data-testid="stSidebar"] {
+  background: var(--surface-warm) !important;
+  border-right: 1px solid var(--border);
+}
+[data-testid="stSidebar"][data-collapsed="false"] {
+  min-width: 20.5rem !important;
+  max-width: 22.5rem !important;
+  width: 21.5rem !important;
+}
+[data-testid="stSidebarHeader"] { height: 2.2rem; padding: 0.5rem 1rem 0; }
+.sb-title {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 4px 0 2px;
+}
+.sb-sub {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+.sb-group {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  border-top: 1px solid var(--border-strong);
+  padding-top: 12px;
+  margin: 14px 0 8px;
+}
+.sb-group.first {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 4px;
+}
+.ds-diem {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.stApp .ds-diem li {
+  margin: 0;
+  padding: 6px 2px;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border);
+}
+.stApp .ds-diem li:last-child { border-bottom: 0; }
+.stApp [data-testid="stSidebar"] hr { border-color: var(--border-strong); margin: 14px 0; }
 
 @media (max-width: 768px) {
-  .block-container { padding-top:3.4rem; }
-  .khoi { border-radius:0; margin-left:-1rem; margin-right:-1rem; padding:32px 24px; }
-  .stButton > button, [data-testid="stFormSubmitButton"] > button { width:100%; }
+  .block-container { padding-top: 3.2rem; padding-left: 1rem; padding-right: 1rem; }
+  .to-lich { padding: 16px 18px; }
+  .stButton > button, [data-testid="stFormSubmitButton"] > button { width: 100%; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
 </style>
 """
 
@@ -173,7 +570,14 @@ def _qua_cong_mat_khau() -> bool:
     mat_khau = os.environ.get("APP_PASSWORD", "")
     if not mat_khau or st.session_state.get("da_vao"):
         return True
-    nhap = st.text_input("Mật khẩu demo", type="password")
+    _md(
+        '<div class="khoi-header">'
+        '<div class="header-meta"><span class="header-eyebrow">Trợ lý lịch trình 1 ngày</span></div>'
+        '<h1>Đi đâu trước, đi đâu sau.</h1>'
+        '<p class="header-sub">Xếp thứ tự theo giờ mở cửa thực tế, gợi ý đổi điểm trong nhà khi trời mưa và ước tính ngân sách cho nhóm.</p>'
+        '</div>'
+    )
+    nhap = st.text_input("Mật khẩu demo", type="password", placeholder="Nhập mật khẩu do nhóm cung cấp")
     if nhap and hmac.compare_digest(nhap.encode("utf-8"), mat_khau.encode("utf-8")):
         st.session_state["da_vao"] = True
         st.rerun()
@@ -278,9 +682,19 @@ def _xu_ly_cho_gui() -> None:
 
 
 def _ve_tin_ai(t: dict) -> None:
+    chi_tiet = ""
     if t["cau"] != _tin_nguoi_truoc(t):
-        _md('<div class="cau-gui">Trợ lý đọc thành: <b>%s</b></div>' % html.escape(t["cau"]))
-    _md('<div class="to-lich">%s</div>' % _nguyen_van(t["output"]))  # H7: nguyên văn
+        chi_tiet = (
+            '<details class="cau-gui-chi-tiet">'
+            '<summary>Trợ lý đọc thành…</summary>'
+            '<div class="cau-gui-noi-dung">%s</div>'
+            '</details>'
+        ) % html.escape(t["cau"])
+    _md(
+        '<div class="nhan-vai ai">%s<span>Trợ lý lịch trình</span></div>'
+        '%s'
+        '<div class="to-lich">%s</div>' % (SVG_COMPASS, chi_tiet, _nguyen_van(t["output"]))
+    )  # H7: giữ nguyên văn 100% nội dung
 
 
 def _tong_token_phien() -> str:
@@ -301,20 +715,43 @@ def _so(n: int) -> str:
 
 
 def _bong_bong_nguoi(chu: str) -> str:
-    return '<div class="hang-nguoi"><div class="tin-nguoi">%s</div></div>' % html.escape(chu)
+    return (
+        '<div class="hang-nguoi">'
+        '<div class="nhan-vai">Bạn</div>'
+        '<div class="tin-nguoi">%s</div>'
+        '</div>'
+    ) % html.escape(chu)
+
+
+def _lop_dong(line: str) -> str:
+    """Gán lớp CSS trình bày theo loại dòng output — không sửa nội dung chữ (H7)."""
+    s = line.strip()
+    if s.startswith("Lịch "):
+        return "lich-tieu-de"
+    if _DONG_LICH.match(s):
+        return "lich-diem"
+    if s.startswith("Tổng di chuyển:"):
+        return "lich-tong"
+    if s.startswith("Còn trống "):
+        return "lich-goi-y-head"
+    if line.startswith("  + ") or s.startswith("+ [POI_"):
+        return "lich-goi-y-item"
+    if s.startswith("Chi phí ước tính:"):
+        return "lich-chi-phi"
+    return "lich-dong"
 
 
 def _nguyen_van(output: str) -> str:
-    """Output agent → 1 dòng HTML giữ nguyên chữ: escape, giữ thụt đầu dòng, xuống dòng bằng <br>.
-
-    Markdown của Streamlit làm hỏng khối HTML nhiều dòng (gộp dòng, đọc "1." thành danh sách), nên không để ký tự
-    xuống dòng nào lọt vào chuỗi markdown. Chỉ đổi cách hiển thị, không tách hay sửa nội dung (H7).
-    """
-    dong = []
+    """Output agent → 1 chuỗi HTML 1 dòng giữ nguyên 100% chữ: escape, giữ thụt đầu dòng, chỉ bọc lớp trình bày (H7)."""
+    khoi = []
     for line in output.split("\n"):
+        if not line.strip():
+            khoi.append('<div class="lich-dong">&nbsp;</div>')
+            continue
         than = line.lstrip(" ")
-        dong.append("&nbsp;" * (len(line) - len(than)) + _DAM.sub(r"<b>\1</b>", html.escape(than)))
-    return "<br>".join(dong)
+        noi_dung = "&nbsp;" * (len(line) - len(than)) + _DAM.sub(r"<b>\1</b>", html.escape(than))
+        khoi.append('<div class="%s">%s</div>' % (_lop_dong(line), noi_dung))
+    return "".join(khoi)
 
 
 def _tin_nguoi_truoc(t: dict) -> str:
@@ -334,12 +771,18 @@ def _ve_lich_su() -> None:
 
 
 def _ve_man_trong() -> None:
-    _md('<p class="loi-nhac">Chưa biết nhắn gì? Bấm thử một câu:</p>')
+    _md('<p class="loi-nhac">Gợi ý nhanh — bấm 1 chạm để thử ngay:</p>')
     with st.container(key="mau"):
-        for i, cau in enumerate(CAU_MAU):
-            st.button(cau, key="mau_%d" % i, on_click=_dat_gui, args=(cau, True), type="secondary",
-                      use_container_width=True)
-    _md('<p class="phu">Muốn chọn điểm từ danh sách thay vì gõ? Mở mục Điền nhanh ở cột bên trái.</p>')
+        for i, (nhan, cau) in enumerate(CAU_MAU):
+            st.button(
+                "%s  —  %s" % (nhan, cau),
+                key="mau_%d" % i,
+                on_click=_dat_gui,
+                args=(cau, True),
+                type="secondary",
+                use_container_width=True,
+            )
+    _md('<p class="phu">Hoặc chọn điểm nhanh từ danh sách ở thanh bên trái (<b>Điền nhanh</b>).</p>')
 
 
 def _ve_sua_tiep() -> None:
@@ -347,9 +790,9 @@ def _ve_sua_tiep() -> None:
     if not any(t["vai"] == "ai" for t in st.session_state["tin"]):
         return
     if st.session_state["ngu_canh"]:
-        _md('<p class="loi-nhac">Trợ lý đang hỏi thêm. Trả lời ngắn ở ô chat, trợ lý sẽ ghép với câu trước.</p>')
+        _md('<p class="loi-nhac">Trợ lý đang hỏi thêm — trả lời ngắn ở ô chat bên dưới, trợ lý sẽ tự ghép với câu trước.</p>')
     with st.expander("Sửa lịch vừa rồi"):
-        st.text_area("Thêm hoặc bỏ điểm, đổi giờ ngay trong câu rồi gửi lại", key="o_sua", height=110)
+        st.text_area("Thêm hoặc bỏ điểm, đổi giờ ngay trong câu rồi gửi lại", key="o_sua", height=104)
         c1, c2 = st.columns([1, 1.5])
         c1.button("Gửi lại câu này", on_click=_gui_lai_cau_sua, use_container_width=True)
         c2.button("Còn thời gian? Hỏi chỗ đi thêm", on_click=_dien_cau_xong_som, type="secondary",
@@ -361,53 +804,76 @@ def _ve_sua_tiep() -> None:
 def _ve_thanh_ben() -> None:
     diem_tp = _diem_theo_tp()
     with st.sidebar:
-        st.markdown("## Điền nhanh")
+        _md('<div class="sb-title">Điền nhanh</div>'
+            '<p class="sb-sub">Chọn nhanh các thông số, trợ lý sẽ ghép câu và kiểm giờ mở cửa.</p>')
+
+        _md('<div class="sb-group first">1 · Chuyến đi</div>')
         tp = st.selectbox("Thành phố", list(THANH_PHO), key="f_tp")
+
         with st.form("form_nhanh", border=False):
             c1, c2 = st.columns(2)
             c1.selectbox("Thứ", THU, index=5, key="f_thu")
-            c2.selectbox("Đi bằng", PHUONG_TIEN, key="f_pt")
+            c2.selectbox("Phương tiện", PHUONG_TIEN, key="f_pt")
+
+            _md('<div class="sb-group">2 · Thời gian &amp; Ngân sách</div>')
             c3, c4 = st.columns(2)
             c3.time_input("Từ", value=None, step=900, key="f_tu")
             c4.time_input("Đến", value=None, step=900, key="f_den")
-            st.multiselect("Nơi muốn ghé", diem_tp.get(THANH_PHO[tp], []), key="f_diem",
-                           placeholder="Chọn từ danh sách")
-            st.text_area("Nơi khác, mỗi dòng một nơi", height=68, key="f_khac")
-            st.number_input("Ngân sách mỗi người (đồng, để 0 nếu không cần)", min_value=0, step=50000, key="f_ns")
+            st.number_input("Ngân sách / người (VNĐ)", min_value=0, step=50000, key="f_ns",
+                            help="Để 0 nếu không cần ước tính ngân sách.")
+
+            _md('<div class="sb-group">3 · Điểm muốn ghé</div>')
+            st.multiselect("Chọn từ danh sách", diem_tp.get(THANH_PHO[tp], []), key="f_diem",
+                           placeholder="Chọn một hoặc nhiều điểm…")
+            st.text_area("Nơi khác (tuỳ chọn)", height=64, key="f_khac",
+                         placeholder="Mỗi dòng một địa điểm")
             st.form_submit_button("Xếp lịch", on_click=_gui_tu_form, use_container_width=True)
+
         if "loi_form" in st.session_state:
             st.error(st.session_state.pop("loi_form"))
 
-        st.markdown("## Điểm có dữ liệu")
         ten = diem_tp.get(THANH_PHO[tp], [])
-        _md('<ul class="ds-diem">%s</ul>' % "".join("<li>%s</li>" % html.escape(x) for x in ten))
-        _md('<p class="phu">Nơi ngoài danh sách này trợ lý sẽ báo không có dữ liệu và không xếp vào lịch.</p>')
+        with st.expander("Điểm có dữ liệu tại %s (%d)" % (tp, len(ten)), expanded=False):
+            _md('<ul class="ds-diem">%s</ul>' % "".join("<li>%s</li>" % html.escape(x) for x in ten))
+            _md('<p class="phu">Nơi ngoài danh sách này trợ lý sẽ báo không có dữ liệu và không tự bịa.</p>')
 
         st.divider()
         con = _max_luot() - st.session_state["luot"]
-        st.markdown("## Phiên này")
-        _md('<p class="phu">%s<br>Còn %d lượt hỏi.</p>' % (_tong_token_phien(), con))
-        st.button("Bắt đầu lại", on_click=_cuoc_moi, type="secondary", use_container_width=True)
+        _md('<p class="phu" style="margin-top:0;margin-bottom:10px;">%s<br>Còn <b>%d</b> lượt hỏi trong phiên.</p>'
+            % (_tong_token_phien(), con))
+        st.button("Làm mới cuộc trò chuyện", on_click=_cuoc_moi, type="secondary", use_container_width=True)
 
 
 def main() -> None:
     st.set_page_config(page_title="Đi đâu trước, đi đâu sau", page_icon=None, initial_sidebar_state="auto")
     _md(CSS)
-    dang_chat = bool(st.session_state.get("tin")) or "cho_gui" in st.session_state
-    _md('<div class="khoi%s"><p class="eyebrow">Lịch trình một ngày</p><h1>Đi đâu trước, đi đâu sau.</h1>'
-        '<p class="subhead">Nhắn thành phố, ngày đi, khung giờ và những nơi muốn ghé. Trợ lý xếp thứ tự để tới đâu '
-        'cũng còn mở cửa, rồi bạn gửi lịch cho cả nhóm.</p></div>' % (" gon" if dang_chat else ""))
     if not _qua_cong_mat_khau():
         return
     _khoi_tao()
     _ve_thanh_ben()
+
+    tp_chon = st.session_state.get("f_tp", next(iter(THANH_PHO)))
+    so_diem = len(_diem_theo_tp().get(THANH_PHO[tp_chon], []))
+    dang_chat = bool(st.session_state.get("tin")) or "cho_gui" in st.session_state
+    _md(
+        '<div class="khoi-header%s">'
+        '<div class="header-meta">'
+        '<span class="header-eyebrow">Trợ lý lịch trình 1 ngày</span>'
+        '<span class="city-badge">%s<span>%s · %d điểm</span></span>'
+        '</div>'
+        '<h1>Đi đâu trước, đi đâu sau.</h1>'
+        '<p class="header-sub">Xếp thứ tự theo giờ mở cửa thực tế, gợi ý đổi điểm trong nhà khi trời mưa và ước tính ngân sách cho nhóm.</p>'
+        '</div>' % (" gon" if dang_chat else "", SVG_PIN, html.escape(tp_chon), so_diem)
+    )
+
     if ai.MODEL_PROVIDER == "fake":
-        _md('<div class="che-do-thu">Đang chạy chế độ thử, chưa dùng model: thứ tự do máy xếp theo luật đơn giản, '
+        _md('<div class="che-do-thu">Đang chạy chế độ thử (chưa nối model thật): thứ tự do máy xếp dự phòng, '
             'kết quả ghi "(dự phòng)".</div>')
     if not st.session_state["tin"] and "cho_gui" not in st.session_state:
         _ve_man_trong()
     _ve_lich_su()
-    st.chat_input("Vd: Thứ Bảy ở Huế từ 8h đến 17h, đi Đại Nội, chùa Thiên Mụ", key="o_chat", on_submit=_gui_tu_chat)
+    st.chat_input("Vd: Thứ Bảy ở Hà Nội từ 8h đến 17h, đi Hồ Gươm, Nhà thờ Lớn, Chùa Một Cột", key="o_chat",
+                  on_submit=_gui_tu_chat)
     if "cho_gui" in st.session_state:
         _xu_ly_cho_gui()
     _ve_sua_tiep()
