@@ -1,92 +1,281 @@
 poi_id,day_of_week,is_open,open_time,close_time,break_start,break_end,last_entry_time,source_note,nguon
-MOI_HCM_01,Mon,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_01,Tue,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_01,Wed,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_01,Thu,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_01,Fri,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_01,Sat,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_01,Sun,True,10:30,22:30,,,,"diningcity.vn; bepmein.com",https://diningcity.vn
-MOI_HCM_02,Mon,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_02,Tue,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_02,Wed,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_02,Thu,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_02,Fri,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_02,Sat,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_02,Sun,True,07:00,23:00,,,,"quan-bui.com; caubason.com",https://quan-bui.com
-MOI_HCM_03,Mon,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_03,Tue,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_03,Wed,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_03,Thu,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_03,Fri,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_03,Sat,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_03,Sun,True,09:00,23:30,,,,"trip.com; danielfooddiary.com",https://trip.com
-MOI_HCM_04,Mon,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_04,Tue,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_04,Wed,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_04,Thu,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_04,Fri,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_04,Sat,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_04,Sun,True,10:00,21:00,14:00,16:00,,"vnguide.vn; grab.com",https://vnguide.vn
-MOI_HCM_05,Mon,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_05,Tue,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_05,Wed,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_05,Thu,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_05,Fri,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_05,Sat,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_05,Sun,True,10:00,22:00,,,,"mia.vn; squarespace.com",https://mia.vn
-MOI_HCM_06,Mon,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_06,Tue,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_06,Wed,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_06,Thu,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_06,Fri,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_06,Sat,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_06,Sun,True,08:00,21:00,,,,"tonkin.coffee; mia.vn",https://tonkin.coffee
-MOI_HCM_07,Mon,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_07,Tue,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_07,Wed,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_07,Thu,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_07,Fri,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_07,Sat,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_07,Sun,True,08:00,22:00,,,,"danielfooddiary.com; tabi.place",https://danielfooddiary.com
-MOI_HCM_08,Mon,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_08,Tue,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_08,Wed,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_08,Thu,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_08,Fri,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_08,Sat,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_08,Sun,True,08:00,22:00,,,,"tinhte.vn; riviu.vn",https://tinhte.vn
-MOI_HCM_09,Mon,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_09,Tue,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_09,Wed,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_09,Thu,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_09,Fri,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_09,Sat,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_09,Sun,True,07:00,22:00,,,,"mia.vn; pinguide.city",https://mia.vn
-MOI_HCM_10,Mon,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_10,Tue,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_10,Wed,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_10,Thu,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_10,Fri,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_10,Sat,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_10,Sun,True,07:00,21:00,,,,"ivivu.com; saigontastetours.com",https://ivivu.com
-MOI_HCM_11,Mon,True,10:00,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_11,Tue,True,10:00,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_11,Wed,True,10:00,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_11,Thu,True,10:00,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_11,Fri,True,10:00,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_11,Sat,True,09:30,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_11,Sun,True,09:30,22:00,,,,"vincom.com.vn; traveloka.com",https://vincom.com.vn
-MOI_HCM_12,Mon,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_12,Tue,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_12,Wed,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_12,Thu,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_12,Fri,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_12,Sat,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_12,Sun,True,09:30,21:30,,,20:45,"divui.com; vietmytravel.com",https://divui.com
-MOI_HCM_13,Mon,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
-MOI_HCM_13,Tue,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
-MOI_HCM_13,Wed,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
-MOI_HCM_13,Thu,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
-MOI_HCM_13,Fri,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
-MOI_HCM_13,Sat,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
-MOI_HCM_13,Sun,True,09:30,22:00,,,,"diamondplaza.com.vn; mia.vn",https://diamondplaza.com.vn
+MOI_HN_01,Mon,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_01,Tue,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_01,Wed,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_01,Thu,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_01,Fri,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_01,Sat,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_01,Sun,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu; xem 28/11; Foody ghi 09:00–22:00; lấy giờ theo Vincom chính thức.,https://vincom.com.vn/vincom-center-ba-trieu/gioi-thieu
+MOI_HN_02,Mon,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_02,Tue,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_02,Wed,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_02,Thu,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_02,Fri,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_02,Sat,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_02,Sun,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-metropolis/gioi-thieu; xem 28/11; Nguồn hai xác nhận trung tâm tại 29 Liễu Giai; giờ theo Vincom.,https://vincom.com.vn/vincom-center-metropolis/gioi-thieu
+MOI_HN_03,Mon,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_03,Tue,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_03,Wed,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_03,Thu,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_03,Fri,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_03,Sat,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_03,Sun,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu; xem 28/11; Giờ hai nguồn khớp.,https://vincom.com.vn/vincom-center-tran-duy-hung/gioi-thieu
+MOI_HN_04,Mon,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_04,Tue,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_04,Wed,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_04,Thu,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_04,Fri,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_04,Sat,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_04,Sun,True,09:30,22:00,,,,Giờ theo https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu; xem 28/11; Nguồn hai ghi 10:00–22:00 chung; giờ cuối tuần theo Vincom.,https://vincom.com.vn/vincom-center-pham-ngoc-thach/gioi-thieu
+MOI_HN_05,Mon,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_05,Tue,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_05,Wed,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_05,Thu,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_05,Fri,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_05,Sat,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_05,Sun,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/369/highlands-coffee-ctm-cau-giay-ha-noi.html
+MOI_HN_06,Mon,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_06,Tue,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_06,Wed,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_06,Thu,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_06,Fri,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_06,Sat,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_06,Sun,True,07:00,23:00,,,,Giờ theo https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html; xem 28/11; Giờ hai nguồn khớp.,https://www.highlandscoffee.com.vn/vn/he-thong-cua-hang/546/highlands-coffee-139-hao-nam.html
+MOI_HN_07,Mon,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_07,Tue,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_07,Wed,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_07,Thu,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_07,Fri,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_07,Sat,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_07,Sun,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn để an toàn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-capital-place-ha-noi
+MOI_HN_08,Mon,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_08,Tue,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_08,Wed,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_08,Thu,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_08,Fri,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_08,Sat,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_08,Sun,True,07:00,22:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower; xem 28/11; Highlands ghi tới 23:00; Foody ghi 22:00, dùng giờ đóng sớm hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-tnr-tower
+MOI_HN_09,Mon,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_09,Tue,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_09,Wed,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_09,Thu,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_09,Fri,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_09,Sat,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_09,Sun,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng để trống giờ; giờ lấy từ Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-ham-ca-map
+MOI_HN_10,Mon,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_10,Tue,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_10,Wed,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_10,Thu,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_10,Fri,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_10,Sat,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_10,Sun,True,09:00,23:00,,,,"Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh; xem 28/11; Highlands ghi mở 07:00; Foody ghi 09:00, dùng giờ mở muộn hơn.",https://www.foody.vn/ha-noi/highlands-coffee-tra-ca-phe-banh-129-thai-thinh
+MOI_HN_11,Mon,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_11,Tue,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_11,Wed,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_11,Thu,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_11,Fri,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_11,Sat,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_11,Sun,True,10:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Mon,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Tue,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Wed,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Thu,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Fri,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Sat,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_12,Sun,True,11:00,22:00,,,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ hai nguồn khớp.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_13,Mon,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_13,Tue,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_13,Wed,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_13,Thu,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_13,Fri,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_13,Sat,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_13,Sun,True,10:00,22:00,,,,Giờ theo https://www.momo.vn/page/1063636; xem 28/11; Vincom 2026 xác nhận gian hàng; giờ theo MoMo 10:00–22:00. Bài Vincom cũ ghi 11:00.,https://www.momo.vn/page/1063636
+MOI_HN_14,Mon,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_14,Tue,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_14,Wed,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_14,Thu,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_14,Fri,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_14,Sat,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_14,Sun,True,11:00,22:00,14:30,17:00,,Giờ theo https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo hai nguồn.,https://vincom.com.vn/trend/vincom-ba-trieu-co-gi-an
+MOI_HN_15,Mon,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_15,Tue,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_15,Wed,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_15,Thu,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_15,Fri,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_15,Sat,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_15,Sun,True,10:00,22:00,,,,Giờ theo https://wulao.vn/index.php/nha-hang; xem 28/11; Giờ theo website thương hiệu; nguồn hai xác nhận chi nhánh.,https://wulao.vn/index.php/nha-hang
+MOI_HN_16,Mon,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_16,Tue,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_16,Wed,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_16,Thu,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_16,Fri,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_16,Sat,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_16,Sun,True,10:00,22:00,,,,Giờ theo https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786; xem 28/11; Giờ theo PasGo; Vincom xác nhận gian hàng hiện tại.,https://pasgo.vn/nha-hang/meiwei-vincom-ba-trieu-4786
+MOI_HN_17,Mon,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_17,Tue,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_17,Wed,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_17,Thu,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_17,Fri,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_17,Sat,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_17,Sun,True,11:00,22:00,14:30,17:00,,Giờ theo https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung; xem 28/11; Nghỉ giữa ca 14:30–17:00 theo Foody.,https://www.foody.vn/ha-noi/le-monde-steak-vincom-tran-duy-hung
+MOI_HN_18,Mon,True,10:00,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_18,Tue,True,10:00,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_18,Wed,True,10:00,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_18,Thu,True,10:00,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_18,Fri,True,10:00,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_18,Sat,True,09:30,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_18,Sun,True,09:30,22:00,,,21:30,Giờ theo https://pizza4ps.com/vn/location/927/; xem 28/11; Nhận đơn cuối 21:30 theo Pizza 4P's.,https://pizza4ps.com/vn/location/927/
+MOI_HN_19,Mon,False,,,,,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_19,Tue,True,08:00,17:00,12:00,13:30,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_19,Wed,True,08:00,17:00,12:00,13:30,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_19,Thu,True,08:00,17:00,12:00,13:30,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_19,Fri,True,08:00,17:00,12:00,13:30,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_19,Sat,True,08:00,17:00,12:00,13:30,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_19,Sun,True,08:00,17:00,12:00,13:30,,Giờ theo https://vnmh.com.vn/vi; xem 28/11; Nghỉ trưa 12:00–13:30; đóng thứ Hai theo hai nguồn.,https://vnmh.com.vn/vi
+MOI_HN_20,Mon,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_20,Tue,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_20,Wed,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_20,Thu,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_20,Fri,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_20,Sat,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_20,Sun,True,08:00,17:00,,,,Giờ theo https://govietnam.travel/destination/vietnamese-women-s-museum/; xem 28/11; Giờ 08:00–17:00 hằng ngày theo hai cẩm nang du lịch.,https://govietnam.travel/destination/vietnamese-women-s-museum/
+MOI_HN_21,Mon,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_21,Tue,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_21,Wed,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_21,Thu,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_21,Fri,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_21,Sat,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_21,Sun,True,06:00,22:00,14:00,17:00,,Giờ theo https://www.foody.vn/ha-noi/pho-10-ly-quoc-su; xem 28/11; Foody ghi nghỉ 14:00–17:00; giữ giờ nghỉ để tránh xếp buổi chiều. HanoiGo ghi giờ liên tục.,https://www.foody.vn/ha-noi/pho-10-ly-quoc-su
+MOI_HN_22,Mon,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_22,Tue,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_22,Wed,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_22,Thu,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_22,Fri,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_22,Sat,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_22,Sun,True,11:00,23:00,,,22:30,Giờ theo https://pizza4ps.com/vn/location/922/?lang=vietnamese; xem 28/11; Bản tiếng Anh của Pizza 4P's ghi 10:30; bản tiếng Việt ghi 11:00. Dùng giờ mở bảo thủ 11:00.,https://pizza4ps.com/vn/location/922/?lang=vietnamese
+MOI_HN_23,Mon,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_23,Tue,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_23,Wed,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_23,Thu,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_23,Fri,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_23,Sat,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_23,Sun,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/al-fresco-s-vinhomes-metropolis
+MOI_HN_24,Mon,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_24,Tue,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_24,Wed,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_24,Thu,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_24,Fri,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_24,Sat,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_24,Sun,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-vincom-metropolis
+MOI_HN_25,Mon,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_25,Tue,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_25,Wed,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_25,Thu,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_25,Fri,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_25,Sat,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_25,Sun,True,10:00,22:00,,,,Giờ theo https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach; xem 28/11; Giờ theo Foody; Vincom xác nhận gian hàng hiện tại.,https://www.foody.vn/ha-noi/marukame-udon-udon-tempura-vincom-pham-ngoc-thach
+MOI_HN_26,Mon,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_26,Tue,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_26,Wed,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_26,Thu,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_26,Fri,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_26,Sat,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_26,Sun,True,07:00,23:00,,,,Giờ theo https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon; xem 28/11; Trang Highlands xác nhận địa chỉ nhưng không ghi giờ; giờ theo Foody.,https://www.foody.vn/ha-noi/highlands-coffee-ca-phe-dong-goi-nha-hat-lon
+MOI_HN_27,Mon,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HN_27,Tue,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HN_27,Wed,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HN_27,Thu,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HN_27,Fri,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HN_27,Sat,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HN_27,Sun,True,08:00,22:00,,,,"Giờ theo https://www.momo.vn/page/1055752; xem 28/11; Foody ghi 07:00–23:00; MoMo ghi 08:00–22:00, dùng khung giờ ngắn hơn.",https://www.momo.vn/page/1055752
+MOI_HCM_01,Mon,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_01,Tue,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_01,Wed,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_01,Thu,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_01,Fri,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_01,Sat,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_01,Sun,True,10:30,22:30,,,,diningcity.vn; bepmein.com,https://diningcity.vn
+MOI_HCM_02,Mon,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_02,Tue,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_02,Wed,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_02,Thu,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_02,Fri,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_02,Sat,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_02,Sun,True,07:00,23:00,,,,quan-bui.com; caubason.com,https://quan-bui.com
+MOI_HCM_03,Mon,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_03,Tue,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_03,Wed,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_03,Thu,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_03,Fri,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_03,Sat,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_03,Sun,True,09:00,23:30,,,,trip.com; danielfooddiary.com,https://trip.com
+MOI_HCM_04,Mon,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_04,Tue,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_04,Wed,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_04,Thu,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_04,Fri,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_04,Sat,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_04,Sun,True,10:00,21:00,14:00,16:00,,vnguide.vn; grab.com,https://vnguide.vn
+MOI_HCM_05,Mon,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_05,Tue,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_05,Wed,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_05,Thu,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_05,Fri,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_05,Sat,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_05,Sun,True,10:00,22:00,,,,mia.vn; squarespace.com,https://mia.vn
+MOI_HCM_06,Mon,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_06,Tue,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_06,Wed,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_06,Thu,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_06,Fri,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_06,Sat,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_06,Sun,True,08:00,21:00,,,,tonkin.coffee; mia.vn,https://tonkin.coffee
+MOI_HCM_07,Mon,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_07,Tue,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_07,Wed,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_07,Thu,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_07,Fri,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_07,Sat,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_07,Sun,True,08:00,22:00,,,,danielfooddiary.com; tabi.place,https://danielfooddiary.com
+MOI_HCM_08,Mon,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_08,Tue,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_08,Wed,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_08,Thu,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_08,Fri,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_08,Sat,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_08,Sun,True,08:00,22:00,,,,tinhte.vn; riviu.vn,https://tinhte.vn
+MOI_HCM_09,Mon,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_09,Tue,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_09,Wed,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_09,Thu,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_09,Fri,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_09,Sat,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_09,Sun,True,07:00,22:00,,,,mia.vn; pinguide.city,https://mia.vn
+MOI_HCM_10,Mon,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_10,Tue,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_10,Wed,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_10,Thu,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_10,Fri,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_10,Sat,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_10,Sun,True,07:00,21:00,,,,ivivu.com; saigontastetours.com,https://ivivu.com
+MOI_HCM_11,Mon,True,10:00,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_11,Tue,True,10:00,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_11,Wed,True,10:00,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_11,Thu,True,10:00,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_11,Fri,True,10:00,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_11,Sat,True,09:30,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_11,Sun,True,09:30,22:00,,,,vincom.com.vn; traveloka.com,https://vincom.com.vn
+MOI_HCM_12,Mon,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_12,Tue,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_12,Wed,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_12,Thu,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_12,Fri,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_12,Sat,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_12,Sun,True,09:30,21:30,,,20:45,divui.com; vietmytravel.com,https://divui.com
+MOI_HCM_13,Mon,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn
+MOI_HCM_13,Tue,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn
+MOI_HCM_13,Wed,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn
+MOI_HCM_13,Thu,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn
+MOI_HCM_13,Fri,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn
+MOI_HCM_13,Sat,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn
+MOI_HCM_13,Sun,True,09:30,22:00,,,,diamondplaza.com.vn; mia.vn,https://diamondplaza.com.vn

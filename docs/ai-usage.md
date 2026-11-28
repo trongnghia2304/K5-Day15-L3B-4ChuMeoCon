@@ -24,6 +24,8 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 - **Công cụ AI đã dùng:** Antigravity (hỗ trợ kiểm tra read-only cấu trúc `data/`, tạo `data/travel-ops/price_tier_vnd.csv` + cập nhật `data/DATA_CARD.md`, viết script tính độ nhạy S25/S28 trên `evidence/survey/results.csv`, tra cứu nguồn công khai `gso.gov.vn` / `vietnamtourism.gov.vn` để điền bảng Impact ở `spec.md §2`, và soạn nội dung Trang 1–3 trong `slides/outline.md`).
 - **Người tự kiểm & đối chiếu:** Đã đối chiếu trực tiếp kết quả tính độ nhạy S25/S28 với `evidence/survey/results.csv` và giữ nguyên 100% số liệu gốc đã nộp CP2; kiểm tra lại toàn bộ phép tính Impact và gắn nhãn *(tự ước tính)* cho mọi thừa số không có nguồn trực tiếp; chạy `python data/validate_travel_data.py` (`0 errors`), `python run.py check` (`Không thấy vấn đề`) và kiểm `git diff` xác nhận không sửa các mục đã khoá (§3–§9, B01–B28, khối N2–N4).
 
+- **Đợt 2 (28/11):** Dùng Antigravity tra cứu 2 nguồn công khai cho 13 điểm TP.HCM vào `data/staging/` theo hợp đồng H14 (N2 duyệt lọc 7 điểm vào `data/mo-rong`), và chuẩn bị `Dockerfile`, `.dockerignore`, `railway.json` để deploy web Streamlit lên Railway (theo bàn giao từ N4); tự chạy kiểm `kiem_hop_dong.py`, `validate_travel_data.py`, `run.py check` và `web/test_ghep_cau.py`.
+
 ### N2 — Nguyễn Văn Hiếu
 
 - Dùng Codex hỗ trợ viết hàm đọc mức giá POI, tách ngân sách trong câu và chuẩn bị cấu hình persona chi phí.
@@ -31,6 +33,7 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 - Dùng Codex tìm và cấu trúc 27 địa điểm Hà Nội từ trang cửa hàng, trung tâm thương mại và nguồn đối chiếu công khai; ghi hai link mỗi điểm, đánh dấu giờ nguồn lệch, kiểm đủ 189 dòng giờ và `python scripts/kiem_hop_dong.py` 0 lỗi.
 - Dùng Codex hỗ trợ đọc output `run-1` và soạn phiếu B01–B15; tự đối chiếu từng `pass_criterion` và giờ trong data, chốt 11/15 đạt trong `eval/grading-run1-hieu.csv`.
 - Dùng Codex điền nháp báo cáo chi phí từ `cost/personas.yaml` và `spec.md` §2; giữ trống tỉ lệ đạt, bảng mô phỏng và kết luận cho đến khi có `run-2` đã chấm.
+- Dùng Codex đối chiếu 13 điểm HCM staging của N1 với trang cụ thể; tự giữ 6 điểm có giờ/cờ không gian chưa khớp ngoài dữ liệu chạy, chỉ nối 7 điểm đủ nguồn và ghi URL, lý do trong `data/kiem-nguon-hcm.md`. Chạy lại validator và kiểm hợp đồng trước khi push.
 - Dùng Codex chuyển riêng 27 điểm HN đã kiểm từ nhánh data sang `main` theo yêu cầu deploy; tự kiểm chỉ nối dòng POI/giờ, giữ HCM ở nhánh chờ và ghi lại rằng run-2 sẽ có nền dữ liệu khác run-1.
 
 ### N3 — ____
