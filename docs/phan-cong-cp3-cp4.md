@@ -11,9 +11,9 @@
 > Đề xuất và quyết định: [`huong-b-lite.md`](huong-b-lite.md). Đợt 1 (đêm 27/11) đã xong: model thật, ngân sách, B29–B30, **run-1** (`run-1@20261128-010117`, 30 câu), bản chấm B16–B30.
 
 ### Ba nguyên tắc của đợt này
-1. **run-2 đo đúng một thứ: lần sửa nhóm lỗi.** run-2 chạy trên `main` với data 94 điểm, **chưa có** B-lite, **chưa có** data mới. Cùng 30 câu với run-1.
-2. **B-lite và data mới làm trên nhánh riêng, chỉ merge sau khi `simulate` chạy xong (≈13:15)** → run-2 và chi phí đo cùng một cấu hình. Bản demo CP4 có B-lite + data mới; slide ghi rõ "run-2 đo bản chưa có B-lite".
-3. **run-3** (bản cuối: sửa lỗi + B-lite + data mới) chạy **sau demo, trước 23:59**, chấm đủ 30 câu, ghi §10 "Sau CP4". Không thêm câu thử (đã đủ 30, `rule.md` 1.3).
+1. **run-2 = lần sửa nhóm lỗi + B-lite + giọng văn mới (H7 v3)** *(đổi lúc 03:39 28/11: B-lite đã vào `main` lúc 03:05, giọng văn lúc 03:39)*. run-2 vẫn chạy trên data 94 điểm, **chưa có** data mới, cùng 30 câu với run-1. `eval/report.md` mục 3 phải tách "sửa lỗi gì" (nhóm lỗi) và "thêm gì" (B-lite, giọng văn).
+2. **Chỉ còn data mới làm trên nhánh riêng** (`data/mo-rong`), merge sau khi `simulate` chạy xong (≈13:15) → run-2 và chi phí đo cùng một cấu hình. Slide ghi rõ "run-2 đo bản đã có B-lite + giọng văn mới, chưa có data mở rộng".
+3. **run-3** (bản cuối: sửa lỗi + B-lite + giọng văn + data mới) chạy **sau demo, trước 23:59**, chấm đủ 30 câu, ghi §10 "Sau CP4". Không thêm câu thử (đã đủ 30, `rule.md` 1.3).
 
 ### Lịch
 
@@ -22,7 +22,7 @@
 | tối nay → **11:30** (online) | **N1** | Thu thập điểm mới — ưu tiên **HCM · DN · HA** (B-lite bật ở B01, B29, B30 – HCM; B03 – DN; B04 – HA), rồi HN · HUE (demo); thành phố khác được nhưng không bắt buộc; ưu tiên cafe / quán ăn / trong nhà / mở tối, mỗi điểm 2 nguồn (hợp đồng **H14**). Mục tiêu 5–8 điểm / thành phố; được bao nhiêu nộp bấy nhiêu | `data/staging/poi_moi.csv`, `data/staging/gio_mo_moi.csv` |
 | 08:00–09:15 | **N2** | Chấm run-1 **B01–B15** | `eval/grading-run1-<ten-2>.csv` |
 | 08:00–08:30 | **N3** | Chấm lại B01–B05 để đối chiếu N2 (lệch ≥ 2/5 → bàn lại cách hiểu, không sửa tiêu chí) | ghi chú trong `eval/README.md` mục 3 |
-| 08:30–09:15 | **N3** | B-lite trên nhánh `feat/b-lite`: nhánh trong `agent.py` + `prompts/lap_gio_trong.md` (mục 4 của đề xuất) | nhánh, **chưa merge** |
+| 08:30–09:15 | **N3** | **Đã xong sớm:** B-lite vào `main` 03:05, giọng văn (H7 v3) 03:39. Khung này để chuẩn bị lần sửa nhóm lỗi | |
 | 08:00–09:30 | **N4** | Video 30s (bản hiện tại) → link cho N3 | link |
 | 09:15–09:50 | **N3** | Gộp 2 file chấm vào `run-1.csv` → `python run.py score eval/run-1.csv` → `eval/README.md` mục 5 + dòng kết quả §7 → **nộp CP3** | |
 | 09:30–10:30 | **N4** | Người dùng thử 3 người **trên bản hiện tại**; giao ít nhất 1 việc có giờ trống / thành phố ít điểm | `validation/log.md` |
@@ -31,17 +31,17 @@
 | 10:00–11:45 | **N2** | Kiểm nguồn thứ 2 các dòng staging của N1 → chép sang nhánh `data/mo-rong`: **chỉ thêm dòng** vào `poi_master.csv`, `opening_hours.csv`, gán `poi_id` thật; `python data/validate_travel_data.py` + `python scripts/kiem_hop_dong.py` | nhánh, **chưa merge** |
 | **11:15** | **N3** | **run-2** trên `main` → commit ngay `run-2.csv` + trace | `eval/run-2.csv` |
 | 11:30–12:10 | **N2** (B01–B15) · **N4** (B16–B30) | Chấm run-2 | `eval/grading-run2-<ten>.csv` |
-| 11:30–12:10 | **N3** | Rebase `feat/b-lite` lên `main` mới, chạy `python run.py eval --try 30` so dòng lịch trước / sau | |
+| 11:30–12:10 | **N3** | Viết `eval/report.md` mục 3 (sửa lỗi gì · thêm gì) trong lúc N2, N4 chấm run-2 | |
 | 12:10–12:30 | **N3** | Gộp chấm run-2 → `score` → `eval/report.md`, `eval/README.md` | |
 | 12:30–13:15 | **N2** | `python run.py simulate` (≥50 phiên) trên `main` lúc này (cấu hình run-2) → `cost/cost-estimate.md` trước **13:30** | `cost/simulate-N.csv` |
-| **13:15** | **N3** rồi **N2** | Merge `feat/b-lite` → merge `data/mo-rong` → `kiem_hop_dong` · `run.py check` · `validate_travel_data` · `eval --try 30` so trước / sau — soi riêng 6 câu nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28): đổi thì ghi vào `eval/report.md`, **không sửa câu**. Hỏng → `git revert`, để slide 8 | commit merge |
+| **13:15** | **N2** | Merge `data/mo-rong` → `kiem_hop_dong` · `run.py check` · `validate_travel_data` · `eval --try 30` so trước / sau — soi riêng 6 câu nêu đích danh điểm gợi ý (B13, B14, B15, B18, B19, B28): đổi thì ghi vào `eval/report.md`, **không sửa câu**. Hỏng → `git revert`, để slide 8 | commit merge |
 | 13:15–13:45 | **N4** | (tuỳ) cho 1 người thử lại bản mới, ghi thêm vào `validation/log.md` | |
-| 13:30–14:15 | **N4** | Slide 4–8 → `demo-slides.pdf` + video dự phòng; slide 5 ghi "run-2 đo bản chưa có B-lite + data mở rộng" | `demo-slides.pdf` |
+| 13:30–14:15 | **N4** | Slide 4–8 → `demo-slides.pdf` + video dự phòng; slide 5 ghi "run-2 đo bản đã có B-lite + giọng văn mới, chưa có data mở rộng" | `demo-slides.pdf` |
 | 13:30–14:15 | **N3** | `spec.md` §4–§6, §8–§9; hợp đồng H7 v2 đã có | |
 | **14:30** | đội trưởng | **Nộp CP4** | |
 | sau demo → **23:59** | N3 chạy · N2, N3, N4 chấm (10 câu / người) | **run-3** trên bản cuối, ghi §10 "Sau CP4"; reflection mỗi người | `eval/run-3.csv` |
 
-**Điểm cắt:** 13:30 mà `eval --try 30` cho thấy dòng lịch bị đổi hoặc `kiem_hop_dong` báo lỗi → không merge (B-lite / data để slide 8). Data: chỉ merge dòng đã có đủ 2 nguồn.
+**Điểm cắt:** 13:30 mà `eval --try 30` cho thấy dòng lịch bị đổi hoặc `kiem_hop_dong` báo lỗi → không merge data (để slide 8). Data: chỉ merge dòng đã có đủ 2 nguồn.
 
 ### Ai chờ ai (Đợt 2)
 
@@ -52,7 +52,7 @@
 | N2 | N1 | `data/staging/*` | 11:30 | merge phần đã có đủ 2 nguồn; thiếu thì bỏ |
 | N2, N4 (chấm) | N3 | `run-2.csv` | 11:15 | dời chấm theo |
 | N2 (simulate) | N3 | `score` run-2 | 12:30 | simulate dùng tỉ lệ đạt run-2 |
-| N3, N2 (merge) | N2 | `simulate` xong | 13:15 | **chưa merge** khi simulate chưa xong |
+| N2 (merge data) | N2 | `simulate` xong | 13:15 | **chưa merge data** khi simulate chưa xong |
 | N4 (slide 5, 6) | N3, N2 | `report.md`, `cost-estimate.md` | 13:30 | |
 
 ### Ứng viên nhóm lỗi cho lần sửa trước run-2 (từ run-1, nhóm chốt lúc 10:00)

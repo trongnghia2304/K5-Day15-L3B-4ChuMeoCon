@@ -8,8 +8,8 @@
 | Nguồn | Đạt ngưỡng? | File |
 |---|---|---|
 | Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☐ *(dự kiến: review Google Maps của các điểm ăn chơi)* | `evidence/data-mining.md` |
-| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☑ 3 người (P1 trực tiếp, P2 nhắn tin, P3 trực tiếp) *(chờ nhóm xác nhận cả 3 là người ngoài nhóm; P2 nhắn tin, template ghi trực tiếp / video — hỏi BTC xem có tính không)* | [`P1`](interviews/P1.md) · [`P2`](interviews/P2.md) · [`P3`](interviews/P3.md) |
-| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☑ n = 76, 67 người đã đi tự túc *(chờ nhóm xác nhận không có thành viên trong mẫu)* | [`evidence/survey/`](survey/questions.md) |
+| Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☑ 3 người (P1 trực tiếp, P2 nhắn tin, P3 trực tiếp) | [`P1`](interviews/P1.md) · [`P2`](interviews/P2.md) · [`P3`](interviews/P3.md) |
+| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☑ n = 76, 67 người đã đi tự túc | [`evidence/survey/`](survey/questions.md) |
 
 ## 2. Số chính
 

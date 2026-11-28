@@ -8,6 +8,8 @@
     6. Code lap_lich tính giờ; liet_ke_vi_pham liệt kê đủ lỗi. Có lỗi → trả lỗi cho model sửa  [≤ 2 vòng]
     7. Còn vi phạm → code bỏ điểm vi phạm, báo "không xếp được hết" + lý do (+ điểm thay thế nếu đóng cả ngày)
     8. Cổng kiểm cuối: kiem_lich_trinh (docs/itinerary-tool-contract.md) — chỉ lịch valid mới được hiện
+   8b. B-lite (docs/huong-b-lite.md): lịch valid, không bỏ điểm, còn trống ≥ 60 phút → code lọc ứng viên đang mở gần
+       điểm cuối, model chọn 1–3 + lý do  [call_model]. CHỈ GỢI Ý dưới lịch, không chèn vào lịch
     9. Trả lịch từng giờ + lý do. Người lên lịch tự duyệt rồi gửi nhóm (AI không gửi tin, không đặt chỗ)
 
   Nhánh GỢI Ý (bước 1 trả loai = "goi_y": đang đi thì mưa / quán đóng / quá đông / xong sớm):
@@ -36,10 +38,21 @@ from tracing import note
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MAX_REPAIR = 2
+NGUONG_TRONG_PHUT = 60  # B-lite: lịch còn trống từ ngần này phút trở lên mới gợi ý thêm (docs/huong-b-lite.md)
+MAX_DI_LAP = 30         # B-lite: ứng viên đi từ điểm cuối tối đa bấy nhiêu phút
 SOFT = {"cho_qua_lau"}  # chỉ là cảnh báo, không tính là vi phạm
 GENERIC = {"quan", "tiem", "ca", "phe", "cafe", "coffee", "di", "o", "an", "uong", "the", "nha", "khu", "diem"}
 DAY_VN = {"Mon": "Thứ Hai", "Tue": "Thứ Ba", "Wed": "Thứ Tư", "Thu": "Thứ Năm", "Fri": "Thứ Sáu",
           "Sat": "Thứ Bảy", "Sun": "Chủ Nhật"}
+# Lời văn cho người dùng (góp ý 28/11): không mã kỹ thuật ở chỗ không cần, không dòng "Vì sao…" do model viết
+# (lý do của model chỉ ghi vào trace), sự cố giả lập vẫn ghi rõ là mô phỏng. Các mẫu dòng code chấm đọc
+# (Lịch …, n. HH:MM–HH:MM · [POI_ID], n. [POI_ID] … — đi X phút, Lúc HH:MM …) giữ nguyên — hợp đồng H7.
+TEN_TP = {"HN": "Hà Nội", "HP": "Hải Phòng", "QN": "Hạ Long (Quảng Ninh)", "SP": "Sa Pa", "TD": "Tam Đảo",
+          "HG": "Hà Giang", "HUE": "Huế", "DN": "Đà Nẵng", "HA": "Hội An", "NT": "Nha Trang", "DL": "Đà Lạt",
+          "HCM": "TP.HCM"}
+DK_VN = {"mua": "trời mưa", "nang": "trời nắng gắt", "dong_khach": "chỗ định đến đang đông",
+         "dong_cua": "chỗ định đến đóng cửa", "xong_som": "xong sớm"}
+IO_VN = {"indoor": "trong nhà", "outdoor": "ngoài trời", "semi_outdoor": "nửa trong nửa ngoài"}
 OUT_OF_SCOPE = re.compile(r"\b(dat ban|dat cho|dat ve|dat phong|mua ve|thanh toan|chuyen khoan|coc|nhan tin|"
                           r"goi dien|book|giu cho|otp|so the|mat khau)\b")
 INJECTION = re.compile(r"\b(bo qua|ignore|khong can kiem|dung kiem|cu ghi|tu bia|bia dai|system prompt)\b")
@@ -55,6 +68,16 @@ WEAK = {"bao", "tang", "cho", "chua", "den", "pho", "co", "nha", "hang", "bai", 
 SYSTEM_TRICH = _prompt("trich_yeu_cau.md")
 SYSTEM_XEP = _prompt("xep_thu_tu.md")
 SYSTEM_GOI_Y = _prompt("goi_y.md")
+SYSTEM_LAP = _prompt("lap_gio_trong.md")
+
+
+def _mo_phong(desc):
+    """Sự cố trong data là GIẢ LẬP (nhãn '[Giả lập sự cố]') — vẫn nói rõ là mô phỏng, chỉ viết nhẹ hơn."""
+    return "tình huống mô phỏng: " + desc.replace("[Giả lập sự cố]", "").strip()
+
+
+def _ten_tp(req):
+    return TEN_TP.get(req.get("city"), req.get("thanh_pho") or req.get("city") or "")
 
 
 def _words(text):
@@ -260,7 +283,7 @@ def _thay_the(req, pid, exclude, n=2):
     c = goi_y_diem(req["city"], req["thu"], "", p["zone"], req["phuong_tien"], categories=[p["category"]],
                    exclude=exclude, limit=n) or goi_y_diem(req["city"], req["thu"], "", p["zone"], req["phuong_tien"],
                                                             exclude=exclude, limit=n)
-    return ", ".join("[%s] %s" % (x["poi_id"], x["name"]) for x in c)
+    return ", ".join(x["name"] for x in c)
 
 
 def answer(text: str) -> dict:
@@ -276,9 +299,9 @@ def answer(text: str) -> dict:
         ngoai.append("bỏ qua kiểm tra giờ mở cửa / tự bịa thông tin")
     canh_bao = []
     if ngoai:
-        canh_bao.append("Mình chỉ làm việc với dữ liệu có căn cứ: không đặt bàn, không nhắn tin hay thanh toán thay bạn, "
-                        "không bịa địa điểm, và luôn kiểm giờ mở cửa bằng dữ liệu (%s). Bạn tự liên hệ từng nơi nhé."
-                        % "; ".join(dict.fromkeys(ngoai)))
+        note("ngoài phạm vi: " + "; ".join(dict.fromkeys(ngoai)))
+        canh_bao.append("Mình chỉ tra theo dữ liệu có căn cứ, nên không đặt bàn, nhắn tin hay thanh toán giúp được, "
+                        "cũng không ghi một nơi là đang mở khi chưa kiểm giờ mở cửa. Bạn liên hệ trực tiếp từng nơi nhé.")
 
     # Bước 4 (làm trước bước 3 để câu hỏi lại nhắc được điểm đã nhận)
     ids, khong_co = [], []
@@ -321,15 +344,15 @@ def answer(text: str) -> dict:
                 need = min(45, int(tools._poi(i)["avg_duration_min"]))
                 if not any(tools._open_for(i, d, tools._to_min(req["bat_dau"]), need)[0] for d in DAY_VN):
                     h = tools._hours(i, "Sat")
-                    lines.append("Lưu ý: [%s] %s không mở lúc %s vào bất kỳ ngày nào (giờ mở %s–%s%s)."
-                                 % (i, tools._poi(i)["name"], req["bat_dau"], h["open_time"], h["close_time"],
+                    lines.append("Lưu ý: %s không mở lúc %s vào ngày nào trong tuần (giờ mở %s–%s%s)."
+                                 % (tools._poi(i)["name"], req["bat_dau"], h["open_time"], h["close_time"],
                                     ", nghỉ %s–%s" % (h["break_start"], h["break_end"]) if h["break_start"] else ""))
         if ids and req["thu"]:  # biết thứ rồi thì báo ngay điểm đóng cửa cả ngày, kèm điểm thay thế
             for i in ids:
                 if tools._hours(i, req["thu"])["is_open"] != "True":
                     alt = _thay_the(req, i, ids)
-                    lines.append("Lưu ý: [%s] %s đóng cửa %s, mình sẽ không xếp vào lịch.%s"
-                                 % (i, tools._poi(i)["name"], DAY_VN[req["thu"]], " Có thể thay bằng: " + alt if alt else ""))
+                    lines.append("Lưu ý: %s đóng cửa %s nên mình sẽ không xếp vào lịch.%s"
+                                 % (tools._poi(i)["name"], DAY_VN[req["thu"]], " Có thể thay bằng " + alt + "." if alt else ""))
         note("hỏi lại: thiếu " + ", ".join(thieu))
         return {"output": "\n".join(lines + _khong_co(khong_co) + canh_bao)}
     if tools._to_min(req["ket_thuc"]) <= tools._to_min(req["bat_dau"]):
@@ -375,9 +398,10 @@ def answer(text: str) -> dict:
         if tools._hours(b["poi_id"], thu)["is_open"] != "True":
             alt = _thay_the(req, b["poi_id"], ids)
             if alt:
-                b["ly_do"] += " → có thể thay bằng: " + alt
+                b["ly_do"] += " → có thể thay bằng " + alt
     note("lịch cuối: %s · bỏ: %s" % (plan["thu_tu"], [b["poi_id"] for b in bo]))
-    output = _format(req, lich, issues, bo, plan["ly_do"], khong_co, canh_bao)
+    lap = goi_y_lap_gio(req, lich, ids, bo)  # B-lite: chỉ gợi ý, không đổi lịch
+    output = _format(req, lich, issues, bo, plan["ly_do"], khong_co, canh_bao, lap)
     cost_line = dong_chi_phi(text, plan["thu_tu"])
     return {"output": output + ("\n" + cost_line if cost_line else "")}
 
@@ -385,22 +409,41 @@ def answer(text: str) -> dict:
 # ---------------------------------------------------------------- nhánh gợi ý điểm thay thế (đang đi thì vỡ kế hoạch)
 
 def _trang_thai(pid, thu, at):
-    """Một điểm người dùng nhắc có mở lúc `at` không — code đọc opening_hours.csv, kèm sự cố live."""
+    """Một điểm người dùng nhắc có mở lúc `at` không — code đọc opening_hours.csv, kèm sự cố live (mô phỏng)."""
     p = tools._poi(pid)
     if thu:
         h = check_opening_hours(pid, thu, tools._hhmm(at))
-        txt = h.get("status_reason", "")
+        m = {k: tools._to_min(h.get(k) or "") for k in ("open_time", "close_time", "break_start", "break_end",
+                                                       "last_entry_time")}
+        if not h.get("found"):
+            txt = "mình chưa có giờ mở cửa hôm đó"
+        elif not h["is_open_day"]:
+            txt = "đóng cửa cả ngày %s" % DAY_VN[thu]
+        elif h["open_at_time"]:
+            txt = "đang mở (đến %s)" % h["close_time"]
+        elif m["open_time"] is not None and at < m["open_time"]:
+            txt = "chưa mở, mở từ %s" % h["open_time"]
+        elif m["close_time"] is not None and at >= m["close_time"]:
+            txt = "đã đóng lúc %s" % h["close_time"]
+        elif m["break_start"] is not None and m["break_end"] is not None and m["break_start"] <= at < m["break_end"]:
+            txt = "đang nghỉ giữa ca (%s–%s), mở lại lúc %s" % (h["break_start"], h["break_end"], h["break_end"])
+        elif m["last_entry_time"] is not None and at > m["last_entry_time"]:
+            txt = "đã ngưng nhận khách / bán vé từ %s" % h["last_entry_time"]
+        else:
+            txt = h.get("status_reason", "")
     else:
         ok_all = tools._open_for(pid, "", at, 0)[0]
         ok_any = any(tools._open_for(pid, d, at, 0)[0] for d in DAY_VN)
         txt = ("đang mở giờ này (mọi ngày trong tuần)" if ok_all else
-               "giờ này tùy thứ — bạn cho mình biết hôm nay thứ mấy" if ok_any else "không mở vào giờ này ở bất kỳ ngày nào")
+               "giờ này còn tùy thứ — bạn cho mình biết hôm nay thứ mấy nhé" if ok_any else
+               "không mở vào giờ này ngày nào trong tuần")
     need = min(45, int(p["avg_duration_min"]))
     if thu and h.get("open_at_time") and not tools._open_for(pid, thu, at, need)[0]:
-        txt += " Nhưng không đủ %d phút để tham quan trước giờ nghỉ / đóng cửa%s." % (
-            need, " (nghỉ %s–%s)" % (h["break_start"], h["break_end"]) if h.get("break_start") else "")
-    live = [d["description"] for d in get_live_disruptions(poi_id=pid)]
-    return "[%s] %s: %s%s" % (pid, p["name"], txt, (" · " + "; ".join(live)) if live else "")
+        txt += ", nhưng không còn đủ %d phút để tham quan trước %s" % (
+            need, "giờ nghỉ trưa %s–%s" % (h["break_start"], h["break_end"]) if h.get("break_start")
+            else "giờ đóng cửa %s" % h["close_time"])
+    live = [_mo_phong(d["description"]) for d in get_live_disruptions(poi_id=pid)]
+    return "%s: %s.%s" % (p["name"], txt, (" Lưu ý (" + "; ".join(live) + ").") if live else "")
 
 
 def goi_y_thay_the(req, ids, khong_co, canh_bao):
@@ -441,40 +484,100 @@ def goi_y_thay_the(req, ids, khong_co, canh_bao):
             note("bước gợi ý: model không trả JSON → chọn bằng code (dự phòng)")
 
     by_id = {c["poi_id"]: c for c in cand}
-    head = "Lúc %s%s%s" % (gio, " " + DAY_VN[thu] if thu else "", " · " + ", ".join(sorted(dk)) if dk else "")
+    head = "Lúc %s%s%s." % (gio, " " + DAY_VN[thu] if thu else "",
+                           " — " + ", ".join(DK_VN.get(k, k) for k in sorted(dk)) if dk else "")
     out = [head]
     if ids:
-        out.append("Điểm bạn nhắc:")
+        out.append("Về mấy chỗ bạn nhắc:")
         out += ["  - " + _trang_thai(i, thu, at) for i in ids]
     if chon:
-        out.append("Gợi ý đang mở%s:" % ("" if thu else " (chưa biết thứ nên chỉ lấy nơi mở mọi ngày giờ này)"))
+        out.append("Gợi ý đang mở%s:" % ("" if thu else " (chưa biết hôm nay thứ mấy nên mình chỉ chọn nơi mở mọi ngày vào giờ này)"))
         for n, i in enumerate(chon, 1):
             c = by_id[i]
             out.append("%d. [%s] %s — đi %d phút · %s · mở đến %s%s" % (
-                n, i, c["name"], c["di_chuyen_phut"], "trong nhà" if c["indoor_outdoor"] == "indoor" else c["indoor_outdoor"],
-                c["dong_cua_luc"], " · lưu ý: " + c["su_co"] if c["su_co"] else ""))
-        out.append("Vì sao: " + ly_do)
+                n, i, c["name"], c["di_chuyen_phut"], IO_VN.get(c["indoor_outdoor"], c["indoor_outdoor"]),
+                c["dong_cua_luc"], " · lưu ý (" + _mo_phong(c["su_co"]) + ")" if c["su_co"] else ""))
+        note("lý do model (chỉ ghi trace, không hiện): " + ly_do)
+        if ly_do.startswith("(dự phòng)"):
+            out.append("(Chưa dùng AI ở bước này: các chỗ trên do code chọn — gần nhất và đang mở.)")
     else:
-        out.append("Mình không tìm thấy điểm nào trong dữ liệu đang mở và đi tới kịp từ đây lúc %s. "
-                   "Bạn nới điều kiện (đi xa hơn, không cần trong nhà) để mình tìm lại nhé." % gio)
+        out.append("Quanh đây mình chưa thấy chỗ nào trong dữ liệu còn mở và đi tới kịp lúc %s. "
+                   "Bạn thử nới điều kiện (đi xa hơn một chút, không cần trong nhà) rồi hỏi lại nhé." % gio)
     out += _khong_co(khong_co) + canh_bao
-    out.append("Giờ mở cửa lấy từ dữ liệu của bản chạy thử; bạn tự quyết, mình không đặt chỗ hay nhắn tin.")
+    out.append("Giờ mở cửa theo dữ liệu của bản chạy thử — chọn chỗ nào là tuỳ nhóm bạn, mình không đặt chỗ hay nhắn tin giúp.")
     return "\n".join(out)
 
 
 def _khong_co(names):
     if not names:
         return []
-    return ["Không có dữ liệu về: %s — mình không biết giờ mở cửa nơi này nên không xếp vào lịch. "
-            "Bạn kiểm tra trực tiếp hoặc chọn điểm khác." % ", ".join('"%s"' % n for n in names)]
+    return ["Không có dữ liệu về: %s — mình chưa biết giờ mở cửa nơi này nên chưa xếp vào lịch; "
+            "bạn kiểm tra trực tiếp hoặc chọn điểm khác nhé." % ", ".join('"%s"' % n for n in names)]
 
 
-def _format(req, lich, issues, bo, ly_do, khong_co, canh_bao):
+# ---------------------------------------------------------------- B-lite: gợi ý lấp giờ trống (docs/huong-b-lite.md)
+
+def goi_y_lap_gio(req, lich, ids, bo):
+    """Lịch đã qua cổng kiểm, không bỏ điểm, còn trống ≥ NGUONG_TRONG_PHUT → gợi ý 1–3 điểm đang mở gần điểm cuối.
+    CODE quyết khi nào bật và lọc ứng viên (goi_y_diem + đủ giờ chơi trước giờ kết thúc); MODEL chỉ chọn trong danh
+    sách. KHÔNG chèn vào lịch: dòng gợi ý bắt đầu bằng '  + ' (hợp đồng H7 v2). Trả list dòng ('[]' = không bật)."""
+    if not lich or bo:
+        return []
+    xong, het = tools._to_min(lich[-1]["roi"]), tools._to_min(req["ket_thuc"])
+    trong = het - xong
+    if trong < NGUONG_TRONG_PHUT:
+        return []
+    city, mode = req["city"], req["phuong_tien"]
+    thu = "" if req.get("thu_bat_ky") else req["thu"]  # chưa biết thứ → chỉ lấy nơi mở mọi ngày giờ đó
+    ve = req["zone"] if req.get("quay_ve") else ""
+    dk = set(req["dieu_kien"])
+    cand = []
+    for c in goi_y_diem(city, thu, lich[-1]["roi"], tools._poi(lich[-1]["poi_id"])["zone"], mode,
+                        rain_safe="mua" in dk, heat_safe="nang" in dk, exclude=ids, max_travel_min=MAX_DI_LAP,
+                        limit=12):
+        choi = int(tools._poi(c["poi_id"])["avg_duration_min"])
+        den = xong + c["di_chuyen_phut"]
+        ve_phut = tools.zone_min(city, c["zone"], ve, mode) if ve else 0
+        if den + choi + ve_phut <= het and tools._open_for(c["poi_id"], thu, den, choi)[0]:
+            cand.append(dict(c, choi=choi))
+    head = "Còn trống %s–%s (%d phút)" % (lich[-1]["roi"], req["ket_thuc"], trong)
+    if not cand:
+        note("B-lite: còn trống %d phút, không có ứng viên" % trong)
+        return [head + ", dữ liệu ở %s chưa có chỗ nào hợp để gợi ý thêm." % _ten_tp(req)]
+    cand = cand[:6]
+    by_id = {c["poi_id"]: c for c in cand}
+    lines = ["Xong lúc %s · còn %d phút đến %s · %s" % (lich[-1]["roi"], trong, req["ket_thuc"],
+                                                       DAY_VN[thu] if thu else "mọi ngày"),
+             "Lịch đã có: " + ", ".join(s["name"] for s in lich)]
+    lines += ["%s|%s|%s|%s|đi %dp|đóng %s|chơi %dp%s" % (
+        c["poi_id"], c["name"], c["category"], IO.get(c["indoor_outdoor"], c["indoor_outdoor"]), c["di_chuyen_phut"],
+        c["dong_cua_luc"], c["choi"], "|sự cố: " + c["su_co"] if c["su_co"] else "") for c in cand]
+    lines.append("Yêu cầu: <tin_nhan>%s</tin_nhan>" % req.get("_text", ""))
+    pick = _json(call_model(SYSTEM_LAP, "<du_lieu>\n%s\n</du_lieu>" % "\n".join(lines))["text"])
+    chon, ly_do = [c["poi_id"] for c in cand[:3]], "(dự phòng) Code chọn các điểm gần điểm cuối nhất đang mở."
+    if isinstance(pick, dict) and isinstance(pick.get("chon"), list):
+        ok = list(dict.fromkeys(i for i in pick["chon"] if i in by_id))[:3]
+        if ok:
+            chon, ly_do = ok, " ".join(str(pick.get("ly_do", "")).split()) or ly_do
+    else:
+        note("B-lite: model không trả JSON → chọn bằng code (dự phòng)")
+    note("B-lite: còn trống %d phút → gợi ý %s" % (trong, chon))
+    out = [head + ". Nếu muốn, nhóm có thể ghé thêm (mình chỉ gợi ý, chưa xếp vào lịch):"]
+    out += ["  + [%s] %s — đi %d phút từ điểm cuối · mở đến %s · chơi khoảng %d phút"
+            % (i, by_id[i]["name"], by_id[i]["di_chuyen_phut"], by_id[i]["dong_cua_luc"], by_id[i]["choi"]) for i in chon]
+    note("lý do model B-lite (chỉ ghi trace, không hiện): " + ly_do)
+    if ly_do.startswith("(dự phòng)"):
+        out.append("(Chưa dùng AI ở bước này: các chỗ trên do code chọn — gần điểm cuối nhất và đang mở.)")
+    out.append("Muốn thêm chỗ nào thì gửi lại câu kèm tên chỗ đó, mình sẽ xếp lại và kiểm giờ mở cửa.")
+    return out
+
+
+def _format(req, lich, issues, bo, ly_do, khong_co, canh_bao, lap=None):
     day = "giờ mở cửa giống nhau mọi ngày" if req.get("thu_bat_ky") else DAY_VN[req["thu"]]
-    out = ["Lịch %s — %s, %s–%s%s" % (req.get("thanh_pho") or req["city"], day, req["bat_dau"],
+    out = ["Lịch %s — %s, %s–%s%s" % (_ten_tp(req), day, req["bat_dau"],
                                       req["ket_thuc"], " · %s người" % req["so_nguoi"] if req.get("so_nguoi") else "")]
     if not lich:
-        out.append("Không xếp được điểm nào vào khung giờ này.")
+        out.append("Trong khung giờ này mình chưa xếp được điểm nào.")
     for n, s in enumerate(lich, 1):
         extra = (["đi %d phút" % s["di_chuyen_phut"]] if s["di_chuyen_phut"] else []) + \
                 (["chờ mở cửa %d phút" % s["cho_phut"]] if s["cho_phut"] else [])
@@ -483,12 +586,15 @@ def _format(req, lich, issues, bo, ly_do, khong_co, canh_bao):
     if lich:
         out.append("Tổng di chuyển: %d phút · xong lúc %s" % (sum(s["di_chuyen_phut"] for s in lich), lich[-1]["roi"]))
     if ly_do:
-        out.append("Vì sao xếp như vậy: " + ly_do)
+        note("lý do model (chỉ ghi trace, không hiện): " + ly_do)
+        if ly_do.startswith("(dự phòng)"):
+            out.append("(Chưa dùng AI ở bước này: thứ tự do code xếp dự phòng.)")
     if bo:
-        out.append("Không xếp được hết — đã bỏ:")
-        out += ["  - [%s] %s: %s" % (b["poi_id"], tools._poi(b["poi_id"])["name"], b.get("ly_do", "")) for b in bo]
-        out.append("Muốn giữ điểm nào thì nới khung giờ hoặc bỏ bớt một điểm khác.")
-    out += ["Lưu ý: [%s] %s" % (x["poi_id"], x["chi_tiet"]) for x in issues if x["loi"] in SOFT]
+        out.append("Có điểm mình chưa xếp được:")
+        out += ["  - %s: %s" % (tools._poi(b["poi_id"])["name"], b.get("ly_do", "")) for b in bo]
+        out.append("Muốn giữ điểm nào thì bạn nới khung giờ hoặc bớt một điểm khác rồi gửi lại nhé.")
+    out += ["Lưu ý: %s — %s" % (tools._poi(x["poi_id"])["name"], x["chi_tiet"]) for x in issues if x["loi"] in SOFT]
     out += _khong_co(khong_co) + canh_bao
-    out.append("Bạn xem lại rồi tự gửi nhóm — mình không gửi tin hay đặt chỗ.")
+    out += lap or []  # B-lite: sau lý do / điểm bị bỏ, trước câu cuối; dòng ngân sách vẫn nối sau cùng
+    out.append("Bạn xem lại rồi tự gửi nhóm nhé — mình không gửi tin hay đặt chỗ giúp.")
     return "\n".join(out)

@@ -62,7 +62,7 @@
 4. **B-lite — gợi ý lấp giờ trống, CHỈ GỢI Ý [Nhóm]** (`docs/huong-b-lite.md`):
    - Code quyết khi nào bật (lịch đã qua cổng kiểm · không bỏ điểm · còn trống ≥ 60 phút); model chỉ chọn 1–3 trong ứng viên `goi_y_diem` đã lọc.
    - **Không tự chèn vào lịch**, không đổi bất kỳ dòng lịch nào; dòng gợi ý bắt đầu bằng `  + ` (hợp đồng H7 v2); dòng ngân sách vẫn là dòng cuối.
-   - Không có câu thử riêng (bộ câu thử đã đủ 30); đánh giá qua run-3, người dùng thử và trace — nói rõ trên slide.
+   - Không có câu thử riêng (bộ câu thử đã đủ 30); nhánh bật ở 5 câu B01, B03, B04, B29, B30 nên được chấm gián tiếp từ run-2 (B-lite vào `main` trước run-2), cùng người dùng thử và trace — nói rõ trên slide.
 5. **Chạy độc lập, tái lập được [Nhóm]:** lõi `codebase/` chỉ đọc `data/` trong repo, không gọi API bản đồ / thời tiết / đặt vé khi chạy. Ngoại lệ duy nhất là lời gọi model trong `codebase/ai.py`.
 6. **Không có tác động ra ngoài [Đề]:** không đặt bàn, mua vé, thanh toán, nhắn tin thay người dùng. Mọi công cụ đều chỉ đọc.
 7. **Không giấu câu thử vào code [Đề]:** không so khớp nguyên văn input của bộ câu thử trong code hay prompt.

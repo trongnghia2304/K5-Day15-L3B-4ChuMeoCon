@@ -4,7 +4,7 @@
 > Phân công và mốc giờ: [`phan-cong-cp3-cp4.md`](phan-cong-cp3-cp4.md) · Luật: [`../rule.md`](../rule.md).
 > **Kiểm tự động trước mỗi lần push:** `python scripts/kiem_hop_dong.py` — phải in `0 lỗi`.
 
-Phiên bản hợp đồng: **v2 — 28/11 ≈02:00** (v1 ≈23:50 27/11). v2 **chỉ thêm**: H1 v2 (web chat nhiều lượt), H6 v2 (nối dòng data mới), H7 v2 (dòng B-lite), H14 (staging data). Không đổi trường nào của v1.
+Phiên bản hợp đồng: **v3 — 28/11 03:33** (nhánh `feat/b-lite`, chỉ đổi lời văn H7 — xem "H7 v3"). **v2 — 28/11 ≈02:00** (v1 ≈23:50 27/11). v2 **chỉ thêm**: H1 v2 (web chat nhiều lượt), H6 v2 (nối dòng data mới), H7 v2 (dòng B-lite), H14 (staging data). Không đổi trường nào của v1.
 
 ---
 
@@ -209,6 +209,24 @@ Dấu gạch giữa hai giờ là `–` (en dash), không phải `-`.
 | Lý do | `Vì sao gợi ý: …` (chế độ giả có `(dự phòng)`) |
 | Mời thêm | `Muốn thêm điểm nào thì gửi lại câu kèm tên điểm đó — trợ lý sẽ xếp lại và kiểm giờ mở cửa.` |
 | Không có ứng viên | `Còn trống HH:MM–HH:MM (X phút), dữ liệu ở {TP} chưa có điểm phù hợp để gợi ý thêm.` |
+
+**H7 v3 — lời văn (28/11, góp ý "nhẹ nhàng, thực tế, không cứng nhắc")** · các mẫu dòng code chấm đọc **không đổi**: `Lịch {…} — {Thứ}, HH:MM–HH:MM` · `{n}. HH:MM–HH:MM · [POI_ID] …` · `Tổng di chuyển: …` · `Lúc HH:MM[ Thứ …]…` · `{n}. [POI_ID] … — đi X phút · … · mở đến HH:MM` · `  + [POI_ID] … — đi X phút từ điểm cuối · …` · `Không có dữ liệu về: …` · `Bạn xem lại rồi tự gửi nhóm…` · dòng ngân sách cuối cùng.
+
+| Chỗ đổi | v2 | v3 |
+|---|---|---|
+| Tên thành phố ở tiêu đề lịch | `Lịch HN — …` | `Lịch Hà Nội — …` (tên đầy đủ) |
+| Lý do do model viết | `Vì sao xếp như vậy: …` · `Vì sao: …` · `Vì sao gợi ý: …` | **Không hiện**, chỉ ghi vào trace (`note`). Khi code chọn dự phòng (chưa dùng AI) có dòng `(Chưa dùng AI ở bước này: …)` |
+| Điểm bị bỏ | `Không xếp được hết — đã bỏ:` + `  - [POI_ID] Tên: lý do` | `Có điểm mình chưa xếp được:` + `  - Tên: lý do` (lý do do code kiểm, **vẫn giữ**) |
+| Điểm thay thế | `có thể thay bằng: [POI_ID] Tên` | `có thể thay bằng Tên` |
+| Tiêu đề nhánh gợi ý | `Lúc 14:05 Thứ Bảy · mua, xong_som` | `Lúc 14:05 Thứ Bảy — trời mưa, xong sớm.` |
+| Điểm người dùng nhắc | `Điểm bạn nhắc:` + `  - [POI_ID] Tên: <status_reason>` | `Về mấy chỗ bạn nhắc:` + `  - Tên: đang mở (đến HH:MM)` / `đóng cửa cả ngày Thứ …` / `đang nghỉ giữa ca (…), mở lại lúc …` / `đã ngưng nhận khách / bán vé từ …` (đủ mốc giờ như cũ) |
+| Sự cố giả lập | `· [Giả lập sự cố] …` | `Lưu ý (tình huống mô phỏng: …)` — **không được bỏ nhãn mô phỏng** (rubric R3: phần còn giả phải ghi rõ) |
+| Trong / ngoài trời | `semi_outdoor` | `trong nhà` · `ngoài trời` · `nửa trong nửa ngoài` |
+| Đầu mục B-lite | `… Có thể ghé thêm — trợ lý gợi ý, CHƯA xếp vào lịch:` | `… Nếu muốn, nhóm có thể ghé thêm (mình chỉ gợi ý, chưa xếp vào lịch):` · không ứng viên: `…, dữ liệu ở {Tên TP} chưa có chỗ nào hợp để gợi ý thêm.` |
+| Từ chối việc ngoài phạm vi | `… (bỏ qua kiểm tra giờ mở cửa / tự bịa thông tin) …` | câu thường, không ngoặc kỹ thuật; loại yêu cầu ghi vào trace |
+| Web (N4) | hiển thị nguyên văn | **được ẩn mã `[POI_ID]` khi hiển thị**; không được xoá / sửa nội dung khác |
+
+Giữ nguyên chữ `Gợi ý đang mở` (test web cắt theo chữ này). Test web cần đổi 1 dòng (N4): `startswith("Lịch HN — Thứ Bảy, 08:00–17:00")` → `startswith("Lịch Hà Nội — Thứ Bảy, 08:00–17:00")`.
 
 Chỉ bật khi: lịch có ≥ 1 điểm · không có điểm bị bỏ · `ket_thuc − xong lúc ≥ 60` (`NGUONG_TRONG_PHUT = 60` trong `agent.py`). Không bật ở nhánh gợi ý và câu hỏi lại.
 

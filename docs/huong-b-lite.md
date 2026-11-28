@@ -147,8 +147,8 @@ Lệnh N4 đã dùng để ra bảng mục 3 (chế độ giả): chạy `agent.
 
 1. **Làm B-lite không?** ☑ Có ☐ Không (để slide 8)
 2. **Lúc nào?**
-   - ☑ **Sau khi commit `run-2`.** N3 viết trên nhánh `feat/b-lite` (08:30–09:15 và 11:30–12:10), **merge 13:15 sau khi N2 chạy xong `simulate`** → run-2 và mô phỏng chi phí đo đúng một cấu hình. Slide ghi rõ "run-2 đo trên bản chưa có B-lite". **run-3** trên bản cuối chạy sau demo (trước 23:59), ghi vào §10 "Sau CP4".
-   - ☐ Trước run-2.
+   - ☐ ~~Sau khi commit `run-2`~~ (kế hoạch ban đầu, đã đổi — xem dòng "Trước run-2" dưới). N3 viết trên nhánh `feat/b-lite` (08:30–09:15 và 11:30–12:10), **merge 13:15 sau khi N2 chạy xong `simulate`** → run-2 và mô phỏng chi phí đo đúng một cấu hình. Slide ghi rõ "run-2 đo trên bản chưa có B-lite". **run-3** trên bản cuối chạy sau demo (trước 23:59), ghi vào §10 "Sau CP4".
+   - ☑ **Trước run-2** *(nhóm đổi lúc 03:39 28/11)*: B-lite vào `main` 03:05 (commit `44289d9`), giọng văn H7 v3 lúc 03:39. run-2 đo cả lần sửa nhóm lỗi + B-lite + giọng văn; `eval/report.md` mục 3 tách "sửa gì" và "thêm gì". Data mới vẫn merge sau `simulate`, đo ở run-3.
 3. **N3 nhận làm?** ☑ Có.
 4. **Mở rộng data cùng đợt:** ☑ Có — thêm điểm mới (chỉ **thêm dòng**, không sửa dòng cũ) cho HN, HCM, DN, HUE, merge cùng lúc với B-lite (13:15), sau `simulate`. Luật: `rule.md` 1.7 (bản mới) · hợp đồng H6 v2, H14 · việc: `phan-cong-cp3-cp4.md` Đợt 2. Thay cho câu "Không cào thêm data trước CP4" ở mục 8: vẫn đúng là **không** thêm trước run-2.
 5. **A+ (web chat, H1 v2):** ☑ N3 duyệt — giữ tiền tố `hỏi lại` trong `note(...)`; hợp đồng H1 v2 trong `hop-dong-du-lieu.md`.
