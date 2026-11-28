@@ -129,7 +129,7 @@ flowchart TD
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 13 · kho 10 · tu_choi 5) · metric: `eval/metric_spec.yaml` (4 metric: khong_vi_pham_gio, khong_bia_diem, dung_hanh_vi, thuan_duong)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): **"Đạt khi ≥ 70% câu qua (cột pass theo pass_criterion), và 100% câu `tu_choi` qua, và 0 lịch trả ra có vi phạm giờ mở cửa (metric `khong_vi_pham_gio`)."**
-- Kết quả: lượt 1 **22/30 (73%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (3/5: B22, B27) · 0 vi phạm giờ đạt (23/23) · lượt 2 __/__ (__%) — run ID: `run-1@20261128-010117` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **22/30 (73%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (3/5: B22, B27) · 0 vi phạm giờ đạt (23/23) · lượt 2 **23/30 (77%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (4/5: B24) · 0 vi phạm giờ đạt (24/24) — run ID: `run-1@20261128-010117` / `run-2@20261128-111600` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -207,6 +207,7 @@ flowchart TD
 | 03:39 28/11 | Merge `feat/b-lite` (giọng văn H7 v3) vào `main` — B-lite đã vào `main` từ 03:05 (commit `44289d9`). Đổi kế hoạch Đợt 2: run-2 đo lần sửa nhóm lỗi + B-lite + giọng văn (report mục 3 tách "sửa gì / thêm gì"); chỉ data mới còn merge sau `simulate` (`docs/phan-cong-cp3-cp4.md`, `docs/huong-b-lite.md` mục 9, `rule.md` 3.4) | Nhóm chọn đưa bản demo mới lên `main` ngay để demo, web và người dùng thử sáng 28/11 dùng bản mới. Kiểm sau merge: hợp đồng 0 lỗi, 30 câu chế độ giả phần code chấm đọc không đổi; test web 14/15 (1 test N4 dò chữ "Lịch HN") |
 | 11:15 28/11 | Sửa nhóm lỗi **A + B** của run-1 (commit `8815187`): bước 7b — điểm model bỏ được code thử xếp lại, điểm còn bỏ có lý do do code kiểm kèm phút đi / km / phút quay về; bộ tách luật không còn nhận nhầm điểm mới chỉ nhờ cặp từ yếu ("bảo tàng") | run-1: B02, B06 bị model bỏ nhầm điểm xếp được; B22, B27 (`tu_choi`) thiếu con số; data mở rộng (vào `main` 10:36) làm B02 nhận nhầm "Bảo tàng Lịch sử Quốc gia" |
 | 11:16 28/11 | Chạy **run-2** (`run-2@20261128-111600`, gpt-4.1-mini, 30 câu, 0 lỗi kỹ thuật) trên `main` commit `8815187`: sửa lỗi A+B + B-lite + giọng văn H7 v3 + data 135 điểm. Metric code: `khong_vi_pham_gio` 24/24 · `khong_bia_diem` 24/24 · `thuan_duong` 1/5. Chờ chấm `pass` | Lượt 2 theo guide 4.1; cấu hình khác run-1 ở 4 chỗ — `eval/report.md` mục 3 phải tách |
+| 11:59 28/11 | Gộp `eval/grading-run2-hieu.csv` (B01–B15) và `grading-run2-tiep.csv` (B16–B30) vào `eval/run-2.csv` (chỉ cột `pass`, `ghi_chu`, đã so từng ô); `python run.py score` → **23/30 (77%)**, `tu_choi` 4/5; điền §7, `eval/README.md` mục 5, `eval/report.md` mục 1 + 3 | Lượt 2 theo guide 4.1 |
 
 #### N4 · web, README, validation, slide 4–8 — Nguyễn Nghiêm Khánh Tiệp
 

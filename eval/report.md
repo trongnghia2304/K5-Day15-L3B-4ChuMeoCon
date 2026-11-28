@@ -9,7 +9,7 @@
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-010117` (gpt-4.1-mini) | **22/30** | **73%** | 11/14 | 8/11 | **3/5** | **chưa** — ≥70% đạt · 100% `tu_choi` trượt (B22, B27) · 0 vi phạm giờ đạt (23/23) |
-| 2 | | __/__ | | __/__ | __/__ | __/__ | đạt / chưa |
+| 2 | `run-2@20261128-111600` (gpt-4.1-mini) | **23/30** | **77%** | 10/14 | 9/11 | **4/5** | **chưa** — ≥70% đạt · 100% `tu_choi` trượt (B24) · 0 vi phạm giờ đạt (24/24) |
 
 Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 
@@ -38,10 +38,11 @@ Lỗi phụ, câu vẫn đạt: "mua vé" bị đọc thành điều kiện "mư
 
 ## 3. Một lần cải tiến
 
-- Nhắm vào nhóm lỗi: __ — vì sao là nhóm **đau nhất với người dùng**: __
-- Đã sửa gì (có thể vài thay đổi cùng nhắm nhóm lỗi đó): __
-- Kết quả: nhóm lỗi đó __/__ → __/__ · tổng __% → __%
-- Câu nào **tệ đi** sau khi sửa: __
+- Nhắm vào nhóm lỗi: **A + B** — model tự bỏ điểm / tự nêu lý do không khớp code, và từ chối "không kịp" thiếu con số. Vì sao đau nhất: người dùng nhận lịch thiếu điểm đáng lẽ đi được (B02, B06) hoặc lý do sai với data (B26) — đúng pain chính "tới nơi mới biết"; và B22, B27 là 2 câu `tu_choi` làm trượt điều kiện cứng §7.
+- Đã sửa gì (commit `8815187`): (1) điểm model bỏ → code thử chèn lại, lịch vẫn sạch thì giữ; (2) điểm còn bỏ → lý do do code kiểm + phút đi, km, phút quay về; (3) bộ tách luật không còn nhận nhầm điểm chỉ nhờ cặp từ yếu ("bảo tàng"). Câu "Vì sao…" do model viết đã bị ẩn từ trước ở bản giọng văn H7 v3.
+- **Thay đổi khác cũng có trong run-2 (không thuộc lần sửa):** B-lite (gợi ý lấp giờ trống, bật ở B01, B03, B04, B29, B30), giọng văn H7 v3, data 135 điểm (vào `main` 10:36, sớm hơn kế hoạch). Vì vậy chênh lệch run-1 → run-2 không quy hết cho lần sửa.
+- Kết quả: nhóm lỗi A+B (B02, B06, B22, B26, B27) **0/5 → 3/5** đạt (B06, B22, B27 lên; B02 vẫn trượt vì Cà phê Giảng xếp sau khi đã đi Cầu Giấy; B26 vẫn trượt vì không nêu Bảo tàng Quảng Ninh nghỉ trưa 12:00–13:00) · tổng **73% → 77%** (22/30 → 23/30) · `tu_choi` 3/5 → 4/5. Cũng lên: B08 (nhóm C, không nhắm tới).
+- Câu nào **tệ đi**: **B13** — data mở rộng thêm quán ở HCM, gợi ý mới không còn Phở Hòa Pasteur nên mất cảnh báo "đông" (một trong 6 câu đã báo trước có thể đổi vì data); **B24** (`tu_choi`) — bước model trích yêu cầu tự bịa 3 tên quán ("Lộc Bình", "Phố Biển", "Cảng Xưa") rồi in vào dòng "Không có dữ liệu về" — không xếp, không đặt, nhưng in tên bịa; **B10** — model chỉ chọn 1 quán, tiêu chí đòi ≥2. Không câu nào tệ đi do bước 7b.
 
 ## 4. Còn lại
 

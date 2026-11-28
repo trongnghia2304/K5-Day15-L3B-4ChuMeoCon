@@ -45,9 +45,11 @@ Chỉ tính lượt đánh giá thật khi đã nối model thật: `python run.
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-010117` (01:01 28/11) | gpt-4.1-mini (OpenAI) | Code commit `58196d2`: workflow cố định §4, prompt `trich_yeu_cau` / `xep_thu_tu` / `goi_y`, 9 công cụ + `uoc_chi_phi` (ngân sách chỉ hiển thị), data 94 điểm · 12 thành phố. Chưa có B-lite | **22/30** | **73%** | **Chưa** — ≥70%: đạt (73%) · 100% `tu_choi`: **trượt** (3/5, B22 và B27) · 0 vi phạm giờ: đạt (23/23 câu có lịch / gợi ý) |
-| 2 | | | | __/__ | | |
+| 2 | `run-2@20261128-111600` (11:16 28/11) | gpt-4.1-mini (OpenAI) | Code commit `8815187`: run-1 + **sửa nhóm lỗi A+B** (code kiểm lại điểm bị bỏ, lý do kèm phút / km, sửa khớp nhầm tên) + **B-lite** + **giọng văn H7 v3** + **data 135 điểm** (vào `main` 10:36, sớm hơn kế hoạch) | **23/30** | **77%** | **Chưa** — ≥70%: đạt · 100% `tu_choi`: **trượt** (4/5, B24) · 0 vi phạm giờ: đạt (24/24) |
 
 Chi tiết lượt 1: `thuong` 11/14 · `kho` 8/11 · `tu_choi` 3/5. Metric code (`eval/cham_metric_code.py`): `khong_vi_pham_gio` 23/23 · `khong_bia_diem` 23/23 · `thuan_duong` 1/5 (B01, B03, B04, B29 đi vòng hơn 1,2× thứ tự tốt nhất — không thuộc chuẩn §7, ghi để biết).
+
+Chi tiết lượt 2: `thuong` 10/14 · `kho` 9/11 · `tu_choi` 4/5. Người chấm: Hiếu B01–B15, Tiệp B16–B30. Metric code: `khong_vi_pham_gio` 24/24 · `khong_bia_diem` 24/24 · `thuan_duong` 1/5. Run-2 khác run-1 ở 4 chỗ (sửa lỗi, B-lite, giọng văn, data) nên chênh lệch không quy hết cho lần sửa — tách ở `eval/report.md` mục 3.
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
