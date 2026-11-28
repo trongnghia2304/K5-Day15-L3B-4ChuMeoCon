@@ -157,7 +157,7 @@ flowchart TD
 
 > Từ đây mỗi người chỉ thêm dòng vào **khối của mình** (phân công: `docs/phan-cong-cp3-cp4.md`).
 
-#### N1 · evidence, §0–§2, slide 1–3 — Nguyễn Trọng Nghĩa
+#### N1 · evidence, §0–§2, slide 1–3 — Nguyễn Đức Minh
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
@@ -169,6 +169,8 @@ flowchart TD
 | 10:09 28/11 | Merge nhánh `data/mo-rong` (+7 điểm HCM `POI_HCM_13`–`POI_HCM_19` đã được N2 duyệt nguồn 2, nâng tổng lên 128 POI / 896 dòng giờ) và thêm `Dockerfile`, `.dockerignore`, `railway.json` lên `main` | Đã xác nhận với N2 và nhận bàn giao phần deploy Railway từ N4 để triển khai bản web có đủ data HN + HCM |
 | 10:23 28/11 | Nối thêm 7 điểm biểu tượng HN/HCM (đủ 2 nguồn công khai) vào cuối `poi_master.csv` & `opening_hours.csv`: `POI_HN_38`–`POI_HN_40` (Hồ Hoàn Kiếm/Hồ Gươm, Nhà thờ Lớn Hà Nội, Chùa Một Cột) và `POI_HCM_20`–`POI_HCM_23` (Phố đi bộ Nguyễn Huệ, Nhà thờ Đức Bà Sài Gòn, Nhà thờ Tân Định, Saigon Skydeck dùng mốc cuối thận trọng 20:00) → tổng 135 POI / 945 dòng giờ; cập nhật `DATA_CARD.md` và `data/travel-ops/README.md` | Phục vụ demo khách lần đầu đến HN & TP.HCM khi gõ các địa danh biểu tượng; kiểm đủ `kiem_hop_dong.py` (0 lỗi) và `validate_travel_data.py` (0 errors) |
 | 10:33 28/11 | Nâng cấp giao diện `web/streamlit_app.py` và `.streamlit/config.toml` theo phong cách Editorial Travel (header + badge thành phố, sidebar 3 nhóm, 3 gợi ý nhanh 1 chạm, thẻ lịch trình rõ tầng, giữ nguyên 100% logic & H7) | Tối ưu trải nghiệm demo web trên Railway (đã kiểm Docker build & `kiem_hop_dong.py` 0 lỗi) |
+| 14:26 28/11 | Hoàn thiện `validation/log.md` cho 3 người dùng thật U1–U3 (vai Sinh viên, việc giao, quan sát, kết quả `0 / 3 / 0` "Hơi tiếc") | Ghi nhận phản hồi thực tế trước mốc nộp CP4 |
+| 18:45 28/11 | Tạo `reflection/minh.md` (N1) và sửa đúng tên khối N1 trong `spec.md` §10 | Hoàn tất nhiệm vụ cuối cùng trước khi nộp bài (đối chiếu kết quả `run-1` → `run-3` trong `eval/report.md`) |
 
 #### N2 · tools, ngân sách, cost — Nguyễn Văn Hiếu
 
