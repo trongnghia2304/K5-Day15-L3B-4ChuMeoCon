@@ -32,7 +32,7 @@ import ai
 import tools
 from ai import call_model
 from ngan_sach import dong_chi_phi
-from tools import (check_opening_hours, get_live_disruptions, goi_y_diem, kiem_lich_trinh, lap_lich,
+from tools import (check_opening_hours, get_live_disruptions, get_travel_time, goi_y_diem, kiem_lich_trinh, lap_lich,
                    liet_ke_vi_pham, search_pois)
 from tracing import note
 
@@ -108,6 +108,19 @@ DAY_WORD = {"2": "Mon", "hai": "Mon", "3": "Tue", "ba": "Tue", "4": "Wed", "tu":
             "6": "Fri", "sau": "Fri", "7": "Sat", "bay": "Sat"}
 
 
+def _cap_xac_nhan(pairs, k, flat, toks):
+    """Có cặp từ liền nhau của tên điểm xuất hiện trong tin. Nếu chỉ khớp cặp TỪ YẾU (vd "bảo tàng") mà tên còn từ đặc
+    trưng khác, thì một từ đặc trưng phải đứng ngay sau cặp đó (≤ 3 từ). Tránh: "Bảo tàng Dân tộc học" + "Quốc Tử Giám"
+    + "xếp lịch" bị nhận thành "Bảo tàng Lịch sử Quốc gia" khi data mở rộng (B02, 28/11)."""
+    hit = [x for x in pairs if re.search(r"\b%s\b" % x, flat)]
+    if not hit:
+        return False
+    if any(not set(x.split()) <= WEAK for x in hit) or k <= WEAK:
+        return True
+    dac_trung = k - WEAK
+    return any(" ".join(toks[i:i + 2]) in hit and dac_trung & set(toks[i + 2:i + 5]) for i in range(len(toks) - 1))
+
+
 def _rule_parse(text):
     """Bộ tách luật — chỉ dùng khi model không trả JSON (chế độ giả, hoặc model lỗi)."""
     flat = " ".join(_words(text))
@@ -131,7 +144,7 @@ def _rule_parse(text):
         pairs = {" ".join(seq[i:i + 2]) for i in range(len(seq) - 1)}
         strong = [x for x in pairs if not set(x.split()) <= WEAK and re.search(r"\b%s\b" % x, flat)]
         if (not city or p["city"] == city) and k and (
-                (len(k & words) / len(k) >= 0.6 and (len(seq) == 1 or any(re.search(r"\b%s\b" % x, flat) for x in pairs)))
+                (len(k & words) / len(k) >= 0.6 and (len(seq) == 1 or _cap_xac_nhan(pairs, k, flat, toks)))
                 or strong):  # vd "Văn Miếu" đủ nhận ra "Văn Miếu - Quốc Tử Giám"
             hits.append((min(toks.index(w) for w in k & words), p["name"]))
     diem = [n for _, n in sorted(hits)]  # theo thứ tự xuất hiện trong tin nhắn
@@ -286,6 +299,53 @@ def _thay_the(req, pid, exclude, n=2):
     return ", ".join(x["name"] for x in c)
 
 
+def _sach(req, thu_tu, start_zone, end_zone):
+    """(lịch, vi phạm cứng) của một thứ tự — code tính; có start_zone thì liet_ke_vi_pham đã tính đủ, không thì thêm cổng."""
+    city, thu, mode = req["city"], req["thu"], req["phuong_tien"]
+    lich = tools._lap_lich(city, thu_tu, thu, req["bat_dau"], mode, start_zone)
+    hard = [x for x in tools._kiem(city, lich, thu, req["bat_dau"], req["ket_thuc"], mode, end_zone) if x["loi"] not in SOFT]
+    if not hard and thu_tu and not start_zone and not kiem_lich_trinh(thu_tu, thu, req["bat_dau"], req["ket_thuc"], mode)["valid"]:
+        hard = [{"poi_id": thu_tu[-1], "loi": "cong_kiem", "chi_tiet": "không qua cổng kiểm cuối"}]
+    return lich, hard
+
+
+def _kiem_lai_diem_bo(req, thu_tu, bo, start_zone, end_zone):
+    """Điểm bị bỏ (model hoặc code bỏ): thử chèn lại vào mọi vị trí, giữ thứ tự còn lại. Chèn được mà lịch vẫn sạch →
+    giữ (chọn vị trí ít phút đi nhất). Không chèn được → lý do = vi phạm do code kiểm ở vị trí ít lỗi nhất + phút đi / km.
+    Không gọi model."""
+    city, thu, mode = req["city"], req["thu"], req["phuong_tien"]
+    thu_tu, con_bo = list(thu_tu), []
+    for b in bo:
+        pid = b["poi_id"]
+        if tools._hours(pid, thu)["is_open"] != "True":
+            con_bo.append({"poi_id": pid, "ly_do": "đóng cửa cả ngày %s" % DAY_VN[thu]})
+            continue
+        thu_vi_tri = []
+        for k in range(len(thu_tu) + 1):
+            moi = thu_tu[:k] + [pid] + thu_tu[k:]
+            lich, hard = _sach(req, moi, start_zone, end_zone)
+            thu_vi_tri.append((len(hard), sum(s["di_chuyen_phut"] for s in lich), k, moi, hard))
+        so_loi, _, k, moi, hard = min(thu_vi_tri, key=lambda x: (x[0], x[1]))
+        if not so_loi:
+            note("bước 7b: code xếp lại được %s (đã bị bỏ) ở vị trí %d" % (pid, k + 1))
+            thu_tu = moi
+            continue
+        truoc = (tools._poi(thu_tu[k - 1])["zone"] if k > 0 and thu_tu else start_zone)
+        ly_do = "; ".join(dict.fromkeys(x["chi_tiet"] for x in hard if x["poi_id"] == pid)) or \
+            "; ".join(dict.fromkeys(x["chi_tiet"] for x in hard))
+        if truoc:
+            g = get_travel_time(city, truoc, tools._poi(pid)["zone"], mode)
+            if g.get("found"):
+                ly_do += " (đi tới mất %d phút, khoảng %s km" % (g["total_min"], g["distance_km"])
+                if end_zone:
+                    v = get_travel_time(city, tools._poi(pid)["zone"], end_zone, mode)
+                    if v.get("found"):
+                        ly_do += "; quay về mất %d phút" % v["total_min"]
+                ly_do += ")"
+        con_bo.append({"poi_id": pid, "ly_do": ly_do})
+    return thu_tu, con_bo
+
+
 def answer(text: str) -> dict:
     # Bước 1–2
     req = trich_yeu_cau(text)
@@ -394,6 +454,11 @@ def answer(text: str) -> dict:
         plan["thu_tu"] = [i for i in plan["thu_tu"] if i != bad]
         lich = tools._lap_lich(city, plan["thu_tu"], thu, req["bat_dau"], mode, start_zone)
         issues = tools._kiem(city, lich, thu, req["bat_dau"], req["ket_thuc"], mode, end_zone)
+    # Bước 7b (sửa nhóm lỗi A + B của run-1): điểm model bỏ → code thử xếp lại; điểm còn bỏ → lý do do CODE nêu,
+    # kèm phút đi / km (không dùng lý do model tự viết — B02, B06 bỏ nhầm; B22, B27 thiếu con số)
+    plan["thu_tu"], bo = _kiem_lai_diem_bo(req, plan["thu_tu"], bo, start_zone, end_zone)
+    lich = tools._lap_lich(city, plan["thu_tu"], thu, req["bat_dau"], mode, start_zone)
+    issues = tools._kiem(city, lich, thu, req["bat_dau"], req["ket_thuc"], mode, end_zone)
     for b in bo:  # điểm đóng cửa cả ngày → gợi ý điểm cùng loại đang mở hôm đó
         if tools._hours(b["poi_id"], thu)["is_open"] != "True":
             alt = _thay_the(req, b["poi_id"], ids)
