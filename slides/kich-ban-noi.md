@@ -50,8 +50,8 @@
 ## Trang 6 · Chi phí — Hiếu (~40 giây)
 
 > "Nhóm mô phỏng 50 phiên chạy thật qua bản chạy thử, đo token thật, theo 3 kiểu người dùng lấy từ khảo sát.
-> Mỗi lịch đạt tốn khoảng **0,06 xu** với mức giá model rẻ, 0,3 xu với mức giá model mạnh — đã chia cho tỉ lệ đạt 77%, không coi như đạt 100%.
-> 10.000 người dùng thì khoảng **1,3 đô một tháng**. So với 25 phút tiết kiệm mỗi người, chi phí model không phải điểm nghẽn. Nhóm chưa tính hosting và giờ công, và số người dùng là tự ước tính."
+> Với model đang chạy là gpt-4.1-mini, mỗi lịch đạt tốn khoảng **0,08 xu** — đã chia cho tỉ lệ đạt 77%, không coi như đạt 100%. Nhóm so thêm 2 mức giá tham chiếu: rẻ hơn là 0,06 xu, mạnh hơn là 0,3 xu.
+> 10.000 người dùng thì khoảng **1,8 đô một tháng**. So với 25 phút tiết kiệm mỗi người, chi phí model không phải điểm nghẽn. Nhóm chưa tính hosting và giờ công, và số người dùng là tự ước tính."
 
 ## Trang 7 · Kết luận — Nghĩa (~25 giây)
 
