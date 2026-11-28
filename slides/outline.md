@@ -8,9 +8,9 @@
 | 1 | Người dùng & pain | Ai · việc gì · chỗ đau + số và trích dẫn | `evidence/summary.md` | ☑ |
 | 2 | Vì sao chọn bài này | Bảng impact rút gọn + hướng bị loại | `spec.md` §2 | ☑ |
 | 3 | Giải pháp | Lát cắt một câu · sơ đồ · AI tự làm đến đâu, vì sao | `spec.md` §4 | ☑ |
-| 4 | Demo live | 1 trường hợp thường + 1 trường hợp khó (lấy từ bộ câu thử); mạng hỏng → video dự phòng | `eval/benchmark.csv` | ☐ |
-| 5 | **Đánh giá thế nào** | Dataset · bộ câu thử · metric · lượt 1 → lượt 2 so với chuẩn "đạt" (kèm run ID) · lỗi chính | `eval/README.md`, `eval/report.md` | ☐ |
-| 6 | **Chi phí khi dùng thật** | Chi phí / task thành công · 3 kịch bản · so với impact | `cost/cost-estimate.md` | ☐ |
+| 4 | Demo live | 1 trường hợp thường + 1 trường hợp khó (lấy từ bộ câu thử); mạng hỏng → video dự phòng | `eval/benchmark.csv` | ☑ |
+| 5 | **Đánh giá thế nào** | Dataset · bộ câu thử · metric · lượt 1 → lượt 2 so với chuẩn "đạt" (kèm run ID) · lỗi chính | `eval/README.md`, `eval/report.md` | ☑ |
+| 6 | **Chi phí khi dùng thật** | Chi phí / task thành công · 3 kịch bản · so với impact | `cost/cost-estimate.md` | ☑ |
 | 7 | Kết luận | Go / iterate / stop — dẫn số ở trang 1, 5, 6 | — | ☐ |
 | 8 | Nếu có thêm 1 tuần | 2–3 việc, trỏ về lỗi còn lại / phản hồi người dùng | `eval/report.md` mục 4 · `validation/log.md` | ☐ |
 
@@ -58,33 +58,54 @@
 ## Nội dung chi tiết Trang 4–8 *(N4 phụ trách — chỉ chép số từ file nguồn, ô `__` điền khi file nguồn có số)*
 
 > Mốc: trang 4 làm được ngay · trang 5 chờ N3 (`eval/README.md` mục 5, `eval/report.md`, ≈12:30) · trang 6 chờ N2 (`cost/cost-estimate.md`, 13:30) · trang 7–8 sau cùng. Xuất `demo-slides.pdf` trước **14:15**.
+> **Đã điền số trang 5–6 (từ `eval/report.md` commit `4548db7`, `cost/cost-estimate.md` commit `f54a215`).** Còn chờ: nhóm chốt kết luận trang 7 · phản hồi người dùng thử trang 8 · bảng người nói.
 
 ### Trang 4 — Demo live (web chat)
 - **Thường — B01** (TP.HCM, Thứ Bảy 08:00–17:30, 5 điểm): ra lịch từng giờ, phút đi, lý do; thêm `Ngân sách 300000đ/người.` → dòng cuối "Chi phí ước tính … (tự ước tính)".
 - **Khó — B05** (Hà Nội, Thứ Hai, có điểm đóng cửa Thứ Hai): trợ lý **bỏ điểm đóng cửa, nói lý do, gợi ý điểm thay thế** — không bịa giờ mở.
 - **Đang đi gặp sự cố — B07** (14:05 Thứ Bảy mưa ở Thảo Cầm Viên): 1–3 điểm trong nhà đang mở, phút đi, giờ đóng.
 - **Chat nhiều lượt (A+):** nhắn thiếu thứ → trợ lý hỏi lại → trả lời "thứ 7, 8h đến 5h chiều" → ra lịch (web tự nối ngữ cảnh).
-- **Sau 13:15 (nếu đã merge B-lite):** lịch 3 điểm khung dài → mục "Còn trống … có thể ghé thêm".
+- **Lấp giờ trống (B-lite, đã có trong run-2):** lịch 3 điểm khung dài (vd gợi ý nhanh "Lên lịch 1 ngày Hà Nội") → mục "Còn trống … nhóm có thể ghé thêm (mình chỉ gợi ý, chưa xếp vào lịch)".
 - Mạng hỏng → video dự phòng (link: https://drive.google.com/file/d/1mumo5YJhOwXtHauAe20BVFD_fyfpwCZE/view) · bản online: https://k5-day15-l3b-4chumeocon-production.up.railway.app/. Model: `gpt-4.1-mini`.
 
 ### Trang 5 — Đánh giá thế nào
-- Bộ câu thử: `eval/benchmark.csv` **30 câu** (28 câu CP2 + B29–B30 ngân sách) · 4 metric `eval/metric_spec.yaml` · data `data/DATA_CARD.md` (94 điểm · 12 thành phố).
+- Bộ câu thử: `eval/benchmark.csv` **30 câu** (14 `thuong` · 11 `kho` · 5 `tu_choi`; 28 câu CP2 + B29–B30 ngân sách) · 4 metric `eval/metric_spec.yaml` · data `data/DATA_CARD.md` (run-1: 94 điểm · run-2: **135 điểm** · 12 thành phố).
 - Chuẩn "đạt" (`spec.md` §7, chốt CP2): ≥ 70% câu qua **và** 100% câu `tu_choi` qua **và** 0 lịch vi phạm giờ mở cửa.
-- Lượt 1: `run-1@20261128-010117` · `gpt-4.1-mini` · __/30 (__%) · đạt chuẩn? __ → Lượt 2: `run-2@__` · __/30 (__%) · đạt chuẩn? __ *(chép từ `eval/README.md` mục 5)*.
-- Sửa gì giữa 2 lượt: nhóm lỗi __ *(từ `eval/report.md`)* · ≥3 lỗi chính: __.
-- **Ghi rõ:** "run-2 đo bản **chưa có** B-lite + data mở rộng; B-lite đánh giá qua người dùng thử + trace, không có trong bộ câu thử (luật không thêm câu sau run-1)."
+- *(chép từ `eval/report.md` mục 1, `eval/README.md` mục 5)*
+
+| Lượt | Run ID | Đạt / tổng | thuong | kho | tu_choi | 0 vi phạm giờ | Đạt chuẩn? |
+|---|---|---|---|---|---|---|---|
+| 1 | `run-1@20261128-010117` · gpt-4.1-mini | **22/30 (73%)** | 11/14 | 8/11 | **3/5** (B22, B27 trượt) | 23/23 | **Chưa** |
+| 2 | `run-2@20261128-111600` · gpt-4.1-mini | **23/30 (77%)** | 10/14 | 9/11 | **4/5** (B24 trượt) | 24/24 | **Chưa** |
+
+- Sửa gì giữa 2 lượt (`eval/report.md` mục 3, commit `8815187`): nhóm lỗi **A + B** — model tự bỏ điểm / tự nêu lý do không khớp code, và từ chối "không kịp" thiếu con số → code kiểm lại điểm bị bỏ, lý do kèm phút đi / km. Nhóm A+B: **0/5 → 3/5** đạt (B06, B22, B27 lên).
+- ≥3 lỗi chính (`eval/report.md` mục 2–3): **B02** bỏ Phở Bát Đàn với lý do sai, code kiểm lại xếp được đủ 6 điểm · **B26** lý do của model nói ngược data giờ mở cửa · **B22** từ chối nhưng thiếu số km / phút (run-1) · **B24** (run-2, tệ đi) model tự bịa 3 tên quán ở bước trích yêu cầu rồi in ra.
+- **Ghi rõ:** "run-2 đo bản đã có sửa lỗi A+B **và** B-lite + giọng văn mới + data 135 điểm → chênh lệch 73% → 77% không quy hết cho lần sửa. B-lite không có câu thử riêng (luật không thêm câu sau run-1); bật ở B01, B03, B04, B29, B30."
+- Metric code (`eval/cham_metric_code.py`): `khong_vi_pham_gio` 24/24 · `khong_bia_diem` 24/24 · `thuan_duong` **1/5** (không thuộc chuẩn §7, ghi để biết).
 
 ### Trang 6 — Chi phí khi dùng thật
-- Chép đúng nhãn từ `cost/cost-estimate.md`: `Chi phí / phiên (cơ sở):` __ · `Chi phí / task thành công (cơ sở):` __ · bảng 3 kịch bản (thấp / cơ sở / cao × 2 model) · `Kết luận:` __.
-- So với impact `spec.md` §2 (trang 2).
+- *(chép từ `cost/cost-estimate.md` mục 2–3)* Mô phỏng `simulate-1@20261128-120625`: **50 phiên** (49 hợp lệ, 1 lỗi kết nối), token đo thật trên `gpt-4.1-mini`, tính theo 2 mức giá tham chiếu. Tỉ lệ đạt dùng để tính: **77% (run-2)** — không coi như đạt 100%.
+
+| Mức giá model | Chi phí / phiên | Chi phí / task thành công | / tháng — thấp (5.000 người) | cơ sở (10.000) | cao (20.000) | / người / tháng (cơ sở) |
+|---|---|---|---|---|---|---|
+| `gemini-3.1-flash-lite` | $0.00044 | **$0.00057** | $0.65 | **$1.31** | $2.61 | $0.00013 |
+| `gemini-4-hydrogen` | $0.0024 | **$0.0032** | $3.63 | **$7.26** | $14.51 | $0.00073 |
+
+- Số người dùng 3 kịch bản và tần suất dùng là *(tự ước tính)*.
+- So với impact (trang 2, `spec.md` §2): tiết kiệm ~**25,2 phút / người / tháng** ↔ chi phí model **$0.00013–0.00073 / người / tháng**.
+- `Kết luận:` chi phí token thấp so với thời gian tiết kiệm → đáng thử nghiệm tiếp; chưa tính hosting, lưu trữ, giờ công.
 
 ### Trang 7 — Kết luận
-- Go / iterate / stop: __ — dẫn 1 số trang 1 (pain), 1 số trang 5 (đạt chuẩn?), 1 số trang 6 (chi phí / task).
+- **Đề xuất N4 — nhóm chốt trước khi xuất PDF: ITERATE** (chưa Go, không Stop):
+  - Pain có thật (trang 1): **85%** gặp ≥1 sự cố trong 3 chuyến gần nhất; **73%** mệt nhất ở khâu sắp thứ tự thuận đường.
+  - Chất lượng chưa đủ (trang 5): run-2 **77%**, nhưng **chưa đạt chuẩn** vì 1 câu từ chối trượt (B24, 4/5); 0 lịch vi phạm giờ mở cửa (24/24).
+  - Chi phí không phải rào cản (trang 6): **$0.00057–0.0032 / task thành công**.
+  - → Sửa B24 (lỗi nguy hiểm nhất) + chạy lại bộ câu thử cho tới khi đạt chuẩn, rồi mới cho người dùng thật dùng rộng.
 
 ### Trang 8 — Nếu có thêm 1 tuần
-- Lỗi còn lại từ `eval/report.md` mục 4: __.
-- Phản hồi người dùng thử (`validation/log.md`): __.
-- Ứng viên: đánh giá B-lite bằng bộ câu thử riêng · mở rộng data 94 → ~300 điểm, mỗi thành phố ≥20, giờ mở đối chiếu 2 nguồn · trợ lý tự đề xuất điểm khi người dùng chưa có danh sách (hướng B đầy đủ) · agent nhớ hội thoại thay cho web nối tin.
+- Lỗi còn lại (`eval/report.md` mục 3 — mục 4 chờ N3): **B24** model trích yêu cầu tự bịa 3 tên quán rồi in ra → chỉ in tên người dùng thực sự gõ trong tin nhắn · **B20** chỉ hỏi lại khung giờ, không chỉ ra 2 lỗi giờ mở cửa · **B26** không nêu nghỉ trưa 12:00–13:00 · **B02** gom cụm chưa thuận đường · `thuan_duong` 1/5.
+- Phản hồi người dùng thử (`validation/log.md`): __ *(chưa có — điền khi có phiên thật; không có thì bỏ dòng này)*.
+- 2–3 việc nếu có thêm 1 tuần: (1) chặn tên bịa ở bước trích yêu cầu (B24) để đạt 100% câu từ chối · (2) bộ câu thử riêng cho B-lite và câu "xong sớm" · (3) mở rộng data 135 → ~300 điểm, mỗi thành phố ≥20, giờ mở đối chiếu 2 nguồn.
 
 ---
 
