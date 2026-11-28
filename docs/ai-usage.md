@@ -36,6 +36,7 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 - Dùng Codex đối chiếu 13 điểm HCM staging của N1 với trang cụ thể; tự giữ 6 điểm có giờ/cờ không gian chưa khớp ngoài dữ liệu chạy, chỉ nối 7 điểm đủ nguồn và ghi URL, lý do trong `data/kiem-nguon-hcm.md`. Chạy lại validator và kiểm hợp đồng trước khi push.
 - Dùng Codex chuyển riêng 27 điểm HN đã kiểm từ nhánh data sang `main` theo yêu cầu deploy; tự kiểm chỉ nối dòng POI/giờ, giữ HCM ở nhánh chờ và ghi lại rằng run-2 sẽ có nền dữ liệu khác run-1.
 - Dùng Codex đọc run-2 và soạn phiếu B01–B15; tự đối chiếu từng `pass_criterion`, đặc biệt B02 đi vòng về Hoàn Kiếm, B10 thiếu quán thứ hai, B12 quán nửa trong nửa ngoài và B13 thiếu cảnh báo đông.
+- Dùng Codex đọc file tổng hợp mô phỏng do code sinh, chép nguyên số chi phí và tỉ lệ đạt run-2 vào báo cáo; tự kiểm 50 phiên, 1 lỗi kết nối và model thật `gpt-4.1-mini`, giữ nguyên CSV/trace của lượt chạy.
 
 ### N3 — ____
 
