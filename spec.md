@@ -184,6 +184,7 @@ flowchart TD
 | 02:45 28/11 | Điền đầu vào đã có nguồn và Impact vào `cost/cost-estimate.md`; để trống tỉ lệ đạt và kết quả mô phỏng | Chờ `run-2` chấm xong để tính chi phí trên đúng cấu hình theo lịch Đợt 2 |
 | 08:30 28/11 | Kiểm 13 điểm HCM staging của N1; nối 7 điểm đủ nguồn (`POI_HCM_13`–`POI_HCM_19`) và 49 dòng giờ trên `data/mo-rong`; giữ 6 điểm chưa chắc ở staging, ghi `data/kiem-nguon-hcm.md` | URL staging chủ yếu là trang chủ; đối chiếu trang đúng địa điểm và giờ, sửa cờ mưa cho 2 điểm bán mở; không đưa giờ xung đột vào dữ liệu chạy |
 | 09:54 28/11 | Đưa riêng 27 điểm HN (`POI_HN_11`–`POI_HN_37`) và 189 dòng giờ từ nhánh data lên `main`; giữ 7 điểm HCM đã kiểm ở nhánh chờ | N2 yêu cầu có data HN trên `main` để deploy; run-2 nếu chạy sau commit này đo cấu hình 121 điểm, phải ghi khác biệt so với run-1 |
+| 11:23 28/11 | Chấm B01–B15 của `run-2` vào `eval/grading-run2-hieu.csv`: 11 đạt, 4 trượt (B02, B10, B12, B13) | Đối chiếu từng output với `pass_criterion` đã khoá; bàn giao N3 gộp điểm, không sửa output hay câu thử; run-2 thực tế chạy trên 135 POI |
 
 #### N3 · ai, agent, eval, §3–§9 — ____
 
