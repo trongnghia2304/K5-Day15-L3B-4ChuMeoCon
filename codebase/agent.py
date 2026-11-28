@@ -178,13 +178,13 @@ def _du_thong_tin(req):
 
 def trich_yeu_cau(text):
     """Bước 1. Code tách trước; chỉ khi còn thiếu mới gọi model (tiết kiệm 1 lượt gọi cho câu rõ ràng)."""
-    req = _rule_parse(text)
+    req, tu_model = _rule_parse(text), False
     if _du_thong_tin(req):
         note("bước 1: code tách đủ thông tin → không gọi model")
     else:
         got = _json(call_model(SYSTEM_TRICH, "<tin_nhan>\n%s\n</tin_nhan>" % text)["text"])
         if isinstance(got, dict):
-            req = got
+            req, tu_model = got, True
         else:
             note("bước 1: model không trả JSON → dùng kết quả bộ tách luật (dự phòng)")
     req["city"] = tools._norm_city(req["thanh_pho"]) if req.get("thanh_pho") else None
@@ -203,8 +203,27 @@ def trich_yeu_cau(text):
     if req.get("phuong_tien") not in ("motorbike", "car", "walk"):
         req["phuong_tien"] = "motorbike"
     req["diem"] = [str(d) for d in req.get("diem") or []]
+    if tu_model:
+        req["diem"] = _loc_diem_model(req["diem"], req["city"], text)
     req["yeu_cau_ngoai_pham_vi"] = [str(x) for x in req.get("yeu_cau_ngoai_pham_vi") or []]
     return req
+
+
+def _loc_diem_model(diem, city, text):
+    """Tên điểm do MODEL trích: chỉ giữ tên người dùng thực sự gõ, hoặc điểm trong data mà code tự tìm thấy trong tin
+    nhắn. Tên model tự nghĩ ra bị bỏ (ghi trace) — B24 run-2: "tự bịa 3 quán" → model đặt ra 3 tên rồi agent in ra."""
+    trong_tin = set(_words(text))
+    code_thay = set(_rule_parse(text)["diem"])
+    giu = []
+    for n in diem:
+        tu = _key(n) or set(_words(n))
+        phu = len(tu & trong_tin) / len(tu) if tu else 0
+        p = tim_diem(city, n)
+        if (p and (p["name"] in code_thay or phu >= 0.6)) or (not p and phu >= 0.75):
+            giu.append(n)
+        else:
+            note("bước 1: bỏ tên điểm model tự thêm, không có trong tin nhắn: %r" % n)
+    return giu
 
 
 def tim_diem(city, name):
@@ -372,6 +391,11 @@ def answer(text: str) -> dict:
         if p and p["city"] == req["city"] and p["poi_id"] not in ids:
             ids.append(p["poi_id"])
         elif not p:
+            khac_tp = next((x for x in tools._load_csv("poi_master.csv") if x["name"] == name), None)
+            if khac_tp and req["city"] and khac_tp["city"] != req["city"]:
+                # tên điểm của thành phố khác do bộ tách khớp nhầm ("giờ" → "Quán Gió Tam Đảo", B07) — người dùng không gõ
+                note("bỏ %r: điểm của %s, khác thành phố chuyến đi" % (name, khac_tp["city"]))
+                continue
             khong_co.append(name)
     req["zone"] = _zone_of(req["city"], req.get("vi_tri_hien_tai"))
 
@@ -399,7 +423,8 @@ def answer(text: str) -> dict:
         lines = ["Để xếp lịch không trúng giờ đóng cửa, mình cần biết thêm: " + "; ".join(thieu) + "."]
         if ids:
             lines.append("Điểm đã nhận: " + ", ".join(tools._poi(i)["name"] for i in ids) + ".")
-        if ids and not req["thu"] and req["bat_dau"]:  # chưa biết thứ: điểm nào không mở giờ đó ở BẤT KỲ ngày nào
+        # chưa biết thứ (hoặc giờ mở giống nhau mọi ngày — B20): điểm nào không mở lúc giờ đã nói ở BẤT KỲ ngày nào
+        if ids and req["bat_dau"] and (not req["thu"] or req.get("thu_bat_ky")):
             for i in ids:
                 need = min(45, int(tools._poi(i)["avg_duration_min"]))
                 if not any(tools._open_for(i, d, tools._to_min(req["bat_dau"]), need)[0] for d in DAY_VN):
