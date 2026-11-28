@@ -129,7 +129,7 @@ flowchart TD
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 28 câu (thuong 13 · kho 10 · tu_choi 5) · metric: `eval/metric_spec.yaml` (4 metric: khong_vi_pham_gio, khong_bia_diem, dung_hanh_vi, thuan_duong)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): **"Đạt khi ≥ 70% câu qua (cột pass theo pass_criterion), và 100% câu `tu_choi` qua, và 0 lịch trả ra có vi phạm giờ mở cửa (metric `khong_vi_pham_gio`)."**
-- Kết quả: lượt 1 **22/30 (73%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (3/5: B22, B27) · 0 vi phạm giờ đạt (23/23) · lượt 2 **23/30 (77%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (4/5: B24) · 0 vi phạm giờ đạt (24/24) — run ID: `run-1@20261128-010117` / `run-2@20261128-111600` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **22/30 (73%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (3/5: B22, B27) · 0 vi phạm giờ đạt (23/23) · lượt 2 **23/30 (77%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (4/5: B24) · 0 vi phạm giờ đạt (24/24) — run ID: `run-1@20261128-010117` / `run-2@20261128-111600` · *(sau CP4)* lượt 3 **26/30 (87%)** — **đạt chuẩn** (`tu_choi` 5/5), `run-3@20261128-162244` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` (dùng ít 58% · vừa 30% · nhiều 12%, từ khảo sát Câu 2) · lượt mô phỏng: `cost/simulate-1.csv` (`simulate-1@20261128-120625`, 50 phiên, seed 42; 1 phiên lỗi kết nối → 49 phiên tính), chạy thật qua bản ở `main` có B-lite + giọng văn + data 135 điểm; token đo trên `gpt-4.1-mini`
@@ -237,6 +237,9 @@ flowchart TD
 
 | Thời điểm | Đổi gì | Vì sao |
 |---|---|---|
+| 16:20 28/11 | `codebase/agent.py` (commit `fea7bdb`): chỉ giữ tên điểm người dùng gõ / code tìm thấy; bỏ tên điểm khớp nhầm ở thành phố khác; báo điểm không mở lúc giờ đã nói khi giờ mở giống nhau mọi ngày | B24 (run-2 trượt `tu_choi` vì in 3 tên quán model tự nghĩ ra), B07 (in tên quán người dùng không nhắc), B20 (không chỉ ra lỗi giờ) |
+| 16:22 28/11 | Chạy **run-3** (`run-3@20261128-162244`, gpt-4.1-mini, 30 câu, 0 lỗi kỹ thuật) — lượt mới, không sửa run-1, run-2 | Đo lại sau lần sửa; guide 5.3: chạy thêm thì ghi thành lượt mới |
+| 16:30 28/11 | Chấm run-3 (`eval/grading-run3-nghia.csv`) → `run-3.csv` cột `pass`, `ghi_chu`; **26/30 (87%)**, `tu_choi` 5/5 → đạt chuẩn §7. Ghi `eval/README.md` mục 5, `eval/report.md` mục 1 + 5, dòng kết quả §7 | Lượt 3 |
 
 #### Sau CP4 · N4
 

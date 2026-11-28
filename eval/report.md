@@ -10,6 +10,7 @@
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-010117` (gpt-4.1-mini) | **22/30** | **73%** | 11/14 | 8/11 | **3/5** | **chưa** — ≥70% đạt · 100% `tu_choi` trượt (B22, B27) · 0 vi phạm giờ đạt (23/23) |
 | 2 | `run-2@20261128-111600` (gpt-4.1-mini) | **23/30** | **77%** | 10/14 | 9/11 | **4/5** | **chưa** — ≥70% đạt · 100% `tu_choi` trượt (B24) · 0 vi phạm giờ đạt (24/24) |
+| 3 *(sau CP4)* | `run-3@20261128-162244` (gpt-4.1-mini) | **26/30** | **87%** | 11/14 | 10/11 | **5/5** | **đạt** — cả 3 điều kiện §7 |
 
 Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 
@@ -52,3 +53,10 @@ Lỗi phụ, câu vẫn đạt: "mua vé" bị đọc thành điều kiện "mư
   - **Model chọn ít gợi ý hơn yêu cầu** (B10: 1 quán, tiêu chí ≥2); **đọc sai yêu cầu** (B20 không lấy được khung 14:00–15:00); **lọc khi mưa cho qua điểm nửa ngoài trời** (B12); **thứ tự vòng** (B02: quay lại Hoàn Kiếm sau Cầu Giấy) và `thuan_duong` 1/5.
   - Sa Pa chưa có câu thử nào (11/12 thành phố).
 - Nếu có thêm 1 tuần: (1) lọc tên điểm từ model theo nguyên văn tin nhắn (B24) và sửa bộ tách giờ (B20); (2) code đảm bảo đủ số gợi ý tối thiểu và lọc "trong nhà" khi mưa (B10, B12); (3) thêm tiêu chí thuận đường vào bước chọn thứ tự (B02, `thuan_duong`); (4) mở rộng data đều các thành phố, đối chiếu 2 nguồn, kèm câu thử cho Sa Pa — đo lại thành run-3.
+
+## 5. Lượt 3 — sau CP4
+
+- Sửa gì (commit `fea7bdb`, 16:20 28/11), nhắm lỗi nguy hiểm nhất còn lại ở mục 4: (1) tên điểm do model trích chỉ được giữ khi người dùng thực sự gõ, hoặc là điểm trong data mà code tự tìm thấy trong tin nhắn — tên model tự nghĩ ra bị bỏ, ghi vào trace (B24); (2) tên điểm khớp nhầm thuộc thành phố khác bị bỏ, không ghi "không có dữ liệu" (B07: chữ "giờ" khớp "Quán Gió"); (3) khi hỏi lại mà giờ mở cửa các điểm giống nhau mọi ngày, vẫn báo điểm không mở lúc giờ người dùng nói (B20).
+- Kết quả: **23/30 → 26/30** (77% → 87%), `tu_choi` **4/5 → 5/5** → **lần đầu đạt chuẩn §7**. Lên: B10, B20, B24. Không câu nào tệ đi. Còn trượt: B02 (thứ tự đi vòng), B12 (gợi ý chỗ nửa ngoài trời khi mưa), B13 (data mới đổi gợi ý), B26 (thiếu mốc nghỉ trưa bảo tàng).
+- Lưu ý khi đọc số: B10 lên vì lần này model chọn 2 quán (lượt 2 chọn 1) — không do lần sửa. Run-3 chấm bởi 1 người (Nghĩa), giữ cách chấm của run-2 ở các câu output không đổi. Chuẩn "đạt", câu thử và kết quả run-1, run-2 không sửa.
+
