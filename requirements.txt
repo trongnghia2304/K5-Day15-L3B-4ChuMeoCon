@@ -4,4 +4,4 @@
 # và ghi lệnh cài vào README: python -m pip install -r requirements.txt
 #
 # Chỉ web demo (web/streamlit_app.py, N4) cần gói dưới. codebase/ không import streamlit.
-streamlit>=1.36,<2
+streamlit>=1.60,<2  # st.html(unsafe_allow_javascript) cho ô ngân sách

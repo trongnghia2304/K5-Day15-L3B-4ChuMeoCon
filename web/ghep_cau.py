@@ -61,6 +61,28 @@ def ghep_cau(thu: str, thanh_pho: str, bat_dau: str, ket_thuc: str, phuong_tien:
     return cau
 
 
+_TIEN = re.compile(r"^(\d+(?:[.,]\d+)*)\s*(k|nghìn|ngàn|tr|triệu)?\s*(?:đ|₫|vnđ|vnd|đồng)?(?:\s*/\s*người)?$")
+_HE_SO = {None: 1, "k": 1_000, "nghìn": 1_000, "ngàn": 1_000, "tr": 1_000_000, "triệu": 1_000_000}
+
+
+def doc_tien(text) -> int | None:
+    """'200.000đ' / '200,000' / '200k' / '1,5tr' → số đồng. Trống hoặc 0 → None. Sai → ValueError."""
+    if isinstance(text, int):
+        return text or None
+    s = " ".join(str(text or "").lower().split())
+    if not s:
+        return None
+    m = _TIEN.match(s)
+    if not m:
+        raise ValueError("Ngân sách ghi bằng số, vd 200.000đ hoặc 200k.")
+    so, don_vi = m.group(1), m.group(2)
+    if don_vi and re.fullmatch(r"\d+[.,]\d{1,2}", so):  # 1,5tr → 1.5 triệu
+        tien = round(float(so.replace(",", ".")) * _HE_SO[don_vi])
+    else:  # dấu chấm / phẩy là phân cách hàng nghìn
+        tien = int(re.sub(r"[.,]", "", so)) * _HE_SO[don_vi]
+    return tien or None
+
+
 def tach_diem_go_tay(text: str) -> list:
     """Ô 'điểm khác' cho gõ nhiều điểm, mỗi dòng một điểm (hoặc cách nhau bằng dấu phẩy)."""
     return [x.strip() for x in re.split(r"[,\n;]", text or "") if x.strip()]

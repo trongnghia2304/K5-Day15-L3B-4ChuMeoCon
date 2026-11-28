@@ -12,7 +12,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "codebase"))
 os.environ["MODEL_PROVIDER"] = "fake"  # trước khi import agent / ai
 
 import tracing  # noqa: E402
-from ghep_cau import THANH_PHO, doc_diem, ghep_cau, tach_diem_go_tay  # noqa: E402
+from ghep_cau import THANH_PHO, doc_diem, doc_tien, ghep_cau, tach_diem_go_tay  # noqa: E402
+from hien_thi import bo_ma_diem, dinh_dang_tien, lam_dep_cau  # noqa: E402
 from hoi_thoai import cau_xong_som, la_hoi_lai, ngu_canh_tiep, noi_tin  # noqa: E402
 
 
@@ -125,7 +126,7 @@ class HoiThoaiAgentTest(unittest.TestCase):
         out1, ev1 = self._hoi(tin1)
         self.assertTrue(la_hoi_lai(ev1), out1)
         out2, ev2 = self._hoi(noi_tin("thứ 7, 8h đến 5h chiều", ngu_canh_tiep(tin1, ev1)))
-        self.assertTrue(out2.startswith("Lịch HN — Thứ Bảy, 08:00–17:00"), out2)
+        self.assertTrue(out2.startswith("Lịch Hà Nội — Thứ Bảy, 08:00–17:00"), out2)
         self.assertIsNone(ngu_canh_tiep("x", ev2))
 
     def test_xong_som_khong_goi_y_lai_diem_da_di(self):
@@ -135,6 +136,52 @@ class HoiThoaiAgentTest(unittest.TestCase):
         goi_y = out.split("Gợi ý đang mở:")[1]
         self.assertNotIn("POI_HN_04", goi_y)  # Hỏa Lò
         self.assertNotIn("POI_HN_01", goi_y)  # Văn Miếu
+
+
+class AnMaDiemTest(unittest.TestCase):
+    def test_bo_ma_o_dong_lich_va_goi_y(self):
+        self.assertEqual(bo_ma_diem("1. 08:00–09:30 · [POI_HN_01] Văn Miếu - Quốc Tử Giám"),
+                         "1. 08:00–09:30 · Văn Miếu - Quốc Tử Giám")
+        self.assertEqual(bo_ma_diem("+ [POI_HCM_13] Bảo tàng — đi 5 phút"), "+ Bảo tàng — đi 5 phút")
+
+    def test_dong_khong_co_ma_giu_nguyen(self):
+        dong = "Tổng di chuyển: 14 phút · xong lúc 11:59"
+        self.assertEqual(bo_ma_diem(dong), dong)
+
+    def test_output_that_cua_agent_khong_con_ma(self):
+        import agent
+        tracing.begin("test")
+        out = agent.answer("Thứ Bảy ở Hà Nội từ 08:00 đến 17:00 đi xe máy: Văn Miếu, Hỏa Lò, Chợ Đồng Xuân.")["output"]
+        tracing.end()
+        self.assertIn("[POI_", out)  # output gốc vẫn giữ mã cho eval
+        self.assertNotIn("POI_", "\n".join(bo_ma_diem(d) for d in out.split("\n")))
+
+
+class NganSachTest(unittest.TestCase):
+    def test_doc_nhieu_cach_viet(self):
+        for go, so in (("200000", 200000), ("200.000", 200000), ("200,000đ", 200000), ("200.000 ₫", 200000),
+                       ("200k", 200000), ("1,5tr", 1500000), ("1.5 triệu", 1500000), ("2tr", 2000000),
+                       ("300.000 VNĐ/người", 300000), (250000, 250000)):
+            with self.subTest(go=go):
+                self.assertEqual(doc_tien(go), so)
+
+    def test_trong_hoac_0_la_khong_can(self):
+        for go in (None, "", "  ", "0", 0):
+            with self.subTest(go=go):
+                self.assertIsNone(doc_tien(go))
+
+    def test_chu_la_bao_loi(self):
+        with self.assertRaises(ValueError):
+            doc_tien("khoảng hai trăm")
+
+    def test_hien_thi_co_dau_cham_va_don_vi(self):
+        self.assertEqual(dinh_dang_tien(300000), "300.000đ")
+        self.assertEqual(lam_dep_cau("Bếp Mẹ Ỉn. Ngân sách 300000đ/người."), "Bếp Mẹ Ỉn. Ngân sách 300.000đ/người.")
+        self.assertEqual(lam_dep_cau("Từ 08:00 đến 17:00"), "Từ 08:00 đến 17:00")
+
+    def test_cau_gui_agent_van_dung_mau_h1(self):
+        cau = ghep_cau("Thứ Bảy", "Hà Nội", "08:00", "17:00", "xe máy", ["Văn Miếu"], doc_tien("250.000đ"))
+        self.assertTrue(cau.endswith("Ngân sách 250000đ/người."), cau)
 
 
 if __name__ == "__main__":

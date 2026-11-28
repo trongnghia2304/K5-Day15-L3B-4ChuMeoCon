@@ -28,7 +28,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "codebase"))
 import ai  # noqa: E402  (nạp .env vào biến môi trường)
 import tracing  # noqa: E402
 from agent import answer  # noqa: E402
-from ghep_cau import PHUONG_TIEN, THANH_PHO, THU, doc_diem, ghep_cau, tach_diem_go_tay  # noqa: E402
+from ghep_cau import PHUONG_TIEN, THANH_PHO, THU, doc_diem, doc_tien, ghep_cau, tach_diem_go_tay  # noqa: E402
+from hien_thi import bo_ma_diem, lam_dep_cau  # noqa: E402
 from hoi_thoai import cau_xong_som, ngu_canh_tiep, noi_tin  # noqa: E402
 
 log = logging.getLogger("web")
@@ -53,6 +54,39 @@ SVG_COMPASS = (
     'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
     '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>'
 )
+
+NHAN_NGAN_SACH = "Ngân sách / người"
+# Chạy trong trang (st.html, unsafe_allow_javascript) → gắn vào ô ngân sách; chạy lại nhiều lần vẫn chỉ gắn 1 lần.
+# Đặt giá trị qua setter gốc + phát sự kiện "input" để React (Streamlit) nhận đúng giá trị mới.
+JS_NGAN_SACH = r"""
+<script>
+(function () {
+  const w = window;
+  if (w.__ganNganSach) return;
+  w.__ganNganSach = true;
+  const setter = Object.getOwnPropertyDescriptor(w.HTMLInputElement.prototype, "value").set;
+  const dep = (v) => v.replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, 10)
+                     .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  const gan = () => {
+    w.document.querySelectorAll('input[aria-label^="%s"]').forEach((o) => {
+      if (o.dataset.tien) return;
+      o.dataset.tien = "1";
+      o.setAttribute("inputmode", "numeric");
+      const sua = () => {
+        const moi = dep(o.value);
+        if (moi === o.value) return;
+        setter.call(o, moi);
+        o.dispatchEvent(new w.Event("input", { bubbles: true }));
+      };
+      o.addEventListener("input", sua);
+      sua();
+    });
+  };
+  gan();
+  w.setInterval(gan, 500);
+})();
+</script>
+""" % NHAN_NGAN_SACH
 
 CSS = """
 <style>
@@ -422,7 +456,7 @@ html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-tes
 
 [data-testid="stChatInput"] > div {
   border: 1px solid var(--border-strong) !important;
-  border-radius: var(--r-pill) !important;
+  border-radius: var(--r-lg) !important;
   background: var(--card) !important;
   box-shadow: var(--shadow-input);
   padding: 2px 6px 2px 12px;
@@ -432,9 +466,31 @@ html, body, [data-testid="stApp"], [data-testid="stAppViewContainer"], [data-tes
   border-color: var(--primary) !important;
   box-shadow: 0 0 0 3px rgba(27, 77, 62, 0.14), var(--shadow-input) !important;
 }
+/* Nút gửi cùng hàng với chữ (Streamlit mặc định để nút ở hàng riêng bên dưới → khoảng trống to, trông như mất chữ) */
+[data-testid="stChatInput"] > div > div {
+  flex-direction: row !important;
+  align-items: flex-end;
+  gap: 8px;
+}
+[data-testid="stChatInput"] > div > div > div:first-child { flex: 1 1 auto; min-width: 0; }
+[data-testid="stChatInput"] > div > div > div:last-child { flex: 0 0 auto; width: auto; padding-bottom: 4px; }
 [data-testid="stChatInput"] textarea {
   color: var(--ink) !important;
+  padding: 8px 2px !important;
+  max-height: 9rem;
+  overflow-y: auto !important;
+  word-break: break-word;
 }
+.st-key-f_ns [data-testid="stTextInputRootElement"] { display: flex; align-items: center; }
+.st-key-f_ns [data-testid="stTextInputRootElement"]::after {
+  content: "đ";
+  padding: 0 14px 0 4px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.st-key-f_ns input { font-variant-numeric: tabular-nums; }
+.st-key-f_ns [data-testid="InputInstructions"] { display: none; }
+.stElementContainer:has(> .stHtml:empty) { display: none; }
 [data-testid="stChatInputSubmitButton"] {
   background: var(--primary) !important;
   color: #FFFFFF !important;
@@ -528,8 +584,24 @@ label p, [data-testid="stWidgetLabel"] p {
 .stApp .ds-diem li:last-child { border-bottom: 0; }
 .stApp [data-testid="stSidebar"] hr { border-color: var(--border-strong); margin: 14px 0; }
 
+/* Khung app theo chiều cao nhìn thấy thật: trên điện thoại 100vh tính cả phần bị thanh địa chỉ che → ô chat bị đẩy khuất */
+@supports (height: 100dvh) {
+  [data-testid="stApp"], [data-testid="stAppViewContainer"] { height: 100dvh !important; bottom: auto !important; }
+}
 @media (max-width: 768px) {
-  .block-container { padding-top: 3.2rem; padding-left: 1rem; padding-right: 1rem; }
+  [data-testid="stHeader"] { background: var(--canvas) !important; border-bottom: 1px solid var(--border); height: 3rem; }
+  .block-container { padding-top: 3.75rem; padding-left: 1rem; padding-right: 1rem; padding-bottom: 1.5rem; }
+  .khoi-header { padding: 0 0 14px; margin: 0 0 16px; }
+  .khoi-header h1 { font-size: 1.7rem !important; }
+  .khoi-header.gon h1 { font-size: 1.3rem !important; }
+  .header-sub { font-size: 0.9rem; margin-top: 6px; }
+  .che-do-thu { margin-bottom: 14px; font-size: 0.84rem; }
+  .st-key-mau .stButton > button { padding: 10px 14px; min-height: 44px; }
+  .st-key-mau .stButton > button p { font-size: 0.86rem; }
+  [data-testid="stBottomBlockContainer"] {
+    padding: 8px 12px calc(10px + env(safe-area-inset-bottom)) !important;
+  }
+  [data-testid="stChatInput"] textarea { font-size: 16px !important; }  /* < 16px thì iOS tự phóng to khi gõ */
   .to-lich { padding: 16px 18px; }
   .stButton > button, [data-testid="stFormSubmitButton"] > button { width: 100%; }
 }
@@ -614,7 +686,7 @@ def _gui_tu_form() -> None:
         return
     try:
         cau = ghep_cau(s["f_thu"], s["f_tp"], s["f_tu"].strftime("%H:%M"), s["f_den"].strftime("%H:%M"), s["f_pt"],
-                       list(s.get("f_diem") or []) + tach_diem_go_tay(s.get("f_khac", "")), int(s.get("f_ns") or 0) or None)
+                       list(s.get("f_diem") or []) + tach_diem_go_tay(s.get("f_khac", "")), doc_tien(s.get("f_ns")))
     except ValueError as e:
         s["loi_form"] = str(e)
         return
@@ -694,7 +766,7 @@ def _ve_tin_ai(t: dict) -> None:
         '<div class="nhan-vai ai">%s<span>Trợ lý lịch trình</span></div>'
         '%s'
         '<div class="to-lich">%s</div>' % (SVG_COMPASS, chi_tiet, _nguyen_van(t["output"]))
-    )  # H7: giữ nguyên văn 100% nội dung
+    )  # H7: giữ nguyên câu chữ, chỉ ẩn mã điểm
 
 
 def _tong_token_phien() -> str:
@@ -720,7 +792,7 @@ def _bong_bong_nguoi(chu: str) -> str:
         '<div class="nhan-vai">Bạn</div>'
         '<div class="tin-nguoi">%s</div>'
         '</div>'
-    ) % html.escape(chu)
+    ) % html.escape(lam_dep_cau(chu))
 
 
 def _lop_dong(line: str) -> str:
@@ -742,15 +814,17 @@ def _lop_dong(line: str) -> str:
 
 
 def _nguyen_van(output: str) -> str:
-    """Output agent → 1 chuỗi HTML 1 dòng giữ nguyên 100% chữ: escape, giữ thụt đầu dòng, chỉ bọc lớp trình bày (H7)."""
+    """Output agent → HTML: escape, giữ thụt đầu dòng, bọc lớp trình bày, ẩn mã điểm [POI_…] (chỉ ở web)."""
     khoi = []
     for line in output.split("\n"):
         if not line.strip():
             khoi.append('<div class="lich-dong">&nbsp;</div>')
             continue
+        lop = _lop_dong(line)
         than = line.lstrip(" ")
-        noi_dung = "&nbsp;" * (len(line) - len(than)) + _DAM.sub(r"<b>\1</b>", html.escape(than))
-        khoi.append('<div class="%s">%s</div>' % (_lop_dong(line), noi_dung))
+        thut = 0 if lop == "lich-goi-y-item" else len(line) - len(than)  # thẻ gợi ý đã có khung riêng
+        noi_dung = "&nbsp;" * thut + _DAM.sub(r"<b>\1</b>", html.escape(bo_ma_diem(than)))
+        khoi.append('<div class="%s">%s</div>' % (lop, noi_dung))
     return "".join(khoi)
 
 
@@ -775,14 +849,14 @@ def _ve_man_trong() -> None:
     with st.container(key="mau"):
         for i, (nhan, cau) in enumerate(CAU_MAU):
             st.button(
-                "%s  —  %s" % (nhan, cau),
+                "%s  —  %s" % (nhan, lam_dep_cau(cau)),
                 key="mau_%d" % i,
                 on_click=_dat_gui,
                 args=(cau, True),
                 type="secondary",
                 use_container_width=True,
             )
-    _md('<p class="phu">Hoặc chọn điểm nhanh từ danh sách ở thanh bên trái (<b>Điền nhanh</b>).</p>')
+    _md('<p class="phu">Hoặc chọn điểm từ danh sách ở <b>Điền nhanh</b> (thanh bên; trên điện thoại bấm » góc trên bên trái).</p>')
 
 
 def _ve_sua_tiep() -> None:
@@ -819,8 +893,8 @@ def _ve_thanh_ben() -> None:
             c3, c4 = st.columns(2)
             c3.time_input("Từ", value=None, step=900, key="f_tu")
             c4.time_input("Đến", value=None, step=900, key="f_den")
-            st.number_input("Ngân sách / người (VNĐ)", min_value=0, step=50000, key="f_ns",
-                            help="Để 0 nếu không cần ước tính ngân sách.")
+            st.text_input(NHAN_NGAN_SACH + " (VNĐ)", key="f_ns", placeholder="Vd: 300.000",
+                          help="Gõ số tiền, dấu chấm tự thêm (300.000). Để trống nếu không cần.")
 
             _md('<div class="sb-group">3 · Điểm muốn ghé</div>')
             st.multiselect("Chọn từ danh sách", diem_tp.get(THANH_PHO[tp], []), key="f_diem",
@@ -851,6 +925,7 @@ def main() -> None:
         return
     _khoi_tao()
     _ve_thanh_ben()
+    st.html(JS_NGAN_SACH, unsafe_allow_javascript=True)  # dấu chấm hàng nghìn khi gõ ô ngân sách
 
     tp_chon = st.session_state.get("f_tp", next(iter(THANH_PHO)))
     so_diem = len(_diem_theo_tp().get(THANH_PHO[tp_chon], []))
@@ -872,7 +947,7 @@ def main() -> None:
     if not st.session_state["tin"] and "cho_gui" not in st.session_state:
         _ve_man_trong()
     _ve_lich_su()
-    st.chat_input("Vd: Thứ Bảy ở Hà Nội từ 8h đến 17h, đi Hồ Gươm, Nhà thờ Lớn, Chùa Một Cột", key="o_chat",
+    st.chat_input("Thứ mấy, ở đâu, mấy giờ, đi đâu?", key="o_chat",
                   on_submit=_gui_tu_chat)
     if "cho_gui" in st.session_state:
         _xu_ly_cho_gui()

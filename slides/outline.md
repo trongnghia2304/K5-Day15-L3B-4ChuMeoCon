@@ -65,7 +65,7 @@
 - **Đang đi gặp sự cố — B07** (14:05 Thứ Bảy mưa ở Thảo Cầm Viên): 1–3 điểm trong nhà đang mở, phút đi, giờ đóng.
 - **Chat nhiều lượt (A+):** nhắn thiếu thứ → trợ lý hỏi lại → trả lời "thứ 7, 8h đến 5h chiều" → ra lịch (web tự nối ngữ cảnh).
 - **Sau 13:15 (nếu đã merge B-lite):** lịch 3 điểm khung dài → mục "Còn trống … có thể ghé thêm".
-- Mạng hỏng → video dự phòng (link: __). Model: `gpt-4.1-mini`.
+- Mạng hỏng → video dự phòng (link: https://drive.google.com/file/d/1mumo5YJhOwXtHauAe20BVFD_fyfpwCZE/view) · bản online: https://k5-day15-l3b-4chumeocon-production.up.railway.app/. Model: `gpt-4.1-mini`.
 
 ### Trang 5 — Đánh giá thế nào
 - Bộ câu thử: `eval/benchmark.csv` **30 câu** (28 câu CP2 + B29–B30 ngân sách) · 4 metric `eval/metric_spec.yaml` · data `data/DATA_CARD.md` (94 điểm · 12 thành phố).

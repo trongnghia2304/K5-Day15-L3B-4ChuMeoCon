@@ -75,16 +75,18 @@ Web là **khung chat**: mỗi lượt gửi **một câu chữ** vào đúng `ag
 
 | Việc | Lệnh |
 |---|---|
+| **Bản online (Railway)** | https://k5-day15-l3b-4chumeocon-production.up.railway.app/ — cần mật khẩu demo, hỏi nhóm |
 | Cài (một lần, chỉ web cần) | `python -m pip install -r requirements.txt` |
 | Chạy trên máy | `streamlit run web/streamlit_app.py` → mở `http://localhost:8501` |
 | Kiểm ghép câu, nối tin chat, agent đọc được câu web | `python web/test_ghep_cau.py -v` (chế độ model giả, không tốn token) |
 
 - **Ô chat:** gõ tự do — xếp lịch ("Thứ Bảy ở Hà Nội 8h–17h, đi Văn Miếu, Hỏa Lò…") hoặc đang đi gặp mưa / quán đóng / xong sớm.
 - **Nhớ ngữ cảnh khi trợ lý hỏi lại** (hợp đồng H1 v2): lượt trước agent hỏi lại → web gửi `"<tin mới>. <câu đã gửi trước>"`, vd trả lời ngắn "thứ 7, 8h đến 5h chiều" vẫn ra lịch. Các lượt khác gửi nguyên văn. Web nhận biết "hỏi lại" qua ghi chú trace của agent, không đọc output.
-- **Điền nhanh bằng form:** thành phố, thứ, giờ, phương tiện, chọn điểm từ dữ liệu, ngân sách → câu dạng `Thứ Bảy ở TP.HCM từ 08:00 đến 17:30 đi xe máy: Thảo Cầm Viên, Dinh Độc Lập. Ngân sách 300000đ/người.` (ngân sách 0 thì bỏ cả câu ngân sách).
+- **Điền nhanh bằng form:** thành phố, thứ, giờ, phương tiện, chọn điểm từ dữ liệu, ngân sách → câu dạng `Thứ Bảy ở TP.HCM từ 08:00 đến 17:30 đi xe máy: Thảo Cầm Viên, Dinh Độc Lập. Ngân sách 300000đ/người.` (ngân sách để trống thì bỏ cả câu ngân sách). Ô ngân sách gõ tay, tự chèn dấu chấm khi gõ (`1.250.000 đ`, điện thoại mở bàn phím số); câu gửi agent vẫn đúng mẫu H1 (`1250000đ/người`).
 - **Sửa lịch vừa rồi:** ô chứa sẵn câu đã gửi — thêm / bỏ điểm, đổi giờ rồi gửi lại. Nút **"Còn thời gian?"** điền sẵn câu hỏi gợi ý thêm điểm (người dùng điền giờ xong và nơi đang đứng).
 - **Danh sách điểm có dữ liệu** theo thành phố — nơi ngoài danh sách trợ lý báo "không có dữ liệu".
-- Kết quả hiện **nguyên văn** output của agent (H7), kèm câu đã gửi và số lần gọi model / công cụ / token.
+- Kết quả hiện đúng câu chữ output của agent (H7), **ẩn mã điểm `[POI_…]`** (chỉ ở web — output gốc, eval, trace vẫn giữ mã), kèm câu đã gửi và số token đã dùng.
+- Dùng được trên điện thoại: ô chat luôn hiện ở đáy màn hình, thanh **Điền nhanh** mở bằng nút » góc trên bên trái.
 
 Biến môi trường (trong `.env` ở máy, hoặc *Variables* trên Railway — **không** ghi vào repo):
 
@@ -137,5 +139,5 @@ Nhóm dùng Claude Code để viết nháp code luồng chính, công cụ lập
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở thư mục gốc · link video: ____ |
+| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở thư mục gốc · link video: https://drive.google.com/file/d/1mumo5YJhOwXtHauAe20BVFD_fyfpwCZE/view · bản online: https://k5-day15-l3b-4chumeocon-production.up.railway.app/ |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
