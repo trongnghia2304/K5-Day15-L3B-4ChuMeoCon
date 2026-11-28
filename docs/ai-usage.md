@@ -37,6 +37,7 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 - Dùng Codex chuyển riêng 27 điểm HN đã kiểm từ nhánh data sang `main` theo yêu cầu deploy; tự kiểm chỉ nối dòng POI/giờ, giữ HCM ở nhánh chờ và ghi lại rằng run-2 sẽ có nền dữ liệu khác run-1.
 - Dùng Codex đọc run-2 và soạn phiếu B01–B15; tự đối chiếu từng `pass_criterion`, đặc biệt B02 đi vòng về Hoàn Kiếm, B10 thiếu quán thứ hai, B12 quán nửa trong nửa ngoài và B13 thiếu cảnh báo đông.
 - Dùng Codex đọc file tổng hợp mô phỏng do code sinh, chép nguyên số chi phí và tỉ lệ đạt run-2 vào báo cáo; tự kiểm 50 phiên, 1 lỗi kết nối và model thật `gpt-4.1-mini`, giữ nguyên CSV/trace của lượt chạy.
+- Dùng Codex kiểm link công khai của bảng giá đề và giá `gpt-4.1-mini` trên tài liệu OpenAI; tính lại dòng giá model thật từ CSV bằng đúng hàm tổng hợp của khung, giữ nguyên dữ liệu lượt mô phỏng.
 
 ### N3 — ____
 

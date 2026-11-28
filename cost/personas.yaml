@@ -36,15 +36,19 @@ personas:           # ≥3 kiểu người dùng; share cộng lại = 1
 # hoặc
 #     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
 
-prices:             # USD / 1 triệu token — 2 mức tham chiếu từ bảng giá repo đề, xem 25/11/2026.
+prices:             # USD / 1 triệu token — 2 mức tham chiếu từ repo đề và giá model thật.
   - model: gemini-3.1-flash-lite
     input: 0.25
     output: 1.50
-    source: "E:/minihackathon/K5-L3-Day15-AI-Product-Hackathon/further-reading/model-prices.csv; https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+    source: "https://github.com/VinUni-AI20k/K5-L3-Day15-AI-Product-Hackathon/blob/main/further-reading/model-prices.md; https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
   - model: gemini-4-hydrogen
     input: 1.50
     output: 7.50
-    source: "E:/minihackathon/K5-L3-Day15-AI-Product-Hackathon/further-reading/model-prices.csv; https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+    source: "https://github.com/VinUni-AI20k/K5-L3-Day15-AI-Product-Hackathon/blob/main/further-reading/model-prices.md; https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+  - model: gpt-4.1-mini
+    input: 0.40
+    output: 1.60
+    source: "https://developers.openai.com/api/docs/models/gpt-4.1-mini · xem 28/11/2026, giá chuẩn, không tính cache"
 
 usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
   rate:
