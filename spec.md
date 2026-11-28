@@ -132,10 +132,10 @@ flowchart TD
 - Kết quả: lượt 1 **22/30 (73%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (3/5: B22, B27) · 0 vi phạm giờ đạt (23/23) · lượt 2 **23/30 (77%)** — **chưa đạt chuẩn**: ≥70% đạt · 100% `tu_choi` trượt (4/5: B24) · 0 vi phạm giờ đạt (24/24) — run ID: `run-1@20261128-010117` / `run-2@20261128-111600` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+- Persona + giá: `cost/personas.yaml` (dùng ít 58% · vừa 30% · nhiều 12%, từ khảo sát Câu 2) · lượt mô phỏng: `cost/simulate-1.csv` (`simulate-1@20261128-120625`, 50 phiên, seed 42; 1 phiên lỗi kết nối → 49 phiên tính), chạy thật qua bản ở `main` có B-lite + giọng văn + data 135 điểm; token đo trên `gpt-4.1-mini`
+- Chi phí / task thành công (tỉ lệ đạt run-2 77%): **$0.00057** (giá `gemini-3.1-flash-lite`) · **$0.0032** (giá `gemini-4-hydrogen`)
+- Chi phí / tháng (5.000 · 10.000 · 20.000 người, *tự ước tính*): thấp **$0.65** · cơ sở **$1.31** · cao **$2.61** (giá `gemini-3.1-flash-lite`) · $3.63 · $7.26 · $14.51 (giá `gemini-4-hydrogen`) → chi tiết `cost/cost-estimate.md`
+- So với impact / người / tháng (§2): chi phí model **$0.00013–0.00073 / người / tháng** so với ~25,2 phút tiết kiệm / người / tháng → **đáng thử tiếp**: chi phí model không phải điểm nghẽn. Chưa kết luận được về tài chính vì số người dùng và tần suất là *tự ước tính*, chưa tính hosting, lưu trữ, giờ công; điểm nghẽn thật là chất lượng (run-2 chưa đạt chuẩn §7 vì B24)
 
 ## §9. Rủi ro & an toàn
 - Dữ liệu: khảo sát đã xoá cột Email / Zalo trước khi commit; không thu tên. Tin nhắn người dùng không chứa dữ liệu cá nhân bắt buộc.
@@ -209,6 +209,7 @@ flowchart TD
 | 11:15 28/11 | Sửa nhóm lỗi **A + B** của run-1 (commit `8815187`): bước 7b — điểm model bỏ được code thử xếp lại, điểm còn bỏ có lý do do code kiểm kèm phút đi / km / phút quay về; bộ tách luật không còn nhận nhầm điểm mới chỉ nhờ cặp từ yếu ("bảo tàng") | run-1: B02, B06 bị model bỏ nhầm điểm xếp được; B22, B27 (`tu_choi`) thiếu con số; data mở rộng (vào `main` 10:36) làm B02 nhận nhầm "Bảo tàng Lịch sử Quốc gia" |
 | 11:16 28/11 | Chạy **run-2** (`run-2@20261128-111600`, gpt-4.1-mini, 30 câu, 0 lỗi kỹ thuật) trên `main` commit `8815187`: sửa lỗi A+B + B-lite + giọng văn H7 v3 + data 135 điểm. Metric code: `khong_vi_pham_gio` 24/24 · `khong_bia_diem` 24/24 · `thuan_duong` 1/5. Chờ chấm `pass` | Lượt 2 theo guide 4.1; cấu hình khác run-1 ở 4 chỗ — `eval/report.md` mục 3 phải tách |
 | 11:59 28/11 | Gộp `eval/grading-run2-hieu.csv` (B01–B15) và `grading-run2-tiep.csv` (B16–B30) vào `eval/run-2.csv` (chỉ cột `pass`, `ghi_chu`, đã so từng ô); `python run.py score` → **23/30 (77%)**, `tu_choi` 4/5; điền §7, `eval/README.md` mục 5, `eval/report.md` mục 1 + 3 | Lượt 2 theo guide 4.1 |
+| 12:27 28/11 | Điền §8 từ `cost/cost-estimate.md` + `cost/simulate-1-summary.md`; `eval/report.md` mục 4 (lỗi còn lại, nếu có thêm 1 tuần); `eval/README.md` mục 6 theo run-2 | Hoàn thiện §0–§9 và hồ sơ đánh giá cho CP4 |
 
 #### N4 · web, README, validation, slide 4–8 — Nguyễn Nghiêm Khánh Tiệp
 

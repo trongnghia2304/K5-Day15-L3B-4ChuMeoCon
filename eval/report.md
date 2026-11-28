@@ -46,5 +46,9 @@ Lỗi phụ, câu vẫn đạt: "mua vé" bị đọc thành điều kiện "mư
 
 ## 4. Còn lại
 
-- Lỗi chưa sửa + nguy hiểm thế nào: __
-- Nếu có thêm 1 tuần: __
+- Lỗi chưa sửa + nguy hiểm thế nào:
+  - **Model trích yêu cầu tự bịa tên điểm** (B24, `tu_choi`): tên bịa không được xếp hay đặt, nhưng vẫn in ra trong dòng "Không có dữ liệu về" — người dùng có thể tưởng đó là quán có thật. Nguy hiểm nhất vì đúng loại "bịa" sản phẩm hứa chặn, và là lý do run-2 trượt chuẩn §7. Cách sửa đã rõ: chỉ giữ tên điểm có thật trong nguyên văn tin nhắn.
+  - **Data mới làm đổi gợi ý** (B13): thêm quán ở HCM thì Phở Hòa Pasteur (đang đông) không còn được gợi ý → mất cảnh báo. Gợi ý phụ thuộc số điểm trong data; không sửa câu thử, ghi nhận để kiểm khi thêm data.
+  - **Model chọn ít gợi ý hơn yêu cầu** (B10: 1 quán, tiêu chí ≥2); **đọc sai yêu cầu** (B20 không lấy được khung 14:00–15:00); **lọc khi mưa cho qua điểm nửa ngoài trời** (B12); **thứ tự vòng** (B02: quay lại Hoàn Kiếm sau Cầu Giấy) và `thuan_duong` 1/5.
+  - Sa Pa chưa có câu thử nào (11/12 thành phố).
+- Nếu có thêm 1 tuần: (1) lọc tên điểm từ model theo nguyên văn tin nhắn (B24) và sửa bộ tách giờ (B20); (2) code đảm bảo đủ số gợi ý tối thiểu và lọc "trong nhà" khi mưa (B10, B12); (3) thêm tiêu chí thuận đường vào bước chọn thứ tự (B02, `thuan_duong`); (4) mở rộng data đều các thành phố, đối chiếu 2 nguồn, kèm câu thử cho Sa Pa — đo lại thành run-3.
