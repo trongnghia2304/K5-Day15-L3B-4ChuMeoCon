@@ -188,7 +188,7 @@ flowchart TD
 | 12:10 28/11 | Chạy `simulate-1` 50 phiên (seed 42) trên `main`, lấy tỉ lệ đạt run-2 23/30, điền `cost/cost-estimate.md` | So chi phí token của hai mức giá với Impact §2; 1 phiên lỗi kết nối được loại khỏi trung bình và ghi rõ, không sửa file kết quả đã chạy |
 | 12:45 28/11 | Thay đường dẫn nguồn giá trên máy bằng link repo đề công khai; thêm giá và dòng tính chi phí `gpt-4.1-mini` trong `cost/personas.yaml`, `cost/cost-estimate.md` | Người chấm mở được nguồn; model thật chạy cần có ước tính theo giá của chính nó. Tính lại từ 49 phiên hợp lệ của `simulate-1`, không sửa CSV/trace đã chạy |
 
-#### N3 · ai, agent, eval, §3–§9 — ____
+#### N3 · ai, agent, eval, §3–§9 — Nguyễn Trọng Nghĩa
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
